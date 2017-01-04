@@ -70,11 +70,6 @@ doctrine:
                 class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                 enabled: true
 
-    orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -94,10 +89,12 @@ fos_user:
         email:
             template:   email/password_resetting.email.twig
     registration:
+        form:
+            type: app_user_registration
         confirmation:
             enabled: true
             from_email:
-                address:        registration@example.com
+                address:        no-reply@example.com
                 sender_name:    Demo Registration
     resetting:
         email:
