@@ -1,0 +1,13 @@
+{% extends ":admin:base.html.twig" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block top_content %}
+    {% embed ':_partial:breadcrumb.html.twig' %}
+        {% block breadcrumb %}Profile{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock %}

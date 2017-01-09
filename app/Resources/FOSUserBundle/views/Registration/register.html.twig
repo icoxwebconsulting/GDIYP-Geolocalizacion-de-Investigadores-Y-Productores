@@ -1,0 +1,70 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <body {% block body_class %}{% endblock %}>
+    <div class="container d-table">
+        <div class="d-100vh-va-middle">
+            <div class="row">
+                {% block content %}
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card mx-2">
+                            <div class="card-block p-2">
+                                <h1>Register</h1>
+                                <p class="text-muted">Create your account</p>
+                                <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                                    <div class="input-group mb-1">
+                                        {{ form_widget(form.firstName, { 'attr': { 'class': 'form-control', 'placeholder': 'First Name'}}) }}
+                                    </div>
+                                    {{ form_errors(form.firstName) }}
+
+                                    <div class="input-group mb-1">
+                                        {{ form_widget(form.lastName, { 'attr': { 'class': 'form-control', 'placeholder': 'Last Name'}}) }}
+                                    </div>
+                                    {{ form_errors(form.lastName) }}
+
+                                    <div class="input-group mb-1">
+                                    <span class="input-group-addon"><i class="icon-user"></i>
+                                    </span>
+                                        {{ form_widget(form.username, { 'attr': { 'class': 'form-control', 'placeholder': 'Username'}}) }}
+                                    </div>
+                                    {{ form_errors(form.username) }}
+
+                                    <div class="input-group mb-1">
+                                        <span class="input-group-addon">@</span>
+                                        {{ form_widget(form.email, { 'attr': { 'class': 'form-control', 'placeholder': 'Email'}}) }}
+                                    </div>
+                                    {{ form_errors(form.email) }}
+
+                                    <div class="input-group mb-1">
+                                    <span class="input-group-addon"><i class="icon-lock"></i>
+                                    </span>
+                                        {{ form_widget(form.plainPassword.first, { 'attr': { 'class': 'form-control', 'placeholder': 'Password'}}) }}
+                                    </div>
+                                    {{ form_errors(form.plainPassword.first) }}
+
+                                    <div class="input-group mb-1">
+                                    <span class="input-group-addon"><i class="icon-lock"></i>
+                                    </span>
+                                        {{ form_widget(form.plainPassword.second, { 'attr': { 'class': 'form-control', 'placeholder': 'Repeat Password'}}) }}
+                                    </div>
+                                    {{ form_errors(form.plainPassword.second) }}
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 form-control-label">User type</label>
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.roles) }}
+                                        </div>
+                                    </div>
+                                    {{ form_errors(form.roles) }}
+                                    {{ form_rest(form) }}
+                                    <button type="submit" class="btn btn-block btn-success">Create Account</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}
