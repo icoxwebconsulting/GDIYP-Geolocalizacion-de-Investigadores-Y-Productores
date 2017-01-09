@@ -25,6 +25,7 @@ class User extends BaseUser
 
     /**
      * @var string $first_name
+     * @Assert\NotBlank()
      * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     protected $first_name;
@@ -34,6 +35,18 @@ class User extends BaseUser
      * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
     protected $last_name;
+
+    /**
+     * @var $reported
+     * @ORM\Column(name="reported", type="boolean")
+     */
+    protected $reported = 0;
+
+    /**
+     * @ORM\OneToOne(targetEntity="UserProfile")
+     * @ORM\JoinColumn(name="user_profile", referencedColumnName="id")
+     */
+    protected $user_profile;
 
     public function __construct()
     {
@@ -85,5 +98,51 @@ class User extends BaseUser
     public function getLastName()
     {
         return $this->last_name;
+    }
+
+    /**
+     * Set reported
+     *
+     * @param boolean $reported
+     * @return User
+     */
+    public function setReported($reported)
+    {
+        $this->reported = $reported;
+
+        return $this;
+    }
+
+    /**
+     * Get reported
+     *
+     * @return boolean 
+     */
+    public function getReported()
+    {
+        return $this->reported;
+    }
+
+    /**
+     * Set user_profile
+     *
+     * @param \AppBundle\Entity\UserProfile $userProfile
+     * @return User
+     */
+    public function setUserProfile(\AppBundle\Entity\UserProfile $userProfile = null)
+    {
+        $this->user_profile = $userProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get user_profile
+     *
+     * @return \AppBundle\Entity\UserProfile 
+     */
+    public function getUserProfile()
+    {
+        return $this->user_profile;
     }
 }
