@@ -3,12 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
  *
  * @ORM\Table(name="categories")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @UniqueEntity("name")
  */
 class Category
 {
@@ -23,8 +26,8 @@ class Category
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
@@ -94,5 +97,28 @@ class Category
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \AppBundle\Entity\Category $parent
+     * @return Category
+     */
+    public function setParent(\AppBundle\Entity\Category $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \AppBundle\Entity\Category 
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

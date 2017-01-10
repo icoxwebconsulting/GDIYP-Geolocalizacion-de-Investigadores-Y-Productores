@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * New
@@ -26,21 +27,20 @@ class News
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="subtitle", type="string", length=255)
      */
     private $subtitle;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="text")
      */
     private $description;

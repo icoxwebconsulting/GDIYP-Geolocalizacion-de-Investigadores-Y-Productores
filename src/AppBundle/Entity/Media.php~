@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  *
@@ -26,14 +27,14 @@ class Media
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
@@ -143,5 +144,28 @@ class Media
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set media_type
+     *
+     * @param \AppBundle\Entity\MediaType $mediaType
+     * @return Media
+     */
+    public function setMediaType(\AppBundle\Entity\MediaType $mediaType = null)
+    {
+        $this->media_type = $mediaType;
+
+        return $this;
+    }
+
+    /**
+     * Get media_type
+     *
+     * @return \AppBundle\Entity\MediaType 
+     */
+    public function getMediaType()
+    {
+        return $this->media_type;
     }
 }

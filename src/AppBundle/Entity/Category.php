@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -25,8 +26,8 @@ class Category
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 

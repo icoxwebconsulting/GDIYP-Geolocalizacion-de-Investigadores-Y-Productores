@@ -99,4 +99,50 @@ class User extends BaseUser
     {
         return $this->last_name;
     }
+
+    /**
+     * Set reported
+     *
+     * @param boolean $reported
+     * @return User
+     */
+    public function setReported($reported)
+    {
+        $this->reported = $reported;
+
+        return $this;
+    }
+
+    /**
+     * Get reported
+     *
+     * @return boolean 
+     */
+    public function getReported()
+    {
+        return $this->reported;
+    }
+
+    /**
+     * Set user_profile
+     *
+     * @param \AppBundle\Entity\UserProfile $userProfile
+     * @return User
+     */
+    public function setUserProfile(\AppBundle\Entity\UserProfile $userProfile = null)
+    {
+        $this->user_profile = $userProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get user_profile
+     *
+     * @return \AppBundle\Entity\UserProfile 
+     */
+    public function getUserProfile()
+    {
+        return $this->user_profile;
+    }
 }

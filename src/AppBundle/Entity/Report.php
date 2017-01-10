@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Report
@@ -27,7 +28,7 @@ class Report
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="text")
      */
     private $description;

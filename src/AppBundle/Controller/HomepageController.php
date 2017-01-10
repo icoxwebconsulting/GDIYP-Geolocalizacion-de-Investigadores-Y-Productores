@@ -15,7 +15,7 @@ use AppBundle\Entity\User;
 class HomepageController extends Controller
 {
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/", name="homepage")
      * @return Response
      */
     public function indexAction()
