@@ -4,13 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user_profile")
- * @Vich\Uploadable
  */
 class UserProfile
 {
@@ -37,30 +34,24 @@ class UserProfile
     protected $summary;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Location")
-     * @ORM\JoinColumn(name="location", referencedColumnName="id")
-     */
-    protected $location;
-
-    /**
-     * @Assert\File(
-     *     maxSize="10000k",
-     *     mimeTypes={"image/png", "image/jpeg", "image/gif", "image/jpg"},
-     *     mimeTypesMessage = "El tipo de archivo ({{ type }}) no es válido. Los tipos de archivos permitidos son {{ types }}"
-     * )
-     *
-     * @Vich\UploadableField(mapping="image_profile", fileNameProperty="imageName")
-     *
-     * @var File
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=255)
      */
-    private $imageName;
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=255)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     */
+    protected $user;
 
     /**
      * Get id
@@ -142,66 +133,71 @@ class UserProfile
     }
 
     /**
-     * Set location
+     * Set latitude
      *
-     * @param \AppBundle\Entity\Location $location
-     * @return UserProfile
+     * @param string $latitude
+     * @return Location
      */
-    public function setLocation(\AppBundle\Entity\Location $location = null)
+    public function setLatitude($latitude)
     {
-        $this->location = $location;
+        $this->latitude = $latitude;
 
         return $this;
     }
 
     /**
-     * Get location
+     * Get latitude
      *
-     * @return \AppBundle\Entity\Location 
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
-     * @return Media
-     */
-    public function setImage(File $file = null)
-    {
-        $this->image = $file;
-
-        if ($file instanceof UploadedFile) {
-            $this->setUpdatedAt(new \DateTime());
-        }
-    }
-
-    /**
-     * @return File
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param string $fileName
-     *
-     * @return User
-     */
-    public function setImageName($fileName)
-    {
-        $this->imageName = $fileName;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getImageName()
+    public function getLatitude()
     {
-        return $this->imageName;
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     * @return Location
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return UserProfile
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

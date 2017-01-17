@@ -6,11 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
+ * @Vich\Uploadable
  */
 class User extends BaseUser
 {
@@ -43,10 +46,24 @@ class User extends BaseUser
     protected $reported = 0;
 
     /**
-     * @ORM\OneToOne(targetEntity="UserProfile")
-     * @ORM\JoinColumn(name="user_profile", referencedColumnName="id")
+     * @Assert\File(
+     *     maxSize="10000k",
+     *     mimeTypes={"image/png", "image/jpeg", "image/gif", "image/jpg"},
+     *     mimeTypesMessage = "El tipo de archivo ({{ type }}) no es válido. Los tipos de archivos permitidos son {{ types }}"
+     * )
+     *
+     * @Vich\UploadableField(mapping="image_profile", fileNameProperty="imageName")
+     *
+     * @var File
      */
-    protected $user_profile;
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $imageName;
 
     public function __construct()
     {
@@ -124,25 +141,43 @@ class User extends BaseUser
     }
 
     /**
-     * Set user_profile
+    * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+    * @return Media
+    */
+    public function setImage(File $file = null)
+    {
+        $this->image = $file;
+
+        if ($file instanceof UploadedFile) {
+            $this->setUpdatedAt(new \DateTime());
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $fileName
      *
-     * @param \AppBundle\Entity\UserProfile $userProfile
      * @return User
      */
-    public function setUserProfile(\AppBundle\Entity\UserProfile $userProfile = null)
+    public function setImageName($fileName)
     {
-        $this->user_profile = $userProfile;
+        $this->imageName = $fileName;
 
         return $this;
     }
 
     /**
-     * Get user_profile
-     *
-     * @return \AppBundle\Entity\UserProfile 
+     * @return string
      */
-    public function getUserProfile()
+    public function getImageName()
     {
-        return $this->user_profile;
+        return $this->imageName;
     }
 }
