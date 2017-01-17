@@ -14,8 +14,30 @@
 
     <!-- Main styles for this application -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    {% block extra_css %} {% endblock %}
+    <style>
+        .alert-success {
+            margin-top: -24px;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
 
+    <!-- Bootstrap and necessary plugins -->
+    <script src="{{ asset('assets/components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/components/tether/dist/js/tether.min.js') }}"></script>
+    <script src="{{ asset('assets/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/components/pace/pace.min.js') }}"></script>
+
+    <!-- GenesisUI main scripts -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    {#<script src="{{ asset('assets/components/chart.js/dist/Chart.bundle.min.js') }}"></script>#}
+    <!-- Custom scripts required by this view -->
+    <script src="{{ asset('assets/js/views/main.js') }}"></script>
+
+    {#<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>#}
+    {#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&callback=initialize&sensor=false" async defer#}
+            {#type="text/javascript"></script>#}
+
+    {% block extra_js %}{% endblock %}
 </head>
 
 {% block body %}
@@ -45,6 +67,9 @@
             {% embed ':_partial:breadcrumb.html.twig' %}{% endembed %}
         {% endblock %}
 
+        <!-- Messages flash -->
+        {% include 'messages/success.html.twig' %}
+
         <div class="container-fluid">
             <div class="animated fadeIn">
                 <div class="row">
@@ -61,19 +86,7 @@
     </footer>
     <!-- /footer -->
 
-    <!-- Bootstrap and necessary plugins -->
-    <script src="{{ asset('assets/components/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/components/tether/dist/js/tether.min.js') }}"></script>
-    <script src="{{ asset('assets/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/components/pace/pace.min.js') }}"></script>
-
-    <!-- GenesisUI main scripts -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('assets/components/chart.js/dist/Chart.bundle.min.js') }}"></script>
-    <!-- Custom scripts required by this view -->
-    <script src="{{ asset('assets/js/views/main.js') }}"></script>
-
-    {% block extra_js %} {% endblock %}
 </body>
 {% endblock %}
 </html>
+

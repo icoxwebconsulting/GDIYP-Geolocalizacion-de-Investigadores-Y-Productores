@@ -13,8 +13,8 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="{{ asset('assets/img/avatars/6.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
-                <span class="hidden-md-down">admin</span>
+                <img src="{{ asset(vich_uploader_asset(app.user, 'image')) }}" class="img-avatar" alt="{{ app.user.firstName }}">
+                <span class="hidden-md-down">{{ app.user.firstName }} {{ app.user.lastName }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
 
@@ -31,13 +31,13 @@
                     <strong>Settings</strong>
                 </div>
 
-                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user"></i> Profile</a>
                 <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
                 <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="tag tag-default">42</span></a>
                 <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="tag tag-primary">42</span></a>
                 <div class="divider"></div>
                 <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}"><i class="fa fa-lock"></i> Logout</a>
             </div>
         </li>
     </ul>

@@ -1,5 +1,272 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "admin/base.html.twig" %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block top_content %}
+    {% embed ':_partial:breadcrumb.html.twig' %}
+        {% block breadcrumb %}Edit Profile{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <strong>Profile</strong>
+        </div>
+        <form method="POST" action="{{ path('user_edit', {'id': entity.id }) }}" {{ form_enctype(form) }} class="form-horizontal">
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="first-name">First Name</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.first_name, { 'attr': { 'class': 'form-control', 'placeholder': 'John'}}) }}
+                    </div>
+                    {{ form_errors(form.first_name) }}
+                </div>
+                <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="last-name">Last Name</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.last_name, { 'attr': { 'class': 'form-control', 'placeholder': 'Smith'}}) }}
+                    </div>
+                    {{ form_errors(form.last_name) }}
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="email">Email</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.email, { 'attr': { 'class': 'form-control', 'placeholder': 'smith@mail.com'}}) }}
+                    </div>
+                    {{ form_errors(form.email) }}
+                </div>
+                    {#<div class="form-group row">#}
+                        {#<label class="col-md-3 form-control-label" for="password-input">Password</label>#}
+                        {#<div class="col-md-9">#}
+                            {#{{ form_widget(form.plainPassword.first, { 'attr': { 'class': 'form-control', 'placeholder': 'Password'}}) }}#}
+                            {#<input type="password" id="password-input" name="password-input" class="form-control" placeholder="Password">#}
+                            {#<span class="help-block">Please enter a complex password</span>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="form-group row">#}
+                        {#<label class="col-md-3 form-control-label" for="password-input">Repeat Password</label>#}
+                        {#<div class="col-md-9">#}
+                            {#{{ form_widget(form.plainPassword.second, { 'attr': { 'class': 'form-control', 'placeholder': 'Password'}}) }}#}
+                            {#<input type="password" id="password-input" name="password-input" class="form-control" placeholder="Password">#}
+                            {#<span class="help-block">Please enter a complex password</span>#}
+                        {#</div>#}
+                    {#</div>#}
+
+                {# input to change role #}
+                {#<div class="form-group row">#}
+                    {#<label class="col-md-3 form-control-label">User type</label>#}
+                    {#<div class="col-md-9">#}
+                        {#{% for role in form.roles.children %}#}
+                            {#<div class="radio">#}
+                            {#{% if role.vars.value in entity.roles %}#}
+                                {#{{ form_widget(role, {'attr' : {'checked':true, 'type': 'hidden'}}) }}#}
+                                {#{{ form_label(role) }}#}
+                            {#{% else %}#}
+                                {#{{ form_widget(role, {'attr' : {'checked':false, 'type': 'hidden'}}) }}#}
+                                {#{{ form_label(role) }}#}
+                            {#{% endif %}#}
+                            {#</div>#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+                {#</div>#}
+
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="job-title">Job Title</label>
+                    <div class="col-md-9">
+                        <input id="job-title" type="text" name="job_title" value="{{ profile.jobTitle }}" class="form-control" placeholder="Bioinvestigator">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="summernote" class="col-md-3 form-control-label">Summary</label>
+                    <div class="col-md-12">
+                        <textarea name="summary" id="summary" cols="30" rows="50">{{ profile.summary }}</textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="search-address">Address</label>
+                    <div class="col-md-9">
+                        <input id="search-address" type="text" name="address" value="{{ profile.address }}" class="form-control controls" placeholder="Search address">
+                    </div>
+                    <input id="lat" type="hidden" name="latitude" value="{{ profile.latitude }}"><br>
+                    <input id="lng" type="hidden" name="longitude" value="{{ profile.longitude }}">
+                </div>
+                <div class="form-group row" style="margin-bottom: 0rem;">
+                    <div class="col-md-12">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="current-image" class="col-md-3 form-control-label">Current Image</label>
+                    <div class="col-md-9">
+                        <figure>
+                            <img src="{{asset(vich_uploader_asset(entity, 'image')) }}" width="50%"  style="margin: auto; display: block;">
+                        </figure>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="image">Change Image</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.image) }}
+                    </div>
+                    {{ form_errors(form.image) }}
+                </div>
+                {{ form_rest(form) }}
+            </div>
+            {#{{ dump(form) }}#}
+            <div class="card-footer">
+                <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        #search-address {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 300px;
+        }
+        #search-address:focus {
+            border-color: #4d90fe;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        function initialize() {
+            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                center: {lat: {{ profile.latitude }}, lng: {{ profile.longitude }}},
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('search-address');
+            var myLatLng = new google.maps.LatLng( {{ profile.latitude }}, {{ profile.longitude }} );
+            marker = new google.maps.Marker( {position: myLatLng, map: map, draggable: true } );
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("lat").value = this.getPosition().lat();
+                document.getElementById("lng").value = this.getPosition().lng();
+                console.log("lat->",this.getPosition().lat());
+                console.log("long->",this.getPosition().lng());
+            });
+            marker.setMap( map );
+
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            var markers = [];
+            // [START region_getplaces]
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function(marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location,
+                        draggable: true,
+                    });
+                    // Create a marker for each place.
+                    markers.push(marker);
+
+                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                        document.getElementById("lat").value = this.getPosition().lat();
+                        document.getElementById("lng").value = this.getPosition().lng();
+                        console.log("lat->",this.getPosition().lat());
+                        console.log("long->",this.getPosition().lng());
+                    });
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+            // [END region_getplaces]
+        }
+
+    </script>
+
+    <!-- Include external JS libs. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+    <!-- Include JS files. -->
+    <script type="text/javascript" src="{{ asset('assets/froala_editor/js/froala_editor.pkgd.min.js') }}"></script>
+
+    <!-- Include Language file if we want to use it. -->
+    <script type="text/javascript" src="{{ asset('assets/froala_editor/js/languages/es.js') }}"></script>
+
+    <!-- Initialize the editor. -->
+    <script>
+        $(function() {
+            $('#summary').froalaEditor()
+        });
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
+{% endblock %}

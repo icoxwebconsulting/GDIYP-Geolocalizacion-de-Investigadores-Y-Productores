@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RegistrationType extends AbstractType
 {
@@ -23,6 +24,10 @@ class RegistrationType extends AbstractType
             ->add(
                 'lastName',
                 TextType::class
+            )
+            ->add(
+                'image',
+                VichImageType::class
             )
             ->add(
                 'email',
