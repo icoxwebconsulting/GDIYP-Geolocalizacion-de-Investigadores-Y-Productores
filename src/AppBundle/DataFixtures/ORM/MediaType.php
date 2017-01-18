@@ -13,16 +13,23 @@ class MediaType extends AbstractFixture implements  FixtureInterface
     {
         $media_types = [
             [
-                'name' => 'Pdf',
+                'name' => 'pdf',
                 'description' => 'pdf file'
             ],
             [
-                'name' => 'Image',
-                'description' => 'image file'
+                'name' => 'excel',
+                'description' => 'excel file'
+            ],[
+                'name' => 'doc',
+                'description' => 'doc file'
             ],
             [
-                'name' => 'Video',
-                'description' => 'video url or file'
+                'name' => 'ppt',
+                'description' => 'powerpoint presentation'
+            ],
+            [
+                'name' => 'image',
+                'description' => 'image file'
             ],
         ];
 
