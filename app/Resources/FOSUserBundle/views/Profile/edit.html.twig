@@ -111,7 +111,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="image">Change Image</label>
                     <div class="col-md-9">
-                        {{ form_widget(form.image) }}
+                        {{ form_widget(form.image, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                     {{ form_errors(form.image) }}
                 </div>

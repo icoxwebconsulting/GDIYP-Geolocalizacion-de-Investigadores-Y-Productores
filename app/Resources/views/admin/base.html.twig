@@ -27,8 +27,6 @@
     <script src="{{ asset('assets/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/components/pace/pace.min.js') }}"></script>
 
-    <!-- GenesisUI main scripts -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
     {#<script src="{{ asset('assets/components/chart.js/dist/Chart.bundle.min.js') }}"></script>#}
     <!-- Custom scripts required by this view -->
     <script src="{{ asset('assets/js/views/main.js') }}"></script>
@@ -85,7 +83,10 @@
         {% include ':_partial:footer.html.twig' %}
     </footer>
     <!-- /footer -->
+    {% include ':modals:delete.html.twig' %}
 
+    <!-- GenesisUI main scripts -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 {% endblock %}
 </html>

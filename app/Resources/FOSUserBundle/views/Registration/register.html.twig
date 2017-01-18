@@ -50,12 +50,18 @@
                                     {{ form_errors(form.plainPassword.second) }}
 
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label">User type</label>
+                                        <label class="col-md-3 form-control-label">User Type</label>
                                         <div class="col-md-9">
                                             {{ form_widget(form.roles) }}
                                         </div>
                                     </div>
-                                    {{ form_errors(form.roles) }}
+                                    <div class="form-group row">
+                                        <label class="col-md-3 form-control-label">Image Profile</label>
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.image, { 'attr': { 'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    {{ form_errors(form.image) }}
                                     {{ form_rest(form) }}
                                     <button type="submit" class="btn btn-block btn-success">Create Account</button>
                                     <a href="{{ path('fos_user_security_login') }}" class="btn btn-block btn-primary"><i class="fa fa-mail-reply"></i> Back</a>
