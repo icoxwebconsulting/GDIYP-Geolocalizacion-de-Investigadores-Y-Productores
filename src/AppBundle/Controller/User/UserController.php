@@ -39,6 +39,9 @@ class UserController extends Controller
         if ($profile == null)
         {
             $profile = new UserProfile();
+            //by default lat and lng t
+            $profile->setLatitude(0);
+            $profile->setLongitude(0);
         }
 
         if ($form->handleRequest($request)->isValid())

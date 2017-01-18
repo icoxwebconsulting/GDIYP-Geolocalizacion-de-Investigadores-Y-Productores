@@ -87,6 +87,7 @@
                 <br>
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="search-address">Address</label>
+                    <span class="help-block">Please type your address and move the marker</span>
                     <div class="col-md-9">
                         <input id="search-address" type="text" name="address" value="{{ profile.address }}" class="form-control controls" placeholder="Search address">
                     </div>
@@ -169,7 +170,7 @@
         function initialize() {
             var map = new google.maps.Map(document.getElementById('map-canvas'), {
                 center: {lat: {{ profile.latitude }}, lng: {{ profile.longitude }}},
-                zoom: 13,
+                zoom: 4,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
