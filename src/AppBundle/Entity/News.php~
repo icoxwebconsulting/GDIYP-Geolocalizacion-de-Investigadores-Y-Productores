@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="news")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NewRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class News
 {

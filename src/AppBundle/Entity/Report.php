@@ -77,6 +77,13 @@ class Report
     protected $created_by;
 
     /**
+     * @var $status
+     * @ORM\ManyToOne(targetEntity="ReportStatus")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
+     */
+    protected $status;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -245,5 +252,29 @@ class Report
     public function getCreatedBy()
     {
         return $this->created_by;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \AppBundle\Entity\ReportStatus $status
+     *
+     * @return Report
+     */
+    public function setStatus(\AppBundle\Entity\ReportStatus $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \AppBundle\Entity\ReportStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

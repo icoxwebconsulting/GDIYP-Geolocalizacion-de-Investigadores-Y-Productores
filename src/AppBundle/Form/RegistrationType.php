@@ -27,7 +27,10 @@ class RegistrationType extends AbstractType
             )
             ->add(
                 'image',
-                VichImageType::class
+                VichImageType::class,
+                array(
+                    'label' => false
+                )
             )
             ->add(
                 'email',

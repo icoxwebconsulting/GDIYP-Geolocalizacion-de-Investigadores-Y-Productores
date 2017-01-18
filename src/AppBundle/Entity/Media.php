@@ -6,11 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  *
  * @ORM\Table(name="medias")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MediaRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
+ * @Vich\Uploadable
  */
 class Media
 {
@@ -28,21 +32,61 @@ class Media
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $title;
+    private $name;
 
     /**
-     * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(name="url", type="string", length=255)
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={
+     *          "image/png",
+     *          "image/jpeg",
+     *          "image/gif",
+     *          "image/jpg",
+     *          "application/vnd.ms-excel",
+     *          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     *          "application/msword",
+     *          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     *          "application/vnd.ms-powerpoint",
+     *          "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+     *          "application/pdf"
+     *      },
+     *     mimeTypesMessage = "El tipo de archivo ({{ type }}) no es válido. Los tipos de archivos permitidos son {{ types }}"
+     * )
+     *
+     * @Vich\UploadableField(mapping="files", fileNameProperty="fileName")
+     *
+     * @var File
      */
-    private $url;
+    private $file;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $fileName;
+    
     /**
      * @ORM\ManyToOne(targetEntity="MediaType")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id")
      */
-    protected $media_type;
+    protected $type;
+
+    /**
+     * @var $created_by
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     */
+    protected $created_by;
+
+    /**
+     * @var $news
+     * @ORM\ManyToOne(targetEntity="News")
+     * @ORM\JoinColumn(name="news", referencedColumnName="id")
+     */
+    protected $news;
 
     /**
      * Get id
@@ -52,52 +96,6 @@ class Media
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Media
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     * @return Media
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
-    {
-        return $this->url;
     }
 
     /**
@@ -124,12 +122,12 @@ class Media
     }
 
     /**
-     * Set type
+     * Set Type
      *
-     * @param \AppBundle\Entity\Type $type
+     * @param \AppBundle\Entity\MediaType $type
      * @return Media
      */
-    public function setType(\AppBundle\Entity\Type $type = null)
+    public function setType(\AppBundle\Entity\MediaType $type = null)
     {
         $this->type = $type;
 
@@ -147,25 +145,119 @@ class Media
     }
 
     /**
-     * Set media_type
+     * Set createdBy
      *
-     * @param \AppBundle\Entity\MediaType $mediaType
+     * @param \AppBundle\Entity\User $createdBy
+     *
      * @return Media
      */
-    public function setMediaType(\AppBundle\Entity\MediaType $mediaType = null)
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
-        $this->media_type = $mediaType;
+        $this->created_by = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get media_type
+     * Get createdBy
      *
-     * @return \AppBundle\Entity\MediaType 
+     * @return \AppBundle\Entity\User
      */
-    public function getMediaType()
+    public function getCreatedBy()
     {
-        return $this->media_type;
+        return $this->created_by;
+    }
+
+    /**
+     * Set news
+     *
+     * @param \AppBundle\Entity\News $news
+     *
+     * @return Media
+     */
+    public function setNews(\AppBundle\Entity\News $news = null)
+    {
+        $this->news = $news;
+
+        return $this;
+    }
+
+    /**
+     * Get news
+     *
+     * @return \AppBundle\Entity\News
+     */
+    public function getNews()
+    {
+        return $this->news;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Media
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @return Media
+     */
+    public function setFile(File $file = null)
+    {
+        $this->file = $file;
+
+        if ($file instanceof UploadedFile) {
+            $this->setUpdatedAt(new \DateTime());
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set fileName
+     *
+     * @param string $fileName
+     *
+     * @return Media
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * Get fileName
+     *
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
     }
 }

@@ -30,6 +30,7 @@ class UserType extends AbstractType
                 'image',
                 VichImageType::class,
                 array(
+                    'label' => false,
                     'data_class' => null,
                     'property_path' => 'image',
                     'required' => false,
