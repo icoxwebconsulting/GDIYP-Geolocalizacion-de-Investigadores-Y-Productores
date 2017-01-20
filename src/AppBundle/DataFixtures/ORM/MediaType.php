@@ -2,12 +2,12 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use AppBundle\Entity\MediaType as MediaTypeEntity;
 
-class MediaType extends AbstractFixture implements  FixtureInterface
+class MediaType extends AbstractFixture implements  OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
