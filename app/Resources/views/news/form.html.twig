@@ -1,0 +1,91 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}News{% endblock %}
+
+{% block top_content %}
+    {% embed ':_partial:breadcrumb.html.twig' %}
+        {% block breadcrumb %}News{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <strong>News</strong>
+        </div>
+        {{ form_start(form, {'attr':{ 'class': 'form-horizontal'}}) }}
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="first-name">Title</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Walstreet news'}}) }}
+                    </div>
+                    {{ form_errors(form.title) }}
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="last-name">Subtitle</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.subtitle, { 'attr': { 'class': 'form-control', 'placeholder': 'Reported ok'}}) }}
+                    </div>
+                    {{ form_errors(form.subtitle) }}
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="email">Category</label>
+                    <div class="col-md-9">
+                        {#{{ form_widget(form.category, { 'attr': { 'class': 'form-control'}}) }}#}
+                        <select name="{{ form.children.category.vars.full_name }}" class="form-control">
+                            {% for key,val in form.category.vars.choices %}
+                                {% if val.value != 1 %}
+                                    <option value="{{ val.value }}" {{  form.category.vars.value == '' and key == 0 ? ' selected ' :(val.value == form.category.vars.value ? ' selected ' : '') }}>{{ val.label | trans }}</option>
+                                {%  endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {{ form_errors(form.category) }}
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="appbundle_news_description">Description</label>
+                    <div class="col-md-12">
+                        {{ form_widget(form.description) }}
+                    </div>
+                    {{ form_errors(form.description) }}
+                </div>
+                {{ form_widget(form._token) }}
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('media_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            </div>
+        {#{{ form_end(form)}}#}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+<!-- Include Editor style. -->
+<link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block extra_js %}
+<!-- Include external JS libs. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+<!-- Include JS files. -->
+<script type="text/javascript" src="{{ asset('assets/froala_editor/js/froala_editor.pkgd.min.js') }}"></script>
+
+<!-- Include Language file if we want to use it. -->
+<script type="text/javascript" src="{{ asset('assets/froala_editor/js/languages/es.js') }}"></script>
+
+<!-- Initialize the editor. -->
+<script>
+    $(function() {
+        $('#appbundle_news_description').froalaEditor()
+    });
+</script>
+{% endblock %}

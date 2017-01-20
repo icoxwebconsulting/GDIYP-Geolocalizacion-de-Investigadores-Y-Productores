@@ -35,7 +35,7 @@ class News
 
     /**
      * @var string
-     * @ORM\Column(name="subtitle", type="string", length=255)
+     * @ORM\Column(name="subtitle", type="string", length=255, nullable=true)
      */
     private $subtitle;
 

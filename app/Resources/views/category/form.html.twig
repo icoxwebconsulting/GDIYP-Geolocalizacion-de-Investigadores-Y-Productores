@@ -1,0 +1,47 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Category{% endblock %}
+
+{% block top_content %}
+    {% embed ':_partial:breadcrumb.html.twig' %}
+        {% block breadcrumb %}Category{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <strong>Category</strong>
+        </div>
+        {{ form_start(form, {'attr':{ 'class': 'form-horizontal'}}) }}
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="first-name">Name</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.name, { 'attr': { 'class': 'form-control', 'placeholder': 'Deport'}}) }}
+                    </div>
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="last-name">Main Category</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.parent, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.parent) }}
+                </div>
+                {{ form_rest(form) }}
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('category_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            </div>
+        {{ form_end(form)}}
+    </div>
+</div>
+    {% if not entity.parent %}
+    <script>
+        $("#appbundle_category_parent").prepend("<option value='0' selected='selected'>Select a value</option>");
+    </script>
+    {% endif %}
+{% endblock %}

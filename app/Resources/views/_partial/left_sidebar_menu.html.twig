@@ -31,10 +31,21 @@
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-newspaper-o"></i> News</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
-                <a class="nav-link" href="icons-font-awesome.html"><i class="fa fa-list-alt"></i> News List</a>
+                <a class="nav-link" href="{{ path('news_list') }}"><i class="fa fa-list-alt"></i> News List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="fa fa-plus"></i> Add News</a>
+                <a class="nav-link" href="{{ path('news_new') }}"><i class="fa fa-plus"></i> Add News</a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle"><i class="icon-puzzle"></i>Categories</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="{{ path('category_list') }}" class="nav-link"><i class="icon-puzzle"></i>Category List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('category_new') }}" class="nav-link"><i class="icon-puzzle"></i>Add Category</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </li>
