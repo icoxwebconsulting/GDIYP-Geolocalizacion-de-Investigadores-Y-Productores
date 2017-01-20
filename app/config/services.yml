@@ -13,3 +13,8 @@ services:
 #        arguments: ['%fos_user.model.user.class%', '@app.roles.helper']
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    twig.extension.text:
+         class: Twig_Extensions_Extension_Text
+         tags:
+             - { name: twig.extension }
