@@ -1,3 +1,11 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@AppBundle/Resources/config/routing/all.xml"
+
+#Liip imagine routing
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
