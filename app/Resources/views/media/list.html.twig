@@ -34,8 +34,12 @@
                     <td>{{ entity.created | ago }}</td>
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.type.name }}</td>
-                    <td>{{ entity.news }}</td>
-                    <td>{{ entity.createdBy.firstName }}</td>
+                    <td>
+                        {% if entity.news %}
+                            {{ entity.news.title }}
+                        {% endif %}
+                    </td>
+                    <td>{{ entity.createdBy.username }}</td>
                     <td>
                         <a data-target="#delete-modal" data-toggle="modal" data-whatever="{{ path('media_delete', {id: entity.id}) }}"><i class="fa fa-trash"></i></a>
                         <a href="{{ path('media_edit', {id: entity.id}) }}"><i class="fa fa-pencil"></i></a>
