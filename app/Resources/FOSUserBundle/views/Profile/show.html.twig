@@ -27,9 +27,11 @@
                     </p>
                 </div>
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <figure>
-                        <img src="{{asset(vich_uploader_asset(user, 'image')) }}" width="70%" alt="" class="img-avatar">
-                    </figure>
+                    {% if user.imageName %}
+                        <figure>
+                            <img src="{{asset(vich_uploader_asset(user, 'image')) }}" width="70%" alt="" class="img-avatar">
+                        </figure>
+                   {% endif %}
                 </div>
             </div>
             <div class="col-sm-12">

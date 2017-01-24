@@ -4,7 +4,11 @@
     <ul class="nav navbar-nav float-xs-right">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="{{ asset(vich_uploader_asset(app.user, 'image')) }}" class="img-avatar" alt="{{ app.user.firstName }}">
+                {% if app.user.imageName %}
+                    <img src="{{ asset(vich_uploader_asset(app.user, 'image')) }}" class="img-avatar" alt="{{ app.user.firstName }}">
+                {% else %}
+                    <i class="fa fa-user fa-2x"></i>
+                {% endif %}
                 <span class="hidden-md-down">{{ app.user.firstName }} {{ app.user.lastName }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
