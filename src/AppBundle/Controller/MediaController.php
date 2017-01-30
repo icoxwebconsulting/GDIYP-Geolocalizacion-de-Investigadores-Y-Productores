@@ -23,7 +23,7 @@ class MediaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:Media")->findAll();
+        $entities = $em->getRepository("AppBundle:Media")->findBy(array('created_by' => $this->getUser()));
         return $this->render('media/list.html.twig', array(
             'entities' => $entities
         ));

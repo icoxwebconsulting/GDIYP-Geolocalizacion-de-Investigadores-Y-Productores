@@ -23,7 +23,11 @@ class NewsController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:News")->findAll();
+        if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')){
+            $entities = $em->getRepository("AppBundle:News")->findAll();
+        }else{
+            $entities = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));
+        }
         return $this->render('news/list.html.twig', array(
             'entities' => $entities
         ));
