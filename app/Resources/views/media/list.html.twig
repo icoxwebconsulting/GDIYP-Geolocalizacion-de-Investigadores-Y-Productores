@@ -23,7 +23,9 @@
                     <th>Title</th>
                     <th>Type</th>
                     <th>News</th>
-                    <th>Created by</th>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <th>Created by</th>
+                    {% endif %}
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -39,7 +41,9 @@
                             {{ entity.news.title }}
                         {% endif %}
                     </td>
-                    <td>{{ entity.createdBy.username }}</td>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <td>{{ entity.createdBy.username }}</td>
+                    {% endif %}
                     <td>
                         <a data-target="#delete-modal" data-toggle="modal" data-whatever="{{ path('media_delete', {id: entity.id}) }}"><i class="fa fa-trash"></i></a>
                         <a href="{{ path('media_edit', {id: entity.id}) }}"><i class="fa fa-pencil"></i></a>

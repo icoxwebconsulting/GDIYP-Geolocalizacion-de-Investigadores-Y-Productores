@@ -16,6 +16,7 @@
                     <h2>{{ user.firstName }} {{ user.lastName }} </h2>
                     <p><strong>Email: </strong> {{ user.email }}</p>
                     <p><strong>Username: </strong> {{ user.username }}</p>
+                    {% if not is_granted('ROLE_SUPER_ADMIN') %}
                     <p>
                         <strong>User type: </strong>
                         {% if is_granted('ROLE_PRODUCER') %}
@@ -25,6 +26,7 @@
                             Investigator
                         {% endif %}
                     </p>
+                    {% endif %}
                 </div>
                 <div class="col-xs-12 col-sm-4 text-center">
                     {% if user.imageName %}
