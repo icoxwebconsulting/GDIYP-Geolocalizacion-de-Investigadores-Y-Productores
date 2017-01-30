@@ -83,7 +83,7 @@ class Media
 
     /**
      * @var $news
-     * @ORM\ManyToOne(targetEntity="News")
+     * @ORM\ManyToOne(targetEntity="News", inversedBy="medias", cascade={"persist"})
      * @ORM\JoinColumn(name="news", referencedColumnName="id")
      */
     protected $news;

@@ -1,4 +1,18 @@
-{% block body %}
+{% extends ':homepage:base.html.twig' %}
+
+{% block title %}homepage{% endblock %}
+
+{% block content %}
     homepage view
     <a href="{{ path('fos_user_security_login') }}">login</a>
+
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }} <a href="{{ path('homepage_user_show', { id: user.id }) }}">view detail</a>|
+                {% if user.reported == 0 %}
+                    <a data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_user_report', {id: user.id}) }}">Reportar</a></li>
+                {% endif %}
+        {% endfor %}
+    </ul>
+    {#{{ dump() }}#}
 {% endblock %}

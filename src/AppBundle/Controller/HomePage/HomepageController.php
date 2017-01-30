@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\HomePage;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -8,19 +8,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use AppBundle\Entity\User;
 
 class HomepageController extends Controller
 {
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/", name="homepage")
      * @return Response
      */
     public function indexAction()
     {
-        return $this->render('homepage/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository("AppBundle:User")->findAllUsers();
+        return $this->render('homepage/index.html.twig', array(
+            'users' => $users
+        ));
     }
     
 }

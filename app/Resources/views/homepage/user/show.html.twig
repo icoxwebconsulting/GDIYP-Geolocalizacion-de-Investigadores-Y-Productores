@@ -1,0 +1,14 @@
+{% extends ':homepage:base.html.twig' %}
+
+{% block content %}
+    detalle perfil<br>
+    <ul>
+        noticias
+        {% for entity in entities %}
+        <li>{{ entity.title }} |
+            {% if(entity.reported == 0) %}
+                <a  data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_news_report', {id: entity.id}) }}">report</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

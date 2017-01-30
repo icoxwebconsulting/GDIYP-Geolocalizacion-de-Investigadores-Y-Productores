@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-align-justify"></i> User Manager
+    </div>
+    <div class="card-block">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Period</th>
+                <th>User</th>
+                <th>Description</th>
+                <th>Feedback</th>
+                <th>Status</th>
+                <th>Created by</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%  for entity in entities %}
+                <tr>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.created | ago }}</td>
+                    <td>
+                        {% if entity.user %}
+                            {{ entity.user.firstName }}
+                        {% endif %}
+                    </td>
+                    <td>{{ entity.description | truncate(20) }}</td>
+                    <td>{{ entity.feedback }}</td>
+                    <td>
+                        {% if entity.status %}
+                            {{ entity.status.name }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if entity.createdBy %}
+                            {{ entity.createdBy.username }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('user_report_edit', {id: entity.id}) }}" data-toggle="tooltip" title="view"><i class="fa fa-eye"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Prev</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">4</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>

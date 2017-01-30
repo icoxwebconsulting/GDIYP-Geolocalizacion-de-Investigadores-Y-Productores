@@ -1,0 +1,35 @@
+<div class="modal fade" id="report-modal">
+    <div class="modal-dialog">
+        <form id="form" method="post" action="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title">Report Content</h4>
+                </div>
+                <div class="modal-body">
+                    {#{% include 'homepage/report/form.html.twig' %}#}
+                        <label for="description">Specify your reason for report this content</label>
+                    <br>
+                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" data-dismiss="modal">NO</button>
+                    <button type="submit" class="btn btn-danger">YES</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function(){
+            $('#report-modal').on('show.bs.modal', function (event) {
+                var a = $(event.relatedTarget);// link that triggered the modal
+                var href = a.data('whatever');
+                $("#form").attr("action",href);
+            })
+        });
+    </script>
+{% endblock %}

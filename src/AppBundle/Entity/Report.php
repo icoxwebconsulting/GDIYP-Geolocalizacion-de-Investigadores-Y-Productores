@@ -36,14 +36,14 @@ class Report
     /**
      * @var string
      *
-     * @ORM\Column(name="feedback", type="text")
+     * @ORM\Column(name="feedback", type="text", nullable=true)
      */
     private $feedback;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_open", type="boolean")
+     * @ORM\Column(name="is_open", type="boolean", nullable=true)
      */
     private $isOpen;
 
