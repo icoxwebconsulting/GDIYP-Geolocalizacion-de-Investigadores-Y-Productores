@@ -13,6 +13,7 @@
                 <th>Feedback</th>
                 <th>Status</th>
                 <th>Created by</th>
+                <th>Approved by</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -36,6 +37,11 @@
                     <td>
                         {% if entity.createdBy %}
                             {{ entity.createdBy.username }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if entity.approvedBy %}
+                            {{ entity.approvedBy.username }}
                         {% endif %}
                     </td>
                     <td>

@@ -77,6 +77,13 @@ class Report
     protected $created_by;
 
     /**
+     * @var $approved_by
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="approved_by", referencedColumnName="id")
+     */
+    protected $approved_by;
+
+    /**
      * @var $status
      * @ORM\ManyToOne(targetEntity="ReportStatus")
      * @ORM\JoinColumn(name="status", referencedColumnName="id")
@@ -276,5 +283,29 @@ class Report
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set approvedBy
+     *
+     * @param \AppBundle\Entity\User $approvedBy
+     *
+     * @return Report
+     */
+    public function setApprovedBy(\AppBundle\Entity\User $approvedBy = null)
+    {
+        $this->approved_by = $approvedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get approvedBy
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getApprovedBy()
+    {
+        return $this->approved_by;
     }
 }

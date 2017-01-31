@@ -13,14 +13,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class DashboardController extends Controller
 {
     /**
-     * @param $request
      * @Security("has_role('ROLE_USER')")
      * @Route("/", name="dashboard")
      * @return array
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('admin/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('AppBundle:User')->findBy(array('reported' => 1),
+                                                    array('modified' => 'DESC'),
+                                                    10);
+        $news = $em->getRepository('AppBundle:News')->findBy(array('reported' => 1),
+                                                   array('modified' => 'DESC'),
+                                                   10);
+        $reports = $em->getRepository('AppBundle:Report')->findAllUserReportedByOtherUsers();
+
+        return $this->render('admin/index.html.twig', array(
+            'users' => $users,
+            'news' => $news,
+            'reports' => $reports
+        ));
     }
 
     /**

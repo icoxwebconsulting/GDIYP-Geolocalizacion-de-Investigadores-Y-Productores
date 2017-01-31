@@ -38,6 +38,7 @@ class ReportController extends Controller
 
         $type = $em->getRepository('AppBundle:ReportType')->find(1);
 
+        $report->setCreatedBy($this->getUser());
         $report->setUser($user);
         $report->setType($type);
         $report->setDescription($_POST['description']);
@@ -77,6 +78,7 @@ class ReportController extends Controller
 
         $type = $em->getRepository('AppBundle:ReportType')->find(2);
 
+        $report->setCreatedBy($this->getUser());
         $report->setNews($news);
         $report->setType($type);
         $report->setDescription($_POST['description']);

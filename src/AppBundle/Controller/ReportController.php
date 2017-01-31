@@ -74,7 +74,7 @@ class ReportController extends Controller
                 $report->getUser()->setReported(1);
             }
 
-            $report->setCreatedBy($this->getUser());
+            $report->setApprovedBy($this->getUser());
             $report->setIsOpen(0);
             $em->persist($report);
             $em->flush();
@@ -116,7 +116,7 @@ class ReportController extends Controller
                 $report->getNews()->setReported(1);
             }
 
-            $report->setCreatedBy($this->getUser());
+            $report->setApprovedBy($this->getUser());
             $report->setIsOpen(0);
             $em->persist($report);
             $em->flush();
