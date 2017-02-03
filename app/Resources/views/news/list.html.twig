@@ -25,10 +25,12 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Reported</th>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <th>Created by</th>
                     {% endif %}
-                    <th>Actions</th>
+                    {% if not is_granted('ROLE_ADMIN') %}
+                        <th>Actions</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -51,13 +53,15 @@
                             Yes
                         {% endif %}
                     </td>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <td>{{ entity.createdBy.firstName }}</td>
                     {% endif %}
+                    {% if not is_granted('ROLE_ADMIN') %}
                     <td>
                         <a data-target="#delete-modal" data-toggle="modal" data-whatever="{{ path('news_delete', {id: entity.id}) }}"><i class="fa fa-trash"></i></a>
                         <a href="{{ path('news_edit', {id: entity.id}) }}"><i class="fa fa-pencil"></i></a>
                     </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
                 </tbody>
