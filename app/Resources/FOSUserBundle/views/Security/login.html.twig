@@ -10,26 +10,26 @@
                     <div class="card-group">
                         <div class="card p-2">
                             <div class="card-block">
-                                <h1>Login</h1>
-                                <p class="text-muted">Sign In to your account</p>
+                                <h1>Iniciar sesión</h1>
+                                <p class="text-muted">Iniciar sesión en su cuenta</p>
                                 <form action="{{ path("fos_user_security_check") }}" method="post">
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                                     <div class="input-group mb-1">
                                                     <span class="input-group-addon"><i class="icon-user"></i>
                                                     </span>
-                                        <input type="text" id="username" name="_username" required="required" class="form-control" placeholder="Username">
+                                        <input type="text" id="username" name="_username" required="required" class="form-control" placeholder="Nombre de usuario">
                                     </div>
                                     <div class="input-group mb-2">
                                                     <span class="input-group-addon"><i class="icon-lock"></i>
                                                     </span>
-                                        <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Password">
+                                        <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Contraseña">
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <button type="submit" id="_submit" name="_submit" class="btn btn-primary px-2">Login</button>
+                                            <button type="submit" id="_submit" name="_submit" class="btn btn-primary px-2">Iniciar sesión</button>
                                         </div>
                                         <div class="col-xs-6 text-xs-right">
-                                            <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-link px-0">Forgot Password</a>
+                                            <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-link px-0">Se te olvidó tu contraseña?</a>
                                         </div>
                                     </div>
                                 </form>
@@ -42,9 +42,9 @@
                         <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
                             <div class="card-block text-xs-center">
                                 <div>
-                                    <h2>Sign up</h2>
+                                    <h2>Regístrate</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary active mt-1">Register Now!</a>
+                                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary active mt-1">Regístrate ahora!</a>
                                 </div>
                             </div>
                         </div>
