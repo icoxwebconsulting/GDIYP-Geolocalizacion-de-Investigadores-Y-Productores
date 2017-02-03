@@ -1,9 +1,9 @@
 {% extends ':homepage:base.html.twig' %}
 
 {% block content %}
-    detalle perfil<br>
+    Detalle del perfil<br>
     <ul>
-        noticias
+        Noticias
         {% for entity in entities %}
         <li>{{ entity.title }} |
             {% if(entity.reported == 0) %}

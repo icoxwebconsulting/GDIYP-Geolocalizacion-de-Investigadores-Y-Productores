@@ -1,9 +1,9 @@
 <div class="card-header">
-    <strong>User detail</strong>
+    <strong>Detalle del usuario</strong>
 </div>
 <div class="card-block">
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="name">Name</label>
+        <label class="col-md-3 form-control-label" for="name">Nombre</label>
         <div class="col-md-9">
             {{ report.user.firstName }} {{ report.user.lastName }}
         </div>
@@ -15,44 +15,44 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="type">User Type</label>
+        <label class="col-md-3 form-control-label" for="type">Tipo de usuario</label>
         <div class="col-md-9">
         {% for role in report.user.roles %}
             {% if role == 'ROLE_INVESTIGATOR' %}
-                Investigator
+                Investigador
             {% elseif role == 'ROLE_PRODUCER' %}
-                Producer
+                Productor
             {% endif %}
         {% endfor %}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="job-title">Job Title</label>
+        <label class="col-md-3 form-control-label" for="job-title">Título profesional</label>
         <div class="col-md-9">
             {{ userProfile.jobTitle }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="address">Address</label>
+        <label class="col-md-3 form-control-label" for="address">Dirección</label>
         <div class="col-md-9">
             {{ userProfile.address }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="summary">Summary</label>
+        <label class="col-md-3 form-control-label" for="summary">Resumen</label>
         <div class="col-md-9">
             {{ userProfile.summary | raw }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="image-profile">Image Profile</label>
+        <label class="col-md-3 form-control-label" for="image-profile">Imagen de Perfil</label>
         <div class="col-md-9">
             {% if report.user.imageName %}
                 <figure>
                     <img src="{{asset(vich_uploader_asset(report.user, 'image')) }}" width="50%"  style="margin: auto; display: block;">
                 </figure>
             {% else %}
-                Doesn't have a profile image
+                No tiene una imagen de perfil
             {% endif %}
         </div>
     </div>

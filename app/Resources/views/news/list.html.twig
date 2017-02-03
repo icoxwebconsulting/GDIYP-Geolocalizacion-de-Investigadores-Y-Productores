@@ -1,10 +1,10 @@
 {% extends ':admin:base.html.twig' %}
 
-{% block title %}News{% endblock %}
+{% block title %}Noticias{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}News{% endblock %}
+        {% block breadcrumb %}Noticias{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -12,23 +12,23 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> News Manager
+            <i class="fa fa-align-justify"></i> Gestor de Noticias
         </div>
         <div class="card-block">
             <table class="table">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Period</th>
-                    <th>Title</th>
-                    <th>Subtitle</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Reported</th>
+                    <th>Período</th>
+                    <th>Título</th>
+                    <th>Subtitulo</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Reportado</th>
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <th>Created by</th>
+                        <th>Creado por</th>
                     {% endif %}
-                    <th>Actions</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
                         {% if entity.reported == 0 %}
                             No
                         {% else %}
-                            Yes
+                            SI
                         {% endif %}
                     </td>
                     {% if is_granted('ROLE_SUPER_ADMIN') %}

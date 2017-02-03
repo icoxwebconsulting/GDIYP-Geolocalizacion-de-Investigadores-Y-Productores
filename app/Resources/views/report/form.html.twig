@@ -1,10 +1,10 @@
 {% extends ':admin:base.html.twig' %}
 
-{% block title %}Report Content{% endblock %}
+{% block title %}Reportar contenido{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}Report Content{% endblock %}
+        {% block breadcrumb %}Reportar contenido{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -17,7 +17,7 @@
             {{ form_start(form, {'attr':{ 'class': 'form-horizontal'}}) }}
             <div class="card-block">
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="first-name">Report Description</label>
+                    <label class="col-md-3 form-control-label" for="first-name">Descripción del reporte</label>
                     <div class="col-md-9">
                         <p class="form-control-static">{{ report.description }}</p>
                     </div>
@@ -30,7 +30,7 @@
                     {{ form_errors(form.feedback) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="status">Report</label>
+                    <label class="col-md-3 form-control-label" for="status">Reporte</label>
                     <div class="col-md-9">
                         {{ form_widget(form.status, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
@@ -40,11 +40,11 @@
             </div>
             <div class="card-footer">
                 {% if report.user %}
-                    <a href="{{ path('user_report_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
+                    <a href="{{ path('user_report_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Atrás</a>
                 {% elseif report.news %}
-                    <a href="{{ path('news_report_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
+                    <a href="{{ path('news_report_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Atrás</a>
                 {% endif %}
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Enviar</button>
             </div>
             {{ form_end(form)}}
         </div>

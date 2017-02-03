@@ -1,10 +1,10 @@
 {% extends ':admin:base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Tablero{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}Dashboard{% endblock %}
+        {% block breadcrumb %}Tablero{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    List of last reported
+                    Lista de los últimos informes
                 </div>
                 <div class="card-block">
                     <div class="row">
@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="callout callout-danger">
-                                        <small class="text-muted">Lasted 10 news reported</small>
+                                        <small class="text-muted">Últimas 10 noticias reportadas</small>
                                         <br>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                             <div class="small text-muted">{{ new.subtitle }}</div>
                                         </div>
                                         <div class="value">
-                                            <div class="small text-muted">Modified</div>
+                                            <div class="small text-muted">Modificado</div>
                                             <p>{{ new.modified | date }}</p>
                                         </div>
                                     </li>
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="callout callout-primary">
-                                        <small class="text-muted">Lasted 10 users reported</small>
+                                        <small class="text-muted">Últimos 10 usuarios informaron</small>
                                         <br>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                         <div class="small text-muted">{{ user.email }}</div>
                                     </div>
                                     <div class="value">
-                                        <div class="small text-muted">Modified</div>
+                                        <div class="small text-muted">Modificado</div>
                                         <p>{{ user.modified | date }}</p>
                                     </div>
                                 </li>
@@ -83,10 +83,10 @@
                         <tr>
                             <th class="text-xs-center"><i class="icon-people"></i>
                             </th>
-                            <th>User Reported</th>
-                            <th class="text-xs-center">Description</th>
-                            <th>Reported by</th>
-                            <th>Status</th>
+                            <th>Usuario informado</th>
+                            <th class="text-xs-center">Descripción</th>
+                            <th>Reportado por</th>
+                            <th>Estado</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -94,14 +94,14 @@
                         <tr>
                             <td class="text-xs-center">
                                 <div class="avatar">
-                                    <img src="{{ asset(vich_uploader_asset(report.user, 'image')) }}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                    <img src="{{ asset(vich_uploader_asset(report.user, 'image')) }}" class="img-avatar">
                                     <span class="avatar-status tag-success"></span>
                                 </div>
                             </td>
                             <td>
                                 <div>{{ report.user.username }}</div>
                                 <div class="small text-muted">
-                                    Registered: {{ report.user.created | date }}
+                                    Registrado: {{ report.user.created | date }}
                                 </div>
                             </td>
                             <td class="text-xs-center">

@@ -1,10 +1,10 @@
 {% extends "admin/base.html.twig" %}
 
-{% block title %}Edit Profile{% endblock %}
+{% block title %}Editar perfil{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}Edit Profile{% endblock %}
+        {% block breadcrumb %}Editar perfil{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -12,19 +12,19 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <strong>Profile</strong>
+            <strong>Perfil</strong>
         </div>
         <form method="POST" action="{{ path('user_edit', {'id': entity.id }) }}" {{ form_enctype(form) }} class="form-horizontal">
             <div class="card-block">
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="first-name">First Name</label>
+                    <label class="col-md-3 form-control-label" for="first-name">Nombre de pila</label>
                     <div class="col-md-9">
                         {{ form_widget(form.first_name, { 'attr': { 'class': 'form-control', 'placeholder': 'John'}}) }}
                     </div>
                     {{ form_errors(form.first_name) }}
                 </div>
                 <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="last-name">Last Name</label>
+                <label class="col-md-3 form-control-label" for="last-name">Apellido</label>
                     <div class="col-md-9">
                         {{ form_widget(form.last_name, { 'attr': { 'class': 'form-control', 'placeholder': 'Smith'}}) }}
                     </div>
@@ -73,21 +73,21 @@
                 {#</div>#}
 
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="job-title">Job Title</label>
+                    <label class="col-md-3 form-control-label" for="job-title">Título profesional</label>
                     <div class="col-md-9">
                         <input id="job-title" type="text" name="job_title" value="{{ profile.jobTitle }}" class="form-control" placeholder="Bioinvestigator">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="summernote" class="col-md-3 form-control-label">Summary</label>
+                    <label for="summernote" class="col-md-3 form-control-label">Resumen</label>
                     <div class="col-md-12">
                         <textarea name="summary" id="summary" cols="30" rows="50">{{ profile.summary }}</textarea>
                     </div>
                 </div>
                 <br>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="search-address">Address</label>
-                    <span class="help-block">Please type your address and move the marker</span>
+                    <label class="col-md-3 form-control-label" for="search-address">Dirección</label>
+                    <span class="help-block">Por favor escriba su dirección y mueve el marcador si desea ajustar su localizacion</span>
                     <div class="col-md-9">
                         <input id="search-address" type="text" name="address" value="{{ profile.address }}" class="form-control controls" placeholder="Search address">
                     </div>
@@ -101,19 +101,19 @@
                 </div>
                 <br>
                 <div class="form-group row">
-                    <label for="current-image" class="col-md-3 form-control-label">Current Image</label>
+                    <label for="current-image" class="col-md-3 form-control-label">Imagen actual</label>
                     <div class="col-md-9">
                         {% if entity.imageName %}
                             <figure>
                                 <img src="{{asset(vich_uploader_asset(entity, 'image')) }}" width="50%"  style="margin: auto; display: block;">
                             </figure>
                         {% else %}
-                            Doesn't have a profile image
+                           No tiene una imagen de perfil
                         {% endif %}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="image">Change Image</label>
+                    <label class="col-md-3 form-control-label" for="image">Cambiar imagen</label>
                     <div class="col-md-9">
                         {{ form_widget(form.image, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
@@ -123,8 +123,8 @@
             </div>
             {#{{ dump(form) }}#}
             <div class="card-footer">
-                <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Atrás</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Enviar</button>
             </div>
         </form>
     </div>

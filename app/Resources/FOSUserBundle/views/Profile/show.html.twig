@@ -1,10 +1,10 @@
 {% extends ":admin:base.html.twig" %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Perfil{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}Profile{% endblock %}
+        {% block breadcrumb %}Perfil{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -15,15 +15,15 @@
                 <div class="col-xs-12 col-sm-8">
                     <h2>{{ user.firstName }} {{ user.lastName }} </h2>
                     <p><strong>Email: </strong> {{ user.email }}</p>
-                    <p><strong>Username: </strong> {{ user.username }}</p>
+                    <p><strong>Nombre de usuario: </strong> {{ user.username }}</p>
                     {% if not is_granted('ROLE_SUPER_ADMIN') %}
                     <p>
-                        <strong>User type: </strong>
+                        <strong>Tipo de usuario: </strong>
                         {% if is_granted('ROLE_PRODUCER') %}
-                            Producer
+                            Productor
                         {% endif %}
                         {% if is_granted('ROLE_INVESTIGATOR') %}
-                            Investigator
+                            Investigador
                         {% endif %}
                     </p>
                     {% endif %}
@@ -37,8 +37,8 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">Edit Profile</a>
-                <a class="btn btn-warning" href="{{ path('fos_user_change_password',{id: user.id}) }}">Change Password</a>
+                <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">Editar perfil</a>
+                <a class="btn btn-warning" href="{{ path('fos_user_change_password',{id: user.id}) }}">Cambia la contraseña</a>
             </div>
         </div>
     </div>

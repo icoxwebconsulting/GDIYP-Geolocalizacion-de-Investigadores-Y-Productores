@@ -9,23 +9,23 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card mx-2">
                             <div class="card-block p-2">
-                                <h1>Register</h1>
-                                <p class="text-muted">Create your account</p>
+                                <h1>Registro</h1>
+                                <p class="text-muted">Crea tu cuenta</p>
                                 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
                                     <div class="input-group mb-1">
-                                        {{ form_widget(form.firstName, { 'attr': { 'class': 'form-control', 'placeholder': 'First Name'}}) }}
+                                        {{ form_widget(form.firstName, { 'attr': { 'class': 'form-control', 'placeholder': 'Nombre'}}) }}
                                     </div>
                                     {{ form_errors(form.firstName) }}
 
                                     <div class="input-group mb-1">
-                                        {{ form_widget(form.lastName, { 'attr': { 'class': 'form-control', 'placeholder': 'Last Name'}}) }}
+                                        {{ form_widget(form.lastName, { 'attr': { 'class': 'form-control', 'placeholder': 'Apellido'}}) }}
                                     </div>
                                     {{ form_errors(form.lastName) }}
 
                                     <div class="input-group mb-1">
                                     <span class="input-group-addon"><i class="icon-user"></i>
                                     </span>
-                                        {{ form_widget(form.username, { 'attr': { 'class': 'form-control', 'placeholder': 'Username'}}) }}
+                                        {{ form_widget(form.username, { 'attr': { 'class': 'form-control', 'placeholder': 'Nombre de usuario'}}) }}
                                     </div>
                                     {{ form_errors(form.username) }}
 
@@ -38,33 +38,33 @@
                                     <div class="input-group mb-1">
                                     <span class="input-group-addon"><i class="icon-lock"></i>
                                     </span>
-                                        {{ form_widget(form.plainPassword.first, { 'attr': { 'class': 'form-control', 'placeholder': 'Password'}}) }}
+                                        {{ form_widget(form.plainPassword.first, { 'attr': { 'class': 'form-control', 'placeholder': 'Contraseña'}}) }}
                                     </div>
                                     {{ form_errors(form.plainPassword.first) }}
 
                                     <div class="input-group mb-1">
                                     <span class="input-group-addon"><i class="icon-lock"></i>
                                     </span>
-                                        {{ form_widget(form.plainPassword.second, { 'attr': { 'class': 'form-control', 'placeholder': 'Repeat Password'}}) }}
+                                        {{ form_widget(form.plainPassword.second, { 'attr': { 'class': 'form-control', 'placeholder': 'Repite contraseña'}}) }}
                                     </div>
                                     {{ form_errors(form.plainPassword.second) }}
 
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label">User Type</label>
+                                        <label class="col-md-3 form-control-label">Tipo de usuario</label>
                                         <div class="col-md-9">
                                             {{ form_widget(form.roles) }}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label">Image Profile</label>
+                                        <label class="col-md-3 form-control-label">Imagen de Perfil</label>
                                         <div class="col-md-9">
                                             {{ form_widget(form.image, { 'attr': { 'class': 'form-control'}}) }}
                                         </div>
                                     </div>
                                     {{ form_errors(form.image) }}
                                     {{ form_rest(form) }}
-                                    <button type="submit" class="btn btn-block btn-success">Create Account</button>
-                                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-block btn-primary"><i class="fa fa-mail-reply"></i> Back</a>
+                                    <button type="submit" class="btn btn-block btn-success">Crear cuenta</button>
+                                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-block btn-primary"><i class="fa fa-mail-reply"></i> Atrás</a>
                                 </form>
                             </div>
                         </div>
