@@ -37,6 +37,10 @@ class MediaController extends Controller
      */
     public function newAcion(Request $request)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('media_list');
+        }
+
         $entity = new Media();
         $form = $this->createForm(new MediaType(), $entity);
 
@@ -67,6 +71,10 @@ class MediaController extends Controller
      */
     public function putAction(Request $request, Media $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('media_list');
+        }
+
         $request->setMethod('PATCH');
 
         $form = $this->createForm(new MediaType(), $entity, ["method" => $request->getMethod()]);
@@ -95,6 +103,10 @@ class MediaController extends Controller
      */
     public function deleteAction(Media $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('media_list');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();

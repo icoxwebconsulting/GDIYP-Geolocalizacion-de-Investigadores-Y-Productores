@@ -5,8 +5,8 @@
     <li class="nav-title">
         Menu
     </li>
+    {% if is_granted('ROLE_ADMIN') %}
     <li class="nav-item nav-dropdown">
-        {% if is_granted('ROLE_ADMIN') %}
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-warning"></i> Contenido reportado</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
@@ -16,7 +16,6 @@
                 <a class="nav-link" href="{{ path('news_report_list') }}"><i class="fa fa-warning"></i> Noticias reportadas</a>
             </li>
         </ul>
-        {% endif %}
     </li>
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-user"></i> Usuarios</a>
@@ -29,15 +28,19 @@
             </li>
         </ul>
     </li>
+    {% endif %}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-newspaper-o"></i> Noticias</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('news_list') }}"><i class="fa fa-list-alt"></i> Lista de noticias</a>
             </li>
+            {% if not is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('news_new') }}"><i class="fa fa-plus"></i> Agregar Noticias</a>
             </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item nav-dropdown">
                 <a href="#" class="nav-link nav-dropdown-toggle"><i class="icon-puzzle"></i>Categorías</a>
                 <ul class="nav-dropdown-items">
@@ -49,6 +52,7 @@
                     </li>
                 </ul>
             </li>
+            {% endif %}
         </ul>
     </li>
     <li class="nav-item nav-dropdown">
@@ -57,9 +61,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('media_list') }}" target="_top"><i class="fa fa-files-o"></i> Lista de Archivos</a>
             </li>
+            {% if not is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('media_new') }}" target="_top"><i class="fa fa-upload"></i> Agregar archivos</a>
             </li>
+            {% endif %}
         </ul>
     </li>
     <li class="nav-item">

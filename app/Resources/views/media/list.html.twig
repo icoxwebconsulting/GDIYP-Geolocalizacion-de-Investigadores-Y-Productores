@@ -26,7 +26,9 @@
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <th>Creado por</th>
                     {% endif %}
+                    {% if not is_granted('ROLE_ADMIN') %}
                     <th>Acciones</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -41,13 +43,15 @@
                             {{ entity.news.title }}
                         {% endif %}
                     </td>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <td>{{ entity.createdBy.username }}</td>
                     {% endif %}
+                    {% if not is_granted('ROLE_ADMIN') %}
                     <td>
                         <a data-target="#delete-modal" data-toggle="modal" data-whatever="{{ path('media_delete', {id: entity.id}) }}"><i class="fa fa-trash"></i></a>
                         <a href="{{ path('media_edit', {id: entity.id}) }}"><i class="fa fa-pencil"></i></a>
                     </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
                 </tbody>

@@ -23,7 +23,7 @@ class NewsController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')){
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             $entities = $em->getRepository("AppBundle:News")->findAll();
         }else{
             $entities = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));
@@ -41,9 +41,12 @@ class NewsController extends Controller
      */
     public function newAcion(Request $request)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('news_list');
+        }
+        
         $entity = new News();
         $form = $this->createForm(new NewsType(), $entity);
-
 
         if($form->handleRequest($request)->isValid())
         {
@@ -71,6 +74,10 @@ class NewsController extends Controller
      */
     public function putAction(Request $request, News $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('news_list');
+        }
+        
         $request->setMethod('PATCH');
 
         $form = $this->createForm(new NewsType(), $entity, ["method" => $request->getMethod()]);
@@ -99,6 +106,10 @@ class NewsController extends Controller
      */
     public function deleteAction(News $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('news_list');
+        }
+        
         $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();
