@@ -156,7 +156,7 @@ class News
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
-        $this->createdBy = $createdBy;
+        $this->created_by = $createdBy;
 
         return $this;
     }
@@ -168,7 +168,7 @@ class News
      */
     public function getCreatedBy()
     {
-        return $this->createdBy;
+        return $this->created_by;
     }
 
     /**
