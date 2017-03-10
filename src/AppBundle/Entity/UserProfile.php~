@@ -24,34 +24,57 @@ class UserProfile
     protected $job_title;
 
     /**
-     * @ORM\Column(name="address", type="text", nullable=true)
-     */
-    protected $address;
-
-    /**
      * @ORM\Column(name="summary", type="text", nullable=true)
      */
     protected $summary;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="latitude", type="string", length=255)
-     */
-    private $latitude;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="longitude", type="string", length=255)
-     */
-    private $longitude;
 
     /**
      * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Institution")
+     * @ORM\JoinColumn(name="institution", referencedColumnName="id")
+     */
+    protected $institution;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Knowledge")
+     * @ORM\JoinColumn(name="knowlegde", referencedColumnName="id")
+     */
+    protected $knowledge;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GoogleMap")
+     * @ORM\JoinColumn(name="address", referencedColumnName="id")
+     */
+    protected $address;
+
+    /**
+     * @ORM\OneToOne(targetEntity="StudyTopic")
+     * @ORM\JoinColumn(name="study_topic", referencedColumnName="id")
+     */
+    protected $study_topic;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColumn(name="research_place", referencedColumnName="id")
+     */
+    protected $research_place;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColumn(name="residence_place", referencedColumnName="id")
+     */
+    protected $residence_place;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CaseStudy")
+     * @ORM\JoinColumn(name="case_study", referencedColumnName="id")
+     */
+    protected $case_study;
 
     /**
      * Get id
@@ -87,29 +110,6 @@ class UserProfile
     }
 
     /**
-     * Set address
-     *
-     * @param string $address
-     * @return UserProfile
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string 
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
      * Set summary
      *
      * @param string $summary
@@ -133,52 +133,6 @@ class UserProfile
     }
 
     /**
-     * Set latitude
-     *
-     * @param string $latitude
-     * @return Location
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return string
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param string $longitude
-     * @return Location
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return string
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
      * Set user
      *
      * @param \AppBundle\Entity\User $user
@@ -199,5 +153,149 @@ class UserProfile
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set institution
+     *
+     * @param \AppBundle\Entity\Institution $institution
+     *
+     * @return UserProfile
+     */
+    public function setInstitution(\AppBundle\Entity\Institution $institution = null)
+    {
+        $this->institution = $institution;
+
+        return $this;
+    }
+
+    /**
+     * Get institution
+     *
+     * @return \AppBundle\Entity\Institution
+     */
+    public function getInstitution()
+    {
+        return $this->institution;
+    }
+
+    /**
+     * Set knowledge
+     *
+     * @param \AppBundle\Entity\Knowledge $knowledge
+     *
+     * @return UserProfile
+     */
+    public function setKnowledge(\AppBundle\Entity\Knowledge $knowledge = null)
+    {
+        $this->knowledge = $knowledge;
+
+        return $this;
+    }
+
+    /**
+     * Get knowledge
+     *
+     * @return \AppBundle\Entity\Knowledge
+     */
+    public function getKnowledge()
+    {
+        return $this->knowledge;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \AppBundle\Entity\GoogleMap $address
+     *
+     * @return UserProfile
+     */
+    public function setAddress(\AppBundle\Entity\GoogleMap $address = null)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \AppBundle\Entity\GoogleMap
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set studyTopic
+     *
+     * @param \AppBundle\Entity\StudyTopic $studyTopic
+     *
+     * @return UserProfile
+     */
+    public function setStudyTopic(\AppBundle\Entity\StudyTopic $studyTopic = null)
+    {
+        $this->study_topic = $studyTopic;
+
+        return $this;
+    }
+
+    /**
+     * Get studyTopic
+     *
+     * @return \AppBundle\Entity\StudyTopic
+     */
+    public function getStudyTopic()
+    {
+        return $this->study_topic;
+    }
+
+    /**
+     * Set researchPlace
+     *
+     * @param \AppBundle\Entity\City $researchPlace
+     *
+     * @return UserProfile
+     */
+    public function setResearchPlace(\AppBundle\Entity\City $researchPlace = null)
+    {
+        $this->research_place = $researchPlace;
+
+        return $this;
+    }
+
+    /**
+     * Get researchPlace
+     *
+     * @return \AppBundle\Entity\City
+     */
+    public function getResearchPlace()
+    {
+        return $this->research_place;
+    }
+
+    /**
+     * Set residencePlace
+     *
+     * @param \AppBundle\Entity\City $residencePlace
+     *
+     * @return UserProfile
+     */
+    public function setResidencePlace(\AppBundle\Entity\City $residencePlace = null)
+    {
+        $this->residence_place = $residencePlace;
+
+        return $this;
+    }
+
+    /**
+     * Get residencePlace
+     *
+     * @return \AppBundle\Entity\City
+     */
+    public function getResidencePlace()
+    {
+        return $this->residence_place;
     }
 }

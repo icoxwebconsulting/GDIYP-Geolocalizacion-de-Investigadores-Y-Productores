@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller\User;
 
+use AppBundle\Entity\CaseStudy;
+use AppBundle\Entity\GoogleMap;
+use AppBundle\Entity\Institution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -38,28 +41,89 @@ class UserController extends Controller
 
         if ($profile == null)
         {
-            $profile = new UserProfile();
-            //by default lat and lng t
-            $profile->setLatitude(0);
-            $profile->setLongitude(0);
+            $profile =  new UserProfile();
+            $googleMap = new GoogleMap();
+
+        }else{
+            $googleMap = $em->getRepository("AppBundle:GoogleMap")->findOneBy(
+                array(
+                    'id' => $profile->getAddress(),
+                )
+            );
+
+            $case_study = $em->getRepository("AppBundle:CaseStudy")->findOneBy(
+                array(
+                    'id' => $profile->getCaseStudy(),
+                ));
+            if($case_study == null){
+                $case_study = new CaseStudy();
+                $caseStudyAddress = new GoogleMap();
+            }else{
+                $caseStudyAddress = $em->getRepository("AppBundle:GoogleMap")->findOneBy(
+                    array(
+                        'id' => $profile->getCaseStudy()->getAddress(),
+                    )
+                );
+            }
         }
 
         if ($form->handleRequest($request)->isValid())
         {
+            $residencePlace = $em->getRepository("AppBundle:City")->find($_POST['residence_place']);
+            $knowledge = $em->getRepository("AppBundle:Knowledge")->find($_POST['knowledge']);
+            $studyTopic = $em->getRepository("AppBundle:StudyTopic")->find($_POST['study_topic']);
+            $researchPlace = $em->getRepository("AppBundle:City")->find($_POST['research_place']);
+
             $image = $form->get('image')->getData();
+            $googleMap->setAddress($_POST['address']);
+            $googleMap->setLatitude($_POST['latitude']);
+            $googleMap->setLongitude($_POST['longitude']);
+
+            if(!empty($_POST['institution'])){
+                $institution = $em->getRepository("AppBundle:Institution")->find($_POST['institution']);
+            }
+
+            if(!empty($_POST['institution_name'])){
+                $institution = New Institution();
+                $institution->setName($_POST['institution_name']);
+                $type = $em->getRepository("AppBundle:InstitutionType")->find($_POST['institution_type']);
+                $institution->setType($type);
+            }
+
+            $caseStudyAddress->setAddress($_POST['case_study_address']);
+            $caseStudyAddress->setLatitude($_POST['case_study_latitude']);
+            $caseStudyAddress->setLongitude($_POST['case_study_longitude']);
+
+            $case_study->setName($_POST['case_study']);
+            $case_study->setDescription($_POST['case_study_description']);
+            $case_study->setKeywords($_POST['keywords']);
+            $case_study->setAddress($caseStudyAddress);
+            $case_study->setGraphicInformation($_POST['graphic_information']);
+            $case_study->setInvestigationLines($_POST['investigation_lines']);
+            $case_study->setResearchGroup($_POST['research_group']);
+            $case_study->setRelatedInstitution($_POST['related_institution']);
+            $case_study->setLinks($_POST['links']);
+            $case_study->setContactInfo($_POST['contact_info']);
 
             $profile->setUser($user);
             $profile->setJobTitle($_POST['job_title']);
-            $profile->setAddress($_POST['address']);
             $profile->setSummary($_POST['summary']);
-            $profile->setLatitude($_POST['latitude']);
-            $profile->setLongitude($_POST['longitude']);
-
+            $profile->setResidencePlace($residencePlace);
+            $profile->setInstitution($institution);
+            $profile->setAddress($googleMap);
+            $profile->setKnowledge($knowledge);
+            $profile->setStudyTopic($studyTopic);
+            $profile->setResearchPlace($researchPlace);
+            $profile->setCaseStudy($case_study);
+            
             if($image != NULL)
             {
                 $user->setImageName($image);
                 $em->persist($user);
             }
+            $em->persist($institution);
+            $em->persist($googleMap);
+            $em->persist($case_study);
             $em->persist($profile);
             $em->flush();
 
@@ -83,7 +147,7 @@ class UserController extends Controller
         return $this->render('@FOSUser/Profile/edit.html.twig', array(
             'form' => $form->createView(),
             'entity' => $user,
-            'profile' => $profile
+            'profile' => $profile,
         ));
     }
 

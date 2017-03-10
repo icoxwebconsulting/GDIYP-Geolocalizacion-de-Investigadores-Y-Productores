@@ -1,0 +1,76 @@
+<fieldset>
+    <h2 class="fs-title">Extra Information</h2>
+    <h3 class="fs-subtitle">Step 6</h3>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="case-study-name">Case Study Name</label>
+            <input id="case-study-name" type="text" name="case_study" class="form-control" value="{{ profile.caseStudy.name }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="case-study-description">Case Study Description</label>
+            <input id="case-study-description" type="text" name="case_study_description" class="form-control" value="{{ profile.caseStudy.description }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="keywords">Keywords</label>
+            <input id="keywords" type="text" name="keywords" class="form-control" value="{{ profile.caseStudy.keywords}}">
+        </div>
+    </div>
+    {#<div class="form-group row">#}
+    {#<label class="col-md-3 form-control-label" for="search-address">Address</label>#}
+    {#<span class="help-block">Please type your address and move the marker</span>#}
+    {#<input id="case-study-search-address" type="text" name="case_study_address" value="{{ profile.caseStudy.address ? profile.caseStudy.address.address : ''}}" class="form-control controls" placeholder="Search address">#}
+    {#<input id="case_study_lat" type="hidden" name="case_study_latitude" value="{{ profile.caseStudy.address ? profile.caseStudy.address.latitude : 0 }}"><br>#}
+    {#<input id="case_study_lng" type="hidden" name="case_study_longitude" value="{{ profile.caseStudy.address ? profile.caseStudy.address.longitude : 0 }}">#}
+    {#</div>#}
+    {#<div class="form-group row" style="margin-bottom: 0rem;">#}
+    {#<div class="col-md-12">#}
+    {#<div id="map-case-study"></div>#}
+    {#</div>#}
+    {#</div>#}
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="graphic_information" class="form-control-label">Graphic Information</label>
+                        <textarea name="graphic_information" id="graphic_information" cols="30" rows="50">
+                            {{ profile.caseStudy.graphicInformation }}
+                        </textarea>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="investigation-lines">Investigation Lines</label>
+            <input id="investigation-lines" type="text" name="investigation_lines" class="form-control" value="{{ profile.caseStudy.investigationLines }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="research-group">Research Group</label>
+            <input id="research-group" type="text" name="research_group" class="form-control" value="{{ profile.caseStudy.researchGroup }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="related-institution">Related Institution</label>
+            <input id="related-institution" type="text" name="related_institution" class="form-control" value="{{ profile.caseStudy.relatedInstitution }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="links">Links</label>
+            <input id="links" type="text" name="links" class="form-control" value="{{ profile.caseStudy.links }}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-control-label" for="contact-info">Contact Info</label>
+            <input id="contact_info" type="text" name="contact_info" class="form-control" value="{{ profile.caseStudy.contactInfo }}">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <button type="submit" class="next action-button" style="background-color: #20a8d8 !important;border-color: #20a8d8 !important;"><i class="fa fa-dot-circle-o"></i> Submit</button>
+    </div>
+</fieldset>

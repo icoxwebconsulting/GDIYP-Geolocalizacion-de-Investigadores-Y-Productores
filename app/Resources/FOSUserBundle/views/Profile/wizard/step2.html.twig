@@ -1,0 +1,46 @@
+<fieldset>
+    <h2 class="fs-title">Institution Information</h2>
+    <h3 class="fs-subtitle">Step 2</h3>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="institution_type">Institution Type</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="institution_type" id="institution_type">
+                            <option value="">Select Institution Type</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label style="display:none" class="col-md-3 form-control-label" for="institution" id="institution_label">Institution</label>
+                    <div class="col-md-9">
+                        <select style="display:none" class="form-control" name="institution" id="institution">
+                            <option value="">Select Institution</option>
+                        </select>
+                        <input class="form-control" style="display:none" id="other_institution" type="text" name="institution_name" placeholder="Institution name">
+                    </div>
+                </div>
+
+                <br>
+                <a id="add_institution" style="display:none" href="#">Add other institution</a>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="search-address">Address</label>
+        <span class="help-block">Please type your address and move the marker</span>
+        {#<div class="col-md-9">#}
+        <input id="search-address" type="text" name="address" value="{{ profile.address ? profile.address.address : ''}}" class="form-control controls" placeholder="Search address">
+        {#</div>#}
+        <input id="lat" type="hidden" name="latitude" value="{{ profile.address ? profile.address.latitude : 0 }}"><br>
+        <input id="lng" type="hidden" name="longitude" value="{{ profile.address ? profile.address.longitude : 0 }}">
+    </div>
+    <div class="form-group row" style="margin-bottom: 0rem;">
+        <div class="col-md-12">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
