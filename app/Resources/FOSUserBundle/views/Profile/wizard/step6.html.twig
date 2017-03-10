@@ -4,19 +4,19 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="case-study-name">Case Study Name</label>
-            <input id="case-study-name" type="text" name="case_study" class="form-control" value="{{ profile.caseStudy.name }}">
+            <input id="case-study-name" type="text" name="case_study" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.name }}">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="case-study-description">Case Study Description</label>
-            <input id="case-study-description" type="text" name="case_study_description" class="form-control" value="{{ profile.caseStudy.description }}">
+            <input id="case-study-description" type="text" name="case_study_description" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.description }}">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="keywords">Keywords</label>
-            <input id="keywords" type="text" name="keywords" class="form-control" value="{{ profile.caseStudy.keywords}}">
+            <input id="keywords" type="text" name="keywords" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.keywords}}">
         </div>
     </div>
     {#<div class="form-group row">#}
@@ -35,38 +35,38 @@
         <div class="form-group">
             <label for="graphic_information" class="form-control-label">Graphic Information</label>
                         <textarea name="graphic_information" id="graphic_information" cols="30" rows="50">
-                            {{ profile.caseStudy.graphicInformation }}
+                            {{ profile.caseStudy ? profile.caseStudy.graphicInformation }}
                         </textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="investigation-lines">Investigation Lines</label>
-            <input id="investigation-lines" type="text" name="investigation_lines" class="form-control" value="{{ profile.caseStudy.investigationLines }}">
+            <input id="investigation-lines" type="text" name="investigation_lines" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.investigationLines }}">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="research-group">Research Group</label>
-            <input id="research-group" type="text" name="research_group" class="form-control" value="{{ profile.caseStudy.researchGroup }}">
+            <input id="research-group" type="text" name="research_group" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.researchGroup }}">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="related-institution">Related Institution</label>
-            <input id="related-institution" type="text" name="related_institution" class="form-control" value="{{ profile.caseStudy.relatedInstitution }}">
+            <input id="related-institution" type="text" name="related_institution" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.relatedInstitution }}">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="links">Links</label>
-            <input id="links" type="text" name="links" class="form-control" value="{{ profile.caseStudy.links }}">
+            <input id="links" type="text" name="links" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.links }}">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="contact-info">Contact Info</label>
-            <input id="contact_info" type="text" name="contact_info" class="form-control" value="{{ profile.caseStudy.contactInfo }}">
+            <input id="contact_info" type="text" name="contact_info" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.contactInfo }}">
         </div>
     </div>
     <div class="col-md-12">
