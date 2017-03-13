@@ -4,19 +4,19 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="case-study-name">Case Study Name</label>
-            <input id="case-study-name" type="text" name="case_study" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.name }}">
+            <textarea id="case-study-name" name="case_study" id="" cols="30" rows="2" class="form-control">{{ profile.caseStudy ? profile.caseStudy.name }}</textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="case-study-description">Case Study Description</label>
-            <input id="case-study-description" type="text" name="case_study_description" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.description }}">
+            <textarea id="case-study-description" name="case_study_description" cols="30" rows="2" class="form-control">{{ profile.caseStudy ? profile.caseStudy.description }}</textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="keywords">Keywords</label>
-            <input id="keywords" type="text" name="keywords" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.keywords}}">
+            <textarea id="keywords" name="keywords" class="form-control" cols="30" rows="2">{{ profile.caseStudy ? profile.caseStudy.keywords}}</textarea>
         </div>
     </div>
     {#<div class="form-group row">#}
@@ -42,31 +42,31 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="investigation-lines">Investigation Lines</label>
-            <input id="investigation-lines" type="text" name="investigation_lines" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.investigationLines }}">
+            <textarea id="investigation-lines" name="investigation_lines" class="form-control" cols="30" rows="2">{{ profile.caseStudy ? profile.caseStudy.investigationLines }}</textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="research-group">Research Group</label>
-            <input id="research-group" type="text" name="research_group" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.researchGroup }}">
+            <textarea id="research-group" name="research_group" class="form-control" cols="30" rows="2">{{ profile.caseStudy ? profile.caseStudy.researchGroup }}</textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="related-institution">Related Institution</label>
-            <input id="related-institution" type="text" name="related_institution" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.relatedInstitution }}">
+            <textarea id="related-institution" name="related_institution" class="form-control" cols="30" rows="2">{{ profile.caseStudy ? profile.caseStudy.relatedInstitution }}</textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="links">Links</label>
-            <input id="links" type="text" name="links" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.links }}">
+            <textarea id="links" name="links" class="form-control" cols="30" rows="2">{{ profile.caseStudy ? profile.caseStudy.links }}</textarea>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-control-label" for="contact-info">Contact Info</label>
-            <input id="contact_info" type="text" name="contact_info" class="form-control" value="{{ profile.caseStudy ? profile.caseStudy.contactInfo }}">
+            <textarea id="contact-info" name="contact_info" class="form-control" cols="30" rows="2">{{ profile.caseStudy ? profile.caseStudy.contactInfo }}</textarea>
         </div>
     </div>
     <div class="col-md-12">

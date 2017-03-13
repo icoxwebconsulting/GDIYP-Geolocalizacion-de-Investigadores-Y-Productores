@@ -90,14 +90,14 @@ class UserController extends Controller
                 $institution->setType($type);
             }
 
-            $caseStudyAddress->setAddress($_POST['case_study_address']);
-            $caseStudyAddress->setLatitude($_POST['case_study_latitude']);
-            $caseStudyAddress->setLongitude($_POST['case_study_longitude']);
+//            $caseStudyAddress->setAddress($_POST['case_study_address']);
+//            $caseStudyAddress->setLatitude($_POST['case_study_latitude']);
+//            $caseStudyAddress->setLongitude($_POST['case_study_longitude']);
 
             $case_study->setName($_POST['case_study']);
             $case_study->setDescription($_POST['case_study_description']);
             $case_study->setKeywords($_POST['keywords']);
-            $case_study->setAddress($caseStudyAddress);
+//            $case_study->setAddress($caseStudyAddress);
             $case_study->setGraphicInformation($_POST['graphic_information']);
             $case_study->setInvestigationLines($_POST['investigation_lines']);
             $case_study->setResearchGroup($_POST['research_group']);
