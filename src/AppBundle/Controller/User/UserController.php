@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\User;
 
 use AppBundle\Entity\CaseStudy;
+use AppBundle\Entity\City;
 use AppBundle\Entity\GoogleMap;
 use AppBundle\Entity\Institution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,7 +44,7 @@ class UserController extends Controller
         {
             $profile =  new UserProfile();
             $googleMap = new GoogleMap();
-
+            $case_study = new CaseStudy();
         }else{
             $googleMap = $em->getRepository("AppBundle:GoogleMap")->findOneBy(
                 array(
@@ -89,6 +90,25 @@ class UserController extends Controller
                 $type = $em->getRepository("AppBundle:InstitutionType")->find($_POST['institution_type']);
                 $institution->setType($type);
             }
+            
+            if(!empty($_POST['city_name'])){
+                $city = new City();
+                $city->setName($_POST['city_name']);
+                $region = $em->getRepository("AppBundle:Region")->find($_POST['region']);
+                $city->setRegion($region);
+                $profile->setResidencePlace($city);
+            }else{
+                $profile->setResidencePlace($residencePlace);
+            }
+            if(!empty($_POST['city_name2'])){
+                $city2 = new City();
+                $city2->setName($_POST['city_name2']);
+                $region = $em->getRepository("AppBundle:Region")->find($_POST['region2']);
+                $city2->setRegion($region);
+                $profile->setResearchPlace($city2); 
+            }else{
+                $profile->setResearchPlace($researchPlace);
+            }
 
 //            $caseStudyAddress->setAddress($_POST['case_study_address']);
 //            $caseStudyAddress->setLatitude($_POST['case_study_latitude']);
@@ -108,12 +128,10 @@ class UserController extends Controller
             $profile->setUser($user);
             $profile->setJobTitle($_POST['job_title']);
             $profile->setSummary($_POST['summary']);
-            $profile->setResidencePlace($residencePlace);
             $profile->setInstitution($institution);
             $profile->setAddress($googleMap);
             $profile->setKnowledge($knowledge);
             $profile->setStudyTopic($studyTopic);
-            $profile->setResearchPlace($researchPlace);
             $profile->setCaseStudy($case_study);
             
             if($image != NULL)
@@ -124,7 +142,14 @@ class UserController extends Controller
             $em->persist($institution);
             $em->persist($googleMap);
             $em->persist($case_study);
+            if(!empty($_POST['city_name'])){
+                $em->persist($city);
+            }
+            if(!empty($_POST['city_name2'])){
+                $em->persist($city2);
+            }
             $em->persist($profile);
+
             $em->flush();
 
             /*

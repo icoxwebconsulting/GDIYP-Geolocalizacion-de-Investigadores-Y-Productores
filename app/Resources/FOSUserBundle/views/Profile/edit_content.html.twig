@@ -144,6 +144,18 @@
                 $("#institution").toggle();
                 $(this).text($(this).text() == 'Add other institution' ? 'Show the list of institutions' : 'Add other institution');
             })
+
+            $("#add_city").click(function(){
+                $("#other_city").toggle();
+                $("#city").toggle();
+                $(this).text($(this).text() == 'Add other city' ? 'Add other city' : 'Show the list of cities');
+            })
+
+            $("#add_city2").click(function(){
+                $("#other_city2").toggle();
+                $("#city2").toggle();
+                $(this).text($(this).text() == 'Add other city' ? 'Add other city' : 'Show the list of cities');
+            })
         });
 
         function loadCountry(){
@@ -187,11 +199,20 @@
             }).done(function( result ) {
                 var data = eval(result);
                 console.log(data);
-                for(var i = 0; i < data.length; i++){
-                    var newOption = $('<option/>');
-                    newOption.text(data[i].name);
-                    newOption.attr('value', data[i].id);
-                    $('#city').append(newOption)
+                if (!data.length){
+                    $("#city").hide();
+                    $("#other_city").show();
+                    $("#add_city").hide();
+                }else{
+                    for(var i = 0; i < data.length; i++){
+                        var newOption = $('<option/>');
+                        newOption.text(data[i].name);
+                        newOption.attr('value', data[i].id);
+                        $('#city').append(newOption)
+                    }
+                    $("#other_city").hide();
+                    $("#city").show();
+                    $("#add_city").show();
                 }
             });
         }
@@ -236,11 +257,20 @@
             }).done(function( result ) {
                 var data = eval(result);
                 console.log(data);
-                for(var i = 0; i < data.length; i++){
-                    var newOption = $('<option/>');
-                    newOption.text(data[i].name);
-                    newOption.attr('value', data[i].id);
-                    $('#city2').append(newOption)
+                  if (!data.length){
+                    $("#city2").hide();
+                    $("#other_city2").show();
+                    $("#add_city2").hide();
+                }else{
+                    for(var i = 0; i < data.length; i++){
+                        var newOption = $('<option/>');
+                        newOption.text(data[i].name);
+                        newOption.attr('value', data[i].id);
+                        $('#city2').append(newOption)
+                    }
+                    $("#other_city2").hide();
+                    $("#city2").show();
+                    $("#add_city2").show();
                 }
             });
         }
