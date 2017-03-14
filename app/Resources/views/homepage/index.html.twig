@@ -3,16 +3,48 @@
 {% block title %}homepage{% endblock %}
 
 {% block content %}
-    homepage view
-    <a href="{{ path('fos_user_security_login') }}">login</a>
 
-    <ul>
-        {% for user in users %}
-            <li>{{ user.username }} <a href="{{ path('homepage_user_show', { id: user.id }) }}">view detail</a>|
-                {% if user.reported == 0 %}
-                    <a data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_user_report', {id: user.id}) }}">Reportar</a></li>
-                {% endif %}
-        {% endfor %}
-    </ul>
-    {#{{ dump() }}#}
+    {#<a href="{{ path('fos_user_security_login') }}">login</a>#}
+
+    {#<ul>#}
+        {#{% for user in users %}#}
+            {#<li>{{ user.username }} <a href="{{ path('homepage_user_show', { id: user.id }) }}">view detail</a>|#}
+                {#{% if user.reported == 0 %}#}
+                    {#<a data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_user_report', {id: user.id}) }}">Reportar</a></li>#}
+                {#{% endif %}#}
+        {#{% endfor %}#}
+    {#</ul>#}
+
+    <!-- Map Canvas-->
+    <div class="map-canvas list-width-30">
+    <!-- Map -->
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var _latitude = 51.541216;
+        var _longitude = -0.095678;
+        var jsonPath = '{{ asset('assets/spotter/json/items.json.txt') }}';
+
+        // Load JSON data and create Google Maps
+        $.getJSON(jsonPath)
+                .done(function(json) {
+                    createHomepageGoogleMap(_latitude,_longitude,json);
+                })
+                .fail(function( jqxhr, textStatus, error ) {
+                    console.log(error);
+                })
+        ;
+
+        // Set if language is RTL and load Owl Carousel
+        $(window).load(function(){
+            var rtl = false; // Use RTL
+            initializeOwl(rtl);
+        });
+
+        autoComplete();
+
+    </script>
 {% endblock %}
