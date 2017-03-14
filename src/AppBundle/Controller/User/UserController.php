@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
@@ -32,6 +33,11 @@ class UserController extends Controller
      */
     public function updateAction(Request $request, User $user)
     {
+        $securityContext = $this->container->get('security.context');
+        $router = $this->container->get('router');
+        if ($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('ROLE_SUPER_ADMIN')) {
+            return new RedirectResponse($router->generate('dashboard'), 307);
+        }
         $request->setMethod('PATCH');
         $form = $this->createForm(new UserType(), $user, ["method" => $request->getMethod()]);
         $em = $this->getDoctrine()->getManager();
