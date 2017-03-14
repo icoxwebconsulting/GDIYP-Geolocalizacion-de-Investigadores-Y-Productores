@@ -168,13 +168,18 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#country').append(newOption)
+                    $('#country').append(newOption);
+                    var selected = {{ profile.residencePlace ? profile.residencePlace.region.country.id : 0 }};
+                    if (selected == data[i].id){
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadRegion();
             });
         }
 
         function loadRegion(){
-            $("#region").children().remove()
+            $("#region").children().remove();
             var country = $('#country').find(':selected').val();
             $.ajax({
                 type: "GET",
@@ -185,8 +190,13 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#region').append(newOption)
+                    $('#region').append(newOption);
+                    var selected = {{ profile.residencePlace ? profile.residencePlace.region.id : 0 }};
+                    if (selected == data[i].id){
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadCity();
             });
         }
 
@@ -208,7 +218,11 @@
                         var newOption = $('<option/>');
                         newOption.text(data[i].name);
                         newOption.attr('value', data[i].id);
-                        $('#city').append(newOption)
+                        $('#city').append(newOption);
+                        var selected = {{ profile.residencePlace ? profile.residencePlace.id : 0 }};
+                        if (selected == data[i].id){
+                            newOption.attr('selected', 'true');
+                        }
                     }
                     $("#other_city").hide();
                     $("#city").show();
@@ -226,8 +240,13 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#country2').append(newOption)
+                    $('#country2').append(newOption);
+                    var selected = {{ profile.researchPlace ? profile.researchPlace.region.country.id : 0 }};
+                    if (selected == data[i].id){
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadRegion2();
             });
         }
 
@@ -243,8 +262,13 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#region2').append(newOption)
+                    $('#region2').append(newOption);
+                    var selected = {{ profile.researchPlace ? profile.researchPlace.region.id : 0 }};
+                    if (selected == data[i].id){
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadCity2();
             });
         }
 
@@ -266,7 +290,11 @@
                         var newOption = $('<option/>');
                         newOption.text(data[i].name);
                         newOption.attr('value', data[i].id);
-                        $('#city2').append(newOption)
+                        $('#city2').append(newOption);
+                        var selected = {{ profile.researchPlace ? profile.researchPlace.id : 0 }};
+                        if (selected == data[i].id){
+                            newOption.attr('selected', 'true');
+                        }
                     }
                     $("#other_city2").hide();
                     $("#city2").show();
@@ -286,7 +314,13 @@
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
                     $('#institution_type').append(newOption)
+                    var selected = {{ profile.institution ? profile.institution.type.id : 0 }};
+                    if (selected == data[i].id){
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadInstitution()
+                $('#institution_label').show();
             });
         }
 
@@ -327,8 +361,15 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#knowledge_area').append(newOption)
+                    $('#knowledge_area').append(newOption);
+                    var selected = {{ profile.knowledge ? profile.knowledge.knowledgeArea.id : 0 }};
+                    if (selected == data[i].id){
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadKnowledge();
+                $('#knowledge').show();
+                $('#knowledge_label').show();
             });
         }
 
@@ -359,8 +400,15 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#topic_category').append(newOption)
+                    $('#topic_category').append(newOption);
+                    var selected = {{ profile.studyTopic ? profile.studyTopic.topicCategory.id : 0 }};
+                    if (selected == data[i].id) {
+                        newOption.attr('selected', 'true');
+                    }
                 }
+                loadStudyTopic();
+                $('#study_topic').show();
+                $('#study_topic_label').show();
             });
         }
 
