@@ -38,8 +38,11 @@ class RegistrationController extends BaseController
             $userManager->updateUser($user);
 
             if ($confirmationEnabled) {
-                $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
-                $route = 'fos_user_registration_check_email';
+                $route = 'fos_user_security_login';
+                $this->setFlash(
+                    'success',
+                    'Please check your email. It contains an activation link you must click to activate your account.'
+                );
             } else {
                 $this->_authenticateAccount($user);
                 $route = 'fos_user_registration_confirmed';

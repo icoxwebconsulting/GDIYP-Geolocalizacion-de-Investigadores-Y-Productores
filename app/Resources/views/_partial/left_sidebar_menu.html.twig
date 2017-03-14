@@ -69,6 +69,13 @@
         </ul>
     </li>
     <li class="nav-item">
+<<<<<<< HEAD
         <a class="nav-link" href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off fa-lg"></i> Cerrar sesión</a>
+=======
+        <a class="nav-link" href="{{ path('user_edit', {'id': app.user.id}) }}"><i class="fa fa-pencil"></i> Edit Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off fa-lg"></i> Logout</a>
+>>>>>>> e6f7ab46998da03c9c289f398ec896d23c7c01fe
     </li>
 </ul>
