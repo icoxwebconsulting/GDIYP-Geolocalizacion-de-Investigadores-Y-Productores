@@ -20,9 +20,6 @@
         </div>
         {{ form_rest(form) }}
     </form>
-    <div class="card-footer">
-        <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
-    </div>
 </div>
 
 {% block extra_js %}
@@ -112,6 +109,12 @@
     </script>
     <script>
         $(document).ready(function(){
+            $(window).keydown(function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
             $('#country').change(function(){
                 loadRegion();
             });
@@ -148,13 +151,13 @@
             $("#add_city").click(function(){
                 $("#other_city").toggle();
                 $("#city").toggle();
-                $(this).text($(this).text() == 'Add other city' ? 'Add other city' : 'Show the list of cities');
+                $(this).text($(this).text() == 'Add other city' ? 'Show the list of cities' : 'Add other city');
             })
 
             $("#add_city2").click(function(){
                 $("#other_city2").toggle();
                 $("#city2").toggle();
-                $(this).text($(this).text() == 'Add other city' ? 'Add other city' : 'Show the list of cities');
+                $(this).text($(this).text() == 'Add other city' ? 'Show the list of cities' : 'Add other city');
             })
         });
 
@@ -180,6 +183,12 @@
 
         function loadRegion(){
             $("#region").children().remove();
+            var countryName = $('#country option:selected').text();
+            if (countryName.toLowerCase() == 'argentina'){
+                $('#label_city').text('Conglomerate and cities');
+            }else{
+                $('#label_city').text('City');
+            }
             var country = $('#country').find(':selected').val();
             $.ajax({
                 type: "GET",
@@ -252,6 +261,12 @@
 
         function loadRegion2(){
             $("#region2").children().remove()
+            var countryName = $('#country2 option:selected').text();
+            if (countryName.toLowerCase() == 'argentina'){
+                $('#label_city2').text('Conglomerate and cities');
+            }else{
+                $('#label_city2').text('City');
+            }
             var country = $('#country2').find(':selected').val();
             $.ajax({
                 type: "GET",
