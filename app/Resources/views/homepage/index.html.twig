@@ -17,12 +17,33 @@
 
     <!-- Map Canvas-->
     <div class="map-canvas list-width-30">
-    <!-- Map -->
+        <div class="map">
+            <div class="toggle-navigation">
+                <div class="icon">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div id="map" class="has-parallax"></div>
 
+            <div class="search-bar horizontal">
+                {% include ':homepage/map:search_form.html.twig' %}
+            </div>
+        </div>
 
+        <!--Items List-->
+        {% include ':homepage/map:item_list.html.twig' %}
+    </div>
 {% endblock %}
 
 {% block extra_js %}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places"></script>
+        <script type="text/javascript" src="{{ asset('assets/spotter/js/infobox.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/spotter/js/richmarker-compiled.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/spotter/js/markerclusterer.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/spotter/js/custom.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/spotter/js/maps.js')}}"></script>
     <script>
         var _latitude = 51.541216;
         var _longitude = -0.095678;
