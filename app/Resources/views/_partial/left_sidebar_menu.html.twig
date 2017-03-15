@@ -1,7 +1,13 @@
 <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Dashboard</a>
-    </li>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Dashboard</a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('dashboard_user') }}"><i class="icon-speedometer"></i> Dashboard</a>
+        </li>
+    {% endif %}
     <li class="nav-title">
         Menu
     </li>
