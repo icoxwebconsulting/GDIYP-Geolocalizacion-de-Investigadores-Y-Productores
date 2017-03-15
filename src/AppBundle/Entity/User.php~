@@ -46,6 +46,12 @@ class User extends BaseUser
     protected $reported = 0;
 
     /**
+     * @var $complete_data
+     * @ORM\Column(name="complete_data", type="boolean")
+     */
+    protected $complete_data = 0;
+
+    /**
      * @Assert\File(
      *     maxSize="10000k",
      *     mimeTypes={"image/png", "image/jpeg", "image/gif", "image/jpg"},

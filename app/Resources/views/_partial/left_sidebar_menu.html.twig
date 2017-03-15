@@ -29,6 +29,7 @@
         </ul>
     </li>
     {% endif %}
+    {% if (app.user.completeData) or (is_granted('ROLE_ADMIN')) %}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-newspaper-o"></i> News</a>
         <ul class="nav-dropdown-items">
@@ -68,6 +69,7 @@
             {% endif %}
         </ul>
     </li>
+    {% endif %}
     {% if not is_granted('ROLE_ADMIN') %}
     <li class="nav-item">
         <a class="nav-link" href="{{ path('user_edit', {'id': app.user.id}) }}"><i class="fa fa-pencil"></i> Edit Profile</a>

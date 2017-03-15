@@ -139,12 +139,13 @@ class UserController extends Controller
             $profile->setKnowledge($knowledge);
             $profile->setStudyTopic($studyTopic);
             $profile->setCaseStudy($case_study);
+            $user->setCompleteData(1);
             
             if($image != NULL)
             {
                 $user->setImageName($image);
-                $em->persist($user);
             }
+            $em->persist($user);
             $em->persist($institution);
             $em->persist($googleMap);
             $em->persist($case_study);
