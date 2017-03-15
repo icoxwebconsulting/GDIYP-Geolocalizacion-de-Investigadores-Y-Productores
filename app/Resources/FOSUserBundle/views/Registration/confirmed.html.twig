@@ -7,7 +7,7 @@
             <div class="row">
                 {% block content %}
                     <h4>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</h4>
-                    <h6><a href="{{ path('dashboard') }}">Regresar al panel de administración</a></h6>
+                    <h6><a href="{{ path('user_edit', {'id': app.user.id}) }}">Completa tu perfil</a></h6>
                 {% endblock %}
             </div>
         </div>

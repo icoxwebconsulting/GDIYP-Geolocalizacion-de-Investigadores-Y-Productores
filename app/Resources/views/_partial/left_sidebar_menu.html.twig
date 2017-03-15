@@ -1,7 +1,13 @@
 <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Tablero</a>
-    </li>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Tablero</a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('dashboard_user') }}"><i class="icon-speedometer"></i> Tablero</a>
+        </li>
+    {% endif %}
     <li class="nav-title">
         Menu
     </li>
@@ -29,6 +35,7 @@
         </ul>
     </li>
     {% endif %}
+    {% if (app.user.completeData) or (is_granted('ROLE_ADMIN')) %}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-newspaper-o"></i> Noticias</a>
         <ul class="nav-dropdown-items">
@@ -68,9 +75,12 @@
             {% endif %}
         </ul>
     </li>
+    {% endif %}
+    {% if not is_granted('ROLE_ADMIN') %}
     <li class="nav-item">
         <a class="nav-link" href="{{ path('user_edit', {'id': app.user.id}) }}"><i class="fa fa-pencil"></i> Editar perfil</a>
     </li>
+    {% endif %}
     <li class="nav-item">
         <a class="nav-link" href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off fa-lg"></i> Cerrar sesión</a>
     </li>

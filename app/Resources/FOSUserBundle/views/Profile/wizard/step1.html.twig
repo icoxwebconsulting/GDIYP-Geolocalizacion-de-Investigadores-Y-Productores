@@ -59,6 +59,9 @@
                 <div class="col-md-9">
                     <select class="form-control" name="country" id="country">
                         <option value="0">Seleccionar país</option>
+                        {% if profile.residencePlace %}
+                            {#<option value="{{ profile.residencePlace.region.country.id }}" selected>{{ profile.residencePlace.region.country.name }}</option>#}
+                        {% endif %}
                     </select>
                 </div>
             </div>
@@ -76,10 +79,10 @@
                     <select class="form-control" name="residence_place" id="city">
                         <option value="">Seleccionar Ciudad</option>
                     </select>
-                    <input id="other_city" type="text" style="display: none;" class="form-control" name="city_name" placeholder="City name">
+                    <input id="other_city" type="text" style="display: none;" class="form-control" name="city_name" placeholder="Nombre de la ciudad">
                 </div>
             </div>
-            <a id="add_city" style="display:none" href="#">Add Other City</a>
+            <a id="add_city" style="display:none" href="#">Añadir otra ciudad</a>
         </div>
     </div>
     <input type="button" name="next" class="next action-button" value="Siguiente" />

@@ -37,7 +37,9 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">Editar perfil</a>
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">Editar perfil</a>
+                {% endif %}
                 <a class="btn btn-warning" href="{{ path('fos_user_change_password',{id: user.id}) }}">Cambia la contraseña</a>
             </div>
         </div>
