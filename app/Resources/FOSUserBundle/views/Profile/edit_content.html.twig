@@ -183,12 +183,6 @@
 
         function loadRegion(){
             $("#region").children().remove();
-            var countryName = $('#country option:selected').text();
-            if (countryName.toLowerCase() == 'argentina'){
-                $('#label_city').text('Conglomerate and cities');
-            }else{
-                $('#label_city').text('City');
-            }
             var country = $('#country').find(':selected').val();
             $.ajax({
                 type: "GET",
