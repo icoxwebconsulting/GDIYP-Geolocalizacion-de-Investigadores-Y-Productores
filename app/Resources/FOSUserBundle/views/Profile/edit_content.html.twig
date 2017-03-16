@@ -145,19 +145,19 @@
             $("#add_institution").click(function(){
                 $("#other_institution").toggle();
                 $("#institution").toggle();
-                $(this).text($(this).text() == 'Add other institution' ? 'Show the list of institutions' : 'Add other institution');
+                $(this).text($(this).text() == 'Añadir otra institución' ? 'Lista de instituciones' : 'Añadir otra institución');
             })
 
             $("#add_city").click(function(){
                 $("#other_city").toggle();
                 $("#city").toggle();
-                $(this).text($(this).text() == 'Add other city' ? 'Show the list of cities' : 'Add other city');
+                $(this).text($(this).text() == 'Añadir otra ciudad' ? 'Lista de ciudades' : 'Añadir otra ciudad');
             })
 
             $("#add_city2").click(function(){
                 $("#other_city2").toggle();
                 $("#city2").toggle();
-                $(this).text($(this).text() == 'Add other city' ? 'Show the list of cities' : 'Add other city');
+                $(this).text($(this).text() == 'Añadir otra ciudad' ? 'Lista de ciudades' : 'Añadir otra ciudad');
             })
         });
 
@@ -185,9 +185,9 @@
             $("#region").children().remove();
             var countryName = $('#country option:selected').text();
             if (countryName.toLowerCase() == 'argentina'){
-                $('#label_city').text('Conglomerate and cities');
+                $('#label_city').text('Conglomerado y ciudades');
             }else{
-                $('#label_city').text('City');
+                $('#label_city').text('Ciudades');
             }
             var country = $('#country').find(':selected').val();
             $.ajax({
@@ -263,9 +263,9 @@
             $("#region2").children().remove()
             var countryName = $('#country2 option:selected').text();
             if (countryName.toLowerCase() == 'argentina'){
-                $('#label_city2').text('Conglomerate and cities');
+                $('#label_city2').text('Conglomerado y ciudades');
             }else{
-                $('#label_city2').text('City');
+                $('#label_city2').text('Ciudades');
             }
             var country = $('#country2').find(':selected').val();
             $.ajax({
