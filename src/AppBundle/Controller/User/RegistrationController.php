@@ -84,7 +84,7 @@ class RegistrationController extends BaseController
         $user->setLastLogin(new \DateTime());
 
         $this->container->get('fos_user.user_manager')->updateUser($user);
-        $response = new RedirectResponse($this->container->get('router')->generate('fos_user_registration_confirmed'));
+        $response = new RedirectResponse($this->container->get('router')->generate('user_edit', array('id' => $user->getId())));
         $this->authenticateUser($user, $response);
 
         return $response;
