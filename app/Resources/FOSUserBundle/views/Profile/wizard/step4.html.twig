@@ -1,26 +1,42 @@
-<fieldset>
-    <h2 class="fs-title">Tema del estudio</h2>
-    <h3 class="fs-subtitle">Paso 4</h3>
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="topic_category">Categoría de estudio</label>
-                <div class="col-md-9">
-                    <select class="form-control" name="topic_category" id="topic_category">
-                        <option value="0">Seleccionar Categoría de estudio</option>
-                    </select>
+
+<div class="row setup-content" id="step-4">
+    <div class="col-md-10 col-sm-offset-1 col-centered">
+        <div class="col-md-12">
+            <h3 class="fs-title">Lugar de investigación</h3>
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="form-control-label" for="job-title">Lugar de investigación</label>
+                        <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="country">País</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="country" id="country2" required>
+                                    <option>Seleccionar país</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="region">Región</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="region2" id="region2" required>
+                                    <option value="">Seleccionar región</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="city" id="label_city2">Ciudad</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="research_place" id="city2" required>
+                                    <option value="">Seleccionar Ciudad</option>
+                                </select>
+                                <input id="other_city2" type="text" style="display: none;" class="form-control" name="city_name2" placeholder="City name">
+                            </div>
+                        </div>
+                        <a id="add_city2" style="display:none" href="#">Añadir otra ciudad</a>
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label style="display:none" class="col-md-3 form-control-label" for="study_topic" id="study_topic_label">Tema del estudio</label>
-                <div class="col-md-9">
-                    <select style="display:none" class="form-control" name="study_topic" id="study_topic">
-                        <option value="">Seleccionar Tema del estudio</option>
-                    </select>
-                </div>
-            </div>
+            <button class="btn btn-primary nextBtn pull-right" type="button" >Siguiente</button>
         </div>
     </div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
-</fieldset>
+</div>
