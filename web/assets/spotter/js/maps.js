@@ -26,7 +26,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
     function gMap(){
         var mapCenter = new google.maps.LatLng(_latitude,_longitude);
         var mapOptions = {
-            zoom: 14,
+            zoom: 2,
             center: mapCenter,
             disableDefaultUI: false,
             scrollwheel: false,
@@ -49,27 +49,27 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         var activeMarker = false;
         var lastClicked = false;
 
-        for (var i = 0; i < json.data.length; i++) {
+        for (var i = 0; i < json.length; i++) {
 
             // Google map marker content -----------------------------------------------------------------------------------
 
-            if( json.data[i].color ) var color = json.data[i].color;
+            if( json[i].color ) var color = json[i].color;
             else color = '';
 
             var markerContent = document.createElement('DIV');
-            if( json.data[i].featured == 1 ) {
+            if( json[i].featured == 1 ) {
                 markerContent.innerHTML =
                     '<div class="map-marker featured' + color + '">' +
                         '<div class="icon">' +
-                        '<img src="' + json.data[i].type_icon +  '">' +
+                        // '<img src="' + json[i].type_icon +  '">' +
                         '</div>' +
                     '</div>';
             }
             else {
                 markerContent.innerHTML =
-                    '<div class="map-marker ' + json.data[i].color + '">' +
+                    '<div class="map-marker ' + json[i].color + '">' +
                         '<div class="icon">' +
-                        '<img src="' + json.data[i].type_icon +  '">' +
+                        // '<img src="' + json[i].type_icon +  '">' +
                         '</div>' +
                     '</div>';
             }
@@ -77,7 +77,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             // Create marker on the map ------------------------------------------------------------------------------------
 
             var marker = new RichMarker({
-                position: new google.maps.LatLng( json.data[i].latitude, json.data[i].longitude ),
+                position: new google.maps.LatLng( json[i].address.latitude, json[i].address.longitude ),
                 map: map,
                 draggable: false,
                 content: markerContent,
@@ -104,7 +104,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
             // Infobox HTML element ----------------------------------------------------------------------------------------
 
-            var category = json.data[i].category;
+            var category = json[i].category;
             infoboxContent.innerHTML = drawInfobox(category, infoboxContent, json, i);
 
             // Create new markers ------------------------------------------------------------------------------------------
@@ -189,7 +189,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
         google.maps.event.addListener(map, 'idle', function() {
             var visibleArray = [];
-            for (var i = 0; i < json.data.length; i++) {
+            for (var i = 0; i < json.length; i++) {
                 if ( map.getBounds().contains(newMarkers[i].getPosition()) ){
                     visibleArray.push(newMarkers[i]);
                     $.each( visibleArray, function (i) {
@@ -210,9 +210,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
 
             var visibleItemsArray = [];
-            $.each(json.data, function(a) {
-                if( map.getBounds().contains( new google.maps.LatLng( json.data[a].latitude, json.data[a].longitude ) ) ) {
-                    var category = json.data[a].category;
+            $.each(json, function(a) {
+                if( map.getBounds().contains( new google.maps.LatLng( json[a].address.latitude, json[a].address.longitude ) ) ) {
+                    var category = json[a].category;
                     pushItemsToArray(json, a, category, visibleItemsArray);
                 }
             });
@@ -223,9 +223,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
             // Check if images are cached, so will not be loaded again
 
-            $.each(json.data, function(a) {
-                if( map.getBounds().contains( new google.maps.LatLng( json.data[a].latitude, json.data[a].longitude ) ) ) {
-                    is_cached(json.data[a].gallery[0], a);
+            $.each(json, function(a) {
+                if( map.getBounds().contains( new google.maps.LatLng( json[a].address.latitude, json[a].address.longitude ) ) ) {
+                    // is_cached(json.data[a].gallery[0], a);
                 }
             });
 
@@ -258,7 +258,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
             else {
                 $(".results").each(function() {
-                    $('.results li #' + json.data[a].id + ' .image').addClass('loading');
+                    $('.results li #' + json[a].id + ' .image').addClass('loading');
                 });
                 $(image).load(function(){
                     loadedImage.removeClass('loading');
@@ -382,14 +382,14 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
 
         // Create markers on the map -----------------------------------------------------------------------------------
 
-        for (var i = 0; i < json.data.length; i++) {
+        for (var i = 0; i < json.length; i++) {
 
             // Set icon for marker -------------------------------------------------------------------------------------
 
-            if( json.data[i].type_icon ) var icon = '<img src="' + json.data[i].type_icon +  '">';
+            if( json[i].type_icon ) var icon = '<img src="' + json[i].type_icon +  '">';
             else icon = '';
 
-            if( json.data[i].color ) var color = json.data[i].color;
+            if( json[i].color ) var color = json[i].color;
             else color = '';
 
             var markerContent =
@@ -407,8 +407,8 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
                 className: ''
             });
 
-            var title = json.data[i].title;
-            var marker = L.marker(new L.LatLng( json.data[i].latitude, json.data[i].longitude ), {
+            var title = json[i].title;
+            var marker = L.marker(new L.LatLng( json[i].latitude, json[i].longitude ), {
                 title: title,
                 icon: _icon
             });
@@ -417,7 +417,7 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
 
             // Infobox HTML element ------------------------------------------------------------------------------------
 
-            var category = json.data[i].category;
+            var category = json[i].category;
             var infoboxContent = document.createElement("div");
             marker.bindPopup(
                 drawInfobox(category, infoboxContent, json, i)
@@ -594,25 +594,26 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     var itemPrice;
     visibleItemsArray.push(
         '<li>' +
-            '<div class="item" id="' + json.data[a].id + '">' +
+            '<div class="item" id="' + json[a].id + '">' +
                 '<a href="#" class="image">' +
                     '<div class="inner">' +
                         '<div class="item-specific">' +
-                            drawItemSpecific(category, json, a) +
+                            // drawItemSpecific(category, json, a) +
+                            '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
                         '</div>' +
-                        '<img src="' + json.data[a].gallery[0] + '" alt="">' +
+                        // '<img src="' + json[a].gallery[0] + '" alt="">' +
                     '</div>' +
                 '</a>' +
                 '<div class="wrapper">' +
-                    '<a href="#" id="' + json.data[a].id + '"><h3>' + json.data[a].title + '</h3></a>' +
-                    '<figure>' + json.data[a].location + '</figure>' +
-                    drawPrice(json.data[a].price) +
+                    '<a href="#" id="' + json[a].id + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
+                    '<figure>' + json[a].location + '</figure>' +
+                    drawPrice(json[a].price) +
                     '<div class="info">' +
                         '<div class="type">' +
-                            '<i><img src="' + json.data[a].type_icon + '" alt=""></i>' +
-                            '<span>' + json.data[a].type + '</span>' +
+                            '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                            '<span>' + json[a].type + '</span>' +
                         '</div>' +
-                        '<div class="rating" data-rating="' + json.data[a].rating + '"></div>' +
+                        '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
@@ -633,10 +634,10 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
 // Center map to marker position if function is called (disabled) ------------------------------------------------------
 
 function centerMapToMarker(){
-    $.each(json.data, function(a) {
-        if( json.data[a].id == id ) {
-            var _latitude = json.data[a].latitude;
-            var _longitude = json.data[a].longitude;
+    $.each(json, function(a) {
+        if( json[a].id == id ) {
+            var _latitude = json[a].latitude;
+            var _longitude = json[a].longitude;
             var mapCenter = new google.maps.LatLng(_latitude,_longitude);
             map.setCenter(mapCenter);
         }
@@ -648,13 +649,13 @@ function centerMapToMarker(){
 function multiChoice(sameLatitude, sameLongitude, json) {
     //if (clickedCluster.getMarkers().length > 1){
         var multipleItems = [];
-        $.each(json.data, function(a) {
-            if( json.data[a].latitude == sameLatitude && json.data[a].longitude == sameLongitude ) {
-                pushItemsToArray(json, a, json.data[a].category, multipleItems);
+        $.each(json, function(a) {
+            if( json[a].latitude == sameLatitude && json[a].longitude == sameLongitude ) {
+                pushItemsToArray(json, a, json[a].category, multipleItems);
             }
         });
         $('body').append('<div class="modal-window multichoice fade_in"></div>');
-        $('.modal-window').load( 'assets/external/_modal-multichoice.html', function() {
+        $('.modal-window').load( '../assets/spotter/external/_modal-multichoice.html', function() {
             $('.modal-window .modal-wrapper .items').html( multipleItems );
             rating('.modal-window');
         });
@@ -676,7 +677,7 @@ function animateOSMMarkers(map, loadedMarkers, json){
 
     $.each( loadedMarkers, function (i) {
         if ( bounds.contains( loadedMarkers[i].getLatLng() ) ) {
-            var category = json.data[i].category;
+            var category = json[i].category;
             pushItemsToArray(json, i, category, visibleItemsArray);
 
             setTimeout(function(){
