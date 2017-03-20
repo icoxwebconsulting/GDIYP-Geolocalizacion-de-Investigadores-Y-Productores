@@ -141,3 +141,27 @@ liip_imagine:
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [150, 150], mode: outbound }
+
+#Bazing faker config
+bazinga_faker:
+    orm: doctrine
+    entities:
+        AppBundle\Entity\User:
+            number: 100
+            custom_formatters:
+                lastLogin:   { method: null }
+                expiresAt:   { method: null }
+                confirmationToken:   { method: null }
+                passwordRequestedAt:   { method: null }
+                credentialsExpiredAt:   { method: null }
+                deletedAt:   { method: null }
+                imageName:   { method: image }
+        AppBundle\Entity\GoogleMap:
+                  number: 100
+                  custom_formatters:
+                      latitude:   { method: latitude }
+                      longitude:    { method: longitude }
+        AppBundle\Entity\CaseStudy:
+            number: 100
+        AppBundle\Entity\UserProfile:
+            number: 100

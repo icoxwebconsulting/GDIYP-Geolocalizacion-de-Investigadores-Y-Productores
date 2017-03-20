@@ -1,21 +1,21 @@
 function drawInfobox(category, infoboxContent, json, i){
 
-    if(json.data[i].color)          { var color = json.data[i].color }
+    if(json[i].color)          { var color = json[i].color }
         else                        { color = '' }
-    if( json.data[i].price )        { var price = '<div class="price">' + json.data[i].price +  '</div>' }
+    if( json[i].price )        { var price = '<div class="price">' + json[i].price +  '</div>' }
         else                        { price = '' }
-    if(json.data[i].id)             { var id = json.data[i].id }
+    if(json[i].id)             { var id = json[i].id }
         else                        { id = '' }
-    if(json.data[i].url)            { var url = json.data[i].url }
+    if(json[i].url)            { var url = json[i].url }
         else                        { url = '' }
-    if(json.data[i].type)           { var type = json.data[i].type }
+    if(json[i].type)           { var type = json[i].type }
         else                        { type = '' }
-    if(json.data[i].title)          { var title = json.data[i].title }
+    if(json[i].title)          { var title = json[i].title }
         else                        { title = '' }
-    if(json.data[i].location)       { var location = json.data[i].location }
+    if(json[i].location)       { var location = json[i].location }
         else                        { location = '' }
-    if(json.data[i].gallery[0])     { var gallery = json.data[i].gallery[0] }
-        else                        { gallery[0] = '../img/default-item.jpg' }
+    // if(json[i].gallery[0])     { var gallery = json[i].gallery[0] }
+    //     else                        { gallery[0] = '../img/default-item.jpg' }
 
     var ibContent = '';
     ibContent =
@@ -38,7 +38,7 @@ function drawInfobox(category, infoboxContent, json, i){
                         '<i class="fa fa-angle-right"></i>' +
                     '</div>' +
                 '</a>' +
-                '<img src="' + gallery +  '">' +
+                // '<img src="' + gallery +  '">' +
             '</div>' +
         '</div>' +
     '</div>';
