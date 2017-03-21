@@ -55,17 +55,35 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="col-md-3 form-control-label" for="city" id="label_city">Ciudad</label>
-                        <div class="col-md-9">
-                            <select class="form-control" name="residence_place" id="city">
-                                <option value="">Seleccionar ciudad</option>
-                            </select>
-                            <input id="other_city" type="text" style="display: none;" class="form-control" name="city_name" placeholder="City name">
+                        <label class="form-control-label" for="job-title">Lugar de residencia</label>
+                        <div class="form-group">
+                            <label class="col-md-3 form-control-label" for="country">País</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="country" id="country" required>
+                                    <option value="">Seleccionar país</option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-3 form-control-label" for="region">Región</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="region" id="region" required>
+                                    <option value="">Seleccionar región</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 form-control-label" for="city" id="label_city">Ciudad</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="residence_place" id="city">
+                                    <option value="">Seleccionar Ciudad</option>
+                                </select>
+                                <input id="other_city" type="text" style="display: none;" class="form-control" name="city_name" placeholder="City name">
+                            </div>
+                        </div>
+                        <a id="add_city" style="display:none" href="#">Añadir otra ciudad</a>
                     </div>
-                    <a id="add_city" style="display:none" href="#">Añadir otra ciudad</a>
                 </div>
-            </div>
             <button class="btn btn-primary nextBtn pull-right" type="button" >Siguiente</button>
         </div>
     </div>
