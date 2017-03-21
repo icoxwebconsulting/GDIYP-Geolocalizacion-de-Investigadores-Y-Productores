@@ -35,44 +35,44 @@ class UserProfile
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Institution")
-     * @ORM\JoinColumn(name="institution", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Institution", inversedBy="user_profile")
+     * @ORM\JoinColumn(name="institution", referencedColumnName="id", unique=false)
      */
     protected $institution;
 
     /**
      * @ORM\OneToOne(targetEntity="Knowledge")
-     * @ORM\JoinColumn(name="knowlegde", referencedColumnName="id")
+     * @ORM\JoinColumn(name="knowlegde", referencedColumnName="id", unique=false)
      */
     protected $knowledge;
 
     /**
      * @ORM\ManyToOne(targetEntity="GoogleMap")
-     * @ORM\JoinColumn(name="address", referencedColumnName="id")
+     * @ORM\JoinColumn(name="address", referencedColumnName="id", unique=false)
      */
     protected $address;
 
     /**
      * @ORM\OneToOne(targetEntity="StudyTopic")
-     * @ORM\JoinColumn(name="study_topic", referencedColumnName="id")
+     * @ORM\JoinColumn(name="study_topic", referencedColumnName="id", unique=false)
      */
     protected $study_topic;
 
     /**
      * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="research_place", referencedColumnName="id")
+     * @ORM\JoinColumn(name="research_place", referencedColumnName="id", unique=false)
      */
     protected $research_place;
 
     /**
      * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="residence_place", referencedColumnName="id")
+     * @ORM\JoinColumn(name="residence_place", referencedColumnName="id", unique=false)
      */
     protected $residence_place;
 
     /**
      * @ORM\ManyToOne(targetEntity="CaseStudy")
-     * @ORM\JoinColumn(name="case_study", referencedColumnName="id")
+     * @ORM\JoinColumn(name="case_study", referencedColumnName="id", unique=false)
      */
     protected $case_study;
 
@@ -297,5 +297,29 @@ class UserProfile
     public function getResidencePlace()
     {
         return $this->residence_place;
+    }
+
+    /**
+     * Set caseStudy
+     *
+     * @param \AppBundle\Entity\CaseStudy $caseStudy
+     *
+     * @return UserProfile
+     */
+    public function setCaseStudy(\AppBundle\Entity\CaseStudy $caseStudy = null)
+    {
+        $this->case_study = $caseStudy;
+
+        return $this;
+    }
+
+    /**
+     * Get caseStudy
+     *
+     * @return \AppBundle\Entity\CaseStudy
+     */
+    public function getCaseStudy()
+    {
+        return $this->case_study;
     }
 }

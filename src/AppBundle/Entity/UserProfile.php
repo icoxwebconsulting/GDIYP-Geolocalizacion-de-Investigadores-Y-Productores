@@ -35,43 +35,43 @@ class UserProfile
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Institution")
+     * @ORM\ManyToOne(targetEntity="Institution", inversedBy="user_profile", cascade={"all"})
      * @ORM\JoinColumn(name="institution", referencedColumnName="id")
      */
     protected $institution;
 
     /**
-     * @ORM\OneToOne(targetEntity="Knowledge")
+     * @ORM\ManyToOne(targetEntity="Knowledge", cascade={"all"})
      * @ORM\JoinColumn(name="knowlegde", referencedColumnName="id")
      */
     protected $knowledge;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GoogleMap")
+     * @ORM\ManyToOne(targetEntity="GoogleMap", cascade={"all"})
      * @ORM\JoinColumn(name="address", referencedColumnName="id")
      */
     protected $address;
 
     /**
-     * @ORM\OneToOne(targetEntity="StudyTopic")
+     * @ORM\ManyToOne(targetEntity="StudyTopic", cascade={"all"})
      * @ORM\JoinColumn(name="study_topic", referencedColumnName="id")
      */
     protected $study_topic;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\ManyToOne(targetEntity="City", cascade={"all"})
      * @ORM\JoinColumn(name="research_place", referencedColumnName="id")
      */
     protected $research_place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\ManyToOne(targetEntity="City", cascade={"all"})
      * @ORM\JoinColumn(name="residence_place", referencedColumnName="id")
      */
     protected $residence_place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CaseStudy")
+     * @ORM\ManyToOne(targetEntity="CaseStudy", cascade={"all"})
      * @ORM\JoinColumn(name="case_study", referencedColumnName="id")
      */
     protected $case_study;
