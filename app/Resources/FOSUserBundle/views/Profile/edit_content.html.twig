@@ -1,5 +1,5 @@
 <div class="card">
-    <form method="POST" action="{{ path('user_edit', {'id': entity.id }) }}" {{ form_enctype(form) }} class="form-horizontal">
+    <form method="POST" action="{{ path('user_edit', {'id': entity.id }) }}" {{ form_enctype(form) }} class="form-horizontal" id="contact-form">
         <div class="card-block">
             <div class="stepwizard col-md-offset-3">
                 <div class="stepwizard-row setup-panel">
@@ -23,6 +23,10 @@
                         <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
                         <p>Paso 5</p>
                     </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+                        <p>Step 6</p>
+                    </div>
                 </div>
             </div>
             {% include '@FOSUser/Profile/wizard/step1.html.twig' %}
@@ -30,6 +34,7 @@
             {% include '@FOSUser/Profile/wizard/step3.html.twig' %}
             {% include '@FOSUser/Profile/wizard/step4.html.twig' %}
             {% include '@FOSUser/Profile/wizard/step5.html.twig' %}
+            {% include '@FOSUser/Profile/wizard/step6.html.twig' %}
         </div>
         {{ form_rest(form) }}
     </form>
@@ -80,6 +85,9 @@
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
+    }
+    .form-group.has-error {
+        color: #a94442;
     }
     </style>
 {% endblock %}
@@ -169,6 +177,8 @@
             // [END region_getplaces]
         }
     </script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+
     <script>
         $(document).ready(function () {
             var navListItems = $('div.setup-panel div a'),
@@ -195,7 +205,7 @@
                 var curStep = $(this).closest(".setup-content"),
                         curStepBtn = curStep.attr("id"),
                         nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                        curInputs = curStep.find("input[type='text'],input[type='url']"),
+                        curInputs = curStep.find("input[type='text'],input[type='url'],select"),
                         isValid = true;
 
                 $(".form-group").removeClass("has-error");
@@ -205,12 +215,28 @@
                         $(curInputs[i]).closest(".form-group").addClass("has-error");
                     }
                 }
-
+                console.log('valid',isValid);
                 if (isValid)
                     nextStepWizard.removeAttr('disabled').trigger('click');
             });
 
             $('div.setup-panel div a.btn-primary').trigger('click');
+
+            $('#contact-form').validate({
+                rules: {
+                    appbundle_user_first_name: {
+                        minlength: 2,
+                        required: true
+                    },
+                },
+                highlight: function (element) {
+                    $(element).closest('.control-group').removeClass('success').addClass('error');
+                },
+                success: function (element) {
+                    element.text('OK!').addClass('valid')
+                            .closest('.control-group').removeClass('error').addClass('success');
+                }
+            });
         });
     </script>
     <script>
@@ -317,7 +343,6 @@
                 url: "{{ path('homepage')}}city/"+region
             }).done(function( result ) {
                 var data = eval(result);
-                console.log(data);
                 if (!data.length){
                     $("#city").hide();
                     $("#other_city").show();
@@ -395,7 +420,6 @@
                 url: "{{ path('homepage')}}city/"+region
             }).done(function( result ) {
                 var data = eval(result);
-                console.log(data);
                   if (!data.length){
                     $("#city2").hide();
                     $("#other_city2").show();
