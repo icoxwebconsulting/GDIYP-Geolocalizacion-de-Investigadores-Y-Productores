@@ -551,7 +551,7 @@ function drawItemSpecific(category, json, a){
 function quickView(id){
     $.ajax({
         type: 'POST',
-        url: '../external/_modal.html',
+        url: '../assets/spotter/external/_modal.html',
         data: id,
         success: function (data) {
             // Create HTML element with loaded data
