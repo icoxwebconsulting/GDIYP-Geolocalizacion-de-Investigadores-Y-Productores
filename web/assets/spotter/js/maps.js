@@ -111,8 +111,11 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
             // Infobox HTML element ----------------------------------------------------------------------------------------
 
-            var category = json[i].category;
-            infoboxContent.innerHTML = drawInfobox(category, infoboxContent, json, i);
+            // var category = json[i].category;
+            var url = Routing.generate('homepage_user_show', {
+                'id': json[i].user.id
+            });
+            infoboxContent.innerHTML = drawInfobox(url, infoboxContent, json, i);
 
             // Create new markers ------------------------------------------------------------------------------------------
 
@@ -135,6 +138,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                         newMarkers[i].infobox.setOptions({ boxClass:'fade-in-marker'});
                         newMarkers[i].content.className = 'marker-active marker-loaded';
                         markerClicked = 1;
+                        console.log('newmarkers',newMarkers);
                     }
                 }
             })(marker, i));
@@ -613,15 +617,17 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
                 '</a>' +
                 '<div class="wrapper">' +
                     '<a href="#" id="' + json[a].id + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
-                    '<figure>' + json[a].location + '</figure>' +
-                    drawPrice(json[a].price) +
-                    '<div class="info">' +
-                        '<div class="type">' +
-                            '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
-                            '<span>' + json[a].type + '</span>' +
-                        '</div>' +
-                        '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                    '</div>' +
+                    '<figure>' + json[a].address.address + '</figure>' +
+                    // drawPrice(json[a].price) +
+                    // drawPrice(json[a].price) +
+                    '<div class="price">view</div>' +
+                    // '<div class="info">' +
+                    //     '<div class="type">' +
+                    //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                    //         '<span>' + json[a].type + '</span>' +
+                    //     '</div>' +
+                    //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                    // '</div>' +
                 '</div>' +
             '</div>' +
         '</li>'

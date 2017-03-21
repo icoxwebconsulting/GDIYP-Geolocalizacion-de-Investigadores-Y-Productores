@@ -29,7 +29,7 @@ class UserController extends Controller
     
     /**
      * @param User $user
-     * @Route("/{id}", name="homepage_user_show")
+     * @Route("/{id}", options={"expose"=true}, name="homepage_user_show")
      * @return response
      */
     public function showAction(User $user)
