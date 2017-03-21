@@ -76,7 +76,6 @@ class UserController extends Controller
 
         if ($form->handleRequest($request)->isValid())
         {
-            $residencePlace = $em->getRepository("AppBundle:City")->find($_POST['residence_place']);
             $knowledge = $em->getRepository("AppBundle:Knowledge")->find($_POST['knowledge']);
             $studyTopic = $em->getRepository("AppBundle:StudyTopic")->find($_POST['study_topic']);
             $researchPlace = $em->getRepository("AppBundle:City")->find($_POST['research_place']);
@@ -104,6 +103,7 @@ class UserController extends Controller
                 $city->setRegion($region);
                 $profile->setResidencePlace($city);
             }else{
+                $residencePlace = $em->getRepository("AppBundle:City")->find($_POST['residence_place']);
                 $profile->setResidencePlace($residencePlace);
             }
             if(!empty($_POST['city_name2'])){
@@ -119,17 +119,15 @@ class UserController extends Controller
 //            $caseStudyAddress->setAddress($_POST['case_study_address']);
 //            $caseStudyAddress->setLatitude($_POST['case_study_latitude']);
 //            $caseStudyAddress->setLongitude($_POST['case_study_longitude']);
-
-            $case_study->setName($_POST['case_study']);
-            $case_study->setDescription($_POST['case_study_description']);
-            $case_study->setKeywords($_POST['keywords']);
-//            $case_study->setAddress($caseStudyAddress);
-            $case_study->setGraphicInformation($_POST['graphic_information']);
-            $case_study->setInvestigationLines($_POST['investigation_lines']);
-            $case_study->setResearchGroup($_POST['research_group']);
-            $case_study->setRelatedInstitution($_POST['related_institution']);
-            $case_study->setLinks($_POST['links']);
-            $case_study->setContactInfo($_POST['contact_info']);
+            if(!empty($_POST['case_study'])){ $case_study->setName($_POST['case_study']); }
+            if(!empty($_POST['case_study_description'])){ $case_study->setDescription($_POST['case_study_description']); }
+            if(!empty($_POST['keywords'])){ $case_study->setKeywords($_POST['keywords']); }
+            if(!empty($_POST['graphic_information'])){ $case_study->setGraphicInformation($_POST['graphic_information']); }
+            if(!empty($_POST['investigation_lines'])){ $case_study->setInvestigationLines($_POST['investigation_lines']); }
+            if(!empty($_POST['research_group'])){ $case_study->setResearchGroup($_POST['research_group']); }
+            if(!empty($_POST['related_institution'])){ $case_study->setRelatedInstitution($_POST['related_institution']); }
+            if(!empty($_POST['links'])){ $case_study->setLinks($_POST['links']); }
+            if(!empty($_POST['contact_info'])){ $case_study->setContactInfo($_POST['contact_info']); }
 
             $profile->setUser($user);
             $profile->setJobTitle($_POST['job_title']);

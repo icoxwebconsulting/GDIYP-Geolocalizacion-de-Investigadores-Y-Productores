@@ -7120,3 +7120,33 @@ body.navigation-top-header .header .wrapper .toggle-navigation {
     opacity: 0;
   }
 }
+
+.map-marker.blue:hover {
+  background-color: #0dcdbd;
+  cursor: pointer;
+}
+.map-marker.blue:hover:before {
+  border-color: #0dcdbd transparent transparent transparent;
+}
+.marker-active .map-marker.blue {
+    background-color: #0dcdbd;
+}
+.marker-active .map-marker.blue:before {
+    border-color: #0dcdbd transparent transparent transparent;
+}
+.map-marker.blue .icon {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-transition: 0.3s ease-in-out all;
+  -webkit-transition: 0.3s ease-in-out all;
+  transition: 0.3s ease-in-out all;
+  background-color: #fff;
+  border: 3px solid #0dcdbd;
+  height: 28px;
+  left: 4px;
+  width: 28px;
+  overflow: hidden;
+  position: relative;
+  top: 5px;
+}
