@@ -48,13 +48,20 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         var markerClicked = 0;
         var activeMarker = false;
         var lastClicked = false;
+        var color;
 
         for (var i = 0; i < json.length; i++) {
 
             // Google map marker content -----------------------------------------------------------------------------------
-
-            if( json[i].color ) var color = json[i].color;
-            else color = '';
+            if( json[i].user.roles.includes("ROLE_INVESTIGATOR")){
+                console.log('role investigator', json[i].user.roles);
+                color = 'red';
+            }else if( json[i].user.roles.includes("ROLE_PRODUCER")){
+                console.log('role producer', json[i].user.roles);
+                color = 'blue';
+            }
+            // if( json[i].color ) var color = json[i].color;
+            // else color = '';
 
             var markerContent = document.createElement('DIV');
             if( json[i].featured == 1 ) {
@@ -67,7 +74,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
             else {
                 markerContent.innerHTML =
-                    '<div class="map-marker ' + json[i].color + '">' +
+                    '<div class="map-marker ' + color + '">' +
                         '<div class="icon">' +
                         // '<img src="' + json[i].type_icon +  '">' +
                         '</div>' +
@@ -393,7 +400,7 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
             else color = '';
 
             var markerContent =
-                '<div class="map-marker ' + color + '">' +
+                '<div class="map-marker ' + json[i].user.roles + '">' +
                     '<div class="icon">' +
                     icon +
                     '</div>' +
