@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $securityContext = $this->container->get('security.context');
         $router = $this->container->get('router');
-        if ($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('ROLE_SUPER_ADMIN') || $securityContext->isGranted('ROLE_PRODUCER')) {
             return new RedirectResponse($router->generate('dashboard'), 307);
         }
         $request->setMethod('PATCH');
