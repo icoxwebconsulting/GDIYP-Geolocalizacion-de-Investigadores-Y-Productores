@@ -156,6 +156,8 @@ bazinga_faker:
                 credentialsExpiredAt:   { method: null }
                 deletedAt:   { method: null }
                 imageName:   { method: image }
+                firstName:   { method: firstName }
+                lastName:   { method: lastName }
         AppBundle\Entity\GoogleMap:
                   number: 100
                   custom_formatters:
