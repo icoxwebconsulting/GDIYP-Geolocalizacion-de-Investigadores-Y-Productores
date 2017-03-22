@@ -603,24 +603,27 @@ function simpleMap(_latitude, _longitude, draggableMarker){
 
 function pushItemsToArray(json, a, category, visibleItemsArray){
     var itemPrice;
+    var url = Routing.generate('homepage_user_show', {
+        'id': json[a].user.id
+    });
     visibleItemsArray.push(
         '<li>' +
             '<div class="item" id="' + json[a].id + '">' +
                 '<a href="#" class="image">' +
                     '<div class="inner">' +
+                    '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
                         '<div class="item-specific">' +
                             // drawItemSpecific(category, json, a) +
-                            '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
                         '</div>' +
                         // '<img src="' + json[a].gallery[0] + '" alt="">' +
                     '</div>' +
                 '</a>' +
                 '<div class="wrapper">' +
-                    '<a href="#" id="' + json[a].id + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
+                    '<a href="' + url + '" id="' + json[a].id + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
                     '<figure>' + json[a].address.address + '</figure>' +
                     // drawPrice(json[a].price) +
                     // drawPrice(json[a].price) +
-                    '<div class="price">view</div>' +
+                    '<div class="price"><a href="' + url + '">view</a></div>' +
                     // '<div class="info">' +
                     //     '<div class="type">' +
                     //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
@@ -661,9 +664,15 @@ function centerMapToMarker(){
 
 function multiChoice(sameLatitude, sameLongitude, json) {
     //if (clickedCluster.getMarkers().length > 1){
+        sameLatitude = parseFloat(sameLatitude).toFixed(3);
+        sameLongitude = parseFloat(sameLongitude).toFixed(3);
+        var latitude;
+        var longitude;
         var multipleItems = [];
         $.each(json, function(a) {
-            if( json[a].latitude == sameLatitude && json[a].longitude == sameLongitude ) {
+            latitude = parseFloat(json[a].address.latitude).toFixed(3);
+            longitude = parseFloat(json[a].address.longitude).toFixed(3);
+            if( latitude == sameLatitude && longitude == sameLongitude ) {
                 pushItemsToArray(json, a, json[a].category, multipleItems);
             }
         });
