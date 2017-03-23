@@ -2666,8 +2666,9 @@ ul.bullets li a:hover {
   display: inline-block;
   width: auto;
   position: relative;
-  top: 100px;
+  /*top: 100px;*/
   z-index: 1;
+  margin:auto;
 }
 .modal-window .modal-wrapper > h2, .modal-window .modal-wrapper > h3 {
   color: #fff;
@@ -7195,4 +7196,16 @@ body.navigation-top-header .header .wrapper .toggle-navigation {
 }
 .infobox.blue .inner .image .description:hover .meta h2{
   color: #0dcdbd;
+}
+div.role {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  display: inline-block;
+}
+div.investigator{
+  background: #ff513f;
+}
+div.producer{
+  background: #0dcdbd;
 }
