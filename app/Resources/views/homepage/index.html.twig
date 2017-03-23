@@ -2,17 +2,8 @@
 
 {% block title %}homepage{% endblock %}
 
+{% block bodyClass %}map-fullscreen page-homepage navigation-off-canvas{% endblock %}
 {% block content %}
-
-    {#<ul>#}
-        {#{% for user in users %}#}
-            {#<li>{{ user.username }} <a href="{{ path('homepage_user_show', { id: user.id }) }}">view detail</a>|#}
-                {#{% if user.reported == 0 %}#}
-                    {#<a data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_user_report', {id: user.id}) }}">Reportar</a></li>#}
-                {#{% endif %}#}
-        {#{% endfor %}#}
-    {#</ul>#}
-
     <!-- Map Canvas-->
     <div class="map-canvas list-width-30 results-collapsed">
         <div class="map">
@@ -50,9 +41,11 @@
             type: "GET",
             url: "{{ path('user_list') }}"
         }).done(function(result){
-            var json = eval(result);
+            var json = JSON.parse(result);
             console.log('data ', json);
             createHomepageGoogleMap(_latitude,_longitude,json);
+        }).fail(function( jqxhr, textStatus, error ) {
+            console.log(error);
         });
         // Set if language is RTL and load Owl Carousel
         $(window).load(function(){

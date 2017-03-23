@@ -516,13 +516,13 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
 function itemDetailMap(json){
     var mapCenter = new google.maps.LatLng(json.latitude,json.longitude);
     var mapOptions = {
-        zoom: 14,
+        zoom: 4,
         center: mapCenter,
         disableDefaultUI: true,
         scrollwheel: false,
         styles: mapStyles,
         panControl: false,
-        zoomControl: false,
+        zoomControl: true,
         draggable: true
     };
     var mapElement = document.getElementById('map-detail');
@@ -536,12 +536,11 @@ function itemDetailMap(json){
     markerContent.innerHTML =
         '<div class="map-marker">' +
             '<div class="icon">' +
-            icon +
+            // icon +
             '</div>' +
         '</div>';
 
     // Create marker on the map ------------------------------------------------------------------------------------
-
     var marker = new RichMarker({
         position: new google.maps.LatLng( json.latitude, json.longitude ),
         map: map,
@@ -608,8 +607,8 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     });
     visibleItemsArray.push(
         '<li>' +
-            '<div class="item" id="' + json[a].id + '">' +
-                '<a href="#" class="image">' +
+            '<div class="item">' +
+                '<a href="' + url +'" class="image">' +
                     '<div class="inner">' +
                     '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
                         '<div class="item-specific">' +
@@ -619,7 +618,7 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
                     '</div>' +
                 '</a>' +
                 '<div class="wrapper">' +
-                    '<a href="' + url + '" id="' + json[a].id + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
+                    '<a href="' + url + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
                     '<figure>' + json[a].address.address + '</figure>' +
                     // drawPrice(json[a].price) +
                     // drawPrice(json[a].price) +
@@ -664,14 +663,14 @@ function centerMapToMarker(){
 
 function multiChoice(sameLatitude, sameLongitude, json) {
     //if (clickedCluster.getMarkers().length > 1){
-        sameLatitude = parseFloat(sameLatitude).toFixed(3);
-        sameLongitude = parseFloat(sameLongitude).toFixed(3);
+        sameLatitude = parseFloat(sameLatitude).toFixed(6);
+        sameLongitude = parseFloat(sameLongitude).toFixed(6);
         var latitude;
         var longitude;
         var multipleItems = [];
         $.each(json, function(a) {
-            latitude = parseFloat(json[a].address.latitude).toFixed(3);
-            longitude = parseFloat(json[a].address.longitude).toFixed(3);
+            latitude = parseFloat(json[a].address.latitude).toFixed(6);
+            longitude = parseFloat(json[a].address.longitude).toFixed(6);
             if( latitude == sameLatitude && longitude == sameLongitude ) {
                 pushItemsToArray(json, a, json[a].category, multipleItems);
             }

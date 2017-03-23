@@ -26,7 +26,7 @@ class UserController extends Controller
 
         return new Response($serializedEntity);
     }
-    
+
     /**
      * @param User $user
      * @Route("/{id}", options={"expose"=true}, name="homepage_user_show")
@@ -36,8 +36,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $user->getId(), 'reported'=> 0));
+        $userProfile = $em->getRepository("AppBundle:UserProfile")->findOneBy(array('user'=>$user));
         return $this->render(':homepage/user:show.html.twig', array(
-            'entities' => $entities
+            'entities' => $entities,
+            'userProfile' => $userProfile
         ));
     }
 }

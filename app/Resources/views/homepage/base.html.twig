@@ -20,7 +20,8 @@
 </head>
 
 {% block body %}
-    <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top">
+    <body onunload="" class="{% block bodyClass %}{% endblock %}" id="page-top">
+    {#<body onunload="" class="page-subpage page-item-detail navigation-off-canvas" id="page-top">#}
         {% include 'homepage/messages/success.html.twig' %}
         {% include 'homepage/messages/danger.html.twig' %}
         <!-- Outer Wrapper-->
@@ -37,13 +38,23 @@
 
                 <!-- Page Canvas-->
                 <div id="page-canvas">
-                    <!-- Breadcrumb -->
-                    {% block search_content %}{% endblock %}
-                    {% block breadcrumb_content %}{% endblock %}
+                    <section class="sub-header">
+                        <!-- Search form -->
+                        {% block search_content %}
+                        {% endblock %}
+                        <!-- Breadcrumb -->
+                        {% block breadcrumb_content %}
+                        {% endblock %}
+                    </section>
                     {% include ':homepage/_partial:content_right_menu.html.twig' %}
                     <!--Page Content-->
                     <div id="page-content">
                         {% block content %}{% endblock %}
+                    </div>
+                    <div id="page-footer">
+                        <div class="inner">
+                            {% block footer %}{% endblock %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,6 +66,7 @@
         <script type="text/javascript" src="{{ asset('assets/spotter/js/jquery-migrate-1.2.1.min.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/bootstrap/js/bootstrap.min.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/smoothscroll.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/spotter/js/ie-scripts.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/bootstrap-select.min.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/jquery.hotkeys.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/jquery.nouislider.all.min.js')}}"></script>
