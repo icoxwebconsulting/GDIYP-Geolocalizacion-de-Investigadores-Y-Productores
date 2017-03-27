@@ -6,11 +6,11 @@ $(document).ready(function($) {
     var $body = $('body');
 
     if( $body.hasClass('navigation-top-header') ) {
-        $( ".main-navigation.navigation-top-header" ).load( "../assets/spotter/external/_navigation.html" );
+        $( ".main-navigation.navigation-top-header" ).load( "http://62.75.162.219/redperiurban/web/assets/spotter/external/_navigation.html" );
 		navigationStyle = "topHeader";
     }
     else if( $body.hasClass('navigation-off-canvas') ) {
-        $( ".main-navigation.navigation-off-canvas" ).load( "../assets/spotter/external/_navigation.html" );
+        $( ".main-navigation.navigation-off-canvas" ).load( "http://62.75.162.219/redperiurban/web/assets/spotter/external/_navigation.html" );
 		navigationStyle = "offCanvas";
     }
     mobileNavigation();
@@ -27,19 +27,19 @@ function mobileNavigation(){
         //$(".main-navigation.navigation-top-header").remove();
         $(".main-navigation.navigation-top-header").css("display","none");
         $(".toggle-navigation").css("display","inline-block");
-        $(".main-navigation.navigation-off-canvas").load("../assets/spotter/external/_navigation.html");
+        $(".main-navigation.navigation-off-canvas").load("http://62.75.162.219/redperiurban/web/assets/spotter/external/_navigation.html");
         $("body").removeClass("navigation-top-header");
         $("body").addClass("navigation-off-canvas");		
     }
 	else {	
 		if( navigationStyle == "topHeader" ){			
-			$( ".main-navigation.navigation-top-header" ).load( "../assets/spotter/external/_navigation.html" );
+			$( ".main-navigation.navigation-top-header" ).load( "http://62.75.162.219/redperiurban/web/assets/spotter/external/_navigation.html" );
 			$("body").removeClass("navigation-off-canvas");
 			$("body").addClass("navigation-top-header");
 			$(".main-navigation.navigation-top-header").css("display","inline-block");
 			$(".toggle-navigation").css("display","none");
 		}else {
-			$( ".main-navigation.navigation-off-canvas" ).load( "../assets/spotter/external/_navigation.html" );
+			$( ".main-navigation.navigation-off-canvas" ).load( "http://62.75.162.219/redperiurban/web/assets/spotter/external/_navigation.html" );
 		}		
 	}
 }

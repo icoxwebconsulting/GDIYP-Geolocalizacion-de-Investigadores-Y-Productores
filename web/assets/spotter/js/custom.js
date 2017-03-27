@@ -17,11 +17,11 @@ $(document).ready(function($) {
 
     adaptBackgroundHeight();
 
-    $('.quick-view, .results .item').live('click',  function(){
-        var id = $(this).attr('id');
-        quickView(id);
-        return false;
-    });
+    // $('.quick-view, .results .item').live('click',  function(){
+    //     var id = $(this).attr('id');
+        // quickView(id);
+        // return false;
+    // });
 
     // Scrollbar on "Results" section
 
@@ -105,7 +105,7 @@ $(document).ready(function($) {
 
 // Set width for inputs in horizontal search bar -----------------------------------------------------------------------
 
-    $( "#redefine-search-form" ).load( "assets/external/_search-bar.html", function() {
+    $( "#redefine-search-form" ).load( "../../assets/spotter/external/_search-bar.html", function() {
         setInputsWidth();
         //autoComplete();
     });
@@ -405,7 +405,7 @@ function rating(element){
 // Owl Carousel in Modal Window ----------------------------------------------------------------------------------------
 
 function drawOwlCarousel(_rtl){
-    $.getScript( "../assets/spotter/js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
+    $.getScript( "http://62.75.162.219/redperiurban/web/assets/spotter/js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
         $(".image .gallery").owlCarousel({
             rtl: _rtl,
             items: 1,
@@ -456,7 +456,7 @@ function equalHeight(container){
 // Initialize Owl carousel ---------------------------------------------------------------------------------------------
 
 function initializeOwl(_rtl){
-    $.getScript( "../assets/spotter/js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
+    $.getScript( "http://62.75.162.219/redperiurban/web/assets/spotter/js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
         if ($('.owl-carousel').length > 0) {
             if ($('.carousel-full-width').length > 0) {
                 setCarouselWidth();
@@ -551,7 +551,7 @@ function drawItemSpecific(category, json, a){
 function quickView(id){
     $.ajax({
         type: 'POST',
-        url: '../external/_modal.html',
+        url: '../assets/spotter/external/_modal.html',
         data: id,
         success: function (data) {
             // Create HTML element with loaded data

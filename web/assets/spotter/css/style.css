@@ -2666,8 +2666,9 @@ ul.bullets li a:hover {
   display: inline-block;
   width: auto;
   position: relative;
-  top: 100px;
+  /*top: 100px;*/
   z-index: 1;
+  margin:auto;
 }
 .modal-window .modal-wrapper > h2, .modal-window .modal-wrapper > h3 {
   color: #fff;
@@ -7149,4 +7150,62 @@ body.navigation-top-header .header .wrapper .toggle-navigation {
   overflow: hidden;
   position: relative;
   top: 5px;
+}
+.infobox.blue .inner {
+  border-bottom: 35px solid #0dcdbd;
+}
+.infobox.blue .inner .image .overlay .wrapper hr {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  border-color: #0dcdbd;
+  border-width: 2px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 0px;
+}
+
+.infobox.blue .inner .image .price {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #0dcdbd;
+  color: #fff;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  left: 22px;
+  padding: 3px 8px;
+  position: absolute;
+  top: -4px;
+}
+
+.infobox.blue .inner .image .overlay:hover .wrapper hr {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+  width: 140px;
+}
+
+.infobox.blue .inner .image .overlay .wrapper a:hover {
+  color: #0dcdbd;
+}
+.infobox.blue .inner .image .description:hover .meta h2{
+  color: #0dcdbd;
+}
+div.role {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  display: inline-block;
+}
+div.investigator{
+  background: #ff513f;
+}
+div.producer{
+  background: #0dcdbd;
 }
