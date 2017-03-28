@@ -40,10 +40,16 @@ class UserController extends Controller
         $medias = $em->getRepository('AppBundle:Media')->findBy(array('created_by' => $user->getId()),
             array('modified' => 'DESC'),
             10);
+
+        $form = $this->createForm('AppBundle\Form\ContactType',null,array(
+            'method' => 'POST'
+        ));
+        
         return $this->render(':homepage/user:show.html.twig', array(
             'entities' => $entities,
             'userProfile' => $userProfile,
-            'medias' => $medias
+            'medias' => $medias,
+            'form' => $form->createView()
         ));
     }
 }
