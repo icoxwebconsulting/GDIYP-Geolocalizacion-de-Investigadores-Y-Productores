@@ -13,7 +13,7 @@ function drawInfobox(url, infoboxContent, json, i){
     // if(json[i].location)       { var location = json[i].location }
     //     else                        { location = '' }
     if(json[i].user.imageName)     { var photo = '../uploads/user/profile/' + json[i].user.imageName; }
-        else                        { photo = '../assets/spotter/img/items/1.jpg' }
+        else                        { photo = '/assets/spotter/img/items/1.jpg' }
 
     var ibContent = '';
     ibContent =
