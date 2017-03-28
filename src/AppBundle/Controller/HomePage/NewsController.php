@@ -10,8 +10,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
- * @Route("/news")
+ * @Route("/homepage/news")
  */
 class NewsController extends Controller
 {
+    /**
+     * @param $new
+     * @Route("/{id}", name="homepage_new_show")
+     * @return array
+     */
+    public function showAction(News $new)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository("AppBundle:News")->find($new);
+        $userProfile = $em->getRepository("AppBundle:UserProfile")->findOneBy(array('user'=>$new->getCreatedBy()));
+        return $this->render(':homepage/news:show.html.twig', array(
+            'entity' => $entity,
+            'userProfile' => $userProfile
+        ));
+    }
 }

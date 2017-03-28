@@ -105,7 +105,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                 boxClass: "infobox",
                 enableEventPropagation: true,
                 closeBoxMargin: "0px 0px -30px 0px",
-                closeBoxURL: "../assets/spotter/img/close.png",
+                closeBoxURL: "http://62.75.162.219/redperiurban/web/assets/spotter/img/close.png",
                 infoBoxClearance: new google.maps.Size(1, 1)
             };
 
@@ -185,7 +185,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
         var clusterStyles = [
             {
-                url: '../assets/spotter/img/cluster.png',
+                url: 'http://62.75.162.219/redperiurban/web/assets/spotter/img/cluster.png',
                 height: 34,
                 width: 34
             }
@@ -370,8 +370,8 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function createHomepageOSM(_latitude,_longitude,json,mapProvider){
-
-    $.get("../assets/spotter/external/_infobox.js", function() {
+    var url = "{{assets('http://62.75.162.219/redperiurban/web/assets/spotter/external/_infobox.js')}}";
+    $.get(url, function() {
         osmMap();
     });
 
@@ -676,7 +676,7 @@ function multiChoice(sameLatitude, sameLongitude, json) {
             }
         });
         $('body').append('<div class="modal-window multichoice fade_in"></div>');
-        $('.modal-window').load( '../assets/spotter/external/_modal-multichoice.html', function() {
+        $('.modal-window').load( '/assets/spotter/external/_modal-multichoice.html', function() {
             $('.modal-window .modal-wrapper .items').html( multipleItems );
             rating('.modal-window');
         });

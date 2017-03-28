@@ -3,15 +3,20 @@
         <form id="form" method="post" action="">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <div class="toggle-navigation" style="float: right;">
+                        <div class="icon" data-dismiss="modal">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                    </div>
                     <h4 class="modal-title">Reportar contenido</h4>
                 </div>
                 <div class="modal-body">
-                    {#{% include 'homepage/report/form.html.twig' %}#}
+                    <div class="form-group">
                         <label for="description">Especifique el motivo de la denuncia de este contenido</label>
-                    <br>
-                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-
+                        <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-info" data-dismiss="modal">NO</button>

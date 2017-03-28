@@ -1,0 +1,32 @@
+<aside class="col-md-4 col-sm-4" id="detail-sidebar">
+    <!--Contact-->
+    <section>
+        <div class="member">
+            <img src="{{ asset(vich_uploader_asset(userProfile.user, 'image')) }}">
+            <h4>{{ userProfile.user.firstName }} {{ userProfile.user.lastName }}</h4>
+        </div>
+        <header><h3>Contact</h3></header>
+        <address>
+            <div>{{ userProfile.address.address}}</div>
+            <figure>
+                <div class="info">
+                    <i class="fa fa-envelope"></i>
+                    <span>{{ userProfile.user.email }}</span>
+                </div>
+            </figure>
+        </address>
+    </section>
+    <figure>
+    {% if userProfile.user.reported == 0 %}
+        <a class="btn framed btn-color-default" data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_user_report', {id: userProfile.user.id}) }}">Report user</a></li>
+    {% endif %}</figure><br>
+
+    <!--Contact Form-->
+    <section>
+        <header><h3>Contact Form</h3></header>
+        <figure>
+            {% include ':homepage/Contact:Contact.html.twig' %}
+        </figure>
+    </section>
+    <!--end Contact Form-->
+</aside>
