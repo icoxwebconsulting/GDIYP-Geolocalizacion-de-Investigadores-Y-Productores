@@ -26,25 +26,23 @@ class ContactController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $user = $em->getRepository("AppBundle:User")->findOneBy(array('email'=>$_POST['receptor']));
                 // Send mail
                 if($this->get('email.service')->sendContactEmail($_POST['receptor'],$form->getData())){
-
                     // Everything OK, redirect to wherever you want ! :
                     $this->addFlash(
                         'success',
                         'Your message has been sent'
                     );
-                    return $this->redirectToRoute('homepage_user_show', array('id'=>102));
-
                 }else{
                     // An error ocurred, handle
                     $this->addFlash(
                         'danger',
                         'Your message hasn\'t been sent'
                     );
-                    return $this->redirectToRoute('homepage_user_show', array('id'=>102));
-
                 }
+                return $this->redirectToRoute('homepage_user_show', array('id'=>$user->getId()));
             }
         }
 
