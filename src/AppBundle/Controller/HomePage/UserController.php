@@ -37,9 +37,13 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $user->getId(), 'reported'=> 0));
         $userProfile = $em->getRepository("AppBundle:UserProfile")->findOneBy(array('user'=>$user));
+        $medias = $em->getRepository('AppBundle:Media')->findBy(array('created_by' => $user->getId()),
+            array('modified' => 'DESC'),
+            10);
         return $this->render(':homepage/user:show.html.twig', array(
             'entities' => $entities,
-            'userProfile' => $userProfile
+            'userProfile' => $userProfile,
+            'medias' => $medias
         ));
     }
 }
