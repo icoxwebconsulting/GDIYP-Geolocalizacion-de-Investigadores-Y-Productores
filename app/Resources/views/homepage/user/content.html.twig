@@ -47,9 +47,11 @@
                     <div class="list-item">
                         <div class="left">
                             <h4>Residence place</h4>
-                            <figure>Country: {{ userProfile.residencePlace.region.country.name }}</figure>
-                            <figure>Region: {{  userProfile.residencePlace.region.name }}</figure>
-                            <figure>City: {{  userProfile.residencePlace.name }}</figure>
+                            {% if userProfile.residencePlace %}
+                                <figure>Country: {{ userProfile.residencePlace.region.country.name }}</figure>
+                                <figure>Region: {{  userProfile.residencePlace.region.name }}</figure>
+                                <figure>City: {{  userProfile.residencePlace.name }}</figure>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- /.list-item -->
@@ -61,8 +63,10 @@
                     </header>
                     <div class="list-item">
                         <div class="left">
-                            <h4>{{ userProfile.knowledge.knowledgeArea.name }}</h4>
-                            <figure>{{ userProfile.knowledge.name }}</figure>
+                            {% if userProfile.knowledge %}
+                                <h4>{{ userProfile.knowledge.knowledgeArea.name }}</h4>
+                                <figure>{{ userProfile.knowledge.name }}</figure>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -73,8 +77,10 @@
                     </header>
                     <div class="list-item">
                         <div class="left">
-                            <h4>{{ userProfile.studyTopic.topicCategory.name }}</h4>
-                            <figure>{{ userProfile.studyTopic.name }}</figure>
+                            {% if userProfile.studyTopic %}
+                                <h4>{{ userProfile.studyTopic.topicCategory.name }}</h4>
+                                <figure>{{ userProfile.studyTopic.name }}</figure>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -86,9 +92,11 @@
                     <div class="list-item">
                         <div class="left">
                             <h4>Research place</h4>
-                            <figure>Country: {{ userProfile.researchPlace.region.country.name }}</figure>
-                            <figure>Region: {{  userProfile.researchPlace.region.name }}</figure>
-                            <figure>City: {{  userProfile.researchPlace.name }}</figure>
+                            {% if userProfile.researchPlace %}
+                                <figure>Country: {{ userProfile.researchPlace.region.country.name }}</figure>
+                                <figure>Region: {{  userProfile.researchPlace.region.name }}</figure>
+                                <figure>City: {{  userProfile.researchPlace.name }}</figure>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -97,6 +105,7 @@
                     <header>
                         <h3><i class="fa fa-calendar"></i>EXTRA INFORMATION</h3>
                     </header>
+                    {% if userProfile.caseStudy %}
                     <div class="list-item">
                         <div class="left">
                             <h4>Case Study</h4>
@@ -160,6 +169,7 @@
                         </div>
                     </div>
                     <!-- /.list-item -->
+                    {% endif %}
                 </div>
                 <!-- /.slide -->
             </div>
