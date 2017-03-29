@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Logout</source>
+                <target>Cerrar Sesión</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Sign In</source>
+                <target>Iniciar Sesión</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Register</source>
+                <target>Rgistrarse</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>All rights reserved</source>
+                <target>Todos los derechos reservados</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Redefine Search</source>
+                <target>Redefinir la búsqueda</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Detail</source>
+                <target>Detalle</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Home</source>
+                <target>Inicio</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Navigation</source>
+                <target>Menú</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Enter Keyword</source>
+                <target>Palabra clave</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Enter Location</source>
+                <target>Ubicación</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Find my position</source>
+                <target>Encuentra mi posición</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Results</source>
+                <target>Resultados</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>User</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Producer</source>
+                <target>Productor</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Investigator</source>
+                <target>Investigador</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Contact</source>
+                <target>Contacto</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Report user</source>
+                <target>Reportar usuario</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Contact Form</source>
+                <target>Formulario de contacto</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Email</source>
+                <target>Correo electrónico</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Subject</source>
+                <target>Asunto</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Message</source>
+                <target>Mensaje</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Send</source>
+                <target>Enviar</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Description</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>INSTITUTION INFORMATION</source>
+                <target>INFORMACIÓN DE LA INSTITUCIÓN</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Address work</source>
+                <target>Dirección de trabajo</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>PERSONAL INFORMATION</source>
+                <target>INFORMACIÓN PERSONAL</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Summary</source>
+                <target>Resumen</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>Job Title</source>
+                <target>Título profesional</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Residence place</source>
+                <target>Lugar de residencia</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Research place</source>
+                <target>Lugar de investigación</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Country</source>
+                <target>País</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Region</source>
+                <target>Región</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>City</source>
+                <target>Ciudad</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>AREAS OF KNOWLEDGE</source>
+                <target>ÁREAS DE CONOCIMIENTO</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>STUDY TOPIC</source>
+                <target>TEMÁTICA DE ESTUDIO</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>EXTRA INFORMATION</source>
+                <target>INFORMACIÓN EXTRA</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>Case Study</source>
+                <target>Caso de estudio</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Case Study Description</source>
+                <target>Descripción del caso de estudio</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Keywords</source>
+                <target>Palabras claves</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Graphic Information</source>
+                <target>Información gráfica</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Investigation Lines</source>
+                <target>Líneas de investigación</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>Research Group</source>
+                <target>Grupos de investigación</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>Related Institution</source>
+                <target>Instituciones relacionadas</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Links</source>
+                <target>Enlaces</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>Contact Info</source>
+                <target>Información de contacto</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>News</source>
+                <target>Noticias</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>Medias</source>
+                <target>Archivos multimedia</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>Report Content</source>
+                <target>Reportar Contenido</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>Specify your reason for report this content</source>
+                <target>Especifique su motivo para reportar este contenido</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>YES</source>
+                <target>SI</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

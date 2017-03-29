@@ -3,13 +3,13 @@
         <div class="redefine-search">
             <a href="#redefine-search-form" class="inner" data-toggle="collapse" aria-expanded="false" aria-controls="redefine-search-form">
                 <span class="icon"></span>
-                <span>Redefine Search</span>
+                <span>{{ 'Redefine Search' | trans }}</span>
             </a>
         </div>
         <ol class="breadcrumb">
             <li><a href="{{ path('homepage') }}"><i class="fa fa-home"></i></a></li>
             <li><a href="#">{% block breadcrumb %}{% endblock %}</a></li>
-            <li class="active">Detail</li>
+            <li class="active">{{ 'Detail' | trans }}</li>
         </ol>
     </div>
 </div>

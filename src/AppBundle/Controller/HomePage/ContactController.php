@@ -50,9 +50,4 @@ class ContactController extends Controller
             'form' => $form->createView()
         ));
     }
-
-    private function sendEmail($data){
-        $myappContactMail = 'eivanphils@gmail.com';
-      return false;
-    }
 }

@@ -1,21 +1,8 @@
 <nav class="off-canvas-navigation">
-    <header style="line-height: 70px;">Navigation</header>
+    <header style="line-height: 70px;">{{ 'Navigation' | trans }}</header>
     <div class="main-navigation navigation-off-canvas">
         <ul>
-            <li><a href="#home" class="has-child" data-toggle="collapse" aria-expanded="false" aria-controls="home">Home</a>
-                <div class="collapse" id="home">
-                    <ul>
-                        <li><a href="index-directory.html">Google Maps</a></li>
-                        <li><a href="index-osm.html">OpenStreetMaps</a></li>
-                        <li><a href="index-here.html">Here Maps</a></li>
-                        <li><a href="index-directory.html">Universal Directory</a></li>
-                        <li><a href="index-cars.html">Car Dealership</a></li>
-                        <li><a href="index-real-estate.html">Real Estate</a></li>
-                        <li><a href="index-restaurants.html">Restaurants</a></li>
-                        <li><a href="index-travel.html">Travel</a></li>
-                    </ul>
-                </div>
-            </li>
+            <li><a href="{{ path('homepage') }}" >{{ 'Home' | trans }}</a></li>
             <li><a href="listing-grid.html">Listing</a></li>
             <li><a href="about-us.html">About Us</a></li>
             <li><a href="#sub-level-1" class="has-child" data-toggle="collapse" aria-expanded="false" aria-controls="sub-level-1">Pages</a>
@@ -44,9 +31,12 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="sign-in.html">Sign In</a></li>
-            <li><a href="register.html">Register</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">{{ 'Sign In' | trans }}</a></li>
+                <li><a href="{{ path('user_new') }}"><strong>{{ 'Register' | trans }}</strong></a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>

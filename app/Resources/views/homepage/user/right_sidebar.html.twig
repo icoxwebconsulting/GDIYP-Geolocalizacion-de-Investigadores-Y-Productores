@@ -1,7 +1,7 @@
 <div class="col-md-3">
     <aside id="sidebar">
         <section>
-            <header><h2>News</h2></header>
+            <header><h2>{{ 'News' | trans }}</h2></header>
             {% for new in entities %}
             <a href="{{ path('homepage_new_show', {'id':new.id}) }}" class="item-horizontal small">
                 <h3>{{ new.title }}</h3>
@@ -16,7 +16,7 @@
             {% endfor %}
         </section>
         <section>
-            <header><h2>Medias</h2></header>
+            <header><h2>{{ 'Medias' | trans }}</h2></header>
             <ul class="bullets">
                 {% for media in medias %}
                     <li><a href="{{ asset(vich_uploader_asset(media, 'file')) }}" download="{{ media.fileName }}">{{ media.name }}</a></li>

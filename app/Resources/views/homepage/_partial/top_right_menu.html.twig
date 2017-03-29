@@ -4,10 +4,10 @@
         <ul class="user-area">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li>{{ app.user.firstName }} {{ app.user.lastName }}</li>
-                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
             {% else %}
-                <li><a href="{{ path('fos_user_security_login') }}">Sign In</a></li>
-                <li><a href="{{ path('user_new') }}"><strong>Register</strong></a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">{{ 'Sign In' | trans }}</a></li>
+                <li><a href="{{ path('user_new') }}"><strong>{{ 'Register' | trans }}</strong></a></li>
             {% endif %}
         </ul>
         <div class="toggle-navigation">

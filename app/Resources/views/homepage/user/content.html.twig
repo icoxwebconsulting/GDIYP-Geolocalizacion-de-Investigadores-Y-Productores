@@ -1,10 +1,10 @@
 <div class="col-md-8 col-sm-8">
         <article class="block">
-            <header><h2>Description</h2></header>
+            <header><h2>{{ 'Description' | trans }}</h2></header>
             <div class="list-slider">
                 <div class="slide">
                     <header>
-                        <h3><i class="fa fa-calendar"></i>INSTITUTION INFORMATION</h3>
+                        <h3><i class="fa fa-calendar"></i>{{ 'INSTITUTION INFORMATION' | trans }}</h3>
                     </header>
                     <div class="list-item">
                         {% if userProfile.institution %}
@@ -18,7 +18,7 @@
                     <div class="list-item">
                         {% if userProfile.address %}
                             <div class="left">
-                                <h4>Address work</h4>
+                                <h4>{{ 'Address work' | trans }}</h4>
                                 <figure>{{ userProfile.address.address }}</figure>
                             </div>
                         {% endif %}
@@ -29,29 +29,29 @@
                 <!-- /.slide -->
                 <div class="slide">
                     <header>
-                        <h3><i class="fa fa-calendar"></i>PERSONAL INFORMATION</h3>
+                        <h3><i class="fa fa-calendar"></i>{{ 'PERSONAL INFORMATION' | trans }}</h3>
                     </header>
                     <div class="list-item">
                         <div class="left">
-                            <h4>Summary</h4>
+                            <h4>{{ 'Summary' | trans }}</h4>
                             <figure>{{ userProfile.summary | raw }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Job Title</h4>
+                            <h4>{{ 'Job Title' | trans }}</h4>
                             <figure>{{ userProfile.jobTitle }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Residence place</h4>
+                            <h4>{{ 'Residence place' | trans }}</h4>
                             {% if userProfile.residencePlace %}
-                                <figure>Country: {{ userProfile.residencePlace.region.country.name }}</figure>
-                                <figure>Region: {{  userProfile.residencePlace.region.name }}</figure>
-                                <figure>City: {{  userProfile.residencePlace.name }}</figure>
+                                <figure>{{ 'Country' | trans }}: {{ userProfile.residencePlace.region.country.name }}</figure>
+                                <figure>{{ 'Region' | trans }}: {{  userProfile.residencePlace.region.name }}</figure>
+                                <figure>{{ 'City' | trans }}: {{  userProfile.residencePlace.name }}</figure>
                             {% endif %}
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                 <!-- /.slide -->
                 <div class="slide">
                     <header>
-                        <h3><i class="fa fa-calendar"></i>AREAS OF KNOWLEDGE</h3>
+                        <h3><i class="fa fa-calendar"></i>{{ 'AREAS OF KNOWLEDGE' | trans }}</h3>
                     </header>
                     <div class="list-item">
                         <div class="left">
@@ -76,7 +76,7 @@
                 <!-- /.slide -->
                 <div class="slide">
                     <header>
-                        <h3><i class="fa fa-calendar"></i>STUDY TOPIC</h3>
+                        <h3><i class="fa fa-calendar"></i>{{ 'STUDY TOPIC' | trans }}</h3>
                     </header>
                     <div class="list-item">
                         <div class="left">
@@ -91,15 +91,15 @@
                 <!-- /.slide -->
                 <div class="slide">
                     <header>
-                        <h3><i class="fa fa-calendar"></i>RESEARCH PLACE</h3>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Research place' | trans }}</h3>
                     </header>
                     <div class="list-item">
                         <div class="left">
-                            <h4>Research place</h4>
+                            <h4>{{ 'Research place' | trans }}</h4>
                             {% if userProfile.researchPlace %}
-                                <figure>Country: {{ userProfile.researchPlace.region.country.name }}</figure>
-                                <figure>Region: {{  userProfile.researchPlace.region.name }}</figure>
-                                <figure>City: {{  userProfile.researchPlace.name }}</figure>
+                                <figure>{{ 'Country' | trans }}: {{ userProfile.researchPlace.region.country.name }}</figure>
+                                <figure>{{ 'Region' | trans }}Region: {{  userProfile.researchPlace.region.name }}</figure>
+                                <figure>{{ 'City' | trans }}: {{  userProfile.researchPlace.name }}</figure>
                             {% endif %}
                         </div>
                     </div>
@@ -108,68 +108,68 @@
                 <!-- /.slide -->
                 <div class="slide">
                     <header>
-                        <h3><i class="fa fa-calendar"></i>EXTRA INFORMATION</h3>
+                        <h3><i class="fa fa-calendar"></i>{{ 'EXTRA INFORMATION' | trans }}</h3>
                     </header>
                     {% if userProfile.caseStudy %}
                     <div class="list-item">
                         <div class="left">
-                            <h4>Case Study</h4>
+                            <h4>{{ 'Case Study' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.name }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Case Study Description</h4>
+                            <h4>{{ 'Case Study Description' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.description }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Keywords</h4>
+                            <h4>{{ 'Keywords' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.keywords }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Graphic Information</h4>
+                            <h4>{{ 'Graphic Information' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.graphicInformation }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Investigation Lines</h4>
+                            <h4>{{ 'Investigation Lines' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.investigationLines }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Research Group</h4>
+                            <h4>{{ 'Research Group' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.researchGroup }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Related Institution</h4>
+                            <h4>{{ 'Related Institution' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.relatedInstitution }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Links</h4>
+                            <h4>{{ 'Links' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.links }}</figure>
                         </div>
                     </div>
                     <!-- /.list-item -->
                     <div class="list-item">
                         <div class="left">
-                            <h4>Contact Info</h4>
+                            <h4>{{ 'Contact Info' | trans }}</h4>
                             <figure>{{ userProfile.caseStudy.contactInfo }}</figure>
                         </div>
                     </div>
