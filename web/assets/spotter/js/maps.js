@@ -622,7 +622,7 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
                     '<figure>' + json[a].address.address + '</figure>' +
                     // drawPrice(json[a].price) +
                     // drawPrice(json[a].price) +
-                    '<div class="price"><a href="' + url + '">view</a></div>' +
+                    '<div class="price"><a href="' + url + '">ver</a></div>' +
                     // '<div class="info">' +
                     //     '<div class="type">' +
                     //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
