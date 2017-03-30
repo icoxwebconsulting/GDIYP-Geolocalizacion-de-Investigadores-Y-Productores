@@ -170,7 +170,7 @@ class UserController extends Controller
             $this->get('session')->migrate();
             $this->addFlash(
                 'success',
-                'User has been succesfully updated!'
+                $this->get('translator')->trans('User has been succesfully updated!')
             );
             return $this->redirectToRoute('fos_user_profile_show');
         }

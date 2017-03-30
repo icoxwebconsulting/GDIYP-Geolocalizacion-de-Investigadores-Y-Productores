@@ -1,10 +1,10 @@
 {% extends ':admin:base.html.twig' %}
 
-{% block title %}News{% endblock %}
+{% block title %}{{ 'News' | trans }}{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}News{% endblock %}
+        {% block breadcrumb %}{{ 'News' | trans }}{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -12,24 +12,24 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> News Manager
+            <i class="fa fa-align-justify"></i> {{ 'News Manager' | trans }}
         </div>
         <div class="card-block">
             <table class="table">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Period</th>
-                    <th>Title</th>
-                    <th>Subtitle</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Reported</th>
+                    <th>{{ 'Period' | trans }}</th>
+                    <th>{{ 'Title' | trans }}</th>
+                    <th>{{ 'Subtitle' | trans }}</th>
+                    <th>{{ 'Description' | trans }}</th>
+                    <th>{{ 'Category' | trans }}</th>
+                    <th>{{ 'Reported' | trans }}</th>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <th>Created by</th>
+                        <th>{{ 'Created by' | trans }}</th>
                     {% endif %}
                     {% if not is_granted('ROLE_ADMIN') %}
-                        <th>Actions</th>
+                        <th>{{ 'Actions' | trans }}</th>
                     {% endif %}
                 </tr>
                 </thead>
@@ -48,9 +48,9 @@
                     </td>
                     <td>
                         {% if entity.reported == 0 %}
-                            No
+                            NO
                         {% else %}
-                            Yes
+                            {{ 'YES' | trans }}
                         {% endif %}
                     </td>
                     {% if is_granted('ROLE_ADMIN') %}
@@ -67,7 +67,7 @@
                 </tbody>
             </table>
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Prev</a>
+                <li class="page-item"><a class="page-link" href="#">{{ 'Prev' | trans }}</a>
                 </li>
                 <li class="page-item active">
                     <a class="page-link" href="#">1</a>
@@ -78,7 +78,7 @@
                 </li>
                 <li class="page-item"><a class="page-link" href="#">4</a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">Next</a>
+                <li class="page-item"><a class="page-link" href="#">{{ 'Next' | trans }}</a>
                 </li>
             </ul>
         </div>

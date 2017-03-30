@@ -5,27 +5,27 @@
                 <div class="stepwizard-row setup-panel">
                     <div class="stepwizard-step">
                         <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                        <p>Step 1</p>
+                        <p>{{ 'Step' | trans }} 1</p>
                     </div>
                     <div class="stepwizard-step">
                         <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                        <p>Step 2</p>
+                        <p>{{ 'Step' | trans }} 2</p>
                     </div>
                     <div class="stepwizard-step">
                         <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                        <p>Step 3</p>
+                        <p>{{ 'Step' | trans }} 3</p>
                     </div>
                     <div class="stepwizard-step">
                         <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-                        <p>Step 4</p>
+                        <p>{{ 'Step' | trans }} 4</p>
                     </div>
                     <div class="stepwizard-step">
                         <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
-                        <p>Step 5</p>
+                        <p>{{ 'Step' | trans }} 5</p>
                     </div>
                     <div class="stepwizard-step">
                         <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
-                        <p>Step 6</p>
+                        <p>{{ 'Step' | trans }} 6</p>
                     </div>
                 </div>
             </div>
@@ -278,19 +278,19 @@
             $("#add_institution").click(function(){
                 $("#other_institution").toggle();
                 $("#institution").toggle();
-                $(this).text($(this).text() == 'Add other institution' ? 'Show the list of institutions' : 'Add other institution');
+                $(this).text($(this).text() == 'Agregar otra institución' ? 'Mostrar la lista de instituciones' : 'Agregar otra institución');
             })
 
             $("#add_city").click(function(){
                 $("#other_city").toggle();
                 $("#city").toggle();
-                $(this).text($(this).text() == 'Add other city' ? 'Show the list of cities' : 'Add other city');
+                $(this).text($(this).text() == 'Agregar otra ciudad' ? 'Mostrar la lista de ciudades' : 'Agregar otra ciudad');
             })
 
             $("#add_city2").click(function(){
                 $("#other_city2").toggle();
                 $("#city2").toggle();
-                $(this).text($(this).text() == 'Add other city' ? 'Show the list of cities' : 'Add other city');
+                $(this).text($(this).text() == 'Agregar otra ciudad' ? 'Mostrar la lista de ciudades' : 'Agregar otra ciudad');
             })
         });
 
@@ -389,9 +389,9 @@
             $("#region2").children().remove()
             var countryName = $('#country2 option:selected').text();
             if (countryName.toLowerCase() == 'argentina'){
-                $('#label_city2').text('Conglomerate and cities');
+                $('#label_city2').text('Conglomerados y ciudades');
             }else{
-                $('#label_city2').text('City');
+                $('#label_city2').text('Ciudad');
             }
             var country = $('#country2').find(':selected').val();
             $.ajax({

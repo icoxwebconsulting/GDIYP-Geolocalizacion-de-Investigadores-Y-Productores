@@ -1,10 +1,10 @@
 {% extends "admin/base.html.twig" %}
 
-{% block title %}News{% endblock %}
+{% block title %}{{ 'News' | trans }}{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}News{% endblock %}
+        {% block breadcrumb %}{{ 'News' | trans }}{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -12,26 +12,26 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <strong>News</strong>
+            <strong>{{ 'News' | trans }}</strong>
         </div>
         {{ form_start(form, {'attr':{ 'class': 'form-horizontal'}}) }}
             <div class="card-block">
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="first-name">Title</label>
+                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Title' | trans }}</label>
                     <div class="col-md-9">
-                        {{ form_widget(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Walstreet news'}}) }}
+                        {{ form_widget(form.title, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                     {{ form_errors(form.title) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="last-name">Subtitle</label>
+                    <label class="col-md-3 form-control-label" for="last-name">{{ 'Subtitle' | trans }}</label>
                     <div class="col-md-9">
-                        {{ form_widget(form.subtitle, { 'attr': { 'class': 'form-control', 'placeholder': 'Reported ok'}}) }}
+                        {{ form_widget(form.subtitle, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                     {{ form_errors(form.subtitle) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="email">Category</label>
+                    <label class="col-md-3 form-control-label" for="email">{{ 'Category' | trans }}</label>
                     <div class="col-md-9">
                         {#{{ form_widget(form.category, { 'attr': { 'class': 'form-control'}}) }}#}
                         <select name="{{ form.children.category.vars.full_name }}" class="form-control">
@@ -45,7 +45,7 @@
                     {{ form_errors(form.category) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="appbundle_news_description">Description</label>
+                    <label class="col-md-3 form-control-label" for="appbundle_news_description">{{ 'Description' | trans }}</label>
                     <div class="col-md-12">
                         {{ form_widget(form.description) }}
                     </div>
@@ -54,8 +54,8 @@
                 {{ form_widget(form._token) }}
             </div>
             <div class="card-footer">
-                <a href="{{ path('media_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <a href="{{ path('media_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
             </div>
         {#{{ form_end(form)}}#}
         </form>

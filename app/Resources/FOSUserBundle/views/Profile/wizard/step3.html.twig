@@ -1,28 +1,28 @@
 <div class="row setup-content" id="step-3">
     <div class="col-md-10 col-sm-offset-1 col-centered">
         <div class="col-md-12">
-            <h3 class="fs-title">Areas of knowledge</h3>
+            <h3 class="fs-title">{{ 'Areas of knowledge' | trans }}</h3>
             <div class="col-md-12">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label class="col-md-4 form-control-label" for="knowledge_area">Knowledge Area</label>
+                        <label class="col-md-4 form-control-label" for="knowledge_area">{{ 'Knowledge Area' | trans }}</label>
                         <div class="col-md-8">
                             <select class="form-control" name="knowledge_area" id="knowledge_area" required>
-                                <option value="">Select Area</option>
+                                <option value="">{{ 'Select' | trans }} Area</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="display:none" class="col-md-4 form-control-label" for="knowledge" id="knowledge_label">Knowledge</label>
+                        <label style="display:none" class="col-md-4 form-control-label" for="knowledge" id="knowledge_label">{{ 'Knowledge' | trans }}</label>
                         <div class="col-md-8">
                             <select style="display:none" class="form-control" name="knowledge" id="knowledge" required>
-                                <option value="">Select Knowledge</option>
+                                <option value="">{{ 'Select' | trans }} {{ 'Knowledge' | trans }}</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary nextBtn pull-right" type="button" >Next</button>
+            <button class="btn btn-primary nextBtn pull-right" type="button" >{{ 'Next' | trans }}</button>
         </div>
     </div>
 </div>

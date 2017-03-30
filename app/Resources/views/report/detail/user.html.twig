@@ -1,58 +1,58 @@
 <div class="card-header">
-    <strong>User detail</strong>
+    <strong>{{ 'User detail' | trans }}</strong>
 </div>
 <div class="card-block">
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="name">Name</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="name">{{ 'Name' | trans }}</label>
+        <div class="col-md-8">
             {{ report.user.firstName }} {{ report.user.lastName }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="email">Email</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="email">{{ 'Email' | trans }}</label>
+        <div class="col-md-8">
             {{ report.user.email }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="type">User Type</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="type">{{ 'User type' | trans }}</label>
+        <div class="col-md-8">
         {% for role in report.user.roles %}
             {% if role == 'ROLE_INVESTIGATOR' %}
-                Investigator
+                {{ 'Investigator' | trans }}
             {% elseif role == 'ROLE_PRODUCER' %}
-                Producer
+                {{ 'Producer' | trans }}
             {% endif %}
         {% endfor %}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="job-title">Job Title</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="job-title">{{ 'Job Title' | trans }}</label>
+        <div class="col-md-8">
             {{ userProfile.jobTitle }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="address">Address</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="address">{{ 'Address' | trans }}</label>
+        <div class="col-md-8">
             {{ userProfile.address.address }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="summary">Summary</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="summary">{{ 'Summary' | trans }}</label>
+        <div class="col-md-8">
             {{ userProfile.summary | raw }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="image-profile">Image Profile</label>
-        <div class="col-md-9">
+        <label class="col-md-4 form-control-label" for="image-profile">{{ 'Image Profile' | trans }}</label>
+        <div class="col-md-8">
             {% if report.user.imageName %}
                 <figure>
                     <img src="{{asset(vich_uploader_asset(report.user, 'image')) }}" width="50%"  style="margin: auto; display: block;">
                 </figure>
             {% else %}
-                Doesn't have a profile image
+                {{ 'Doesnt have a profile image' | trans }}
             {% endif %}
         </div>
     </div>

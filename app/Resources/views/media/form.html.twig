@@ -1,10 +1,10 @@
 {% extends "admin/base.html.twig" %}
 
-{% block title %}new Media{% endblock %}
+{% block title %}{{ 'New Media' | trans }}{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}new Media{% endblock %}
+        {% block breadcrumb %}{{ 'New Media' | trans }}{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -12,33 +12,33 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <strong>Media</strong>
+            <strong>{{ 'Media' | trans }}</strong>
         </div>
         {{ form_start(form, {'attr':{ 'class': 'form-horizontal'}}) }}
             <div class="card-block">
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="first-name">Name</label>
+                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Name' | trans }}</label>
                     <div class="col-md-9">
-                        {{ form_widget(form.name, { 'attr': { 'class': 'form-control', 'placeholder': 'File name'}}) }}
+                        {{ form_widget(form.name, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                     {{ form_errors(form.name) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="last-name">File</label>
+                    <label class="col-md-3 form-control-label" for="last-name">{{ 'File' | trans }}</label>
                     <div class="col-md-9">
                         {{ form_widget(form.file, { 'attr': { 'class': 'form-control', 'required': 'false'}}) }}
                     </div>
                     {{ form_errors(form.file) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="email">Media Type</label>
+                    <label class="col-md-3 form-control-label" for="email">{{ 'Media Type' | trans }}</label>
                     <div class="col-md-9">
                         {{ form_widget(form.type, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                     {{ form_errors(form.type) }}
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="email">News Related</label>
+                    <label class="col-md-3 form-control-label" for="email">{{ 'News Related' | trans }}</label>
                     <div class="col-md-9">
                         {{ form_widget(form.news, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
@@ -48,8 +48,8 @@
                 {{ form_rest(form) }}
             </div>
             <div class="card-footer">
-                <a href="{{ path('news_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> Back</a>
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <a href="{{ path('news_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
             </div>
         {{ form_end(form)}}
     </div>

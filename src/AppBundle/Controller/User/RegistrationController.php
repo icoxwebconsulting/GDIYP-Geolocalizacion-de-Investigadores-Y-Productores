@@ -41,7 +41,7 @@ class RegistrationController extends BaseController
                 $route = 'fos_user_security_login';
                 $this->setFlash(
                     'success',
-                    'Please check your email. It contains an activation link you must click to activate your account.'
+                    'Por favor revise su correo electrónico. Contiene un enlace de activación al que debe hacer clic para activar su cuenta.'
                 );
             } else {
                 $this->_authenticateAccount($user);

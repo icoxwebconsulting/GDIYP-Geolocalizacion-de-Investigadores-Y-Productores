@@ -1,10 +1,10 @@
 {% extends "admin/base.html.twig" %}
 
-{% block title %}Edit Profile{% endblock %}
+{% block title %}{{ 'Edit Profile' | trans }}{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}Edit Profile{% endblock %}
+        {% block breadcrumb %}{{ 'Edit Profile' | trans }}{% endblock %}
     {% endembed %}
 {% endblock %}
 

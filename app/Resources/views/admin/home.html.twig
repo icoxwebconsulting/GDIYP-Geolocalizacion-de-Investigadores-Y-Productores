@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    List of last created
+                    {{ 'List of last created' | trans }}
                 </div>
                 <div class="card-block">
                     <div class="row">
@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="callout callout-danger">
-                                        <small class="text-muted">Lasted 10 news created</small>
+                                        <small class="text-muted">{{ 'Lasted 10 news created' | trans }}</small>
                                         <br>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                             <div class="small text-muted">{{ new.subtitle }}</div>
                                         </div>
                                         <div class="value">
-                                            <div class="small text-muted">Modified</div>
+                                            <div class="small text-muted">{{ 'Modified' | trans }}</div>
                                             <p>{{ new.modified | date }}</p>
                                         </div>
                                     </li>
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="callout callout-primary">
-                                        <small class="text-muted">Lasted 10 medias created</small>
+                                        <small class="text-muted">{{ 'Lasted 10 medias created' | trans }}</small>
                                         <br>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                             {% endif %}
                                         </div>
                                         <div class="value">
-                                            <div class="small text-muted">Created</div>
+                                            <div class="small text-muted">{{ 'Created' | trans }}</div>
                                             <p>{{ media.created | date }}</p>
                                         </div>
                                     </li>

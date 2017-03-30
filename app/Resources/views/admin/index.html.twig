@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    List of last reported
+                    {{ 'List of last reported' | trans }}
                 </div>
                 <div class="card-block">
                     <div class="row">
@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="callout callout-danger">
-                                        <small class="text-muted">Lasted 10 news reported</small>
+                                        <small class="text-muted">{{ 'Lasted 10 news reported' | trans }}</small>
                                         <br>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                             <div class="small text-muted">{{ new.subtitle }}</div>
                                         </div>
                                         <div class="value">
-                                            <div class="small text-muted">Modified</div>
+                                            <div class="small text-muted">{{ 'Modified' | trans }}</div>
                                             <p>{{ new.modified | date }}</p>
                                         </div>
                                     </li>
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="callout callout-primary">
-                                        <small class="text-muted">Lasted 10 users reported</small>
+                                        <small class="text-muted">{{ 'Lasted 10 users reported' | trans }}</small>
                                         <br>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                         <div class="small text-muted">{{ user.email }}</div>
                                     </div>
                                     <div class="value">
-                                        <div class="small text-muted">Modified</div>
+                                        <div class="small text-muted">{{ 'Modified' | trans }}</div>
                                         <p>{{ user.modified | date }}</p>
                                     </div>
                                 </li>
@@ -83,9 +83,9 @@
                         <tr>
                             <th class="text-xs-center"><i class="icon-people"></i>
                             </th>
-                            <th>User Reported</th>
-                            <th class="text-xs-center">Description</th>
-                            <th>Reported by</th>
+                            <th>{{ 'User Reported' | trans }}</th>
+                            <th class="text-xs-center">{{ 'Description' | trans }}</th>
+                            <th>{{ 'Reported by' | trans }}</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -94,14 +94,14 @@
                         <tr>
                             <td class="text-xs-center">
                                 <div class="avatar">
-                                    <img src="{{ asset(vich_uploader_asset(report.user, 'image')) }}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                    <img src="{{ asset(vich_uploader_asset(report.user, 'image')) }}" class="img-avatar">
                                     <span class="avatar-status tag-success"></span>
                                 </div>
                             </td>
                             <td>
                                 <div>{{ report.user.username }}</div>
                                 <div class="small text-muted">
-                                    Registered: {{ report.user.created | date }}
+                                    {{ 'Registered' | trans}}: {{ report.user.created | date }}
                                 </div>
                             </td>
                             <td class="text-xs-center">
@@ -120,7 +120,7 @@
                                 <progress class="progress progress-xs progress-success" value="50" max="100" style="margin:5px 0 0 0;">50%</progress>
                             </td>
                             <td>
-                                <div class="small text-muted">Last login</div>
+                                <div class="small text-muted">{{ 'Last login' | trans }}</div>
                                 <strong>10 sec ago</strong>
                             </td>
                         </tr>

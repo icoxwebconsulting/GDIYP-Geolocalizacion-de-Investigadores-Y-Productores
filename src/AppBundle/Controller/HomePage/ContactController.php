@@ -33,13 +33,13 @@ class ContactController extends Controller
                     // Everything OK, redirect to wherever you want ! :
                     $this->addFlash(
                         'success',
-                        'Your message has been sent'
+                        $this->get('translator')->trans('Your message has been sent')
                     );
                 }else{
                     // An error ocurred, handle
                     $this->addFlash(
                         'danger',
-                        'Your message hasn\'t been sent'
+                        $this->get('translator')->trans('Your message hasnt been sent')
                     );
                 }
                 return $this->redirectToRoute('homepage_user_show', array('id'=>$user->getId()));

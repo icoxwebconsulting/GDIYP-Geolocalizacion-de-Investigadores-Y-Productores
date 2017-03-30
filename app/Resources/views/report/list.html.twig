@@ -10,9 +10,9 @@
 
 {% block content %}
     <div class="col-lg-12">
-        {% if title == 'User' %}
+        {% if title == 'Users' | trans %}
             {% include ':report/list:user.html.twig' %}
-        {% elseif title == 'News' %}
+        {% elseif title == 'News' | trans %}
             {% include ':report/list:news.html.twig' %}
         {% endif %}
     </div>

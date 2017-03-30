@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="3">
                 <source>Register</source>
-                <target>Rgistrarse</target>
+                <target>Registrarse</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>All rights reserved</source>
@@ -99,16 +99,16 @@
                 <target>Descripción</target>
             </trans-unit>
             <trans-unit id="25">
-                <source>INSTITUTION INFORMATION</source>
-                <target>INFORMACIÓN DE LA INSTITUCIÓN</target>
+                <source>Institution Information</source>
+                <target>Información de la institución</target>
             </trans-unit>
             <trans-unit id="26">
                 <source>Address work</source>
                 <target>Dirección de trabajo</target>
             </trans-unit>
             <trans-unit id="27">
-                <source>PERSONAL INFORMATION</source>
-                <target>INFORMACIÓN PERSONAL</target>
+                <source>Personal Information</source>
+                <target>Información personal</target>
             </trans-unit>
             <trans-unit id="28">
                 <source>Summary</source>
@@ -139,16 +139,16 @@
                 <target>Ciudad</target>
             </trans-unit>
             <trans-unit id="36">
-                <source>AREAS OF KNOWLEDGE</source>
-                <target>ÁREAS DE CONOCIMIENTO</target>
+                <source>Areas of knowledge</source>
+                <target>Áreas de conocimiento</target>
             </trans-unit>
             <trans-unit id="37">
-                <source>STUDY TOPIC</source>
-                <target>TEMÁTICA DE ESTUDIO</target>
+                <source>Study Topic</source>
+                <target>Temática de estudio</target>
             </trans-unit>
             <trans-unit id="38">
-                <source>EXTRA INFORMATION</source>
-                <target>INFORMACIÓN EXTRA</target>
+                <source>Extra Information</source>
+                <target>Información extra</target>
             </trans-unit>
             <trans-unit id="39">
                 <source>Case Study</source>
@@ -205,6 +205,490 @@
             <trans-unit id="52">
                 <source>YES</source>
                 <target>SI</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>List of last created</source>
+                <target>Lista de últimos creados</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Lasted 10 news created</source>
+                <target>Lista de últimas 10 noticias</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>Lasted 10 medias created</source>
+                <target>Lista de últimos 10 archivos multimedias</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>Created</source>
+                <target>Creado en</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Content Reported</source>
+                <target>Contenido Reportado</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>Users Reported</source>
+                <target>Usuarios Reportados</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>News Reported</source>
+                <target>Noticias Reportados</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>Users</source>
+                <target>Usuarios</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Users List</source>
+                <target>Lista de usuarios</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>Add User</source>
+                <target>Agregar usuario</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>News List</source>
+                <target>Lista de noticias</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>Add News</source>
+                <target>Agregar noticia</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>Categories</source>
+                <target>Categorías</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Category List</source>
+                <target>Lista de categorías</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>Add Category</source>
+                <target>Agregar categoría</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>Medias List</source>
+                <target>Lista de archivos de multimedias</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>Add Media</source>
+                <target>Agregar archivo multimedia</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>Edit Profile</source>
+                <target>Editar perfil</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>Well done!</source>
+                <target>Bien hecho!</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Close</source>
+                <target>Cerrar</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>Confirmation</source>
+                <target>Confirmación</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>Do you want to delete this element?</source>
+                <target>¿Desea eliminar este elemento?</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>Edit Password</source>
+                <target>Modificar contraseña</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>Password</source>
+                <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>Current password</source>
+                <target>Contraseña actual</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>New password</source>
+                <target>Nueva contraseña</target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>Repeat New password</source>
+                <target>Repetir Nueva contraseña</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>Back</source>
+                <target>Regresar</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>Change</source>
+                <target>Cambiar</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>Profile</source>
+                <target>Perfil</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>Username</source>
+                <target>Nombre de usuario</target>
+            </trans-unit>
+            <trans-unit id="84">
+                <source>Step</source>
+                <target>Paso</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>Institution</source>
+                <target>Institución</target>
+            </trans-unit>
+            <trans-unit id="86">
+                <source>Select Institution</source>
+                <target>Seleccione una institución</target>
+            </trans-unit>
+            <trans-unit id="87">
+                <source>Institution name</source>
+                <target>Nombre de la institución</target>
+            </trans-unit>
+            <trans-unit id="88">
+                <source>Add other</source>
+                <target>Agregar otra</target>
+            </trans-unit>
+            <trans-unit id="89">
+                <source>Address</source>
+                <target>Dirección</target>
+            </trans-unit>
+            <trans-unit id="90">
+                <source>Please type your address and move the marker</source>
+                <target>Por favor escriba su dirección y mueva el marker</target>
+            </trans-unit>
+            <trans-unit id="91">
+                <source>Search address</source>
+                <target>Buscar dirección</target>
+            </trans-unit>
+            <trans-unit id="92">
+                <source>Next</source>
+                <target>Siguiente</target>
+            </trans-unit>
+            <trans-unit id="93">
+                <source>First Name</source>
+                <target>Primer nombre</target>
+            </trans-unit>
+            <trans-unit id="94">
+                <source>Last Name</source>
+                <target>Apellido</target>
+            </trans-unit>
+            <trans-unit id="95">
+                <source>Current Image</source>
+                <target>Imagen actual</target>
+            </trans-unit>
+            <trans-unit id="96">
+                <source>Doesnt have a profile image</source>
+                <target>No tiene imagen de perfil</target>
+            </trans-unit>
+            <trans-unit id="97">
+                <source>Change Image</source>
+                <target>Cambiar imagen</target>
+            </trans-unit>
+            <trans-unit id="98">
+                <source>Select</source>
+                <target>Seleccionar</target>
+            </trans-unit>
+            <trans-unit id="99">
+                <source>Doesnt have a profile image</source>
+                <target>No tiene imagen de perfil</target>
+            </trans-unit>
+            <trans-unit id="100">
+                <source>Knowledge Area</source>
+                <target>Area de conocimiento</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>Knowledge</source>
+                <target>Conocimiento</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>Topic Category</source>
+                <target>Categoría de temática</target>
+            </trans-unit>
+            <trans-unit id="103">
+                <source>Change</source>
+                <target>Cambiar</target>
+            </trans-unit>
+            <trans-unit id="104">
+                <source>Institution Type</source>
+                <target>Tipo de institución</target>
+            </trans-unit>
+            <trans-unit id="105">
+                <source>Select Institution Type</source>
+                <target>Seleccione el tipo de institución</target>
+            </trans-unit>
+            <trans-unit id="106">
+                <source>User type</source>
+                <target>Tipo de usuario</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>Sign In to your account</source>
+                <target>Inicia sesión con tu cuenta</target>
+            </trans-unit>
+            <trans-unit id="108">
+                <source>Forgot Password</source>
+                <target>Olvide mi contraseña</target>
+            </trans-unit>
+            <trans-unit id="109">
+                <source>Now</source>
+                <target>Ahora</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>Create your account</source>
+                <target>Crea tu cuenta</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>Repeat Password</source>
+                <target>Repetir contraseña</target>
+            </trans-unit>
+            <trans-unit id="112">
+                <source>Image Profile</source>
+                <target>Imagen de perfil</target>
+            </trans-unit>
+            <trans-unit id="113">
+                <source>Create Account</source>
+                <target>Crear cuenta</target>
+            </trans-unit>
+            <trans-unit id="114">
+                <source>Resetting password</source>
+                <target>Reinicio de contraseña</target>
+            </trans-unit>
+            <trans-unit id="115">
+                <source>or</source>
+                <target>o</target>
+            </trans-unit>
+            <trans-unit id="116">
+                <source>Reset password</source>
+                <target>Reiniciar contraseña</target>
+            </trans-unit>
+            <trans-unit id="117">
+                <source>Change password</source>
+                <target>Cambiar contraseña</target>
+            </trans-unit>
+            <trans-unit id="118">
+                <source>User has been succesfully updated!</source>
+                <target>El usuario ha sido actualizado exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="119">
+                <source>Category has been successfully added!</source>
+                <target>La categoría ha sido agregada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="120">
+                <source>Category has been succesfully updated!</source>
+                <target>La categoría ha sido actualizada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="121">
+                <source>Media has been successfully added!</source>
+                <target>El archivo multimedia ha sido agregado exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="122">
+                <source>Media has been succesfully updated!</source>
+                <target>El archivo multimedia ha sido actualizado exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="123">
+                <source>Media has been succesfully deleted!</source>
+                <target>El archivo multimedia ha sido eliminado exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="124">
+                <source>News has been successfully added!</source>
+                <target>La noticia ha sido agregada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="125">
+                <source>News has been successfully updated!</source>
+                <target>La noticia ha sido actulizada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="126">
+                <source>News has been succesfully deleted!</source>
+                <target>La noticia ha sido eliminada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="127">
+                <source>Report has been done!</source>
+                <target>El reporte ha sido realizado!</target>
+            </trans-unit>
+            <trans-unit id="128">
+                <source>List of last reported</source>
+                <target>Lista de los últimos reportes</target>
+            </trans-unit>
+            <trans-unit id="129">
+                <source>Lasted 10 news reported</source>
+                <target>Últimas 10 noticias reportadas</target>
+            </trans-unit>
+            <trans-unit id="130">
+                <source>Modified</source>
+                <target>Modificado</target>
+            </trans-unit>
+            <trans-unit id="131">
+                <source>Lasted 10 users reported</source>
+                <target>Últimos 10 usuarios reportados</target>
+            </trans-unit>
+            <trans-unit id="132">
+                <source>User Reported</source>
+                <target>Usuario reportado</target>
+            </trans-unit>
+            <trans-unit id="133">
+                <source>Reported by</source>
+                <target>Reportado por</target>
+            </trans-unit>
+            <trans-unit id="134">
+                <source>Registered</source>
+                <target>Registrado</target>
+            </trans-unit>
+            <trans-unit id="135">
+                <source>Last login</source>
+                <target>Último inicio de sesión</target>
+            </trans-unit>
+            <trans-unit id="136">
+                <source>Category</source>
+                <target>Categoría</target>
+            </trans-unit>
+            <trans-unit id="137">
+                <source>Category Manager</source>
+                <target>Gestor de categorías</target>
+            </trans-unit>
+            <trans-unit id="138">
+                <source>Medias Manager</source>
+                <target>Gestor de archivos multimedia</target>
+            </trans-unit>
+            <trans-unit id="139">
+                <source>News Manager</source>
+                <target>Gestor de noticias</target>
+            </trans-unit>
+            <trans-unit id="140">
+                <source>User Manager</source>
+                <target>Gestor de usuarios</target>
+            </trans-unit>
+            <trans-unit id="141">
+                <source>Main Category</source>
+                <target>Categoría principal</target>
+            </trans-unit>
+            <trans-unit id="142">
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="143">
+                <source>Prev</source>
+                <target>Anterior</target>
+            </trans-unit>
+            <trans-unit id="144">
+                <source>Period</source>
+                <target>Período</target>
+            </trans-unit>
+            <trans-unit id="145">
+                <source>Title</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="146">
+                <source>Type</source>
+                <target>Tipo</target>
+            </trans-unit>
+            <trans-unit id="147">
+                <source>Created by</source>
+                <target>Creado por</target>
+            </trans-unit>
+            <trans-unit id="148">
+                <source>Subtitle</source>
+                <target>Subtítulo</target>
+            </trans-unit>
+            <trans-unit id="149">
+                <source>Reported</source>
+                <target>Reportado</target>
+            </trans-unit>
+            <trans-unit id="150">
+                <source>Select a value</source>
+                <target>Seleccione un valor</target>
+            </trans-unit>
+            <trans-unit id="151">
+                <source>News Title</source>
+                <target>Título de noticia</target>
+            </trans-unit>
+            <trans-unit id="152">
+                <source>Owner</source>
+                <target>Propietario</target>
+            </trans-unit>
+            <trans-unit id="153">
+                <source>Report Description</source>
+                <target>Descripción del reporte</target>
+            </trans-unit>
+            <trans-unit id="154">
+                <source>Approved by</source>
+                <target>Aprobado por</target>
+            </trans-unit>
+            <trans-unit id="155">
+                <source>Report</source>
+                <target>Reporte</target>
+            </trans-unit>
+            <trans-unit id="156">
+                <source>Valid</source>
+                <target>Valido</target>
+            </trans-unit>
+            <trans-unit id="157">
+                <source>Invalid</source>
+                <target>Invalido</target>
+            </trans-unit>
+            <trans-unit id="158">
+                <source>User detail</source>
+                <target>Detalle de usuario</target>
+            </trans-unit>
+            <trans-unit id="159">
+                <source>Files</source>
+                <target>Archivos</target>
+            </trans-unit>
+            <trans-unit id="160">
+                <source>News detail</source>
+                <target>Detalle de noticia</target>
+            </trans-unit>
+            <trans-unit id="161">
+                <source>News Media</source>
+                <target>Nuevo archivo multimedia</target>
+            </trans-unit>
+            <trans-unit id="162">
+                <source>Media</source>
+                <target>Archivo multimedia</target>
+            </trans-unit>
+            <trans-unit id="163">
+                <source>Media Type</source>
+                <target>Tipo de archivo multimedia</target>
+            </trans-unit>
+            <trans-unit id="164">
+                <source>News Related</source>
+                <target>Noticia relacionada</target>
+            </trans-unit>
+            <trans-unit id="165">
+                <source>Resetting your password</source>
+                <target>Reinicio de su contraseña</target>
+            </trans-unit>
+            <trans-unit id="166">
+                <source>Hello</source>
+                <target>Hola</target>
+            </trans-unit>
+            <trans-unit id="167">
+                <source>You can reset your password by accessing</source>
+                <target>Puede reiniciar su contraseña accediendo a</target>
+            </trans-unit>
+            <trans-unit id="168">
+                <source>Greetings</source>
+                <target>Saludos</target>
+            </trans-unit>
+            <trans-unit id="169">
+                <source>the App team</source>
+                <target>El equipo</target>
+            </trans-unit>
+            <trans-unit id="170">
+                <source>Your message has been sent</source>
+                <target>Tu mensaje ha sido enviado</target>
+            </trans-unit>
+            <trans-unit id="171">
+                <source>Your message hasnt been sent</source>
+                <target>Tu mensaje no ha sido enviado</target>
+            </trans-unit>
+            <trans-unit id="172">
+                <source>New Media</source>
+                <target>Nuevo archivo multimedia</target>
+            </trans-unit>
+            <trans-unit id="173">
+                <source>File</source>
+                <target>Archivo</target>
             </trans-unit>
         </body>
     </file>

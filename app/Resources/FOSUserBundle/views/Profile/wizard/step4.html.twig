@@ -1,28 +1,28 @@
 <div class="row setup-content" id="step-4">
     <div class="col-md-10 col-sm-offset-1 col-centered">
         <div class="col-md-12">
-            <h3 class="fs-title">Study Topic</h3>
+            <h3 class="fs-title">{{ 'Study Topic' | trans }}</h3>
             <div class="col-md-12">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label class="col-md-4 form-control-label" for="topic_category">Topic Category</label>
+                        <label class="col-md-4 form-control-label" for="topic_category">{{ 'Topic Category' | trans }}</label>
                         <div class="col-md-8">
                             <select class="form-control" name="topic_category" id="topic_category" required>
-                                <option value="">Select Topic Category</option>
+                                <option value="">{{ 'Select' | trans }} {{ 'Topic Category' | trans }}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="display:none" class="col-md-4 form-control-label" for="study_topic" id="study_topic_label">Study Topic</label>
+                        <label style="display:none" class="col-md-4 form-control-label" for="study_topic" id="study_topic_label">{{ 'Study Topic' | trans }}</label>
                         <div class="col-md-8">
                             <select style="display:none" class="form-control" name="study_topic" id="study_topic" required>
-                                <option value="">Select Study Topic</option>
+                                <option value="">{{ 'Select' }} {{ 'Study Topic' | trans }}</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary nextBtn pull-right" type="button" >Next</button>
+            <button class="btn btn-primary nextBtn pull-right" type="button" >{{ 'Next' | trans }}</button>
         </div>
     </div>
 </div>

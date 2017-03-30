@@ -26,7 +26,7 @@ class ReportController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:Report")->findBy(array('type'=>1));
-        $title = 'User';
+        $title = $this->get('translator')->trans('Users');
         return $this->render('report/list.html.twig', array(
             'entities' => $entities,
             'title' => $title
@@ -42,7 +42,7 @@ class ReportController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:Report")->findBy(array('type'=>2));
-        $title = 'News';
+        $title = $this->get('translator')->trans('News');
         return $this->render('report/list.html.twig', array(
             'entities' => $entities,
             'title' => $title
@@ -80,7 +80,7 @@ class ReportController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Report has been done!'
+                $this->get('translator')->trans('Report has been done!')
             );
             return $this->redirectToRoute('user_report_list');
         }
@@ -122,7 +122,7 @@ class ReportController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Report has been done!'
+                $this->get('translator')->trans('Report has been done!')
             );
             return $this->redirectToRoute('news_report_list');
         }

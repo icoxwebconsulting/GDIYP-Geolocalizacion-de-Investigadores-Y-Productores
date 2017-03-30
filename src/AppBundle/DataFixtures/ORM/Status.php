@@ -11,10 +11,10 @@ class Status extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $statuses = array(
-            'Active',
-            'Draft',
-            'Blocked',
-            'Inactive'
+            'Activo',
+            'Borrador',
+            'Bloqueado',
+            'Inactivo'
         );
         foreach ($statuses as $name) {
             $entity = new StatusEntity();

@@ -1,21 +1,21 @@
 <div class="card-header">
-    <strong>News detail</strong>
+    <strong>{{ 'News detail' | trans }}</strong>
 </div>
 <div class="card-block">
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="title">Title</label>
+        <label class="col-md-3 form-control-label" for="title">{{ 'Title' | trans }}</label>
         <div class="col-md-9">
             {{ report.news.title }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="subtitle">Subtitle</label>
+        <label class="col-md-3 form-control-label" for="subtitle">{{ 'Subtitle' | trans }}</label>
         <div class="col-md-9">
             {{ report.news.subtitle }}
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="category">Category</label>
+        <label class="col-md-3 form-control-label" for="category">{{ 'Category' | trans }}</label>
         <div class="col-md-9">
             {% if report.news.category %}
                 {{ report.news.category.name }}
@@ -23,13 +23,13 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="description">Description</label>
+        <label class="col-md-3 form-control-label" for="description">{{ 'Description' | trans }}</label>
         <div class="col-md-9">
             {{ report.news.description | raw }}
         </div>
     </div>
     <div class="form-group row">
-        <label for="files" class="col-md-3 form-control-label">Files</label>
+        <label for="files" class="col-md-3 form-control-label">{{ 'Files' | trans }}</label>
         <div class="col-md-9">
             {% for media in medias %}
                 <a href="{{ asset(vich_uploader_asset(media, 'file')) }}" download="{{ media.fileName }}">

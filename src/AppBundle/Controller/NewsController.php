@@ -56,7 +56,7 @@ class NewsController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'News has been successfully added!'
+                $this->get('translator')->trans('News has been successfully added!')
             );
             return $this->redirectToRoute('news_list');
         }
@@ -88,7 +88,7 @@ class NewsController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'News has been succesfully updated!'
+                $this->get('translator')->trans('News has been successfully updated!')
             );
             return $this->redirectToRoute('news_list');
         }
@@ -115,7 +115,7 @@ class NewsController extends Controller
         $em->flush();
         $this->addFlash(
             'success',
-            'News has been succesfully deleted!'
+            $this->get('translator')->trans('News has been succesfully deleted!')
         );
         return $this->redirectToRoute('news_list');
     }
