@@ -16,12 +16,25 @@ class HomepageController extends Controller
      * @Route("/", name="homepage")
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+
+
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository("AppBundle:User")->findAllUsers();
+
+        $institution = $request->get('institution');
+
+        if (!empty($institution)){
+            $finder = $this->container->get('fos_elastica.finder.app.institutiontype');
+            $institutionType = $finder->find($institution);
+        }else{
+            $institutionType = $em->getRepository("AppBundle:InstitutionType")->findAll();
+        }
+
         return $this->render('homepage/index.html.twig', array(
-            'users' => $users
+            'users' => $users,
+            'institutionType' => $institutionType
         ));
     }
     

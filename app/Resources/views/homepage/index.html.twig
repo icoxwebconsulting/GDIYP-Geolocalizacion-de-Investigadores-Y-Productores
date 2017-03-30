@@ -5,6 +5,10 @@
 {% block bodyClass %}map-fullscreen page-homepage navigation-off-canvas{% endblock %}
 {% block content %}
     <!-- Map Canvas-->
+    {{ dump() }}
+    {% for institution in institutionType %}
+        {{ institution.name }}<br>
+    {% endfor %}
     <div class="map-canvas list-width-30 results-collapsed">
         <div class="map">
             <div class="toggle-navigation">
@@ -34,25 +38,29 @@
         <script type="text/javascript" src="{{ asset('assets/spotter/js/custom.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/maps.js')}}"></script>
     <script>
-        var _latitude = 51.541216;
-        var _longitude = -0.095678;
+        var url =  "{{ path('user_list') }}";
+        function loadMap(url){
+            var _latitude = 51.541216;
+            var _longitude = -0.095678;
 
-        $.ajax({
-            type: "GET",
-            url: "{{ path('user_list') }}"
-        }).done(function(result){
-            var json = JSON.parse(result);
-            console.log('data ', json);
-            createHomepageGoogleMap(_latitude,_longitude,json);
-        }).fail(function( jqxhr, textStatus, error ) {
-            console.log(error);
-        });
+            $.ajax({
+                type: "GET",
+                url: url
+            }).done(function(result){
+                var json = JSON.parse(result);
+                console.log('data ', json);
+                createHomepageGoogleMap(_latitude,_longitude,json);
+            }).fail(function( jqxhr, textStatus, error ) {
+                console.log(error);
+            });
+        }
         // Set if language is RTL and load Owl Carousel
         $(window).load(function(){
             var rtl = false; // Use RTL
             initializeOwl(rtl);
         });
 
+        loadMap(url);
         autoComplete();
 
     </script>
