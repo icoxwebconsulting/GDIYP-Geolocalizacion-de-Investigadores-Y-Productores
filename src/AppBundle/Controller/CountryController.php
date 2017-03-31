@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 class CountryController extends Controller
 {
     /**
-     * @Security("has_role('ROLE_USER')")
      * @Route("/", name="country_list")
      */
     public function indexAction()

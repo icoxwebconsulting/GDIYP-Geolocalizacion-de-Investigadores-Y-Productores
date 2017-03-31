@@ -15,7 +15,6 @@ class CityController extends Controller
 {
     /**
      * @param $id
-     * @Security("has_role('ROLE_USER')")
      * @Route("/{id}", name="city_list")
      * @return response
      */

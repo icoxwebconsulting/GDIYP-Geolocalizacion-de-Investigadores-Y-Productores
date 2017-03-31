@@ -15,7 +15,6 @@ class RegionController extends Controller
 {
     /**
      * @param $id
-     * @Security("has_role('ROLE_USER')")
      * @Route("/{id}", name="region_list")
      * @return response
      */

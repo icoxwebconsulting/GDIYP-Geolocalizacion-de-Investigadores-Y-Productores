@@ -5,10 +5,6 @@
 {% block bodyClass %}map-fullscreen page-homepage navigation-off-canvas{% endblock %}
 {% block content %}
     <!-- Map Canvas-->
-    {{ dump() }}
-    {% for institution in institutionType %}
-        {{ institution.name }}<br>
-    {% endfor %}
     <div class="map-canvas list-width-30 results-collapsed">
         <div class="map">
             <div class="toggle-navigation">
@@ -30,6 +26,18 @@
     </div>
 {% endblock %}
 
+{% block extra_css %}
+    <style>
+        select.form-control {
+            display: block;
+            height: 40px;
+            background-color: #fff;
+            background-image: none;
+            border: 0px solid #fff;
+            border-radius: 0px;
+        }
+    </style>
+{% endblock %}
 {% block extra_js %}
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/infobox.js')}}"></script>
@@ -62,6 +70,82 @@
 
         loadMap(url);
         autoComplete();
+    </script>
+    <script>
+        $('#country').change(function(){
+            loadRegion();
+        });
+        $('#region').change(function(){
+            loadCity();
+        });
+        function loadCountry(){
+            $.ajax({
+                type: "GET",
+                url: "{{ path('country_list') }}"
+            }).done(function( result ) {
+                var data = eval(result);
+                console.log('country',data)
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#country').append(newOption);
+                }
+                var country = $('#country').find(':selected').val();
+                if (country != 0){
+                    loadRegion();
+                }
+            });
+        }
 
+        function loadRegion(){
+            $("#region").children().remove();
+            var country = $('#country').find(':selected').val();
+            if(country != 0){
+                $.ajax({
+                    type: "GET",
+                    url: "{{ path('homepage')}}region/"+country
+                }).done(function( result ) {
+                    var data = eval(result);
+                    for(var i = 0; i < data.length; i++){
+                        var newOption = $('<option/>');
+                        newOption.text(data[i].name);
+                        newOption.attr('value', data[i].id);
+                        $('#region').append(newOption);
+                    }
+                    loadCity();
+                });
+            }
+        }
+
+        function loadCity(){
+            $("#city").children().remove();
+            var region = $('#region').find(':selected').val();
+            if(region != 0){
+                $.ajax({
+                    type: "GET",
+                    url: "{{ path('homepage')}}city/"+region
+                }).done(function( result ) {
+                    var data = eval(result);
+                    for(var i = 0; i < data.length; i++){
+                        var newOption = $('<option/>');
+                        newOption.text(data[i].name);
+                        newOption.attr('value', data[i].id);
+                        $('#city').append(newOption);
+                    }
+                });
+            }
+        }
+        loadCountry();
+
+        $('#search-form').bind('submit', function(e) {
+            e.preventDefault();
+            console.log('click form');
+            var city = $('#city').find(':selected').val();
+            if (city != 0){
+                var url =  "{{ path('homepage') }}userProfile/city/"+city;
+              loadMap(url);
+            }
+        });
     </script>
 {% endblock %}
