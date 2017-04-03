@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 class TopicCategoryController extends Controller
 {
     /**
-     * @Security("has_role('ROLE_USER')")
      * @Route("/", name="topic_category_list")
      */
     public function indexAction()

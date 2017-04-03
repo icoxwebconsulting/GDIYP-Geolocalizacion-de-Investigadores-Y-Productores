@@ -40,4 +40,21 @@ class UserProfileController extends Controller
 
         return new Response($serializedEntity);
     }
+
+    /**
+     * @param $city
+     * @param $institution
+     * @param $knowledge
+     * @param $study
+     * @Route("/filter/{city}/{institution}/{knowledge}/{study}", name="advance_filter")
+     * @return response
+     */
+    public function advanceFilterAction($city, $institution, $knowledge, $study)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository("AppBundle:UserProfile")->findByFilter($city, $institution, $knowledge, $study);
+        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
+    }
 }

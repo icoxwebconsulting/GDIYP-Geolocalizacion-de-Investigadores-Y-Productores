@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 class KnowledgeAreaController extends Controller
 {
     /**
-     * @Security("has_role('ROLE_USER')")
      * @Route("/", name="knowledge_area_list")
      */
     public function indexAction()

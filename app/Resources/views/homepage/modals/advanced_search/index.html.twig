@@ -1,0 +1,50 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document" style="width: 300px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="toggle-navigation" style="float: right;">
+                    <div class="icon" data-dismiss="modal">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <h4 class="modal-title" id="exampleModalLabel">{{ 'Apply filter to' | trans }}</h4>
+            </div>
+            <div class="modal-body">
+                <a data-toggle="modal" href="#investigator" class="btn btn-default">{{ 'Investigator' | trans }}</a>
+                <a data-toggle="modal" href="#producer" class="btn btn-primary btn-producer">{{ 'Producer' | trans }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+
+            $('#openBtn').click(function () {
+                $('#myModal').modal({
+                    show: true
+                })
+            });
+
+            $(document).on('show.bs.modal', '.modal', function (event) {
+                var zIndex = 1040 + (10 * $('.modal:visible').length);
+                $(this).css('z-index', zIndex);
+                setTimeout(function() {
+                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                }, 0);
+            });
+
+            $('#exampleModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('whatever') // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+//                modal.find('.modal-title').text('New message to ' + recipient)
+//                modal.find('.modal-body input').val(recipient)
+            })
+        });
+    </script>
+{% endblock %}

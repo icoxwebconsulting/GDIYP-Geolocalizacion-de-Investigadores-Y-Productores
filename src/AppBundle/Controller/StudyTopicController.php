@@ -15,7 +15,6 @@ class StudyTopicController extends Controller
 {
     /**
      * @param $id
-     * @Security("has_role('ROLE_USER')")
      * @Route("/{id}", name="study_topic_list")
      * @return response
      */

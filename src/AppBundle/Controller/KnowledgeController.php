@@ -15,7 +15,6 @@ class KnowledgeController extends Controller
 {
     /**
      * @param $id
-     * @Security("has_role('ROLE_USER')")
      * @Route("/{id}", name="knowledge_list")
      * @return response
      */

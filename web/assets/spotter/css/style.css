@@ -7209,3 +7209,8 @@ div.investigator{
 div.producer{
   background: #0dcdbd;
 }
+
+.btn-producer{
+  background: #0dcdbd !important;
+  color: #ffffff;
+}

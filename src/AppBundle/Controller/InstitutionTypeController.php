@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 class InstitutionTypeController extends Controller
 {
     /**
-     * @Security("has_role('ROLE_USER')")
      * @Route("/", name="institution_type_list")
      */
     public function indexAction()

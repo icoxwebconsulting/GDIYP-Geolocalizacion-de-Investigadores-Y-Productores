@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block extra_css %}
+    {{ parent() }}
     <style>
         select.form-control {
             display: block;
@@ -35,6 +36,9 @@
             background-image: none;
             border: 0px solid #fff;
             border-radius: 0px;
+        }
+        #page-footer .inner {
+            padding-top: 0px;
         }
     </style>
 {% endblock %}
@@ -56,7 +60,7 @@
                 url: url
             }).done(function(result){
                 var json = JSON.parse(result);
-                console.log('data ', json);
+//                console.log('data ', json);
                 createHomepageGoogleMap(_latitude,_longitude,json);
             }).fail(function( jqxhr, textStatus, error ) {
                 console.log(error);
@@ -84,7 +88,7 @@
                 url: "{{ path('country_list') }}"
             }).done(function( result ) {
                 var data = eval(result);
-                console.log('country',data)
+//                console.log('country',data)
                 for(var i = 0; i < data.length; i++){
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
@@ -140,11 +144,11 @@
 
         $('#search-form').bind('submit', function(e) {
             e.preventDefault();
-            console.log('click form');
             var city = $('#city').find(':selected').val();
             if (city != 0){
                 var url =  "{{ path('homepage') }}userProfile/city/"+city;
-              loadMap(url);
+                loadMap(url);
+                $("#advanced-search").show();
             }
         });
     </script>

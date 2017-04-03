@@ -15,7 +15,6 @@ class InstitutionController extends Controller
 {
     /**
      * @param $id
-     * @Security("has_role('ROLE_USER')")
      * @Route("/{id}", name="institution_list")
      * @return response
      */

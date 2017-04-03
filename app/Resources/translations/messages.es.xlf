@@ -690,6 +690,18 @@
                 <source>File</source>
                 <target>Archivo</target>
             </trans-unit>
+            <trans-unit id="174">
+                <source>Apply filter to</source>
+                <target>Aplicar filtro para</target>
+            </trans-unit>
+            <trans-unit id="175">
+                <source>Apply filter</source>
+                <target>Aplicar filtro</target>
+            </trans-unit>
+            <trans-unit id="176">
+                <source>Advanced search</source>
+                <target>Búsqueda Avanzada</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
