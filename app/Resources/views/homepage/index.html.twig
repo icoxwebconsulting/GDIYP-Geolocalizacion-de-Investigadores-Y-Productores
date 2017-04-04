@@ -40,6 +40,9 @@
         #page-footer .inner {
             padding-top: 0px;
         }
+        #search-form > div > div:nth-child(5){
+            width: 23.2% !important;
+        }
     </style>
 {% endblock %}
 {% block extra_js %}
@@ -50,8 +53,9 @@
         <script type="text/javascript" src="{{ asset('assets/spotter/js/custom.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/maps.js')}}"></script>
     <script>
+        var type = "all";
         var url =  "{{ path('user_list') }}";
-        function loadMap(url){
+        function loadMap(url, type){
             var _latitude = 51.541216;
             var _longitude = -0.095678;
 
@@ -59,8 +63,27 @@
                 type: "GET",
                 url: url
             }).done(function(result){
+                console.log('type',type);
                 var json = JSON.parse(result);
-//                console.log('data ', json);
+                var place = $('#city').find(':selected').val();
+
+                for (var i = 0; i < json.length; i++) {
+                    if (type == "investigator" && json[i].user.roles.includes("ROLE_PRODUCER")){
+                        if (type == "investigator" && json[i].user.roles.includes("ROLE_INVESTIGATOR") && place != 0 && place != json[i].residencePlace.id){
+                            json.splice(i,1);
+                        }else{
+                            json.splice(i,1);
+                        }
+                    }
+                    if (type == "producer" && json[i].user.roles.includes("ROLE_INVESTIGATOR")){
+                        if (type == "producer" && json[i].user.roles.includes("ROLE_PRODUCER") && place != 0 && place != json[i].residencePlace.id){
+                            json.splice(i,1);
+                        }else{
+                            json.splice(i,1);
+                        }
+                    }
+                }
+
                 createHomepageGoogleMap(_latitude,_longitude,json);
             }).fail(function( jqxhr, textStatus, error ) {
                 console.log(error);
@@ -72,7 +95,7 @@
             initializeOwl(rtl);
         });
 
-        loadMap(url);
+        loadMap(url, type);
         autoComplete();
     </script>
     <script>
@@ -147,9 +170,41 @@
             var city = $('#city').find(':selected').val();
             if (city != 0){
                 var url =  "{{ path('homepage') }}userProfile/city/"+city;
-                loadMap(url);
-                $("#advanced-search").show();
+                type = $("#type-user").val();
+                console.log('clickl form',type)
+                loadMap(url,type);
             }
         });
+
+        function filterByUser(type){
+            console.log('apply filter by user', type);
+            document.getElementById("type-user").value = type;
+            var url;
+            var city = $('#city').find(':selected').val();
+            if (city != 0){
+                url =  "{{ path('homepage') }}userProfile/city/"+city;
+                console.log('city ',city)
+                loadMap(url,type);
+            }else{
+                url =  "{{ path('user_list') }}";
+                loadMap(url,type);
+            }
+            $("#advanced-search").removeClass('disabled');
+        }
+
+        $('#advanced-search').click(function () {
+            type = $("#type-user").val();
+            console.log('click con type', type)
+            if (type == "investigator"){
+                $('#investigator').modal({
+                    show: true
+                })
+            }else if (type == "producer"){
+                $('#producer').modal({
+                    show: true
+                })
+            }
+        });
+
     </script>
 {% endblock %}

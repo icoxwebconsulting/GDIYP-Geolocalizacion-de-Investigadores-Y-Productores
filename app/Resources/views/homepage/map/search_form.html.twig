@@ -1,3 +1,7 @@
+<div class="row" style="text-align: center;margin-top: 10px;">
+    <a onclick="filterByUser('investigator')" class="btn btn-default">{{ 'Investigator' | trans }}</a>
+    <a onclick="filterByUser('producer')" class="btn btn-primary btn-producer">{{ 'Producer' | trans }}</a>
+</div>
 <form id="search-form" class="main-search border-less-inputs" role="form" method="post" action="{{ path('homepage') }}">
     <div class="input-row">
         <div class="form-group">
@@ -15,21 +19,15 @@
                 <option value="0">{{ 'City' | trans }}</option>
             </select>
         </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-            <div class="input-group location">
-                <input type="text" class="form-control" id="location" placeholder="{{ 'Enter Location' | trans }}">
-                <span class="input-group-addon"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="{{ 'Find my position' | trans }}"></i></span>
-            </div>
-        </div>
-        <!-- /.form-group -->
-        <div class="form-group">
+        <div class="form-group" style="width: 3%;">
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
         </div>
-        <!-- /.form-group -->
+        <div class="form-group">
+            <button id="advanced-search" style="width: 100%;" type="button" class="btn btn-primary disabled">{{ 'Advanced search' | trans }}</button>
+        </div>
     </div>
+    <input type="hidden" name="type_user" id="type-user" value="all">
     <!-- /.input-row -->
 </form>
 <!-- /.main-search -->
 
-<button id="advanced-search" style="display: none; margin: 0 0 10px 10px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ 'Advanced search' | trans }}</button>

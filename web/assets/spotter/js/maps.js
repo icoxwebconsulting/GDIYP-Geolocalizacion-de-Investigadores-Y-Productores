@@ -54,10 +54,10 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
             // Google map marker content -----------------------------------------------------------------------------------
             if( json[i].user.roles.includes("ROLE_INVESTIGATOR")){
-                console.log('role investigator', json[i].user.roles);
+                // console.log('role investigator', json[i].user.roles);
                 color = 'red';
             }else if( json[i].user.roles.includes("ROLE_PRODUCER")){
-                console.log('role producer', json[i].user.roles);
+                // console.log('role producer', json[i].user.roles);
                 color = 'blue';
             }
             // if( json[i].color ) var color = json[i].color;

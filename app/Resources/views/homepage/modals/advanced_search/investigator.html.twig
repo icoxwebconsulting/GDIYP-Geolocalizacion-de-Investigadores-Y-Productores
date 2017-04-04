@@ -194,7 +194,7 @@
             if (city != 0){
                 if (institution != 0 || knowledge != 0 || study_topic != 0){
                     var url =  "{{ path('homepage') }}userProfile/filter/"+city+"/"+institution+"/"+knowledge+"/"+study_topic;
-                    loadMap(url);
+                    loadMap(url, "investigator");
                     $('.modal').modal('hide');
                 }
             }
