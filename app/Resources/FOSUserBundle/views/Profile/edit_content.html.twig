@@ -128,7 +128,11 @@
             // more details for that place.
             searchBox.addListener('places_changed', function() {
                 var places = searchBox.getPlaces();
-
+                console.log(places[0].geometry);
+                document.getElementById("lat").value = places[0].geometry.viewport.f.b;
+                document.getElementById("lng").value = places[0].geometry.viewport.b.b;
+                console.log("auto complete lat->",places[0].geometry.viewport.f.b);
+                console.log("auto complete long->",places[0].geometry.viewport.b.b);
                 if (places.length == 0) {
                     return;
                 }
