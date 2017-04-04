@@ -167,18 +167,3 @@ bazinga_faker:
             number: 100
         AppBundle\Entity\UserProfile:
             number: 100
-
-fos_elastica:
-    clients:
-        default: { host: localhost, port: 9200 }
-    indexes:
-        app:
-            types:
-                InstitutionType:
-                    properties:
-                        name: ~
-                    persistence:
-                        driver: orm
-                        model: AppBundle\Entity\InstitutionType
-                        provider: ~
-                        finder: ~
