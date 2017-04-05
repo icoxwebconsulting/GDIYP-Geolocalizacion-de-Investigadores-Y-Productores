@@ -15,17 +15,17 @@
                         <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                         <p>{{ 'Step' | trans }} 3</p>
                     </div>
+                    {#<div class="stepwizard-step">#}
+                        {#<a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>#}
+                        {#<p>{{ 'Step' | trans }} 4</p>#}
+                    {#</div>#}
+                    {#<div class="stepwizard-step">#}
+                        {#<a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>#}
+                        {#<p>{{ 'Step' | trans }} 5</p>#}
+                    {#</div>#}
                     <div class="stepwizard-step">
-                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                        <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
                         <p>{{ 'Step' | trans }} 4</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
-                        <p>{{ 'Step' | trans }} 5</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
-                        <p>{{ 'Step' | trans }} 6</p>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@
             {% include '@FOSUser/Profile/wizard/step1.html.twig' %}
             {% include '@FOSUser/Profile/wizard/step2.html.twig' %}
             {% include '@FOSUser/Profile/wizard/step3.html.twig' %}
-            {% include '@FOSUser/Profile/wizard/step4.html.twig' %}
-            {% include '@FOSUser/Profile/wizard/step5.html.twig' %}
+            {#{% include '@FOSUser/Profile/wizard/step4.html.twig' %}#}
+            {#{% include '@FOSUser/Profile/wizard/step5.html.twig' %}#}
             {% include '@FOSUser/Profile/wizard/step6.html.twig' %}
         </div>
         {{ form_rest(form) }}
