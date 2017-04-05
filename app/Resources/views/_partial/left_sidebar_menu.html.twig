@@ -1,13 +1,21 @@
 <ul class="nav">
-    {% if is_granted('ROLE_ADMIN') %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Dashboard</a>
-        </li>
-    {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('dashboard_user') }}"><i class="icon-speedometer"></i> Dashboard</a>
-        </li>
-    {% endif %}
+    <li class="nav-item">
+        <a class="nav-link">{% if app.user.imageName %}
+            <img src="{{ asset(vich_uploader_asset(app.user, 'image')) }}" class="img-avatar" alt="{{ app.user.firstName }}" style="width: 30px;height: 30px;margin-right: 1px;">
+        {% else %}
+            <i class="fa fa-user"></i>
+        {% endif %}
+        {{ app.user.firstName }} {{ app.user.lastName }}</a>
+    </li>
+    {#{% if is_granted('ROLE_ADMIN') %}#}
+        {#<li class="nav-item">#}
+            {#<a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Dashboard</a>#}
+        {#</li>#}
+    {#{% else %}#}
+        {#<li class="nav-item">#}
+            {#<a class="nav-link" href="{{ path('dashboard_user') }}"><i class="icon-speedometer"></i> Dashboard</a>#}
+        {#</li>#}
+    {#{% endif %}#}
     <li class="nav-title">
         {{ 'Navigation' | trans }}
     </li>
