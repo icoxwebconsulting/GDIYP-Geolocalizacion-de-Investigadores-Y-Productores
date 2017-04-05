@@ -112,7 +112,7 @@
             </trans-unit>
             <trans-unit id="28">
                 <source>Summary</source>
-                <target>Resumen</target>
+                <target>Quién soy</target>
             </trans-unit>
             <trans-unit id="29">
                 <source>Job Title</source>
@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="32">
                 <source>Research place</source>
-                <target>Lugar de investigación</target>
+                <target>Territorio de investigación</target>
             </trans-unit>
             <trans-unit id="33">
                 <source>Country</source>
@@ -701,6 +701,10 @@
             <trans-unit id="176">
                 <source>Advanced search</source>
                 <target>Búsqueda Avanzada</target>
+            </trans-unit>
+            <trans-unit id="177">
+                <source>Theme of Study</source>
+                <target>Tema de Estudio</target>
             </trans-unit>
         </body>
     </file>
