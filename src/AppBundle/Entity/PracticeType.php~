@@ -1,0 +1,70 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PracticeType
+ *
+ * @ORM\Table(name="practice_type")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PracticeTypeRepository")
+ */
+class PracticeType
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductiveUndertaking", inversedBy="practice_type", cascade={"all"})
+     * @ORM\JoinColumn(name="productive_undertaking", referencedColumnName="id")
+     */
+    protected $productive_undertaking;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProfessionalServices", inversedBy="practice_type", cascade={"all"})
+     * @ORM\JoinColumn(name="professional_services", referencedColumnName="id")
+     */
+    protected $professional_services;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MarketingSpaces", inversedBy="practice_type", cascade={"all"})
+     * @ORM\JoinColumn(name="marketing_spaces", referencedColumnName="id")
+     */
+    protected $marketing_spaces;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="InstitutionalProject", inversedBy="practice_type", cascade={"all"})
+     * @ORM\JoinColumn(name="institutional_project", referencedColumnName="id")
+     */
+    protected $institutional_project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PromotionGroup", inversedBy="practice_type", cascade={"all"})
+     * @ORM\JoinColumn(name="promotion_group", referencedColumnName="id")
+     */
+    protected $promotion_group;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="practice_type", cascade={"all"})
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+

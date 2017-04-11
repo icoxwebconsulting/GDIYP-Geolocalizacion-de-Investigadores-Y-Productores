@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserProfileRepository")
  * @ORM\Table(name="user_profile")
  */
 class UserProfile
@@ -35,44 +35,44 @@ class UserProfile
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Institution", inversedBy="user_profile")
-     * @ORM\JoinColumn(name="institution", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="Institution", inversedBy="user_profile", cascade={"all"})
+     * @ORM\JoinColumn(name="institution", referencedColumnName="id")
      */
     protected $institution;
 
     /**
-     * @ORM\OneToOne(targetEntity="Knowledge")
-     * @ORM\JoinColumn(name="knowlegde", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="Knowledge", cascade={"all"})
+     * @ORM\JoinColumn(name="knowlegde", referencedColumnName="id")
      */
     protected $knowledge;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GoogleMap")
-     * @ORM\JoinColumn(name="address", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="GoogleMap", cascade={"all"})
+     * @ORM\JoinColumn(name="address", referencedColumnName="id")
      */
     protected $address;
 
     /**
-     * @ORM\OneToOne(targetEntity="StudyTopic")
-     * @ORM\JoinColumn(name="study_topic", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="StudyTopic", cascade={"all"})
+     * @ORM\JoinColumn(name="study_topic", referencedColumnName="id")
      */
     protected $study_topic;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="research_place", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="City", cascade={"all"})
+     * @ORM\JoinColumn(name="research_place", referencedColumnName="id")
      */
     protected $research_place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="residence_place", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="City", cascade={"all"})
+     * @ORM\JoinColumn(name="residence_place", referencedColumnName="id")
      */
     protected $residence_place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CaseStudy")
-     * @ORM\JoinColumn(name="case_study", referencedColumnName="id", unique=false)
+     * @ORM\ManyToOne(targetEntity="CaseStudy", cascade={"all"})
+     * @ORM\JoinColumn(name="case_study", referencedColumnName="id")
      */
     protected $case_study;
 

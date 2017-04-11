@@ -24,63 +24,63 @@ class CaseStudy
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="keywords", type="string", length=255)
+     * @ORM\Column(name="keywords", type="string", length=255, nullable=true)
      */
     private $keywords;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="graphic_information", type="text")
+     * @ORM\Column(name="graphic_information", type="text", nullable=true)
      */
     private $graphicInformation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="investigation_lines", type="text")
+     * @ORM\Column(name="investigation_lines", type="text", nullable=true)
      */
     private $investigationLines;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="research_group", type="text")
+     * @ORM\Column(name="research_group", type="text", nullable=true)
      */
     private $researchGroup;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="related_institution", type="text")
+     * @ORM\Column(name="related_institution", type="text", nullable=true)
      */
     private $relatedInstitution;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="links", type="text")
+     * @ORM\Column(name="links", type="text", nullable=true)
      */
     private $links;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contact_info", type="text")
+     * @ORM\Column(name="contact_info", type="text", nullable=true)
      */
     private $contactInfo;
 
@@ -314,5 +314,29 @@ class CaseStudy
     public function getContactInfo()
     {
         return $this->contactInfo;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \AppBundle\Entity\GoogleMap $address
+     *
+     * @return CaseStudy
+     */
+    public function setAddress(\AppBundle\Entity\GoogleMap $address = null)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \AppBundle\Entity\GoogleMap
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }
