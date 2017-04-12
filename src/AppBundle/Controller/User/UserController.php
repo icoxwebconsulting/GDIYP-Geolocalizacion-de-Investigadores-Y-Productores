@@ -27,7 +27,7 @@ class UserController extends Controller
     /**
      * @param $request
      * @param $user
-     * @Security("has_role('ROLE_USER')")
+     * @Security("has_role('ROLE_INVESTIGATOR')")
      * @Route("/edit/{id}", name="user_edit")
      * @return array
      */
@@ -35,8 +35,10 @@ class UserController extends Controller
     {
         $securityContext = $this->container->get('security.context');
         $router = $this->container->get('router');
-        if ($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('ROLE_SUPER_ADMIN') || $securityContext->isGranted('ROLE_PRODUCER')) {
+        if ($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('ROLE_SUPER_ADMIN')) {
             return new RedirectResponse($router->generate('dashboard'), 307);
+        }elseif ($securityContext->isGranted('ROLE_PRODUCER')){
+            return new RedirectResponse($router->generate('fos_user_profile_show', array('id' =>$user->getId())), 307);
         }
         $request->setMethod('PATCH');
         $form = $this->createForm(new UserType(), $user, ["method" => $request->getMethod()]);
@@ -178,6 +180,51 @@ class UserController extends Controller
             'form' => $form->createView(),
             'entity' => $user,
             'profile' => $profile,
+        ));
+    }
+
+    /**
+     * @param $request
+     * @param $user
+     * @Security("has_role('ROLE_PRODUCER')")
+     * @Route("/producer/edit/{id}", name="user_producer_edit")
+     * @return array
+     */
+    public function updateProducerAction(Request $request, User $user)
+    {
+        $securityContext = $this->container->get('security.context');
+        $router = $this->container->get('router');
+        if ($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('ROLE_SUPER_ADMIN')) {
+            return new RedirectResponse($router->generate('dashboard'), 307);
+        }elseif ($securityContext->isGranted('ROLE_INVESTIGATOR')){
+            return new RedirectResponse($router->generate('user_edit', array('id' =>$user->getId())), 307);
+        }
+
+        $request->setMethod('PATCH');
+        $form = $this->createForm(new UserType(), $user, ["method" => $request->getMethod()]);
+        $em = $this->getDoctrine()->getManager();
+
+        if ($form->handleRequest($request)->isValid())
+        {
+            $image = $form->get('image')->getData();
+            $user->setCompleteData(1);
+
+            if($image != NULL)
+            {
+                $user->setImageName($image);
+            }
+            $em->persist($user);
+            $em->flush();
+            $this->get('session')->migrate();
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('User has been succesfully updated!')
+            );
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+        return $this->render('FOSUserBundle:Profile/Producer:edit.html.twig', array(
+            'form' => $form->createView(),
+            'entity' => $user,
         ));
     }
 

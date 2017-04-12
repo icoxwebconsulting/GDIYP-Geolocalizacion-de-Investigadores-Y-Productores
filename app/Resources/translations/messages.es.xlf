@@ -706,6 +706,30 @@
                 <source>Theme of Study</source>
                 <target>Tema de Estudio</target>
             </trans-unit>
+            <trans-unit id="178">
+                <source>Agroecological Practice</source>
+                <target>Prácticas agroecológica</target>
+            </trans-unit>
+            <trans-unit id="179">
+                <source>Agroecological Practice Manager</source>
+                <target>Gestor de prácticas agroecológica</target>
+            </trans-unit>
+            <trans-unit id="180">
+                <source>Practice List</source>
+                <target>Lista de prácticas</target>
+            </trans-unit>
+            <trans-unit id="181">
+                <source>Add Practice</source>
+                <target>Agregar práctica</target>
+            </trans-unit>
+            <trans-unit id="182">
+                <source>Name Practice</source>
+                <target>Nombre de la práctica</target>
+            </trans-unit>
+            <trans-unit id="183">
+                <source>Organization Name</source>
+                <target>Nombre de la organización</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

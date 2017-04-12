@@ -3,15 +3,20 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use AppBundle\Entity\Traits\TimestampableTrait;
 
 /**
- * ProductorProfile
+ * AgroecologicalPractice
  *
- * @ORM\Table(name="productor_profile")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductorProfileRepository")
+ * @ORM\Table(name="agroecological_practice")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AgroecologicalPracticeRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
-class ProductorProfile
+class AgroecologicalPractice
 {
+    use TimestampableTrait;
+
     /**
      * @var int
      *
@@ -24,14 +29,21 @@ class ProductorProfile
     /**
      * @var string
      *
-     * @ORM\Column(name="organizationName", type="string", length=255)
+     * @ORM\Column(name="practice_name", type="string", length=255)
+     */
+    private $practiceName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="organization_name", type="string", length=255)
      */
     private $organizationName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="practiceMembers", type="text")
+     * @ORM\Column(name="practice_members", type="text")
      */
     private $practiceMembers;
 
@@ -45,9 +57,15 @@ class ProductorProfile
     /**
      * @var string
      *
-     * @ORM\Column(name="graphicInformation", type="text")
+     * @ORM\Column(name="graphic_information", type="text")
      */
     private $graphicInformation;
+
+    /**
+     * @var $reported
+     * @ORM\Column(name="reported", type="boolean")
+     */
+    protected $reported = 0;
     
     /**
      * @ORM\ManyToOne(targetEntity="GoogleMap", inversedBy="productor_profile", cascade={"all"})
@@ -82,7 +100,7 @@ class ProductorProfile
      *
      * @param string $organizationName
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setOrganizationName($organizationName)
     {
@@ -106,7 +124,7 @@ class ProductorProfile
      *
      * @param string $practiceMembers
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setPracticeMembers($practiceMembers)
     {
@@ -130,7 +148,7 @@ class ProductorProfile
      *
      * @param string $description
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setDescription($description)
     {
@@ -154,7 +172,7 @@ class ProductorProfile
      *
      * @param string $graphicInformation
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setGraphicInformation($graphicInformation)
     {
@@ -178,7 +196,7 @@ class ProductorProfile
      *
      * @param \AppBundle\Entity\GoogleMap $address
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setAddress(\AppBundle\Entity\GoogleMap $address = null)
     {
@@ -202,7 +220,7 @@ class ProductorProfile
      *
      * @param \AppBundle\Entity\ContactMean $contactMean
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setContactMean(\AppBundle\Entity\ContactMean $contactMean = null)
     {
@@ -226,7 +244,7 @@ class ProductorProfile
      *
      * @param \AppBundle\Entity\PracticeType $practiceType
      *
-     * @return ProductorProfile
+     * @return AgroecologicalPractice
      */
     public function setPracticeType(\AppBundle\Entity\PracticeType $practiceType = null)
     {
@@ -243,5 +261,29 @@ class ProductorProfile
     public function getPracticeType()
     {
         return $this->practice_type;
+    }
+
+    /**
+     * Set practiceName
+     *
+     * @param string $practiceName
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setPracticeName($practiceName)
+    {
+        $this->practiceName = $practiceName;
+
+        return $this;
+    }
+
+    /**
+     * Get practiceName
+     *
+     * @return string
+     */
+    public function getPracticeName()
+    {
+        return $this->practiceName;
     }
 }

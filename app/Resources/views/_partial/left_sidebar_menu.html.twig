@@ -43,6 +43,18 @@
         </ul>
     </li>
     {% endif %}
+    <li class="nav-item nav-dropdown">
+        <a href="#" class="nav-link nav-dropdown-toggle">{{ 'Agroecological Practice' | trans }}</a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item">
+                <a href="{{ path('agroecological_practice_list') }}" class="nav-link">{{ 'Practice List' | trans }}</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">{{ 'Add Practice' | trans }}</a>
+            </li>
+        </ul>
+    </li>
+
     {% if (app.user.completeData) or (is_granted('ROLE_ADMIN')) %}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-newspaper-o"></i> {{ 'News' | trans }}</a>
@@ -84,10 +96,14 @@
         </ul>
     </li>
     {% endif %}
-    {% if not is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_INVESTIGATOR') %}
     <li class="nav-item">
         <a class="nav-link" href="{{ path('user_edit', {'id': app.user.id}) }}"><i class="fa fa-pencil"></i> {{ 'Edit Profile' | trans }}</a>
     </li>
+    {% elseif is_granted('ROLE_PRODUCER') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('fos_user_profile_show') }}"><i class="fa fa-pencil"></i> {{ 'Edit Profile' | trans }}</a>
+        </li>
     {% endif %}
     <li class="nav-item">
         <a class="nav-link" href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off fa-lg"></i> {{ 'Logout' | trans }}</a>

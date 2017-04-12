@@ -84,7 +84,15 @@ class RegistrationController extends BaseController
         $user->setLastLogin(new \DateTime());
 
         $this->container->get('fos_user.user_manager')->updateUser($user);
-        $response = new RedirectResponse($this->container->get('router')->generate('user_edit', array('id' => $user->getId())));
+
+        $securityContext = $this->container->get('security.context');
+        $router = $this->container->get('router');
+        if ($securityContext->isGranted('ROLE_INVESTIGATOR')) {
+            $response = new RedirectResponse($this->container->get('router')->generate('user_edit', array('id' => $user->getId())));
+        }elseif ($securityContext->isGranted('ROLE_PRODUCER')){
+            $response = new RedirectResponse($this->container->get('router')->generate('agroecological_practice_edit', array('id' => $user->getId())));
+        }
+
         $this->authenticateUser($user, $response);
 
         return $response;
