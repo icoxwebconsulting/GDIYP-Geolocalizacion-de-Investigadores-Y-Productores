@@ -730,6 +730,42 @@
                 <source>Organization Name</source>
                 <target>Nombre de la organización</target>
             </trans-unit>
+            <trans-unit id="184">
+                <source>Agroecological Practice has been successfully added!</source>
+                <target>La práctica agroecológica ha sido agregada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="185">
+                <source>Practice Members</source>
+                <target>Integrantes de la práctica</target>
+            </trans-unit>
+            <trans-unit id="186">
+                <source>Member</source>
+                <target>Integrante</target>
+            </trans-unit>
+            <trans-unit id="187">
+                <source>Phone</source>
+                <target>Teléfono</target>
+            </trans-unit>
+            <trans-unit id="188">
+                <source>Cell Phone</source>
+                <target>Teléfono celular</target>
+            </trans-unit>
+            <trans-unit id="189">
+                <source>Website</source>
+                <target>Sitio web</target>
+            </trans-unit>
+            <trans-unit id="190">
+                <source>Comments</source>
+                <target>Comentarios</target>
+            </trans-unit>
+            <trans-unit id="191">
+                <source>Contact Means</source>
+                <target>Medios de contacto</target>
+            </trans-unit>
+            <trans-unit id="192">
+                <source>Practice Name</source>
+                <target>Nombre de la práctica</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

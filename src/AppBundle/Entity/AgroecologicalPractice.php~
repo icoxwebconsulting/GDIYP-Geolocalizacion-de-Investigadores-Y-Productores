@@ -86,6 +86,11 @@ class AgroecologicalPractice
     protected $practice_type;
 
     /**
+     * @ORM\Column(name="related_institutions", type="text")
+     */
+    private $relatedInstitutions;
+
+    /**
      * Get id
      *
      * @return int
@@ -285,5 +290,29 @@ class AgroecologicalPractice
     public function getPracticeName()
     {
         return $this->practiceName;
+    }
+
+    /**
+     * Set reported
+     *
+     * @param boolean $reported
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setReported($reported)
+    {
+        $this->reported = $reported;
+
+        return $this;
+    }
+
+    /**
+     * Get reported
+     *
+     * @return boolean
+     */
+    public function getReported()
+    {
+        return $this->reported;
     }
 }

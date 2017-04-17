@@ -86,6 +86,11 @@ class AgroecologicalPractice
     protected $practice_type;
 
     /**
+     * @ORM\Column(name="related_institutions", type="text")
+     */
+    private $relatedInstitutions;
+
+    /**
      * Get id
      *
      * @return int
@@ -309,5 +314,29 @@ class AgroecologicalPractice
     public function getReported()
     {
         return $this->reported;
+    }
+
+    /**
+     * Set relatedInstitutions
+     *
+     * @param string $relatedInstitutions
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setRelatedInstitutions($relatedInstitutions)
+    {
+        $this->relatedInstitutions = $relatedInstitutions;
+
+        return $this;
+    }
+
+    /**
+     * Get relatedInstitutions
+     *
+     * @return string
+     */
+    public function getRelatedInstitutions()
+    {
+        return $this->relatedInstitutions;
     }
 }
