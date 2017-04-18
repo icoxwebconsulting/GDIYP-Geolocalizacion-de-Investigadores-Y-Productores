@@ -766,6 +766,30 @@
                 <source>Practice Name</source>
                 <target>Nombre de la práctica</target>
             </trans-unit>
+            <trans-unit id="193">
+                <source>Type Practice</source>
+                <target>Tipo de práctica</target>
+            </trans-unit>
+            <trans-unit id="194">
+                <source>Productive Undertaking</source>
+                <target>Emprendimiento productivo</target>
+            </trans-unit>
+            <trans-unit id="195">
+                <source>Marketing Spaces</source>
+                <target>Espacios de comercialización</target>
+            </trans-unit>
+            <trans-unit id="196">
+                <source>Professional Services</source>
+                <target>Servicios profesionales</target>
+            </trans-unit>
+            <trans-unit id="197">
+                <source>Institutional Projects</source>
+                <target>Proyectos institucionales</target>
+            </trans-unit>
+            <trans-unit id="198">
+                <source>Promotion Group</source>
+                <target>Grupo de promoción</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -10,144 +10,161 @@
 
 {% block content %}
     {{ dump() }}
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <strong>{{ 'Agroecological Practice' | trans }}</strong>
-            </div>
-            {{ form_start(form, {'attr':{ 'class': 'form-horizontal', 'id': 'producer-form'}}) }}
-            <div class="card-block">
-                <div class="form-group row" style="margin-top: 0">
-                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Practice Name' | trans }}</label>
-                    <div class="col-md-9">
-                        {{ form_widget(form.practiceName, { 'attr': { 'class': 'form-control'}}) }}
-                    </div>
-                    {{ form_errors(form.practiceName) }}
+    {{ form_start(form, {'attr':{ 'class': 'form-horizontal', 'id': 'producer-form'}}) }}
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>{{ 'Agroecological Practice' | trans }}</strong>
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Organization Name' | trans }}</label>
-                    <div class="col-md-9">
-                        {{ form_widget(form.organizationName, { 'attr': { 'class': 'form-control'}}) }}
+                <div class="card-block">
+                    <div class="form-group row" style="margin-top: 0">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Type Practice' | trans }}</label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="data[type_practice]" id="type_practice">
+                                <option value="">{{ 'Select' | trans }}</option>
+                                <option value="productive_undertaking">{{ 'Productive Undertaking' | trans }}</option>
+                                <option value="marketing_spaces">{{ 'Marketing Spaces' | trans }}</option>
+                                <option value="professional_services">{{ 'Professional Services' | trans }}</option>
+                                <option value="institutional_projects">{{ 'Institutional Projects' | trans }}</option>
+                                <option value="promotion_group">{{ 'Promotion Group' | trans }}</option>
+                            </select>
+                        </div>
                     </div>
-                    {{ form_errors(form.organizationName) }}
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="data[member][0]">{{ 'Practice Members' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="data[member][0]" id="data[member][0]" />
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Practice Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.practiceName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.practiceName) }}
                     </div>
-                </div>
-                <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}</button>
-                <div class="form-group row" style="margin-top: 30px">
-                    <label class="col-md-3 form-control-label" for="descripion">{{ 'Description' | trans }}</label>
-                    <div class="col-md-9">
-                        {{ form_widget(form.description, { 'attr': { 'class': 'form-control'}}) }}
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Organization Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.organizationName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.organizationName) }}
                     </div>
-                    {{ form_errors(form.description) }}
-                </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[member][0]">{{ 'Practice Members' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="data[member][0]" id="data[member][0]" />
+                        </div>
+                    </div>
+                    <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}</button>
+                    <div class="form-group row" style="margin-top: 30px">
+                        <label class="col-md-3 form-control-label" for="descripion">{{ 'Description' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.description, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.description) }}
+                    </div>
 
-                <div class="form-group" style="margin-top: 30px">
-                    <div class="col-md-12">
-                        <label class="col-md-3 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
-                        <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
+                    <div class="form-group" style="margin-top: 30px">
+                        <div class="col-md-12">
+                            <label class="col-md-3 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
+                            <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
+                        </div>
+                        <div class="col-md-9">
+                            <input id="search-address" type="text" name="address" class="form-control controls" placeholder="{{ 'Search address' | trans }}" required>
+                        </div>
+                        <input id="lat" type="hidden" name="latitude"><br>
+                        <input id="lng" type="hidden" name="longitude">
                     </div>
-                    <div class="col-md-9">
-                        <input id="search-address" type="text" name="address" class="form-control controls" placeholder="{{ 'Search address' | trans }}" required>
+                    <div class="form-group row" style="margin-bottom: 0rem;">
+                        <div class="col-md-12">
+                            <div id="map-canvas"></div>
+                        </div>
                     </div>
-                    <input id="lat" type="hidden" name="latitude"><br>
-                    <input id="lng" type="hidden" name="longitude">
-                </div>
-                <div class="form-group row" style="margin-bottom: 0rem;">
-                    <div class="col-md-12">
-                        <div id="map-canvas"></div>
+                    <div class="form-group row">
+                        <label class="col-md-6 form-control-label" for="graphicInformation">{{ 'Graphic Information' | trans }}</label>
+                        <div class="col-md-12">
+                            {{ form_widget(form.graphicInformation) }}
+                        </div>
+                        {{ form_errors(form.graphicInformation) }}
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-6 form-control-label" for="graphicInformation">{{ 'Graphic Information' | trans }}</label>
-                    <div class="col-md-12">
-                        {{ form_widget(form.graphicInformation) }}
+                    <h4>{{ 'Contact Means' | trans }}</h4>
+                    <div class="form-group row">
+                        <label for="first-name" class="col-md-3 form-control-label">{{ 'First Name' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[first_name]">
+                        </div>
                     </div>
-                    {{ form_errors(form.graphicInformation) }}
-                </div>
-                <h4>{{ 'Contact Means' | trans }}</h4>
-                <div class="form-group row">
-                    <label for="first-name" class="col-md-3 form-control-label">{{ 'First Name' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[first_name]">
+                    <div class="form-group row">
+                        <label for="last-name" class="col-md-3 form-control-label">{{ 'Last Name' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[last_name]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="last-name" class="col-md-3 form-control-label">{{ 'Last Name' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[last_name]">
+                    <div class="form-group row">
+                        <label for="phone" class="col-md-3 form-control-label">{{ 'Phone' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[phone]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="phone" class="col-md-3 form-control-label">{{ 'Phone' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[phone]">
+                    <div class="form-group row">
+                        <label for="cell-phone" class="col-md-3 form-control-label">{{ 'Cell Phone' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[cell_phone]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="cell-phone" class="col-md-3 form-control-label">{{ 'Cell Phone' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[cell_phone]">
+                    <div class="form-group row">
+                        <label for="email" class="col-md-3 form-control-label">{{ 'Email' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="email" name="contact_mean[email]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-md-3 form-control-label">{{ 'Email' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="email" name="contact_mean[email]">
+                    <div class="form-group row">
+                        <label for="facebook" class="col-md-3 form-control-label">Facebook</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[facebook]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="facebook" class="col-md-3 form-control-label">Facebook</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[facebook]">
+                    <div class="form-group row">
+                        <label for="contact-means" class="col-md-3 form-control-label">{{ 'Website' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[website]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="contact-means" class="col-md-3 form-control-label">{{ 'Website' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[website]">
+                    <div class="form-group row">
+                        <label for="contact-means" class="col-md-3 form-control-label">{{ 'Comments' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="contact_mean[comments]">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="contact-means" class="col-md-3 form-control-label">{{ 'Comments' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="contact_mean[comments]">
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" />
-                    </div>
-                </div>
-                <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
+                    <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
 
-                    <div class="col-md-9">
-                        {% for new in news %}
-                        <ul>
-                            <li>
-                                <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
-                                <label for="">{{ new.title }}</label>
-                            </li>
-                        </ul>
-                        {% endfor %}
+                        <div class="col-md-9">
+                            {% for new in news %}
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
+                                    <label for="">{{ new.title }}</label>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-                {{ form_widget(form._token) }}
+                <div class="card-footer">
+                    <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
+                </div>
             </div>
-            <div class="card-footer">
-                <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
-            </div>
-            </form>
         </div>
-    </div>
+        {% include ':agroindustrial_practice/type:productive_undertaking.html.twig' %}
+        {% include ':agroindustrial_practice/type:marketing_spaces.html.twig' %}
+        {% include ':agroindustrial_practice/type:professional_services.html.twig' %}
+        {% include ':agroindustrial_practice/type:institutional_projects.html.twig' %}
+        {% include ':agroindustrial_practice/type:promotion_group.html.twig' %}
+    {{ form_end(form) }}
 {% endblock %}
 
 {% block extra_css %}
@@ -206,7 +223,11 @@
         $(function() {
             $('#appbundle_agroecologialpractice_graphicInformation').froalaEditor({
                 height: 300
-            })
+            });
+            $('#type_practice').change(function(){
+                $('.type').hide();
+                $('#' + $(this).val()).show();
+            });
         });
     </script>
 
