@@ -4,7 +4,54 @@
             {{ 'Productive Undertaking' | trans }}
         </div>
         <div class="card-block">
-            content
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">{{ 'Product Destination' | trans }}</label>
+                    <div class="col-md-9">
+                        <select name="{{ form.children.productive_undertaking.productionDestination.vars.full_name }}" class="form-control">
+                            {% for key,val in form.productive_undertaking.productionDestination.vars.choices %}
+                                {% if val.value != 0 %}
+                                    <option value="{{ val.value }}" {{  form.productive_undertaking.productionDestination.vars.value == '' and key == 0 ? ' selected ' :(val.value == form.productive_undertaking.productionDestination.vars.value ? ' selected ' : '') }}>{{ val.label }}</option>
+                                {%  endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {{ form_errors(form.productive_undertaking.productionDestination) }}
+                </div>            
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Where they sell?' | trans }}</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="productive_undertaking[where_they_sell]" id="where_they_sell">
+                            <option value="">{{ 'Select' | trans }}</option>
+                            <option value="by_order">{{ 'Door to door by order' | trans }}</option>
+                            <option value="fairs">{{ 'Fairs' | trans }}</option>
+                            <option value="markets">{{ 'Markets' | trans }}</option>
+                        </select>
+                    </div>
+                </div>            
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Productive Surface' | trans }}</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="productive_undertaking[productive_surface]" id="productive_surface">
+                            <option value="">{{ 'Select' | trans }}</option>
+                            <option value="drapery_runners">{{ 'Drapery Runners' | trans }}</option>
+                            <option value="curtains">{{ 'Curtains' | trans }}</option>
+                            <option value="bordures">{{ 'Bordures' | trans }}</option>
+                        </select>
+                    </div>
+                </div>                        
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="peopleInvolved">{{ 'People Involved' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.peopleInvolved) }}
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="comment">{{ 'Comments' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.comment) }}
+                    </div>
+                    {{ form_errors(form.productive_undertaking.comment) }}
+                </div>
         </div>
     </div>
 </div>

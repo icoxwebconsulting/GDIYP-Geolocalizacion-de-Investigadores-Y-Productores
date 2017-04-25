@@ -4,25 +4,30 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Entity\Category;
+use AppBundle\Entity\ProductiveUndertaking;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class CategoryType extends AbstractType
+class ProductiveUndertakingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add(
-                'name',
+                'peopleInvolved',
                 TextType::class
             )
             ->add(
-                'parent',
+                'comment',
+                TextareaType::class
+            )
+            ->add(
+                'productionDestination',
                 EntityType::class,
                 array(
-                    'class' => 'AppBundle:Category',
+                    'class' => 'AppBundle:ProductionDestinationType',
                     'choice_label' => 'name',
                     'attr' => array(
                         "class" => "form-control"
@@ -37,15 +42,15 @@ class CategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Category'
+            'data_class' => 'AppBundle\Entity\ProductiveUndertaking'
         ));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getName()
     {
-        return 'appbundle_category';
+        return 'productive_undertaking';
     }
 }

@@ -6,7 +6,7 @@ use AppBundle\Entity\AgroecologicalPractice;
 use AppBundle\Entity\AgroecologicalPracticeNews;
 use AppBundle\Entity\ContactMean;
 use AppBundle\Entity\GoogleMap;
-use AppBundle\Entity\PracticeType;
+use AppBundle\Entity\ProductiveUndertaking;
 use AppBundle\Form\AgroecologicalPracticeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -71,10 +71,18 @@ class AgroecologicalPracticeController extends Controller
             $contact->setFacebook($_POST['contact_mean']['facebook']);
             $contact->setWebsite($_POST['contact_mean']['website']);
             $contact->setComment($_POST['contact_mean']['comments']);
+            
+            $productiveUndertaking = new ProductiveUndertaking();
+            $productiveUndertaking->setType($this->getProductionDestination());
+            $productiveUndertaking->setProductionDestination($_POST['appbundle_agroecologialpractice']['productive_undertaking']['productionDestination']);
+            $productiveUndertaking->setWhereTheySucell($_POST['productive_undertaking']['where_they_sell']);
+            $productiveUndertaking->setProductiveSurface($_POST['productive_undertaking']['productive_surface']);
+            $productiveUndertaking->setPeopleInvolved($_POST['appbundle_agroecologialpractice']['productive_undertaking']['peopleInvolved']);
+            $productiveUndertaking->setComment($_POST['appbundle_agroecologialpractice']['productive_undertaking']['comment']);
 
-            $practiceType = new PracticeType();
-            $practiceType->setUser($this->getUser());
-
+            //$practiceType = new PracticeType();
+            //$practiceType->setUser($this->getUser());
+            
             foreach($_POST['data']['related_news'] as $obj)
             {
                 $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
@@ -84,15 +92,17 @@ class AgroecologicalPracticeController extends Controller
                 $em->persist($agroecologicalPracticeNews);
             }
 
-            $practice->setPracticeType($practiceType);
+            //$practice->setPracticeType($practiceType);
             $practice->setPracticeMembers($serialized_members);
             $practice->setAddress($googleMap);
             $practice->setContactMean($contact);
             $practice->setRelatedInstitutions($serialized_institutions);
+            $practice->setUser($this->getUser());
 
             $em->persist($googleMap);
             $em->persist($contact);
-            $em->persist($practiceType);
+            //$em->persist($practiceType);
+            $em->persist($productiveUndertaking);
             $em->persist($practice);
             $em->flush();
 
