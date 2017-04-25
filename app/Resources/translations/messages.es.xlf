@@ -428,7 +428,7 @@
             </trans-unit>
             <trans-unit id="108">
                 <source>Forgot Password</source>
-                <target>Olvide mi contraseña</target>
+                <target>Olvidé mi contraseña</target>
             </trans-unit>
             <trans-unit id="109">
                 <source>Now</source>
@@ -789,6 +789,46 @@
             <trans-unit id="198">
                 <source>Promotion Group</source>
                 <target>Grupo de promoción</target>
+            </trans-unit>
+            <trans-unit id="199">
+                <source>Productive Surface</source>
+                <target>Superficie Productiva</target>
+            </trans-unit>
+            <trans-unit id="200">
+                <source>Bordures</source>
+                <target>Borduras</target>
+            </trans-unit>
+            <trans-unit id="201">
+                <source>Drapery Runners</source>
+                <target>Corredores</target>
+            </trans-unit>
+            <trans-unit id="202">
+                <source>Curtains</source>
+                <target>Cortinas</target>
+            </trans-unit>
+            <trans-unit id="203">
+                <source>People Involved</source>
+                <target>Cant. Per. Involucradas</target>
+            </trans-unit>
+            <trans-unit id="204">
+                <source>Where they sell?</source>
+                <target>Donde venden?</target>
+            </trans-unit>
+            <trans-unit id="205">
+                <source>Door to door by order</source>
+                <target>Domiciliario según pedido</target>
+            </trans-unit>
+            <trans-unit id="206">
+                <source>Fairs</source>
+                <target>Ferias</target>
+            </trans-unit>
+            <trans-unit id="207">
+                <source>Markets</source>
+                <target>Mercados</target>
+            </trans-unit>
+            <trans-unit id="208">
+                <source>Product Destination</source>
+                <target>Destino de la Producción</target>
             </trans-unit>
         </body>
     </file>
