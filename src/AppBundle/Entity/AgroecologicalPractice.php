@@ -5,6 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use AppBundle\Entity\ProductiveUndertaking;
 
 /**
  * AgroecologicalPractice
@@ -12,6 +15,8 @@ use AppBundle\Entity\Traits\TimestampableTrait;
  * @ORM\Table(name="agroecological_practice")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgroecologicalPracticeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
+ * 
+ *
  */
 class AgroecologicalPractice
 {
@@ -80,16 +85,47 @@ class AgroecologicalPractice
     protected $contact_mean;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PracticeType", inversedBy="productor_profile", cascade={"all"})
-     * @ORM\JoinColumn(name="practice_type", referencedColumnName="id")
-     */
-    protected $practice_type;
-
-    /**
      * @ORM\Column(name="related_institutions", type="text")
      */
     private $relatedInstitutions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductiveUndertaking", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="productive_undertaking", referencedColumnName="id")
+     */
+    protected $productive_undertaking;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProfessionalServices", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="professional_services", referencedColumnName="id")
+     */
+    protected $professional_services;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MarketingSpaces", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="marketing_spaces", referencedColumnName="id")
+     */
+    protected $marketing_spaces;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="InstitutionalProject", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="institutional_project", referencedColumnName="id")
+     */
+    protected $institutional_project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PromotionGroup", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="promotion_group", referencedColumnName="id")
+     */
+    protected $promotion_group;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     */
+    protected $user;
+    
+    
     /**
      * Get id
      *
@@ -99,7 +135,7 @@ class AgroecologicalPractice
     {
         return $this->id;
     }
-
+    
     /**
      * Set organizationName
      *
@@ -245,30 +281,6 @@ class AgroecologicalPractice
     }
 
     /**
-     * Set practiceType
-     *
-     * @param \AppBundle\Entity\PracticeType $practiceType
-     *
-     * @return AgroecologicalPractice
-     */
-    public function setPracticeType(\AppBundle\Entity\PracticeType $practiceType = null)
-    {
-        $this->practice_type = $practiceType;
-
-        return $this;
-    }
-
-    /**
-     * Get practiceType
-     *
-     * @return \AppBundle\Entity\PracticeType
-     */
-    public function getPracticeType()
-    {
-        return $this->practice_type;
-    }
-
-    /**
      * Set practiceName
      *
      * @param string $practiceName
@@ -339,4 +351,148 @@ class AgroecologicalPractice
     {
         return $this->relatedInstitutions;
     }
+    
+    /**
+     * Set productiveUndertaking
+     *
+     * @param \AppBundle\Entity\ProductiveUndertaking $productiveUndertaking
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setProductiveUndertaking(\AppBundle\Entity\ProductiveUndertaking $productiveUndertaking = null)
+    {
+        $this->productive_undertaking = $productiveUndertaking;
+
+        return $this;
+    }
+
+    /**
+     * Get productiveUndertaking
+     *
+     * @return \AppBundle\Entity\ProductiveUndertaking
+     */
+    public function getProductiveUndertaking()
+    {
+        return $this->productive_undertaking;
+    }
+
+    /**
+     * Set professionalServices
+     *
+     * @param \AppBundle\Entity\ProfessionalServices $professionalServices
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setProfessionalServices(\AppBundle\Entity\ProfessionalServices $professionalServices = null)
+    {
+        $this->professional_services = $professionalServices;
+
+        return $this;
+    }
+
+    /**
+     * Get professionalServices
+     *
+     * @return \AppBundle\Entity\ProfessionalServices
+     */
+    public function getProfessionalServices()
+    {
+        return $this->professional_services;
+    }
+
+    /**
+     * Set marketingSpaces
+     *
+     * @param \AppBundle\Entity\MarketingSpaces $marketingSpaces
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setMarketingSpaces(\AppBundle\Entity\MarketingSpaces $marketingSpaces = null)
+    {
+        $this->marketing_spaces = $marketingSpaces;
+
+        return $this;
+    }
+
+    /**
+     * Get marketingSpaces
+     *
+     * @return \AppBundle\Entity\MarketingSpaces
+     */
+    public function getMarketingSpaces()
+    {
+        return $this->marketing_spaces;
+    }
+
+    /**
+     * Set institutionalProject
+     *
+     * @param \AppBundle\Entity\InstitutionalProject $institutionalProject
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setInstitutionalProject(\AppBundle\Entity\InstitutionalProject $institutionalProject = null)
+    {
+        $this->institutional_project = $institutionalProject;
+
+        return $this;
+    }
+
+    /**
+     * Get institutionalProject
+     *
+     * @return \AppBundle\Entity\InstitutionalProject
+     */
+    public function getInstitutionalProject()
+    {
+        return $this->institutional_project;
+    }
+
+    /**
+     * Set promotionGroup
+     *
+     * @param \AppBundle\Entity\PromotionGroup $promotionGroup
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setPromotionGroup(\AppBundle\Entity\PromotionGroup $promotionGroup = null)
+    {
+        $this->promotion_group = $promotionGroup;
+
+        return $this;
+    }
+
+    /**
+     * Get promotionGroup
+     *
+     * @return \AppBundle\Entity\PromotionGroup
+     */
+    public function getPromotionGroup()
+    {
+        return $this->promotion_group;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }    
 }

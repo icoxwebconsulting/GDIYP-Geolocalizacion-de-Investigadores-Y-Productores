@@ -31,9 +31,9 @@ class ProductionCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="production_destination", type="string", length=255)
+     * //@ORM\Column(name="production_destination", type="string", length=255)
      */
-    private $productionDestination;
+    /* private $productionDestination; */
 
 
     /**
@@ -77,20 +77,20 @@ class ProductionCategory
      *
      * @return ProductionCategory
      */
-    public function setProductionDestination($productionDestination)
+    /*public function setProductionDestination($productionDestination)
     {
         $this->productionDestination = $productionDestination;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get productionDestination
      *
      * @return string
      */
-    public function getProductionDestination()
+    /*public function getProductionDestination()
     {
         return $this->productionDestination;
-    }
+    }*/
 }

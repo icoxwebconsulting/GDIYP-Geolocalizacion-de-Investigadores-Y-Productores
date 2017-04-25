@@ -54,6 +54,11 @@ class ProductiveUndertaking
      */
     protected $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductionDestinationType", inversedBy="productive_undertaking", cascade={"all"})
+     * @ORM\JoinColumn(name="productionDestination", referencedColumnName="id")
+     */
+    protected $productionDestination;
 
     /**
      * Get id
@@ -184,4 +189,29 @@ class ProductiveUndertaking
     {
         return $this->type;
     }
+
+    /**
+     * Set productionDestination
+     *
+     * @param \AppBundle\Entity\ProductionDestinationType $productionDestination
+     *
+     * @return ProductiveUndertaking
+     */
+    public function setProductionDestination(\AppBundle\Entity\ProductionDestinationType $productionDestination = null)
+    {
+        $this->productionDestination = $productionDestination;
+
+        return $this;
+    }
+
+    /**
+     * Get productionDestination
+     *
+     * @return \AppBundle\Entity\ProductionDestinationType
+     */
+    public function getProductionDestination()
+    {
+        return $this->productionDestination;
+    }
+    
 }
