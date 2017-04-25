@@ -37,9 +37,9 @@
                             <td>{{ entity.organizationName }}</td>
                             <td>{{ entity.description | truncate(10) }}</td>
                             <td>
-                                {% if entity.practiceType %}
+                                {#% if entity.practiceType %}
                                     {{ entity.practiceType.id }}
-                                {% endif %}
+                                {% endif %#}
                             </td>
                             <td>
                                 {% if entity.reported == 0 %}
