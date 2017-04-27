@@ -10,12 +10,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use AppBundle\Entity\AgroecologicalPractice;
 use AppBundle\Entity\ProductiveUndertaking;
+use AppBundle\Entity\MarketingSpaces;
+use AppBundle\Entity\ProfessionalServices;
+use AppBundle\Entity\InstitutionalProject;
+use AppBundle\Entity\PromotionGroup;
 
 class AgroecologicalPracticeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('productive_undertaking', new ProductiveUndertakingType());
+        $builder->add('marketing_spaces', new MarketingSpacesType());
+        $builder->add('professional_services', new ProfessionalServicesType());
+        $builder->add('institutional_project', new InstitutionalProjectsType()); 
+        $builder->add('promotion_group', new PromotionGroupType()); 
         $builder
             ->add(
                 'practiceName',

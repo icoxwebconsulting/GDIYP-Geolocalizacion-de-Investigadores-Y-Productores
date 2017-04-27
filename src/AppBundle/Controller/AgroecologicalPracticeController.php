@@ -7,6 +7,12 @@ use AppBundle\Entity\AgroecologicalPracticeNews;
 use AppBundle\Entity\ContactMean;
 use AppBundle\Entity\GoogleMap;
 use AppBundle\Entity\ProductiveUndertaking;
+use AppBundle\Entity\MarketingSpaces;
+use AppBundle\Entity\ProfessionalServices;
+use AppBundle\Entity\InstitutionalProject;
+use AppBundle\Entity\ProductionType;
+use AppBundle\Entity\ProductionDestinationType;
+use AppBundle\Entity\PromotionGroup;
 use AppBundle\Form\AgroecologicalPracticeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -73,10 +79,12 @@ class AgroecologicalPracticeController extends Controller
             $contact->setComment($_POST['contact_mean']['comments']);
             
             $productiveUndertaking = new ProductiveUndertaking();
-            $productiveUndertaking->setType($this->getProductionDestination());
-            $productiveUndertaking->setProductionDestination($_POST['appbundle_agroecologialpractice']['productive_undertaking']['productionDestination']);
-            $productiveUndertaking->setWhereTheySucell($_POST['productive_undertaking']['where_they_sell']);
-            $productiveUndertaking->setProductiveSurface($_POST['productive_undertaking']['productive_surface']);
+            $productionType = new ProductionType();
+            $productiveUndertaking->setType($productionType->getId());
+            $productionDestinationType = new ProductionDestinationType();
+            $productiveUndertaking->setProductionDestination($productionDestinationType->getId());
+            $productiveUndertaking->setWhereTheySell($_POST['appbundle_agroecologialpractice']['productive_undertaking']['where_they_sell']);
+            $productiveUndertaking->setProductiveSurface($_POST['appbundle_agroecologialpractice']['productive_undertaking']['productive_surface']);
             $productiveUndertaking->setPeopleInvolved($_POST['appbundle_agroecologialpractice']['productive_undertaking']['peopleInvolved']);
             $productiveUndertaking->setComment($_POST['appbundle_agroecologialpractice']['productive_undertaking']['comment']);
 

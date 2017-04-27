@@ -341,6 +341,9 @@
                 var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
                 $("#producer-form").find("#add-institution").before(html);
             });
+            $('#production_category').change(function(){
+                loadProductionType();
+            });
         });
 
         $(document).on("click", ".remove-member",function(e){
@@ -359,6 +362,41 @@
                 $(this).html("Institución");
             });
         });
+            
+        function loadProductionCategory(){
+            $.ajax({
+                type: "GET",
+                url: "{{ path('production_category_list') }}"
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#production_category').append(newOption);
+                }
+                loadProductionType();
+            });
+        }
+
+        function loadProductionType(){
+            $('#production_type').children().remove()
+            var production_category = $('#production_category').find(':selected').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ path('homepage')}}production_type/"+production_category
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#production_type').append(newOption)
+                }
+            });
+        }
+        
+        loadProductionCategory();
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
     {% endblock %}
