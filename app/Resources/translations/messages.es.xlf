@@ -808,7 +808,7 @@
             </trans-unit>
             <trans-unit id="203">
                 <source>People Involved</source>
-                <target>Cant. Per. Involucradas</target>
+                <target>Cant. Personas Involucradas</target>
             </trans-unit>
             <trans-unit id="204">
                 <source>Where they sell?</source>
@@ -829,6 +829,150 @@
             <trans-unit id="208">
                 <source>Product Destination</source>
                 <target>Destino de la Producción</target>
+            </trans-unit>
+            <trans-unit id="209">
+                <source>Production Category</source>
+                <target>Categoría de la Producción</target>
+            </trans-unit>
+            <trans-unit id="210">
+                <source>Production Type</source>
+                <target>Tipo de Producción</target>
+            </trans-unit>  
+             <trans-unit id="211">
+                <source>Market where Sold</source>
+                <target>Mercado donde se Comercializa</target>
+            </trans-unit>                               
+             <trans-unit id="212">
+                <source>Wholesale Market</source>
+                <target>Mercado Mayorista</target>
+            </trans-unit>
+             <trans-unit id="213">
+                <source>Retail Market</source>
+                <target>Mercado Minorista</target>
+            </trans-unit>
+             <trans-unit id="214">
+                <source>Marketing space type</source>
+                <target>Tipo de espacio de comercialización</target>
+            </trans-unit>            
+             <trans-unit id="215">
+                <source>Productor Fairs</source>
+                <target>Feria de Productores</target>
+            </trans-unit>            
+             <trans-unit id="216">
+                <source>Delivery</source>
+                <target>Reparto a Domicilio</target>
+            </trans-unit>            
+             <trans-unit id="217">
+                <source>Home Delivery</source>
+                <target>En Domicilio</target>
+            </trans-unit>            
+             <trans-unit id="218">
+                <source>Online Sale</source>
+                <target>Venta en Línea</target>
+            </trans-unit>            
+             <trans-unit id="219">
+                <source>Other</source>
+                <target>Otro</target>
+            </trans-unit>
+             <trans-unit id="220">
+                <source>Daily</source>
+                <target>Diaria</target>
+            </trans-unit>            
+             <trans-unit id="221">
+                <source>Weekly</source>
+                <target>Semanal</target>
+            </trans-unit>            
+             <trans-unit id="222">
+                <source>Fortnightly</source>
+                <target>Quincenal</target>
+            </trans-unit>            
+             <trans-unit id="223">
+                <source>Monthly</source>
+                <target>Mensual</target>
+            </trans-unit>            
+             <trans-unit id="224">
+                <source>Six-Monthly</source>
+                <target>Semestral</target>
+            </trans-unit>        
+             <trans-unit id="225">
+                <source>Yearly</source>
+                <target>Anual</target>
+            </trans-unit>                                     
+             <trans-unit id="226">
+                <source>Advisory</source>
+                <target>Asesoramiento</target>
+            </trans-unit>            
+             <trans-unit id="227">
+                <source>Training</source>
+                <target>Capacitación</target>
+            </trans-unit>        
+             <trans-unit id="228">
+                <source>Purchase and Marketing</source>
+                <target>Compra y Comercialización</target>
+            </trans-unit>                 
+             <trans-unit id="229">
+                <source>Supplies and Machinery Sales</source>
+                <target>Venta de Insumos y Maquinarias</target>
+            </trans-unit> 
+             <trans-unit id="230">
+                <source>Periodicity</source>
+                <target>Periodicidad</target>
+            </trans-unit>                                    
+             <trans-unit id="231">
+                <source>Public Policy</source>
+                <target>Política Pública</target>
+            </trans-unit>                 
+             <trans-unit id="232">
+                <source>State Financing</source>
+                <target>Financiamiento Estatal</target>
+            </trans-unit> 
+             <trans-unit id="233">
+                <source>Private Financing</source>
+                <target>Financiamiento Privado</target>
+            </trans-unit> 
+             <trans-unit id="234">
+                <source>Population</source>
+                <target>Población para la que trabaja</target>
+            </trans-unit>       
+             <trans-unit id="235">
+                <source>Duration</source>
+                <target>Duración</target>
+            </trans-unit> 
+             <trans-unit id="236">
+                <source>Articulations</source>
+                <target>Articulaciones</target>
+            </trans-unit>
+             <trans-unit id="237">
+                <source>Guild / Syndicate</source>
+                <target>Gremio / Sindicato</target>
+            </trans-unit>                 
+             <trans-unit id="238">
+                <source>Political Social Organization</source>
+                <target>Organización Político-Social</target>
+            </trans-unit> 
+             <trans-unit id="239">
+                <source>Study Groups</source>
+                <target>Grupos de Estudio</target>
+            </trans-unit> 
+             <trans-unit id="240">
+                <source>Professional Intervention Group</source>
+                <target>Grupo de Intervención Social</target>
+            </trans-unit>       
+             <trans-unit id="241">
+                <source>Nongovernmental Organization</source>
+                <target>Organización No Gubernamental</target>
+            </trans-unit> 
+             <trans-unit id="242">
+                <source>Corporate Group</source>
+                <target>Grupo Corporativo</target>
+            </trans-unit>                 
+             <trans-unit id="243">
+                <source>Marketers / Productors Group</source>
+                <target>Grupo de Productores / Comercializadores</target>
+            </trans-unit>          
+             <trans-unit id="244">
+                <source>Modality</source>
+                <target>Modalidad</target>
             </trans-unit>
         </body>
     </file>
