@@ -25,7 +25,7 @@ class ProductiveUndertakingType extends AbstractType
             )
             ->add(
                 'productionDestination',
-                EntityType::class,
+                'entity',
                 array(
                     'class' => 'AppBundle:ProductionDestinationType',
                     'choice_label' => 'name',
