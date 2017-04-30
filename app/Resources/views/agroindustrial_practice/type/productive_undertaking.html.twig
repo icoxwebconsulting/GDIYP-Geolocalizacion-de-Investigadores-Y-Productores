@@ -7,44 +7,33 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="productionCategory">{{ 'Production Category' | trans }}</label>
                     <div class="col-md-9">
-                        <select class="form-control" name="productive_undertaking[production_category]" id="production_category">
-                        </select>
+                        {{ form_widget(form.productive_undertaking.category, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                 </div>   
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="productionType">{{ 'Production Type' | trans }}</label>
                     <div class="col-md-9">
-                        <select class="form-control" name="appbundle_agroecologialpractice[productive_undertaking][production_type]" id="production_type">
-                        </select>
+                        {{ form_widget(form.productive_undertaking.type, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                 </div>                  
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="productionDestination">{{ 'Product Destination' | trans }}</label>
                     <div class="col-md-9">
-                        {{ form_widget(form.productive_undertaking.productionDestination, { 'attr': { 'class': 'form-control'}}) }}                    
+                        {{ form_widget(form.productive_undertaking.productionDestination, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                     {{ form_errors(form.productive_undertaking.productionDestination) }}
                 </div>            
                 <div class="form-group row" style="margin-top: 0">
-                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Where they sell?' | trans }}</label>
+                    <label class="col-md-3 form-control-label">{{ 'Where they sell?' | trans }}</label>
                     <div class="col-md-9">
-                        <select class="form-control" name="appbundle_agroecologialpractice[productive_undertaking][where_they_sell]" id="where_they_sell">
-                            <option value="">{{ 'Select' | trans }}</option>
-                            <option value="by_order">{{ 'Door to door by order' | trans }}</option>
-                            <option value="fairs">{{ 'Fairs' | trans }}</option>
-                            <option value="markets">{{ 'Markets' | trans }}</option>
-                        </select>
+                        {{ form_widget(form.productive_undertaking.whereTheySell, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
+                    {{ form_errors(form.productive_undertaking.whereTheySell) }}
                 </div>            
                 <div class="form-group row" style="margin-top: 0">
-                    <label class="col-md-3 form-control-label" for="first-name">{{ 'Productive Surface' | trans }}</label>
+                    <label class="col-md-3 form-control-label">{{ 'Productive Surface' | trans }}</label>
                     <div class="col-md-9">
-                        <select class="form-control" name="productive_undertaking[productive_surface]" id="productive_surface">
-                            <option value="">{{ 'Select' | trans }}</option>
-                            <option value="drapery_runners">{{ 'Drapery Runners' | trans }}</option>
-                            <option value="curtains">{{ 'Curtains' | trans }}</option>
-                            <option value="bordures">{{ 'Bordures' | trans }}</option>
-                        </select>
+                        {{ form_widget(form.productive_undertaking.productiveSurface, { 'attr': { 'class': 'form-control'}}) }}
                     </div>
                 </div>                        
                 <div class="form-group row" style="margin-top: 0">

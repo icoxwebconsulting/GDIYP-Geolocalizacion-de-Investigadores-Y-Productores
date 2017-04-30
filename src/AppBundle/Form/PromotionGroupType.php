@@ -29,20 +29,27 @@ class PromotionGroupType extends AbstractType
                         
                     ),
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => false
                 )
             )
             ->add(
                 'modality',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'articulations',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'comment',
-                TextareaType::class
+                TextareaType::class, array(
+                    'required' => false
+                )
             );
     }
 
@@ -59,7 +66,7 @@ class PromotionGroupType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'promotion_group';
     }

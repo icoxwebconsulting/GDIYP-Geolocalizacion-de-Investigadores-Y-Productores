@@ -22,7 +22,8 @@ class MarketingSpacesType extends AbstractType
                         'retail_market' => 'Retail Market',
                         ),
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => false
                 )
             )
             ->add('type', 'choice', array(
@@ -34,7 +35,8 @@ class MarketingSpacesType extends AbstractType
                         'other' => 'Other',
                         ),
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => false
                 )
             )
             ->add('periodicity', 'choice', array(
@@ -48,16 +50,21 @@ class MarketingSpacesType extends AbstractType
                         'other' => 'Other',
                         ),
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => false
                 )
             )
             ->add(
                 'peopleInvolved',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'comment',
-                TextareaType::class
+                TextareaType::class, array(
+                    'required' => false
+                )
             );
     }
 
@@ -74,7 +81,7 @@ class MarketingSpacesType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'marketing_spaces';
     }

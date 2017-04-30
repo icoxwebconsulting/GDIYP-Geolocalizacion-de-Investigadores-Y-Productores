@@ -22,39 +22,39 @@ class InstitutionalProject
     private $id;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="array", length=255, nullable=true)
      */
-    private $type;
+    private $type = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="population", type="text")
+     * @ORM\Column(name="population", type="text", nullable=true)
      */
-    private $population;
+    private $population = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="duration", type="text")
+     * @ORM\Column(name="duration", type="text", nullable=true)
      */
-    private $duration;
+    private $duration = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="articulations", type="text")
+     * @ORM\Column(name="articulations", type="text", nullable=true)
      */
-    private $articulations;
+    private $articulations = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
-    private $comment;
+    private $comment = null;
 
 
     /**

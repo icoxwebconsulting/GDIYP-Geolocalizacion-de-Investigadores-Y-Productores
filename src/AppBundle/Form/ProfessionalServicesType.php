@@ -25,12 +25,15 @@ class ProfessionalServicesType extends AbstractType
                         'other' => 'Other',
                         ),
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => false
                 )
             )
             ->add(
                 'comment',
-                TextareaType::class
+                TextareaType::class, array(
+                    'required' => false
+                )
             );
     }
 
@@ -47,7 +50,7 @@ class ProfessionalServicesType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'professional_services';
     }

@@ -22,39 +22,39 @@ class MarketingSpaces
     private $id;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="marketWhereSold", type="string", length=255)
+     * @ORM\Column(name="marketWhereSold", type="array", length=255, nullable=true)
      */
-    private $marketWhereSold;
+    private $marketWhereSold = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="array", length=255, nullable=true)
      */
-    private $type;
+    private $type = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="periodicity", type="string", length=255)
+     * @ORM\Column(name="periodicity", type="array", length=255, nullable=true)
      */
-    private $periodicity;
+    private $periodicity = null;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="peopleInvolved", type="integer")
+     * @ORM\Column(name="peopleInvolved", type="integer", nullable=true)
      */
-    private $peopleInvolved;
+    private $peopleInvolved = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
-    private $comment;
+    private $comment = null;
 
 
     /**

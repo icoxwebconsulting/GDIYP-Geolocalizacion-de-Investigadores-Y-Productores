@@ -90,37 +90,37 @@ class AgroecologicalPractice
     private $relatedInstitutions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProductiveUndertaking", inversedBy="agroecological_practice", cascade={"all"})
-     * @ORM\JoinColumn(name="productive_undertaking", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ProductiveUndertaking", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\JoinColumn(name="productive_undertaking", referencedColumnName="id", nullable=true)
      */
     protected $productive_undertaking;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProfessionalServices", inversedBy="agroecological_practice", cascade={"all"})
-     * @ORM\JoinColumn(name="professional_services", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ProfessionalServices", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\JoinColumn(name="professional_services", referencedColumnName="id", nullable=true)
      */
     protected $professional_services;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MarketingSpaces", inversedBy="agroecological_practice", cascade={"all"})
-     * @ORM\JoinColumn(name="marketing_spaces", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="MarketingSpaces", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\JoinColumn(name="marketing_spaces", referencedColumnName="id", nullable=true)
      */
     protected $marketing_spaces;
 
     /**
-     * @ORM\ManyToOne(targetEntity="InstitutionalProject", inversedBy="agroecological_practice", cascade={"all"})
-     * @ORM\JoinColumn(name="institutional_project", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="InstitutionalProject", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\JoinColumn(name="institutional_project", referencedColumnName="id", nullable=true)
      */
     protected $institutional_project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PromotionGroup", inversedBy="agroecological_practice", cascade={"all"})
-     * @ORM\JoinColumn(name="promotion_group", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="PromotionGroup", inversedBy="agroecological_practice", cascade={"persist"})
+     * @ORM\JoinColumn(name="promotion_group", referencedColumnName="id", nullable=true)
      */
     protected $promotion_group;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="productor_profile", cascade={"all"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;

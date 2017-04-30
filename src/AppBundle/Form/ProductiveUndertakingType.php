@@ -17,11 +17,37 @@ class ProductiveUndertakingType extends AbstractType
         $builder
             ->add(
                 'peopleInvolved',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'comment',
-                TextareaType::class
+                TextareaType::class, array(
+                    'required' => false
+                )
+            )
+            ->add(
+                'category',
+                'entity',
+                array(
+                    'class' => 'AppBundle:ProductionCategory',
+                    'choice_label' => 'name',
+                    'attr' => array(
+                        "class" => "form-control"
+                    )
+                )
+            )
+            ->add(
+                'type',
+                'entity',
+                array(
+                    'class' => 'AppBundle:ProductionType',
+                    'choice_label' => 'name',
+                    'attr' => array(
+                        "class" => "form-control"
+                    )
+                )
             )
             ->add(
                 'productionDestination',
@@ -31,7 +57,26 @@ class ProductiveUndertakingType extends AbstractType
                     'choice_label' => 'name',
                     'attr' => array(
                         "class" => "form-control"
-                    )
+                    ),
+                    'required' => false
+                )
+            )
+            ->add('whereTheySell', 'choice', array(
+                'choices' => array(
+                        'by_order' => 'Door to door by order',
+                        'fairs' => 'Fairs',
+                        'markets' => 'Markets',
+                        ),
+                'required' => false
+                )
+            )
+            ->add('productiveSurface', 'choice', array(
+                'choices' => array(
+                        'drapery_runners' => 'Drapery Runners',
+                        'curtains' => 'Curtains',
+                        'bordures' => 'Bordures',
+                        ),
+                'required' => false
                 )
             );
     }
@@ -49,7 +94,7 @@ class ProductiveUndertakingType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'productive_undertaking';
     }

@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    {{ dump() }}
     {{ form_start(form, {'attr':{ 'class': 'form-horizontal', 'id': 'producer-form'}}) }}
         <div class="col-md-6">
             <div class="card">
@@ -25,7 +24,7 @@
                                 <option value="productive_undertaking">{{ 'Productive Undertaking' | trans }}</option>
                                 <option value="marketing_spaces">{{ 'Marketing Spaces' | trans }}</option>
                                 <option value="professional_services">{{ 'Professional Services' | trans }}</option>
-                                <option value="institutional_projects">{{ 'Institutional Projects' | trans }}</option>
+                                <option value="institutional_project">{{ 'Institutional Projects' | trans }}</option>
                                 <option value="promotion_group">{{ 'Promotion Group' | trans }}</option>
                             </select>
                         </div>
@@ -221,11 +220,12 @@
     <!-- Initialize the editor. -->
     <script>
         $(function() {
-            $('#appbundle_agroecologialpractice_graphicInformation').froalaEditor({
+            $('#appbundle_agroecologicalpractice_graphicInformation').froalaEditor({
                 height: 300
             });
             $('#type_practice').change(function(){
                 $('.type').hide();
+                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
                 $('#' + $(this).val()).show();
             });
         });
@@ -341,7 +341,10 @@
                 var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
                 $("#producer-form").find("#add-institution").before(html);
             });
-            $('#production_category').change(function(){
+            
+            $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
+            loadProductionType();
+            $('#appbundle_agroecologicalpractice_productive_undertaking_category').change(function(){
                 loadProductionType();
             });
         });
@@ -362,26 +365,10 @@
                 $(this).html("Institución");
             });
         });
-            
-        function loadProductionCategory(){
-            $.ajax({
-                type: "GET",
-                url: "{{ path('production_category_list') }}"
-            }).done(function( result ) {
-                var data = eval(result);
-                for(var i = 0; i < data.length; i++){
-                    var newOption = $('<option/>');
-                    newOption.text(data[i].name);
-                    newOption.attr('value', data[i].id);
-                    $('#production_category').append(newOption);
-                }
-                loadProductionType();
-            });
-        }
 
         function loadProductionType(){
-            $('#production_type').children().remove()
-            var production_category = $('#production_category').find(':selected').val();
+            $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
+            var production_category = $('#appbundle_agroecologicalpractice_productive_undertaking_category').find(':selected').val();
             $.ajax({
                 type: "GET",
                 url: "{{ path('homepage')}}production_type/"+production_category
@@ -391,12 +378,11 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    $('#production_type').append(newOption)
+                    $('#appbundle_agroecologicalpractice_productive_undertaking_type').append(newOption)
                 }
             });
         }
         
-        loadProductionCategory();
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
     {% endblock %}

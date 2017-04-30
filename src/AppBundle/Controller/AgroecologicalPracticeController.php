@@ -10,6 +10,7 @@ use AppBundle\Entity\ProductiveUndertaking;
 use AppBundle\Entity\MarketingSpaces;
 use AppBundle\Entity\ProfessionalServices;
 use AppBundle\Entity\InstitutionalProject;
+use AppBundle\Entity\ProductionCategory;
 use AppBundle\Entity\ProductionType;
 use AppBundle\Entity\ProductionDestinationType;
 use AppBundle\Entity\PromotionGroup;
@@ -56,8 +57,8 @@ class AgroecologicalPracticeController extends Controller
 
         if($form->handleRequest($request)->isValid())
         {
-//            echo "<pre>",print_r($_POST, true),"</pre>";
-//            die();
+            /* echo "<pre>",print_r($_POST, true),"</pre>";
+            die(); */
             $members = $_POST['data']['member'];
             $serialized_members = serialize($members);
             $institutions = $_POST['data']['related_institution'];
@@ -76,21 +77,20 @@ class AgroecologicalPracticeController extends Controller
             $contact->setEmail($_POST['contact_mean']['email']);
             $contact->setFacebook($_POST['contact_mean']['facebook']);
             $contact->setWebsite($_POST['contact_mean']['website']);
-            $contact->setComment($_POST['contact_mean']['comments']);
+            $contact->setComment($_POST['contact_mean']['comments']);            
             
             $productiveUndertaking = new ProductiveUndertaking();
-            $productionType = new ProductionType();
-            $productiveUndertaking->setType($productionType->getId());
-            $productionDestinationType = new ProductionDestinationType();
-            $productiveUndertaking->setProductionDestination($productionDestinationType->getId());
-            $productiveUndertaking->setWhereTheySell($_POST['appbundle_agroecologialpractice']['productive_undertaking']['where_they_sell']);
-            $productiveUndertaking->setProductiveSurface($_POST['appbundle_agroecologialpractice']['productive_undertaking']['productive_surface']);
-            $productiveUndertaking->setPeopleInvolved($_POST['appbundle_agroecologialpractice']['productive_undertaking']['peopleInvolved']);
-            $productiveUndertaking->setComment($_POST['appbundle_agroecologialpractice']['productive_undertaking']['comment']);
-
-            //$practiceType = new PracticeType();
-            //$practiceType->setUser($this->getUser());
+            $marketingSpaces = new MarketingSpaces();
+            $professionalServices = new ProfessionalServices();
+            $institutionalProject = new InstitutionalProject();
+            $promotionGroup = new PromotionGroup();
             
+            /*$productiveUndertaking = new ProductiveUndertaking();
+            $productionCategory = new ProductionCategory();
+            $productiveUndertaking->setType($productionCategory->getId());            
+            $productionType = new ProductionType();
+            $productiveUndertaking->setType($productionType->getId());*/
+
             foreach($_POST['data']['related_news'] as $obj)
             {
                 $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
@@ -100,7 +100,6 @@ class AgroecologicalPracticeController extends Controller
                 $em->persist($agroecologicalPracticeNews);
             }
 
-            //$practice->setPracticeType($practiceType);
             $practice->setPracticeMembers($serialized_members);
             $practice->setAddress($googleMap);
             $practice->setContactMean($contact);
@@ -109,9 +108,8 @@ class AgroecologicalPracticeController extends Controller
 
             $em->persist($googleMap);
             $em->persist($contact);
-            //$em->persist($practiceType);
-            $em->persist($productiveUndertaking);
-            $em->persist($practice);
+            //$em->persist($productiveUndertaking);
+            $em->persist($practice);            
             $em->flush();
 
             $this->addFlash(
@@ -123,7 +121,7 @@ class AgroecologicalPracticeController extends Controller
         return $this->render('agroindustrial_practice/form.html.twig', array(
             'form' => $form->createView(),
             'news' => $news
-        ));
+        )); 
     }
 
     /**

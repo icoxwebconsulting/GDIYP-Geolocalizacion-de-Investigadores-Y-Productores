@@ -52,6 +52,6 @@ class AgroecologicalPracticeType extends AbstractType
     
     public function getBlockPrefix()
     {
-        return 'appbundle_agroecologialpractice';
+        return 'appbundle_agroecologicalpractice';
     }
 }

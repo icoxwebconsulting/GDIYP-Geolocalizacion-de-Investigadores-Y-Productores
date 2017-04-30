@@ -24,24 +24,33 @@ class InstitutionalProjectsType extends AbstractType
                         'other' => 'Other',
                         ),
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => false
                 )
             )
             ->add(
                 'population',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'duration',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'articulations',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'comment',
-                TextareaType::class
+                TextareaType::class, array(
+                    'required' => false
+                )
             );
     }
 
@@ -58,7 +67,7 @@ class InstitutionalProjectsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'institutional_project';
     }

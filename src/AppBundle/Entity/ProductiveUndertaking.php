@@ -24,41 +24,48 @@ class ProductiveUndertaking
     /**
      * @var string
      *
-     * @ORM\Column(name="whereTheySell", type="string", length=255)
+     * @ORM\Column(name="whereTheySell", type="string", length=255, nullable=true)
      */
-    private $whereTheySell;
+    private $whereTheySell = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="productiveSurface", type="string", length=255)
+     * @ORM\Column(name="productiveSurface", type="string", length=255, nullable=true)
      */
-    private $productiveSurface;
+    private $productiveSurface = null;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="peopleInvolved", type="integer")
+     * @ORM\Column(name="peopleInvolved", type="integer", nullable=true)
      */
-    private $peopleInvolved;
+    private $peopleInvolved = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
-    private $comment;
+    private $comment = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductionCategory", inversedBy="productive_undertaking", cascade={"all"})
+     * @ORM\JoinColumn(name="category", referencedColumnName="id", nullable=true)
+     */
+    protected $category = null;
+    
     /**
      * @ORM\ManyToOne(targetEntity="ProductionType", inversedBy="productive_undertaking", cascade={"all"})
-     * @ORM\JoinColumn(name="type", referencedColumnName="id")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id", nullable=true)
      */
-    protected $type;
+    protected $type = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProductionDestinationType", inversedBy="productive_undertaking", cascade={"all"})
-     * @ORM\JoinColumn(name="productionDestination", referencedColumnName="id")
+     * @ORM\JoinColumn(name="productionDestination", referencedColumnName="id", nullable=true)
      */
-    protected $productionDestination;
+    protected $productionDestination = null;
 
     /**
      * Get id
@@ -166,6 +173,30 @@ class ProductiveUndertaking
         return $this->comment;
     }
 
+     /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\ProductionCategory $category
+     *
+     * @return ProductiveUndertaking
+     */
+    public function setCategory (\AppBundle\Entity\ProductionCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\ProductionCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
     /**
      * Set type
      *

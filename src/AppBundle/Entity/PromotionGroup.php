@@ -22,32 +22,32 @@ class PromotionGroup
     private $id;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="array", length=255, nullable=true)
      */
-    private $type;
+    private $type = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="modality", type="text")
+     * @ORM\Column(name="modality", type="text", nullable=true)
      */
-    private $modality;
+    private $modality = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="articulations", type="text")
+     * @ORM\Column(name="articulations", type="text", nullable=true)
      */
-    private $articulations;
+    private $articulations = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
-    private $comment;
+    private $comment = null;
 
 
     /**
