@@ -78,19 +78,7 @@ class AgroecologicalPracticeController extends Controller
             $contact->setFacebook($_POST['contact_mean']['facebook']);
             $contact->setWebsite($_POST['contact_mean']['website']);
             $contact->setComment($_POST['contact_mean']['comments']);            
-            
-            $productiveUndertaking = new ProductiveUndertaking();
-            $marketingSpaces = new MarketingSpaces();
-            $professionalServices = new ProfessionalServices();
-            $institutionalProject = new InstitutionalProject();
-            $promotionGroup = new PromotionGroup();
-            
-            /*$productiveUndertaking = new ProductiveUndertaking();
-            $productionCategory = new ProductionCategory();
-            $productiveUndertaking->setType($productionCategory->getId());            
-            $productionType = new ProductionType();
-            $productiveUndertaking->setType($productionType->getId());*/
-
+                        
             foreach($_POST['data']['related_news'] as $obj)
             {
                 $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
@@ -100,16 +88,101 @@ class AgroecologicalPracticeController extends Controller
                 $em->persist($agroecologicalPracticeNews);
             }
 
+            $em->persist($googleMap);
+            $em->persist($contact);
+            
             $practice->setPracticeMembers($serialized_members);
             $practice->setAddress($googleMap);
             $practice->setContactMean($contact);
             $practice->setRelatedInstitutions($serialized_institutions);
-            $practice->setUser($this->getUser());
+            $practice->setUser($this->getUser());            
 
-            $em->persist($googleMap);
-            $em->persist($contact);
-            //$em->persist($productiveUndertaking);
-            $em->persist($practice);            
+            //Questionnaires
+            switch ($_POST['data']['type_practice']) {
+                case "productive_undertaking":
+                    $category = $em->getRepository("AppBundle:ProductionCategory")->find($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['category']);
+                    $type = $em->getRepository("AppBundle:ProductionType")->find($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['type']);
+                    $destination = $em->getRepository("AppBundle:ProductionDestinationType")->find($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['productionDestination']);
+                    
+                    $productiveUndertaking = new ProductiveUndertaking();
+                    $productiveUndertaking->setCategory($category);
+                    $productiveUndertaking->setType($type);
+                    $productiveUndertaking->setWhereTheySell($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['whereTheySell']);
+                    $productiveUndertaking->setProductiveSurface($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['productiveSurface']);
+                    $productiveUndertaking->setPeopleInvolved($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['peopleInvolved']);
+                    $productiveUndertaking->setComment($_POST['appbundle_agroecologicalpractice']['productive_undertaking']['comment']);
+                    $productiveUndertaking->setProductionDestination($destination);
+                    
+                    $practice->setMarketingSpaces(NULL);
+                    $practice->setProfessionalServices(NULL);
+                    $practice->setInstitutionalProject(NULL);
+                    $practice->setPromotionGroup(NULL);
+                    
+                    $em->persist($productiveUndertaking);
+                    $practice->setProductiveUndertaking($productiveUndertaking);
+                    break;
+                case "marketing_spaces":
+                    $marketingSpaces = new MarketingSpaces();
+                    $marketingSpaces->setMarketWhereSold($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['marketWhereSold']);
+                    $marketingSpaces->setType($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['type']);
+                    $marketingSpaces->setPeriodicity($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['periodicity']);
+                    $marketingSpaces->setPeopleInvolved($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['peopleInvolved']);
+                    $marketingSpaces->setComment($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['comment']);
+                    
+                    $practice->setProductiveUndertaking(NULL);
+                    $practice->setProfessionalServices(NULL);
+                    $practice->setInstitutionalProject(NULL);
+                    $practice->setPromotionGroup(NULL);  
+                    
+                    $em->persist($marketingSpaces);
+                    $practice->setMarketingSpaces($marketingSpaces);
+                    break;
+                case "professional_services":
+                    $professionalServices = new ProfessionalServices();
+                    $professionalServices->setType($_POST['appbundle_agroecologicalpractice']['professional_services']['type']);
+                    $professionalServices->setComment($_POST['appbundle_agroecologicalpractice']['professional_services']['comment']);
+                    
+                    $practice->setProductiveUndertaking(NULL);
+                    $practice->setMarketingSpaces(NULL);
+                    $practice->setInstitutionalProject(NULL);
+                    $practice->setPromotionGroup(NULL);
+                    
+                    $em->persist($professionalServices);
+                    $practice->setProfessionalServices($professionalServices);
+                    break;
+                case "institutional_project":
+                    $institutionalProject = new InstitutionalProject();
+                    $institutionalProject->setType($_POST['appbundle_agroecologicalpractice']['institutional_project']['type']);
+                    $institutionalProject->setPopulation($_POST['appbundle_agroecologicalpractice']['institutional_project']['population']);
+                    $institutionalProject->setDuration($_POST['appbundle_agroecologicalpractice']['institutional_project']['duration']);
+                    $institutionalProject->setArticulations($_POST['appbundle_agroecologicalpractice']['institutional_project']['articulations']);
+                    $institutionalProject->setComment($_POST['appbundle_agroecologicalpractice']['institutional_project']['comment']);
+                    
+                    $practice->setProductiveUndertaking(NULL);
+                    $practice->setMarketingSpaces(NULL);
+                    $practice->setProfessionalServices(NULL);
+                    $practice->setPromotionGroup(NULL);
+                    
+                    $em->persist($institutionalProject);
+                    $practice->setInstitutionalProject($institutionalProject);
+                    break;
+                case "promotion_group":
+                    $promotionGroup = new PromotionGroup();
+                    $promotionGroup->setType($_POST['appbundle_agroecologicalpractice']['promotion_group']['type']);
+                    $promotionGroup->setArticulations($_POST['appbundle_agroecologicalpractice']['promotion_group']['articulations']);
+                    $promotionGroup->setComment($_POST['appbundle_agroecologicalpractice']['promotion_group']['comment']);
+                    
+                    $practice->setProductiveUndertaking(NULL);
+                    $practice->setMarketingSpaces(NULL);
+                    $practice->setInstitutionalProject(NULL);
+                    $practice->setProfessionalServices(NULL);
+                    
+                    $em->persist($promotionGroup);
+                    $practice->setPromotionGroup($promotionGroup);
+                    break;
+            }
+                        
+            $em->persist($practice);
             $em->flush();
 
             $this->addFlash(

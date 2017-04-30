@@ -90,31 +90,31 @@ class AgroecologicalPractice
     private $relatedInstitutions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProductiveUndertaking", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ProductiveUndertaking", inversedBy="productive_undertaking")
      * @ORM\JoinColumn(name="productive_undertaking", referencedColumnName="id", nullable=true)
      */
     protected $productive_undertaking;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProfessionalServices", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ProfessionalServices", inversedBy="professional_services")
      * @ORM\JoinColumn(name="professional_services", referencedColumnName="id", nullable=true)
      */
     protected $professional_services;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MarketingSpaces", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="MarketingSpaces", inversedBy="marketing_spaces")
      * @ORM\JoinColumn(name="marketing_spaces", referencedColumnName="id", nullable=true)
      */
     protected $marketing_spaces;
 
     /**
-     * @ORM\ManyToOne(targetEntity="InstitutionalProject", inversedBy="productor_profile", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="InstitutionalProject", inversedBy="institutional_project")
      * @ORM\JoinColumn(name="institutional_project", referencedColumnName="id", nullable=true)
      */
     protected $institutional_project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PromotionGroup", inversedBy="agroecological_practice", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="PromotionGroup", inversedBy="promotion_group")
      * @ORM\JoinColumn(name="promotion_group", referencedColumnName="id", nullable=true)
      */
     protected $promotion_group;
