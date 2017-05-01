@@ -169,6 +169,7 @@ class AgroecologicalPracticeController extends Controller
                 case "promotion_group":
                     $promotionGroup = new PromotionGroup();
                     $promotionGroup->setType($_POST['appbundle_agroecologicalpractice']['promotion_group']['type']);
+                    $promotionGroup->setModality($_POST['appbundle_agroecologicalpractice']['promotion_group']['modality']);
                     $promotionGroup->setArticulations($_POST['appbundle_agroecologicalpractice']['promotion_group']['articulations']);
                     $promotionGroup->setComment($_POST['appbundle_agroecologicalpractice']['promotion_group']['comment']);
                     
@@ -198,11 +199,61 @@ class AgroecologicalPracticeController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param AgroecologicalPractice $entity entity
+     * @Security("has_role('ROLE_USER')")
      * @Route("/edit/{id}", name="agroecological_practice_edit")
+     * @return array
      */
-    public function updateAction($id)
+    public function putAction(Request $request, AgroecologicalPractice $entity)
     {
-        return $this->render(':homepage:index.html.twig');
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('agroecological_practice_list');
+        }
+        
+        $request->setMethod('PATCH');
+        $em = $this->getDoctrine()->getManager();
+        
+        $form = $this->createForm(new AgroecologicalPracticeType(), $entity, ["method" => $request->getMethod()]);
+        $news = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));
+        
+        if ($form->handleRequest($request)->isValid())
+        {            
+            $em->persist($entity);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('Agroecological Practice has been successfully updated!')
+            );
+            return $this->redirectToRoute('agroecological_practice_list');
+        }
+        return $this->render('agroindustrial_practice/form.html.twig', array(
+            'form' => $form->createView(),
+            'entity' => $entity,
+            'news' => $news
+        ));
     }
 
+
+    /**
+     * @param AgroecologicalPractice $entity entity
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/delete/{id}", name="agroecological_practice_delete")
+     * @return route
+     */
+    public function deleteAction(AgroecologicalPractice $entity)
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('agroecological_practice_list');
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($entity);
+        $em->flush();
+        $this->addFlash(
+            'success',
+            $this->get('translator')->trans('Agroecological Practice has been succesfully deleted!')
+        );
+        return $this->redirectToRoute('agroecological_practice_list');
+    }    
 }

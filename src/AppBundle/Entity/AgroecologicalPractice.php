@@ -120,7 +120,7 @@ class AgroecologicalPractice
     protected $promotion_group;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="productor_profile", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="productor_profile", cascade={"persist"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;

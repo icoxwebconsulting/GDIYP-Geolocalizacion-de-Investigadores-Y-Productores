@@ -708,11 +708,11 @@
             </trans-unit>
             <trans-unit id="178">
                 <source>Agroecological Practice</source>
-                <target>Prácticas agroecológica</target>
+                <target>Prácticas agroecológicas</target>
             </trans-unit>
             <trans-unit id="179">
                 <source>Agroecological Practice Manager</source>
-                <target>Gestor de prácticas agroecológica</target>
+                <target>Gestor de prácticas agroecológicas</target>
             </trans-unit>
             <trans-unit id="180">
                 <source>Practice List</source>
@@ -973,6 +973,18 @@
              <trans-unit id="244">
                 <source>Modality</source>
                 <target>Modalidad</target>
+            </trans-unit>
+             <trans-unit id="245">
+                <source>Related News</source>
+                <target>Noticias Relacionadas</target>
+            </trans-unit>
+            <trans-unit id="246">
+                <source>Agroecological Practice has been succesfully deleted!</source>
+                <target>La práctica agroecológica ha sido eliminada exitosamente!</target>
+            </trans-unit>
+            <trans-unit id="247">
+                <source>Agroecological Practice has been successfully updated!</source>
+                <target>La práctica agroecológica ha sido eliminada exitosamente!</target>
             </trans-unit>
         </body>
     </file>

@@ -49,8 +49,8 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {#<a data-target="#delete-modal" data-toggle="modal" data-whatever="{{ path('news_delete', {id: entity.id}) }}"><i class="fa fa-trash"></i></a>#}
-                                {#<a href="{{ path('news_edit', {id: entity.id}) }}"><i class="fa fa-pencil"></i></a>#}
+                                <a data-target="#delete-modal" data-toggle="modal" data-whatever="{{ path('agroecological_practice_delete', {id: entity.id}) }}"><i class="fa fa-trash"></i></a>
+                                <a href="{{ path('agroecological_practice_edit', {id: entity.id}) }}"><i class="fa fa-pencil"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
