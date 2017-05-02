@@ -12,9 +12,11 @@
     {{ form_start(form, {'attr':{ 'class': 'form-horizontal', 'id': 'producer-form'}}) }}
         <div class="col-md-6">
             <div class="card">
+                
                 <div class="card-header">
                     <strong>{{ 'Agroecological Practice' | trans }}</strong>
                 </div>
+                
                 <div class="card-block">
                     <div class="form-group row" style="margin-top: 0">
                         <label class="col-md-3 form-control-label" for="first-name">{{ 'Type Practice' | trans }}</label>
@@ -50,6 +52,28 @@
                         </div>
                     </div>
                     <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}</button>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" />
+                        </div>
+                    </div>
+                    <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
+                                        
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
+                        <div class="col-md-9">
+                            {% for new in news %}
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
+                                    <label for="">{{ new.title }}</label>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+
                     <div class="form-group row" style="margin-top: 30px">
                         <label class="col-md-3 form-control-label" for="descripion">{{ 'Description' | trans }}</label>
                         <div class="col-md-9">
@@ -81,83 +105,79 @@
                         </div>
                         {{ form_errors(form.graphicInformation) }}
                     </div>
+                    
                     <h4>{{ 'Contact Means' | trans }}</h4>
+                    
                     <div class="form-group row">
-                        <label for="first-name" class="col-md-3 form-control-label">{{ 'First Name' | trans }}</label>
+                        <label for="firstName" class="col-md-3 form-control-label">{{ 'First Name' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[first_name]">
+                            {{ form_widget(form.contact_mean.firstName, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.firstName) }}
                     </div>
                     <div class="form-group row">
-                        <label for="last-name" class="col-md-3 form-control-label">{{ 'Last Name' | trans }}</label>
+                        <label for="lastName" class="col-md-3 form-control-label">{{ 'Last Name' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[last_name]">
+                            {{ form_widget(form.contact_mean.lastName, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.lastName) }}
                     </div>
                     <div class="form-group row">
                         <label for="phone" class="col-md-3 form-control-label">{{ 'Phone' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[phone]">
+                            {{ form_widget(form.contact_mean.phone, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.phone) }}
                     </div>
                     <div class="form-group row">
-                        <label for="cell-phone" class="col-md-3 form-control-label">{{ 'Cell Phone' | trans }}</label>
+                        <label for="cell_phone" class="col-md-3 form-control-label">{{ 'Cell Phone' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[cell_phone]">
+                            {{ form_widget(form.contact_mean.cell_phone, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.cell_phone) }}
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-md-3 form-control-label">{{ 'Email' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="email" name="contact_mean[email]">
+                            {{ form_widget(form.contact_mean.email, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.email) }}
                     </div>
                     <div class="form-group row">
                         <label for="facebook" class="col-md-3 form-control-label">Facebook</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[facebook]">
+                            {{ form_widget(form.contact_mean.facebook, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.facebook) }}
                     </div>
                     <div class="form-group row">
-                        <label for="contact-means" class="col-md-3 form-control-label">{{ 'Website' | trans }}</label>
+                        <label for="website" class="col-md-3 form-control-label">{{ 'Website' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[website]">
+                            {{ form_widget(form.contact_mean.website, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.contact_mean.website) }}
                     </div>
                     <div class="form-group row">
-                        <label for="contact-means" class="col-md-3 form-control-label">{{ 'Comments' | trans }}</label>
+                        <label for="comment" class="col-md-3 form-control-label">{{ 'Comments' | trans }}</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" name="contact_mean[comments]">
+                            {{ form_widget(form.contact_mean.comment, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" />
-                        </div>
-                    </div>
-                    <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
-
-                        <div class="col-md-9">
-                            {% for new in news %}
-                            <ul>
-                                <li>
-                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
-                                    <label for="">{{ new.title }}</label>
-                                </li>
-                            </ul>
-                            {% endfor %}
-                        </div>
+                        {{ form_errors(form.contact_mean.comment) }}
                     </div>
                 </div>
                 <div class="card-footer">
                     <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
                     <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
                 </div>
+                <input type="hidden" id="productive_undertaking_id" value="{% if (entity.getProductiveUndertaking()) %}{{ entity.getProductiveUndertaking().id }}{% endif %}">
+                <input type="hidden" id="marketing_spaces_id" value="{% if (entity.getMarketingSpaces()) %}{{ entity.getMarketingSpaces().id }}{% endif %}">
+                <input type="hidden" id="professional_services_id" value="{% if (entity.getProfessionalServices()) %}{{ entity.getProfessionalServices().id }}{% endif %}">
+                <input type="hidden" id="institutional_project_id" value="{% if (entity.getInstitutionalProject()) %}{{ entity.getInstitutionalProject().id }}{% endif %}">
+                <input type="hidden" id="promotion_group_id" value="{% if (entity.getPromotionGroup()) %}{{ entity.getPromotionGroup().id }}{% endif %}">
+                <input type="hidden" id="related_institution_id" value="{% if (entity.relatedInstitutions) %}{{ entity.relatedInstitutions }}{% endif %}">
+                <input type="hidden" id="member_id" value="{% if (entity.practiceMembers) %}{{ entity.practiceMembers }}{% endif %}">
             </div>
-        </div>
+        </div>                
         {% include ':agroindustrial_practice/type:productive_undertaking.html.twig' %}
         {% include ':agroindustrial_practice/type:marketing_spaces.html.twig' %}
         {% include ':agroindustrial_practice/type:professional_services.html.twig' %}
@@ -322,6 +342,18 @@
     </script>
     <script>
         $(document).ready(function(){
+            if ($("#productive_undertaking_id").val()) $("#type_practice option[value='productive_undertaking']").attr('selected','selected');
+            if ($("#marketing_spaces_id").val()) $("#type_practice option[value='marketing_spaces']").attr('selected','selected');
+            if ($("#professional_services_id").val()) $("#type_practice option[value='professional_services']").attr('selected','selected');
+            if ($("#institutional_project_id").val()) $("#type_practice option[value='institutional_project']").attr('selected','selected');
+            if ($("#promotion_group_id").val()) $("#type_practice option[value='promotion_group']").attr('selected','selected');
+            
+            $('.type').hide();
+            if ($("#type_practice").val()) {
+                $('#' + $("#type_practice").val()).show();
+                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
+            }
+                    
             $("#add-member").click(function(e){
                 e.preventDefault();
                 var numberOfMember = $("#producer-form").find("input[name^='data[member]']").length;
@@ -337,11 +369,43 @@
                 var n = $("#producer-form").find("input[name^='data[related_institution]']").length;
                 var label = '<label class="col-md-3 form-control-label"  for="data[related_institution][' + n + ']">Institución </label> ';
                 var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[related_institution][' + n + ']" id="data[related_institution][' + n + ']" /></div>';
-                var removeButton = '<button class="btn btn-danger remove-intitution">Quitar</button>';
+                var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
                 var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
                 $("#producer-form").find("#add-institution").before(html);
             });
             
+            if ($("#member_id").val()) {
+                var member_json = JSON.parse($("#member_id").val());
+                for (var i=0; i< member_json.length; i++) {
+                    if (i === 0) {
+                        $("input[name='data[member][0]'").val(member_json[0]);
+                    }
+                    else {
+                        var label = '<label class="col-md-3 form-control-label"  for="data[member][' + i + ']">Integrante </label> ';
+                        var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[member][' + i + ']" id="data[member][' + i + ']" value="'+ member_json[i] +'" /></div>';
+                        var removeButton = '<button class="btn btn-danger remove-member">Quitar</button>';
+                        var html = "<div class='form-group row members'>" + label + input + removeButton + "</div>";
+                        $("#producer-form").find("#add-member").before(html);
+                    }
+                }
+            }
+
+            if ($("#related_institution_id").val()) {
+                var related_institution_json = JSON.parse($("#related_institution_id").val());
+                for (var i=0; i< related_institution_json.length; i++) {
+                    if (i === 0) {
+                        $("input[name='data[related_institution][0]'").val(related_institution_json[0]);
+                    }
+                    else {
+                        var label = '<label class="col-md-3 form-control-label"  for="data[related_institution][' + i + ']">Institución </label> ';
+                        var input = '<div class="col-md-7"><input class="form-control" type="text" name="data[related_institution][' + i + ']" id="data[related_institution][' + i + ']" value="'+ related_institution_json[i] +'" /></div>';
+                        var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
+                        var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
+                        $("#producer-form").find("#add-institution").before(html);
+                    }
+                }
+            }        
+                    
             $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
             loadProductionType();
             $('#appbundle_agroecologicalpractice_productive_undertaking_category').change(function(){

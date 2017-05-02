@@ -984,7 +984,7 @@
             </trans-unit>
             <trans-unit id="247">
                 <source>Agroecological Practice has been successfully updated!</source>
-                <target>La práctica agroecológica ha sido eliminada exitosamente!</target>
+                <target>La práctica agroecológica ha sido modificada exitosamente!</target>
             </trans-unit>
         </body>
     </file>

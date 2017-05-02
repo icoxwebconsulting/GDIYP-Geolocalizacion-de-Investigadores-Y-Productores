@@ -14,11 +14,13 @@ use AppBundle\Entity\MarketingSpaces;
 use AppBundle\Entity\ProfessionalServices;
 use AppBundle\Entity\InstitutionalProject;
 use AppBundle\Entity\PromotionGroup;
+use AppBundle\Entity\ContactMean;
 
 class AgroecologicalPracticeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('contact_mean', new ContactMeanType());
         $builder->add('productive_undertaking', new ProductiveUndertakingType());
         $builder->add('marketing_spaces', new MarketingSpacesType());
         $builder->add('professional_services', new ProfessionalServicesType());

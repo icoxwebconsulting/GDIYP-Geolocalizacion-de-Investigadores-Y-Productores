@@ -37,9 +37,21 @@
                             <td>{{ entity.organizationName }}</td>
                             <td>{{ entity.description | truncate(10) }}</td>
                             <td>
-                                {#% if entity.practiceType %}
-                                    {{ entity.practiceType.id }}
-                                {% endif %#}
+                                {% if entity.getProductiveUndertaking() %}
+                                    {{ 'Productive Undertaking' | trans }}
+                                {% endif %}
+                                {% if entity.getMarketingSpaces() %}
+                                    {{ 'Marketing Spaces' | trans }}
+                                {% endif %}
+                                {% if entity.getProfessionalServices() %}
+                                    {{ 'Professional Services' | trans }}
+                                {% endif %}
+                                {% if entity.getInstitutionalProject() %}
+                                    {{ 'Institutional Projects' | trans }}
+                                {% endif %}
+                                {% if entity.getPromotionGroup() %}
+                                    {{ 'Promotion Group' | trans }}
+                                {% endif %}
                             </td>
                             <td>
                                 {% if entity.reported == 0 %}
