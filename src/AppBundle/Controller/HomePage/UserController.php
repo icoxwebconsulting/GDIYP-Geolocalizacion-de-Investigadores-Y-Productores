@@ -24,7 +24,10 @@ class UserController extends Controller
         $entities = $em->getRepository("AppBundle:UserProfile")->findAll();
         $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
 
-        return new Response($serializedEntity);
+        $entitiesp = $em->getRepository("AppBundle:AgroecologicalPractice")->findAll();
+        $serializedEntityP = $this->container->get('fos_js_routing.serializer')->serialize($entitiesp, 'json');
+
+        return new Response(json_encode(array_merge(json_decode($serializedEntity, true),json_decode($serializedEntityP, true))));
     }
 
     /**

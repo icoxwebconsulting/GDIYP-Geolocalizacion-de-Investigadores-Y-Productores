@@ -986,6 +986,10 @@
                 <source>Agroecological Practice has been successfully updated!</source>
                 <target>La práctica agroecológica ha sido modificada exitosamente!</target>
             </trans-unit>
+             <trans-unit id="248">
+                <source>Practice Type</source>
+                <target>Tipo de Práctica</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

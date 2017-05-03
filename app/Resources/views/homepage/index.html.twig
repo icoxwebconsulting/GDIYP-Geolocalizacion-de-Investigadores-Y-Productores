@@ -71,19 +71,12 @@
 //                    console.log('json', json[i])
                     if (type == "investigator"){
                         if (json[i].user.roles.includes("ROLE_PRODUCER")){
-                            if (type == "investigator" && json[i].user.roles.includes("ROLE_INVESTIGATOR") && place != 0 && place != json[i].residencePlace.id){
-                                json.splice(i,1);
-                            }else{
-                                json.splice(i,1);
-                            }
+                            json.splice(i,1);
                         }
-                    }else  if (type == "producer"){
+                    }
+                    if (type == "producer"){
                         if (json[i].user.roles.includes("ROLE_INVESTIGATOR")){
-                            if (type == "producer" && json[i].user.roles.includes("ROLE_PRODUCER") && place != 0 && place != json[i].residencePlace.id){
-                                json.splice(i,1);
-                            }else{
-                                json.splice(i,1);
-                            }
+                            json.splice(i,1);
                         }
                     }
                 }
