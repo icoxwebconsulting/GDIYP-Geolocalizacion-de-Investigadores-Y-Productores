@@ -68,14 +68,18 @@
                 var place = $('#city').find(':selected').val();
 
                 for (var i = 0; i < json.length; i++) {
-//                    console.log('json', json[i])
+                    //console.log('json', json[i].user)
                     if (type == "investigator"){
                         if (json[i].user.roles.includes("ROLE_PRODUCER")){
-                            json.splice(i,1);
+                            console.log('indice', i);
+                            console.log('json', json[i]);
+                            json.splice(i--,1);
                         }
                     }
                     if (type == "producer"){
                         if (json[i].user.roles.includes("ROLE_INVESTIGATOR")){
+                            console.log('indice', i);
+                            console.log('json', json[i]);
                             json.splice(i,1);
                         }
                     }
