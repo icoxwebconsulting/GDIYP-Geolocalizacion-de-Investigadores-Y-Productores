@@ -3900,9 +3900,8 @@ body.map-fullscreen #map {
 .map-canvas .map .search-bar {
   background-color: rgba(65, 65, 65, 0.2);
   left: 0;
-  position: absolute;
   top: 0;
-  width: 96%;
+  width: 100%;
   z-index: 3;
 }
 .map-canvas .map .toggle-navigation {
