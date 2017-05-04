@@ -43,6 +43,7 @@
         </ul>
     </li>
     {% endif %}
+    {% if is_granted('ROLE_PRODUCER') %}
     <li class="nav-item nav-dropdown">
         <a href="#" class="nav-link nav-dropdown-toggle">{{ 'Agroecological Practice' | trans }}</a>
         <ul class="nav-dropdown-items">
@@ -54,7 +55,7 @@
             </li>
         </ul>
     </li>
-
+    {% endif %}
     {% if (app.user.completeData) or (is_granted('ROLE_ADMIN')) %}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-newspaper-o"></i> {{ 'News' | trans }}</a>
