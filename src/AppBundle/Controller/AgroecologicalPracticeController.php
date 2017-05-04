@@ -69,13 +69,15 @@ class AgroecologicalPracticeController extends Controller
             $googleMap->setLongitude($_POST['longitude']);
             $googleMap->setAddress($_POST['address']);
 
-            foreach($_POST['data']['related_news'] as $obj)
-            {
-                $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
-                $news = $em->getRepository("AppBundle:News")->findOneBy(array('id' => $obj));
-                $agroecologicalPracticeNews->setNews($news);
-                $agroecologicalPracticeNews->setAgroecologicalPractice($practice);
-                $em->persist($agroecologicalPracticeNews);
+            if (isset($_POST['data']['related_news'])) {
+                foreach($_POST['data']['related_news'] as $obj)
+                {
+                    $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
+                    $news = $em->getRepository("AppBundle:News")->findOneBy(array('id' => $obj));
+                    $agroecologicalPracticeNews->setNews($news);
+                    $agroecologicalPracticeNews->setAgroecologicalPractice($practice);
+                    $em->persist($agroecologicalPracticeNews);
+                }
             }
 
             $em->persist($googleMap);
