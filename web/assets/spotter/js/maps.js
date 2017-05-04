@@ -605,35 +605,67 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     var url = Routing.generate('homepage_user_show', {
         'id': json[a].user.id
     });
-    visibleItemsArray.push(
-        '<li>' +
-            '<div class="item">' +
-                '<a href="' + url +'" class="image">' +
-                    '<div class="inner">' +
-                    '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
-                        '<div class="item-specific">' +
-                            // drawItemSpecific(category, json, a) +
+    if(json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
+        visibleItemsArray.push(
+            '<li>' +
+                '<div class="item">' +
+                    '<a href="' + url +'" class="image">' +
+                        '<div class="inner">' +
+                        '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
+                            '<div class="item-specific">' +
+                                // drawItemSpecific(category, json, a) +
+                            '</div>' +
+                            // '<img src="' + json[a].gallery[0] + '" alt="">' +
                         '</div>' +
-                        // '<img src="' + json[a].gallery[0] + '" alt="">' +
+                    '</a>' +
+                    '<div class="wrapper">' +
+                        '<a href="' + url + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
+                        '<figure>' + json[a].address.address + '</figure>' +
+                        // drawPrice(json[a].price) +
+                        // drawPrice(json[a].price) +
+                        '<div class="price"><a href="' + url + '">ver</a></div>' +
+                        // '<div class="info">' +
+                        //     '<div class="type">' +
+                        //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                        //         '<span>' + json[a].type + '</span>' +
+                        //     '</div>' +
+                        //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                        // '</div>' +
                     '</div>' +
-                '</a>' +
-                '<div class="wrapper">' +
-                    '<a href="' + url + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
-                    '<figure>' + json[a].address.address + '</figure>' +
-                    // drawPrice(json[a].price) +
-                    // drawPrice(json[a].price) +
-                    '<div class="price"><a href="' + url + '">ver</a></div>' +
-                    // '<div class="info">' +
-                    //     '<div class="type">' +
-                    //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
-                    //         '<span>' + json[a].type + '</span>' +
-                    //     '</div>' +
-                    //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                    // '</div>' +
                 '</div>' +
-            '</div>' +
-        '</li>'
-    );
+            '</li>'
+        );
+    }else{
+        visibleItemsArray.push(
+            '<li>' +
+                '<div class="item">' +
+                    '<a class="image">' +
+                        '<div class="inner">' +
+                        '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
+                            '<div class="item-specific">' +
+                                // drawItemSpecific(category, json, a) +
+                            '</div>' +
+                            // '<img src="' + json[a].gallery[0] + '" alt="">' +
+                        '</div>' +
+                    '</a>' +
+                    '<div class="wrapper">' +
+                        '<a><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
+                        '<figure>' + json[a].address.address + '</figure>' +
+                        // drawPrice(json[a].price) +
+                        // drawPrice(json[a].price) +
+                        '<div class="price"><a>ver</a></div>' +
+                        // '<div class="info">' +
+                        //     '<div class="type">' +
+                        //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                        //         '<span>' + json[a].type + '</span>' +
+                        //     '</div>' +
+                        //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                        // '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</li>'
+        );
+    }    
 
     function drawPrice(price){
         if( price ){
