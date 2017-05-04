@@ -605,7 +605,7 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     var url = Routing.generate('homepage_user_show', {
         'id': json[a].user.id
     });
-    if(json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
+    if(json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
         visibleItemsArray.push(
             '<li>' +
                 '<div class="item">' +
