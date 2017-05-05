@@ -23,7 +23,7 @@ class MediaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:Media")->findAll();
+        $entities = $em->getRepository("AppBundle:Media")->findBy(array('created_by' => $this->getUser()));
         return $this->render('media/list.html.twig', array(
             'entities' => $entities
         ));
@@ -37,6 +37,10 @@ class MediaController extends Controller
      */
     public function newAcion(Request $request)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('media_list');
+        }
+
         $entity = new Media();
         $form = $this->createForm(new MediaType(), $entity);
 
@@ -49,7 +53,7 @@ class MediaController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Media has been successfully added!'
+                $this->get('translator')->trans('Media has been successfully added!')
             );
             return $this->redirectToRoute('media_list');
         }
@@ -67,6 +71,10 @@ class MediaController extends Controller
      */
     public function putAction(Request $request, Media $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('media_list');
+        }
+
         $request->setMethod('PATCH');
 
         $form = $this->createForm(new MediaType(), $entity, ["method" => $request->getMethod()]);
@@ -77,7 +85,7 @@ class MediaController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Media has been succesfully updated!'
+                $this->get('translator')->trans('Media has been succesfully updated!')
             );
             return $this->redirectToRoute('media_list');
         }
@@ -95,12 +103,16 @@ class MediaController extends Controller
      */
     public function deleteAction(Media $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('media_list');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();
         $this->addFlash(
             'success',
-            'Media has been succesfully deleted!'
+            $this->get('translator')->trans('Media has been succesfully deleted!')
         );
         return $this->redirectToRoute('media_list');
     }

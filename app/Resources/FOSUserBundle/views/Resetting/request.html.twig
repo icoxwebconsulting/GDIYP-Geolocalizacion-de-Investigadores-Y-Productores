@@ -9,16 +9,16 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card mx-2">
                             <div class="card-block p-2">
-                                <h1>Forgot password</h1>
-                                <p class="text-muted">Resetting password</p>
+                                <h1>{{ 'Forgot Password' | trans }}</h1>
+                                <p class="text-muted">{{ 'Resetting password' | trans }}</p>
                                 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
                                     <div class="input-group mb-1">
-                                        <input type="text" id="username" name="username" class="form-control" placeholder="Username or email address" required="required" />
+                                        <input type="text" id="username" name="username" class="form-control" placeholder="{{ 'Username' | trans }} {{ 'or' | trans }} {{ 'Email' }}" required="required" />
                                     </div>
                                     {% if invalid_username is defined %}
                                         <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
                                     {% endif %}
-                                    <button type="submit" class="btn btn-block btn-success">Reset password</button>
+                                    <button type="submit" class="btn btn-block btn-success">{{ 'Reset password' | trans }}</button>
                                 </form>
                             </div>
                         </div>

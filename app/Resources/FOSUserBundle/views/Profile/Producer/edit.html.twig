@@ -1,0 +1,69 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}{{ 'Edit Profile' | trans }}{% endblock %}
+
+{% block top_content %}
+    {% embed ':_partial:breadcrumb.html.twig' %}
+        {% block breadcrumb %}{{ 'Edit Profile' | trans }}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>{{ 'Profile' | trans }}</strong>
+            </div>
+            <form method="POST" action="{{ path('user_producer_edit', {'id': entity.id }) }}" {{ form_enctype(form) }} class="form-horizontal">
+                <div class="card-block">
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'First Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.first_name, { 'attr': { 'class': 'form-control', 'placeholder': 'John'}}) }}
+                            {{ form_errors(form.first_name) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="last-name">{{ 'Last Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.last_name, { 'attr': { 'class': 'form-control', 'placeholder': 'Smith'}}) }}
+                            {{ form_errors(form.last_name) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="email">{{ 'Email' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.email, { 'attr': { 'class': 'form-control', 'placeholder': 'smith@mail.com', 'disabled': 'disabled'}}) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="current-image" class="col-md-3 form-control-label">{{ 'Current Image' | trans }}</label>
+                        <div class="col-md-9">
+                        {% if entity.imageName %}
+                            <figure>
+                                <img src="{{asset(vich_uploader_asset(entity, 'image')) }}" width="20%"  style="margin: auto; display: block; border-radius: 100%;">
+                            </figure>
+                        {% else %}
+                            {{ 'Doesnt have a profile image' | trans }}
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="image">{{ 'Change Image' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.image, { 'attr': { 'class': 'form-control'}}) }}
+                            {{ form_errors(form.image) }}
+                        </div>
+                    </div>
+                    {{ form_rest(form) }}
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

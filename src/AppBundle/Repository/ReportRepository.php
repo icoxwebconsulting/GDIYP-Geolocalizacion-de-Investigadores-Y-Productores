@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReportRepository extends EntityRepository
 {
+    public function findAllUserReportedByOtherUsers()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('r')
+            ->from('AppBundle:Report', 'r')
+            ->andWhere('r.created_by IS NOT NULL')
+            ->andWhere('r.type = 1');
+
+        return $qb->getQuery()->getResult();
+    }
 }

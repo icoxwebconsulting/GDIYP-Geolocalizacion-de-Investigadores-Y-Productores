@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="users")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  * @Vich\Uploadable
@@ -44,6 +44,12 @@ class User extends BaseUser
      * @ORM\Column(name="reported", type="boolean")
      */
     protected $reported = 0;
+
+    /**
+     * @var $complete_data
+     * @ORM\Column(name="complete_data", type="boolean")
+     */
+    protected $complete_data = 0;
 
     /**
      * @Assert\File(
@@ -179,5 +185,29 @@ class User extends BaseUser
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * Set completeData
+     *
+     * @param boolean $completeData
+     *
+     * @return User
+     */
+    public function setCompleteData($completeData)
+    {
+        $this->complete_data = $completeData;
+
+        return $this;
+    }
+
+    /**
+     * Get completeData
+     *
+     * @return boolean
+     */
+    public function getCompleteData()
+    {
+        return $this->complete_data;
     }
 }

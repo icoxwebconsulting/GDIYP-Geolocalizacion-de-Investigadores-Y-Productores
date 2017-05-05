@@ -1,0 +1,72 @@
+<div class="card-header">
+    <strong>{{ 'News detail' | trans }}</strong>
+</div>
+<div class="card-block">
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="title">{{ 'Title' | trans }}</label>
+        <div class="col-md-9">
+            {{ report.news.title }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="subtitle">{{ 'Subtitle' | trans }}</label>
+        <div class="col-md-9">
+            {{ report.news.subtitle }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="category">{{ 'Category' | trans }}</label>
+        <div class="col-md-9">
+            {% if report.news.category %}
+                {{ report.news.category.name }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="description">{{ 'Description' | trans }}</label>
+        <div class="col-md-9">
+            {{ report.news.description | raw }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="files" class="col-md-3 form-control-label">{{ 'Files' | trans }}</label>
+        <div class="col-md-9">
+            {% for media in medias %}
+                <a href="{{ asset(vich_uploader_asset(media, 'file')) }}" download="{{ media.fileName }}">
+                    <ul id="files">
+                    {% if (media.type.name == 'pdf') %}
+                        <li class="item"><i class="fa fa-file-pdf-o"></i></li>
+                    {% endif %}
+                    {% if (media.type.name == 'excel') %}
+                        <li class="item"><i class="fa fa-file-excel-o"></i></li>
+                    {% endif %}
+                    {% if (media.type.name == 'doc') %}
+                        <li class="item"><i class="fa fa-file-o"></i></li>
+                    {% endif %}
+                    {% if (media.type.name == 'ppt') %}
+                        <li class="item"><i class="fa fa-file-powerpoint-o"></i></li>
+                    {% endif %}
+                    {% if (media.type.name == 'image') %}
+                        <li class="item"><i class="fa fa-file-image-o"></i></li>
+                    {% endif %}
+                    </ul>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% block extra_ccs %}
+    <style>
+    ul#files {
+        display: inline;
+        padding: 0;
+    }
+    #files li
+    {
+        display: inline;
+        list-style-type: none;
+        padding-right: 20px;
+    }
+    </style>
+{% endblock %}

@@ -1,0 +1,392 @@
+<div class="col-md-8 col-sm-8">
+        <article class="block">
+            <header><h2>{{ 'Description' | trans }}</h2></header>
+            <div class="list-slider">
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Practice Information' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        {% if practice.organizationName %}
+                        <div class="left">
+                            <h4>{{ 'Organization Name' | trans }}</h4>
+                            <figure>{{ practice.organizationName }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.description %}
+                        <div class="left">
+                            <h4>{{ 'Description' | trans }}</h4>
+                            <figure>{{ practice.description }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.practiceMembers %}
+                            <div class="left">
+                                <h4>{{ 'Practice Members' | trans }}</h4>
+                                <figure>
+                                    <ul class="">
+                                        {% for member in practice.practiceMembers %}
+                                            <li> {{ member }} </li>
+                                        {% endfor %}                                        
+                                    </ul>                                    
+                                </figure>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.relatedInstitutions %}
+                            <div class="left">
+                                <h4>{{ 'Related Institution' | trans }}</h4>
+                                <figure>
+                                    <ul class="">
+                                        {% for institution in practice.relatedInstitutions %}
+                                            <li> {{ institution }} </li>
+                                        {% endfor %}                                        
+                                    </ul>                                    
+                                </figure>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <br><br>
+
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>
+                            {{ 'Practice Type' | trans }}: 
+                            {% if practice.productiveUndertaking %}
+                                {{ 'Productive Undertaking' | trans }}
+                            {% elseif practice.marketingSpaces %}
+                                {{ 'Marketing Spaces' | trans }}
+                            {% elseif practice.professionalServices %}
+                                {{ 'Professional Services' | trans }}
+                            {% elseif practice.institutionalProject %}
+                                {{ 'Institutional Projects' | trans }}
+                            {% elseif practice.promotionGroup %}
+                                {{ 'Promotion Group' | trans }}
+                            {% endif %}
+                        </h3>
+                    </header>
+                    <div class="list-item">
+                        <div class="left">
+                         {% if practice.productiveUndertaking %}
+                             <div class="list-item">
+                                {% if practice.productiveUndertaking.category %}
+                                <div class="left">
+                                    <h4>{{ 'Production Category' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.category.name }}</figure>
+                                 </div>
+                                {% endif %}
+                             </div>
+                             <div class="list-item">
+                                {% if practice.productiveUndertaking.type %}
+                                <div class="left">
+                                    <h4>{{ 'Production Type' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.type.name }}</figure>
+                                </div>
+                                {% endif %}
+                             </div>
+                            <div class="list-item">
+                                {% if practice.productiveUndertaking.productionDestination %}
+                                <div class="left">
+                                    <h4>{{ 'Product Destination' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.productionDestination.name }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.productiveUndertaking.whereTheySell %}
+                                <div class="left">
+                                    <h4>{{ 'Where they sell?' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.whereTheySell | trans }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.productiveUndertaking.productiveSurface %}
+                                <div class="left">
+                                    <h4>{{ 'Productive Surface' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.productiveSurface | trans}}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.productiveUndertaking.peopleInvolved %}
+                                <div class="left">
+                                    <h4>{{ 'People Involved' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.peopleInvolved }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.productiveUndertaking.comment %}
+                                <div class="left">
+                                    <h4>{{ 'Comments' | trans }}</h4>
+                                    <figure>{{ practice.productiveUndertaking.comment }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                         {% endif %}
+
+                         {% if practice.marketingSpaces %}
+                             <div class="list-item">
+                                {% if practice.marketingSpaces.marketWhereSold %}
+                                    <div class="left">
+                                    <h4>{{ 'Market where Sold' | trans }}</h4>
+                                        <figure>
+                                            <ul class="">
+                                                {% for market in practice.marketingSpaces.marketWhereSold %}
+                                                    <li> {{ market | trans}} </li>
+                                                {% endfor %}                                        
+                                            </ul>                                    
+                                        </figure>
+                                     </div>
+                                {% endif %}
+                             </div>
+                             <div class="list-item">
+                                {% if practice.marketingSpaces.type %}
+                                    <div class="left">
+                                    <h4>{{ 'Marketing space type' | trans }}</h4>
+                                        <figure>
+                                            <ul class="">
+                                                {% for type in practice.marketingSpaces.type %}
+                                                    <li> {{ type | trans}} </li>
+                                                {% endfor %}                                        
+                                            </ul>                                    
+                                        </figure>
+                                     </div>
+                                {% endif %}
+                             </div>
+                             <div class="list-item">
+                                {% if practice.marketingSpaces.periodicity %}
+                                    <div class="left">
+                                    <h4>{{ 'Periodicity' | trans }}</h4>
+                                        <figure>
+                                            <ul class="">
+                                                {% for periodicity in practice.marketingSpaces.periodicity %}
+                                                    <li> {{ periodicity | trans}} </li>
+                                                {% endfor %}                                        
+                                            </ul>                                    
+                                        </figure>
+                                     </div>
+                                {% endif %}
+                             </div>
+                            <div class="list-item">
+                                {% if practice.marketingSpaces.peopleInvolved %}
+                                <div class="left">
+                                    <h4>{{ 'People Involved' | trans }}</h4>
+                                    <figure>{{ practice.marketingSpaces.peopleInvolved }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>                             
+                            <div class="list-item">
+                                {% if practice.marketingSpaces.comment %}
+                                <div class="left">
+                                    <h4>{{ 'Comments' | trans }}</h4>
+                                    <figure>{{ practice.marketingSpaces.comment }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>                             
+                         {% endif %}
+                         
+                         {% if practice.professionalServices %}
+                             <div class="list-item">
+                                {% if practice.professionalServices.type %}
+                                <div class="left">
+                                    <h4>{{ 'Type' | trans }}</h4>
+                                    <figure>
+                                        <ul class="">
+                                            {% for type in practice.professionalServices.type %}
+                                                <li> {{ type | trans }} </li>
+                                            {% endfor %}                                        
+                                        </ul>                                    
+                                    </figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.professionalServices.comment %}
+                                <div class="left">
+                                    <h4>{{ 'Comments' | trans }}</h4>
+                                    <figure>{{ practice.professionalServices.comment }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                         {% endif %}
+
+                         {% if practice.institutionalProject %}
+                             <div class="list-item">
+                                {% if practice.institutionalProject.type %}
+                                <div class="left">
+                                    <h4>{{ 'Type' | trans }}</h4>
+                                    <figure>
+                                        <ul class="">
+                                            {% for type in practice.institutionalProject.type %}
+                                                <li> {{ type | trans }} </li>
+                                            {% endfor %}                                        
+                                        </ul>                                    
+                                    </figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.institutionalProject.population %}
+                                <div class="left">
+                                    <h4>{{ 'Population' | trans }}</h4>
+                                    <figure>{{ practice.institutionalProject.population }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.institutionalProject.duration %}
+                                <div class="left">
+                                    <h4>{{ 'Duration' | trans }}</h4>
+                                    <figure>{{ practice.institutionalProject.duration }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.institutionalProject.articulations %}
+                                <div class="left">
+                                    <h4>{{ 'Articulations' | trans }}</h4>
+                                    <figure>{{ practice.institutionalProject.articulations }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.institutionalProject.comment %}
+                                <div class="left">
+                                    <h4>{{ 'Comments' | trans }}</h4>
+                                    <figure>{{ practice.institutionalProject.comment }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                         {% endif %}
+
+                         {% if practice.promotionGroup %}
+                             <div class="list-item">
+                                {% if practice.promotionGroup.type %}
+                                <div class="left">
+                                    <h4>{{ 'Type' | trans }}</h4>
+                                    <figure>
+                                        <ul class="">
+                                            {% for type in practice.promotionGroup.type %}
+                                                <li> {{ type | trans }} </li>
+                                            {% endfor %}                                        
+                                        </ul>                                    
+                                    </figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.promotionGroup.modality %}
+                                <div class="left">
+                                    <h4>{{ 'Modality' | trans }}</h4>
+                                    <figure>{{ practice.promotionGroup.modality }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.promotionGroup.articulations %}
+                                <div class="left">
+                                    <h4>{{ 'Articulations' | trans }}</h4>
+                                    <figure>{{ practice.promotionGroup.articulations }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="list-item">
+                                {% if practice.promotionGroup.comment %}
+                                <div class="left">
+                                    <h4>{{ 'Comments' | trans }}</h4>
+                                    <figure>{{ practice.promotionGroup.comment }}</figure>
+                                </div>
+                                {% endif %}
+                            </div>
+                         {% endif %}
+                         
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Contact Means' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        {% if practice.contactMean.firstName %}
+                        <div class="left">
+                            <h4>{{ 'First Name' | trans }}</h4>
+                            <figure>{{ practice.contactMean.firstName | raw }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.lastName %}
+                        <div class="left">
+                            <h4>{{ 'Last Name' | trans }}</h4>
+                            <figure>{{ practice.contactMean.lastName }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.phone %}
+                        <div class="left">
+                            <h4>{{ 'Phone' | trans }}</h4>
+                            <figure>{{ practice.contactMean.phone }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.cellPhone %}
+                        <div class="left">
+                            <h4>{{ 'Cell Phone' | trans }}</h4>
+                            <figure>{{ practice.contactMean.cellPhone }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.email %}
+                        <div class="left">
+                            <h4>{{ 'Email' | trans }}</h4>
+                            <figure>{{ practice.contactMean.email }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.facebook %}
+                        <div class="left">
+                            <h4>{{ 'Facebook' | trans }}</h4>
+                            <figure>{{ practice.contactMean.facebook }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.website %}
+                        <div class="left">
+                            <h4>{{ 'Website' | trans }}</h4>
+                            <figure>{{ practice.contactMean.website }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="list-item">
+                        {% if practice.contactMean.comment %}
+                        <div class="left">
+                            <h4>{{ 'Comments' | trans }}</h4>
+                            <figure>{{ practice.contactMean.comment }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <br><br>
+
+            </div>
+            <!-- /.list-slider -->
+        </article>
+    </section>
+</div>

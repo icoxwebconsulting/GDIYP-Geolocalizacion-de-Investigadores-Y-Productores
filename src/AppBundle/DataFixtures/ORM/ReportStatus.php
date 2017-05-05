@@ -11,8 +11,8 @@ class ReportStatus extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $statuses = array(
-            'Valid',
-            'Invalid'
+            'Valido',
+            'Invalido'
         );
         foreach ($statuses as $name) {
             $entity = new ReportStatusEntity();

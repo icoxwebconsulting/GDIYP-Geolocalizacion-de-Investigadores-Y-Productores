@@ -1,0 +1,53 @@
+<div id="productive_undertaking" class="col-md-6 type" style="display:none;">
+    <div class="card">
+        <div class="card-header">
+            {{ 'Productive Undertaking' | trans }}
+        </div>
+        <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="productionCategory">{{ 'Production Category' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.category, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                </div>   
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="productionType">{{ 'Production Type' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.type, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                </div>                  
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="productionDestination">{{ 'Product Destination' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.productionDestination, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.productive_undertaking.productionDestination) }}
+                </div>            
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label">{{ 'Where they sell?' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.whereTheySell, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.productive_undertaking.whereTheySell) }}
+                </div>            
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label">{{ 'Productive Surface' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.productiveSurface, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                </div>                        
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="peopleInvolved">{{ 'People Involved' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.peopleInvolved, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="comment">{{ 'Comments' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.productive_undertaking.comment, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>                    
+                </div>
+        </div>
+    </div>
+</div>

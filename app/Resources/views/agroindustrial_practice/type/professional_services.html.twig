@@ -1,0 +1,27 @@
+<div id="professional_services" class="col-md-6 type" style="display:none;">
+    <div class="card">
+        <div class="card-header">
+            {{ 'Professional Services' | trans }}
+        </div>
+        <div class="card-block">
+               <div class="form-group row">
+                    <label class="col-md-3 form-control-label">{{ 'Type' | trans }}</label>
+                    <div class="col-md-9">
+                        {% for child in form.professional_services.type %}
+                            {% set name = child.vars.label %}
+                            <div>
+                                {{ form_widget(child) }}      
+                                {{ name | trans }}
+                            </div>
+                        {% endfor %}                         
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="comment">{{ 'Comments' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.professional_services.comment, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>                    
+                </div>        
+        </div>
+    </div>
+</div>

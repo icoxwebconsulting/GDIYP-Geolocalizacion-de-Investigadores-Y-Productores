@@ -1,0 +1,21 @@
+<aside class="col-md-4 col-sm-4" id="detail-sidebar">
+    <!--Contact-->
+    <section>
+        <div class="member">
+            <img src="{{ asset(vich_uploader_asset(practice.user, 'image')) }}">
+            <h4>{{ practice.practiceName }}</h4>
+        </div>
+        <header><h3>{{ 'Contact' | trans }}</h3></header>
+        <address>
+            <div>{{ practice.address.address}}</div>
+            <figure>
+                <div class="info">
+                    <i class="fa fa-envelope"></i>
+                    <span>{{ practice.contactMean.email }}</span>
+                </div>
+            </figure>
+        </address>
+    </section>
+    <figure>
+
+</aside>

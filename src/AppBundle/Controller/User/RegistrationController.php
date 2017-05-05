@@ -38,8 +38,11 @@ class RegistrationController extends BaseController
             $userManager->updateUser($user);
 
             if ($confirmationEnabled) {
-                $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
-                $route = 'fos_user_registration_check_email';
+                $route = 'fos_user_security_login';
+                $this->setFlash(
+                    'success',
+                    'Por favor revise su correo electrónico. Contiene un enlace de activación al que debe hacer clic para activar su cuenta.'
+                );
             } else {
                 $this->_authenticateAccount($user);
                 $route = 'fos_user_registration_confirmed';
@@ -61,5 +64,39 @@ class RegistrationController extends BaseController
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main', serialize($token));
+    }
+
+    /**
+     * @param $token
+     * @Route("/confirm/{token}", name="registration_confirm")
+     * @return response
+     */
+    public function confirmAction($token)
+    {
+        $user = $this->container->get('fos_user.user_manager')->findUserByConfirmationToken($token);
+        $router = $this->container->get('router');
+        if (null === $user) {
+            return new RedirectResponse($router->generate('dashboard'));
+        }
+
+        $user->setConfirmationToken(null);
+        $user->setEnabled(true);
+        $user->setLastLogin(new \DateTime());
+
+        $this->container->get('fos_user.user_manager')->updateUser($user);
+
+        $response = new RedirectResponse($this->container->get('router')->generate('fos_user_registration_confirmed'));        
+        $this->authenticateUser($user, $response);
+        
+        $securityContext = $this->container->get('security.context');
+        $router = $this->container->get('router');
+        if ($securityContext->isGranted('ROLE_INVESTIGATOR')) {
+            $response = new RedirectResponse($this->container->get('router')->generate('user_edit', array('id' => $user->getId())));
+        }elseif ($securityContext->isGranted('ROLE_PRODUCER')){
+            $response = new RedirectResponse($this->container->get('router')->generate('user_producer_edit', array('id' => $user->getId())));
+        }
+
+
+        return $response;
     }
 }

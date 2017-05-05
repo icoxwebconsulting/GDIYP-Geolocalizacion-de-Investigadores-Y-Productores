@@ -1,0 +1,184 @@
+<div class="col-md-8 col-sm-8">
+        <article class="block">
+            <header><h2>{{ 'Description' | trans }}</h2></header>
+            <div class="list-slider">
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Institution Information' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        {% if userProfile.institution %}
+                        <div class="left">
+                            <h4>{{ userProfile.institution.type.name }}</h4>
+                            <figure>{{ userProfile.institution.name }}</figure>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        {% if userProfile.address %}
+                            <div class="left">
+                                <h4>{{ 'Address work' | trans }}</h4>
+                                <figure>{{ userProfile.address.address }}</figure>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <!-- /.list-item -->
+                </div>
+                <br><br>
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Personal Information' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Summary' | trans }}</h4>
+                            <figure>{{ userProfile.summary | raw }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Job Title' | trans }}</h4>
+                            <figure>{{ userProfile.jobTitle }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Residence place' | trans }}</h4>
+                            {% if userProfile.residencePlace %}
+                                <figure>{{ 'Country' | trans }}: {{ userProfile.residencePlace.region.country.name }}</figure>
+                                <figure>{{ 'Region' | trans }}: {{  userProfile.residencePlace.region.name }}</figure>
+                                <figure>{{ 'City' | trans }}: {{  userProfile.residencePlace.name }}</figure>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                </div>
+                <br><br>
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Areas of knowledge' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        <div class="left">
+                            {% if userProfile.knowledge %}
+                                <h4>{{ userProfile.knowledge.knowledgeArea.name }}</h4>
+                                <figure>{{ userProfile.knowledge.name }}</figure>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Study Topic' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        <div class="left">
+                            {% if userProfile.studyTopic %}
+                                <h4>{{ userProfile.studyTopic.topicCategory.name }}</h4>
+                                <figure>{{ userProfile.studyTopic.name }}</figure>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Research place' | trans }}</h3>
+                    </header>
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Research place' | trans }}</h4>
+                            {% if userProfile.researchPlace %}
+                                <figure>{{ 'Country' | trans }}: {{ userProfile.researchPlace.region.country.name }}</figure>
+                                <figure>{{ 'Region' | trans }}Region: {{  userProfile.researchPlace.region.name }}</figure>
+                                <figure>{{ 'City' | trans }}: {{  userProfile.researchPlace.name }}</figure>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <!-- /.slide -->
+                <div class="slide">
+                    <header>
+                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Extra Information' | trans }}</h3>
+                    </header>
+                    {% if userProfile.caseStudy %}
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Case Study' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.name }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Case Study Description' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.description }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Keywords' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.keywords }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Graphic Information' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.graphicInformation }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Investigation Lines' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.investigationLines }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Research Group' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.researchGroup }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Related Institution' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.relatedInstitution }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Links' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.links }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    <div class="list-item">
+                        <div class="left">
+                            <h4>{{ 'Contact Info' | trans }}</h4>
+                            <figure>{{ userProfile.caseStudy.contactInfo }}</figure>
+                        </div>
+                    </div>
+                    <!-- /.list-item -->
+                    {% endif %}
+                </div>
+                <!-- /.slide -->
+            </div>
+            <!-- /.list-slider -->
+        </article>
+    </section>
+</div>

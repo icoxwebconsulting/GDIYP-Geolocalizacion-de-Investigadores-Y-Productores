@@ -1,0 +1,87 @@
+<div class="row setup-content" id="step-6">
+    <div class="col-md-10 col-sm-offset-1 col-centered">
+        <div class="col-md-12">
+            <h3 class="fs-title">{{ 'Extra Information' | trans }}</h3>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="case-study-name">{{ 'Case Study' | trans }}</label>
+                        <textarea id="case-study-name" name="case_study" id="" cols="30" rows="2" class="form-control">{{ profile.caseStudy ? profile.caseStudy.name }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="case-study-description">{{ 'Case Study Description' | trans }}</label>
+                        <textarea id="case-study-description" name="case_study_description" cols="30" rows="2" class="form-control" >{{ profile.caseStudy ? profile.caseStudy.description }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="keywords">{{ 'Keywords' | trans }}</label>
+                        <textarea id="keywords" name="keywords" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.keywords}}</textarea>
+                    </div>
+                </div>
+            </div>
+            {#<div class="form-group row">#}
+            {#<label class="col-md-3 form-control-label" for="search-address">Address</label>#}
+            {#<span class="help-block">Please type your address and move the marker</span>#}
+            {#<input id="case-study-search-address" type="text" name="case_study_address" value="{{ profile.caseStudy.address ? profile.caseStudy.address.address : ''}}" class="form-control controls" placeholder="Search address">#}
+            {#<input id="case_study_lat" type="hidden" name="case_study_latitude" value="{{ profile.caseStudy.address ? profile.caseStudy.address.latitude : 0 }}"><br>#}
+            {#<input id="case_study_lng" type="hidden" name="case_study_longitude" value="{{ profile.caseStudy.address ? profile.caseStudy.address.longitude : 0 }}">#}
+            {#</div>#}
+            {#<div class="form-group row" style="margin-bottom: 0rem;">#}
+            {#<div class="col-md-12">#}
+            {#<div id="map-case-study"></div>#}
+            {#</div>#}
+            {#</div>#}
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="graphic_information" class="form-control-label">{{ 'Graphic Information' | trans }}</label>
+                        <textarea name="graphic_information" id="graphic_information" cols="30" rows="50" >
+                            {{ profile.caseStudy ? profile.caseStudy.graphicInformation }}
+                        </textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="investigation-lines">{{ 'Investigation Lines' | trans }}</label>
+                        <textarea id="investigation-lines" name="investigation_lines" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.investigationLines }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="research-group">{{ 'Research Group' | trans }}</label>
+                        <textarea id="research-group" name="research_group" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.researchGroup }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="related-institution">{{ 'Related Institution' | trans}}</label>
+                        <textarea id="related-institution" name="related_institution" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.relatedInstitution }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="links">{{ 'Links' | trans }}</label>
+                        <textarea id="links" name="links" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.links }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="contact-info">{{ 'Contact Info' | trans}}</label>
+                        <textarea id="contact-info" name="contact_info" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.contactInfo }}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary nextBtn pull-right" style="color:#FFFFFF;"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
+    </div>
+</div>
+</div>

@@ -50,7 +50,7 @@ class CategoryController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Category has been successfully added!'
+                $this->get('translator')->trans('Category has been successfully added!')
             );
             return $this->redirectToRoute('category_list');
         }
@@ -79,7 +79,7 @@ class CategoryController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Category has been succesfully updated!'
+                $this->get('translator')->trans('Category has been succesfully updated!')
             );
             return $this->redirectToRoute('category_list');
         }

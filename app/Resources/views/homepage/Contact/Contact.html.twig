@@ -1,0 +1,27 @@
+<form id="item-detail-form" role="form" method="post" action="{{ path('contact_form') }}">
+    <input type="hidden" name="receptor" value="{% if userProfile is defined %}{{ userProfile.user.email }}{% endif %} {% if practice is defined %}{{ practice.contactMean.email }}{% endif %}">
+    <div class="form-group">
+        <label for="item-detail-name">{{ 'Name' | trans }}</label>
+        {{ form_widget(form.name, {'attr': { 'class': 'form-control framed', 'id':'item-detail-name', 'required':'required'}}) }}
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label for="item-detail-email">{{ 'Email' | trans }}</label>
+        {{ form_widget(form.email, {'attr': { 'class': 'form-control framed', 'id':'item-detail-email', 'required':'required'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="item-detail-email">{{ 'Subject' | trans }}</label>
+        {{ form_widget(form.subject, {'attr': { 'class': 'form-control framed', 'id':'item-detail-subject', 'required':'required'}}) }}
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label for="item-detail-message">{{ 'Message' | trans }}</label>
+        {{ form_widget(form.message, {'attr': { 'class': 'form-control framed', 'id':'item-detail-message', 'required':'required'}}) }}
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <button type="submit" class="btn framed icon">{{ 'Send' | trans }}<i class="fa fa-angle-right"></i></button>
+    </div>
+    {{ form_rest(form) }}
+    <!-- /.form-group -->
+</form>

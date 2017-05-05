@@ -1,0 +1,39 @@
+<div id="promotion_group" class="col-md-6 type" style="display:none;">
+    <div class="card">
+        <div class="card-header">
+            {{ 'Promotion Group' | trans }}
+        </div>
+        <div class="card-block">
+               <div class="form-group row">
+                    <label class="col-md-3 form-control-label">{{ 'Type' | trans }}</label>
+                    <div class="col-md-9">
+                        {% for child in form.promotion_group.type %}
+                            {% set name = child.vars.label %}
+                            <div>
+                                {{ form_widget(child) }}      
+                                {{ name | trans }}
+                            </div>
+                        {% endfor %}                        
+                    </div>
+                </div>   
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">{{ 'Modality' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.promotion_group.modality, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                </div>                  
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label">{{ 'Articulations' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.promotion_group.articulations, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 0">
+                    <label class="col-md-3 form-control-label" for="comment">{{ 'Comments' | trans }}</label>
+                    <div class="col-md-9">
+                        {{ form_widget(form.promotion_group.comment, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>                    
+                </div>
+        </div>
+    </div>
+</div>

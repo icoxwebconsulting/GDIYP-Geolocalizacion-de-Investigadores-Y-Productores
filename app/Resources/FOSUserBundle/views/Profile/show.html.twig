@@ -1,10 +1,10 @@
 {% extends ":admin:base.html.twig" %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}{{ 'Profile' | trans }}{% endblock %}
 
 {% block top_content %}
     {% embed ':_partial:breadcrumb.html.twig' %}
-        {% block breadcrumb %}Profile{% endblock %}
+        {% block breadcrumb %}{{ 'Profile' | trans }}{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -14,27 +14,35 @@
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">
                     <h2>{{ user.firstName }} {{ user.lastName }} </h2>
-                    <p><strong>Email: </strong> {{ user.email }}</p>
-                    <p><strong>Username: </strong> {{ user.username }}</p>
+                    <p><strong>{{ 'Email' | trans }}: </strong> {{ user.email }}</p>
+                    <p><strong>{{ 'Username' | trans }}: </strong> {{ user.username }}</p>
+                    {% if not is_granted('ROLE_SUPER_ADMIN') %}
                     <p>
-                        <strong>User type: </strong>
+                        <strong>{{ 'User type' | trans }}: </strong>
                         {% if is_granted('ROLE_PRODUCER') %}
-                            Producer
+                            {{ 'Producer' | trans }}
                         {% endif %}
                         {% if is_granted('ROLE_INVESTIGATOR') %}
-                            Investigator
+                            {{ 'Investigator' | trans }}
                         {% endif %}
                     </p>
+                    {% endif %}
                 </div>
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <figure>
-                        <img src="{{asset(vich_uploader_asset(user, 'image')) }}" width="70%" alt="" class="img-avatar">
-                    </figure>
+                    {% if user.imageName %}
+                        <figure>
+                            <img src="{{asset(vich_uploader_asset(user, 'image')) }}" style="width: 100px; height: 100px;" alt="" class="img-avatar">
+                        </figure>
+                   {% endif %}
                 </div>
             </div>
             <div class="col-sm-12">
-                <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">Edit Profile</a>
-                <a class="btn btn-warning" href="{{ path('fos_user_change_password',{id: user.id}) }}">Change Password</a>
+                {% if is_granted('ROLE_INVESTIGATOR') %}
+                    <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">{{ 'Edit Profile' | trans }}</a>
+                {% elseif is_granted('ROLE_PRODUCER') %}
+                    <a class="btn btn-primary" href="{{ path('user_producer_edit',{id: user.id}) }}">{{ 'Edit Profile' | trans }}</a>
+                {% endif %}
+                <a class="btn btn-warning" href="{{ path('fos_user_change_password',{id: user.id}) }}">{{ 'Edit Password' | trans }}</a>
             </div>
         </div>
     </div>

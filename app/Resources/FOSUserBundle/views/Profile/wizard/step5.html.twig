@@ -1,0 +1,41 @@
+<div class="row setup-content" id="step-5">
+    <div class="col-md-10 col-sm-offset-1 col-centered">
+        <div class="col-md-12">
+            <h3 class="fs-title">{{ 'Research place' | trans }}</h3>
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="form-control-label" for="job-title">{{ 'Research place' | trans }}</label>
+                        <div class="form-group">
+                            <label class="col-md-4 form-control-label" for="country">{{ 'Country' | trans }}</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="country" id="country2" required>
+                                    <option value="">{{ 'Select' | trans }} {{ 'Country' | trans }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 form-control-label" for="region">{{ 'Region' | trans }}</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="region2" id="region2" required>
+                                    <option value="">{{ 'Select' | trans }} {{ 'Region' | trans }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 form-control-label" for="city" id="label_city2">{{ 'City' | trans }}</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="research_place" id="city2">
+                                    <option value="">{{ 'Select' | trans }} {{ 'City' | trans }}</option>
+                                </select>
+                                <input id="other_city2" type="text" style="display: none;" class="form-control" name="city_name2" placeholder="{{ 'City' | trans }}">
+                            </div>
+                        </div>
+                        <a id="add_city2" style="display:none" href="#">{{ 'Add other' | trans }} ciudad</a>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary nextBtn pull-right" type="button" >{{ 'Next' | trans }}</button>
+        </div>
+    </div>
+</div>

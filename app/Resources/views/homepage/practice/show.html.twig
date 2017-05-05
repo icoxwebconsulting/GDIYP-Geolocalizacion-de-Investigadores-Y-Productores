@@ -1,0 +1,88 @@
+{% extends ':homepage:base.html.twig' %}
+
+{% block bodyClass %}page-subpage page-item-detail navigation-off-canvas{% endblock %}
+
+{% block search_content %}
+    {% embed 'homepage/_partial/searchBarForm.html.twig'%}{% endembed %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+    {% embed ':homepage/_partial:breadcrumb.html.twig'%}
+        {% block breadcrumb %}{{ 'Agroecological Practice' | trans }}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    <div id="map-detail"></div>
+    <section class="container">
+        <div class="row">
+            <!--Item Detail Content-->
+            <div class="col-md-9">
+                <section class="block" id="main-content">
+                    <header class="page-title">
+                        <div class="info">
+                            <div class="type">
+                                <div class="role producer"></div> {{ 'Producer' | trans }}
+                            </div>
+                        </div>
+                    </header>
+                    <div class="row">
+                        {% include 'homepage/practice/left_sidebar.html.twig' %}
+                        {% include 'homepage/practice/content.html.twig' %}
+                        {#% include 'homepage/practice/right_sidebar.html.twig' %#}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- /.container-->
+{% endblock %}
+
+{% block footer %}
+    {% embed ':homepage/_partial:footer-bottom.html.twig'%}{% endembed %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    div.member > img{
+        max-height: 140px;
+        max-width: 140px;
+        width: 140px;
+        height: 140px;
+    }
+    .slide{
+        padding:0 20px;
+    }
+    #page-footer .inner {
+        padding-top: 0px;
+    }
+    #page-footer .inner .footer-bottom {
+        margin-top: 0px;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('assets/spotter/js/infobox.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/spotter/js/richmarker-compiled.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/spotter/js/markerclusterer.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/spotter/js/custom.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/spotter/js/maps.js')}}"></script>
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "{{ path('homepage_practice_profile_show', {'id':practice.id}) }}"
+        }).done(function(result){
+            var json = JSON.parse(result);
+            itemDetailMap(json.address);
+        }).fail(function( jqxhr, textStatus, error ) {
+            console.log(error);
+        });
+
+        $(window).load(function(){
+            var rtl = false; // Use RTL
+            initializeOwl(rtl);
+        });
+    </script>
+{% endblock %}

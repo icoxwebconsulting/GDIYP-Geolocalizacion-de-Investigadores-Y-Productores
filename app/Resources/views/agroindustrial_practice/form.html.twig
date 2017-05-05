@@ -1,0 +1,452 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}{{ 'Agroecological Practice' | trans }}{% endblock %}
+
+{% block top_content %}
+    {% embed ':_partial:breadcrumb.html.twig' %}
+        {% block breadcrumb %}{{ 'Agroecological Practice' | trans }}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form, {'attr':{ 'class': 'form-horizontal', 'id': 'producer-form'}}) }}
+        <div class="col-md-6">
+            <div class="card">
+                
+                <div class="card-header">
+                    <strong>{{ 'Agroecological Practice' | trans }}</strong>
+                </div>
+                
+                <div class="card-block">
+                    <div class="form-group row" style="margin-top: 0">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Type Practice' | trans }}</label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="data[type_practice]" id="type_practice">
+                                <option value="">{{ 'Select' | trans }}</option>
+                                <option value="productive_undertaking">{{ 'Productive Undertaking' | trans }}</option>
+                                <option value="marketing_spaces">{{ 'Marketing Spaces' | trans }}</option>
+                                <option value="professional_services">{{ 'Professional Services' | trans }}</option>
+                                <option value="institutional_project">{{ 'Institutional Projects' | trans }}</option>
+                                <option value="promotion_group">{{ 'Promotion Group' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Practice Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.practiceName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.practiceName) }}
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Organization Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.organizationName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.organizationName) }}
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[member][0]">{{ 'Practice Members' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="data[member][0]" id="data[member][0]" />
+                        </div>
+                    </div>
+                    <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}</button>
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" />
+                        </div>
+                    </div>
+                    <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
+                                        
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
+                        <div class="col-md-9">
+                            {% for new in news %}
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
+                                    <label for="">{{ new.title }}</label>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row" style="margin-top: 30px">
+                        <label class="col-md-3 form-control-label" for="descripion">{{ 'Description' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.description, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.description) }}
+                    </div>
+
+                    <div class="form-group" style="margin-top: 30px">
+                        <div class="col-md-12">
+                            <label class="col-md-3 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
+                            <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
+                        </div>
+                        <div class="col-md-9">
+                            <input id="search-address" type="text" name="address" class="form-control controls" placeholder="{{ 'Search address' | trans }}" required>
+                        </div>
+                        <input id="lat" type="hidden" name="latitude"><br>
+                        <input id="lng" type="hidden" name="longitude">
+                    </div>
+                    <div class="form-group row" style="margin-bottom: 0rem;">
+                        <div class="col-md-12">
+                            <div id="map-canvas"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-6 form-control-label" for="graphicInformation">{{ 'Graphic Information' | trans }}</label>
+                        <div class="col-md-12">
+                            {{ form_widget(form.graphicInformation) }}
+                        </div>
+                        {{ form_errors(form.graphicInformation) }}
+                    </div>
+                    
+                    <h4>{{ 'Contact Means' | trans }}</h4>
+                    
+                    <div class="form-group row">
+                        <label for="firstName" class="col-md-3 form-control-label">{{ 'First Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.firstName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.firstName) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastName" class="col-md-3 form-control-label">{{ 'Last Name' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.lastName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.lastName) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-md-3 form-control-label">{{ 'Phone' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.phone, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.phone) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="cell_phone" class="col-md-3 form-control-label">{{ 'Cell Phone' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.cell_phone, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.cell_phone) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-md-3 form-control-label">{{ 'Email' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.email, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.email) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="facebook" class="col-md-3 form-control-label">Facebook</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.facebook, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.facebook) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="website" class="col-md-3 form-control-label">{{ 'Website' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.website, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.website) }}
+                    </div>
+                    <div class="form-group row">
+                        <label for="comment" class="col-md-3 form-control-label">{{ 'Comments' | trans }}</label>
+                        <div class="col-md-9">
+                            {{ form_widget(form.contact_mean.comment, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.contact_mean.comment) }}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
+                </div>
+                <input type="hidden" id="productive_undertaking_id" value="{% if (entity.getProductiveUndertaking()) %}{{ entity.getProductiveUndertaking().id }}{% endif %}">
+                <input type="hidden" id="marketing_spaces_id" value="{% if (entity.getMarketingSpaces()) %}{{ entity.getMarketingSpaces().id }}{% endif %}">
+                <input type="hidden" id="professional_services_id" value="{% if (entity.getProfessionalServices()) %}{{ entity.getProfessionalServices().id }}{% endif %}">
+                <input type="hidden" id="institutional_project_id" value="{% if (entity.getInstitutionalProject()) %}{{ entity.getInstitutionalProject().id }}{% endif %}">
+                <input type="hidden" id="promotion_group_id" value="{% if (entity.getPromotionGroup()) %}{{ entity.getPromotionGroup().id }}{% endif %}">
+                <input type="hidden" id="related_institution_id" value="{% if (entity.relatedInstitutions) %}{{ entity.relatedInstitutions }}{% endif %}">
+                <input type="hidden" id="member_id" value="{% if (entity.practiceMembers) %}{{ entity.practiceMembers }}{% endif %}">
+            </div>
+        </div>                
+        {% include ':agroindustrial_practice/type:productive_undertaking.html.twig' %}
+        {% include ':agroindustrial_practice/type:marketing_spaces.html.twig' %}
+        {% include ':agroindustrial_practice/type:professional_services.html.twig' %}
+        {% include ':agroindustrial_practice/type:institutional_projects.html.twig' %}
+        {% include ':agroindustrial_practice/type:promotion_group.html.twig' %}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        #search-address {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 300px;
+        }
+        #search-address:focus {
+            border-color: #4d90fe;
+        }
+        .form-group {
+            margin-top: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Include external JS libs. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+    <!-- Include JS files. -->
+    <script type="text/javascript" src="{{ asset('assets/froala_editor/js/froala_editor.pkgd.min.js') }}"></script>
+
+    <!-- Include Language file if we want to use it. -->
+    <script type="text/javascript" src="{{ asset('assets/froala_editor/js/languages/es.js') }}"></script>
+
+    <!-- Initialize the editor. -->
+    <script>
+        $(function() {
+            $('#appbundle_agroecologicalpractice_graphicInformation').froalaEditor({
+                height: 300
+            });
+            $('#type_practice').change(function(){
+                $('.type').hide();
+                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
+                $('#' + $(this).val()).show();
+            });
+        });
+    </script>
+
+    <script>
+        function initialize() {
+            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                center: {lat: 0, lng: 0},
+                zoom: 4,
+
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('search-address');
+            var myLatLng = new google.maps.LatLng( 0, 0);
+            marker = new google.maps.Marker( {position: myLatLng, map: map, draggable: true } );
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("lat").value = this.getPosition().lat();
+                document.getElementById("lng").value = this.getPosition().lng();
+                console.log("lat->",this.getPosition().lat());
+                console.log("long->",this.getPosition().lng());
+            });
+            marker.setMap( map );
+
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            var markers = [];
+            // [START region_getplaces]
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+                console.log(places[0].geometry);
+                document.getElementById("lat").value = places[0].geometry.viewport.f.b;
+                document.getElementById("lng").value = places[0].geometry.viewport.b.b;
+                console.log("auto complete lat->",places[0].geometry.viewport.f.b);
+                console.log("auto complete long->",places[0].geometry.viewport.b.b);
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function(marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location,
+                        draggable: true,
+                    });
+                    // Create a marker for each place.
+                    markers.push(marker);
+
+                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                        document.getElementById("lat").value = this.getPosition().lat();
+                        document.getElementById("lng").value = this.getPosition().lng();
+                        console.log("lat->",this.getPosition().lat());
+                        console.log("long->",this.getPosition().lng());
+                    });
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+            // [END region_getplaces]
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+            if ($("#productive_undertaking_id").val()) $("#type_practice option[value='productive_undertaking']").attr('selected','selected');
+            if ($("#marketing_spaces_id").val()) $("#type_practice option[value='marketing_spaces']").attr('selected','selected');
+            if ($("#professional_services_id").val()) $("#type_practice option[value='professional_services']").attr('selected','selected');
+            if ($("#institutional_project_id").val()) $("#type_practice option[value='institutional_project']").attr('selected','selected');
+            if ($("#promotion_group_id").val()) $("#type_practice option[value='promotion_group']").attr('selected','selected');
+            
+            $('.type').hide();
+            if ($("#type_practice").val()) {
+                $('#' + $("#type_practice").val()).show();
+                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
+            }
+                    
+            $("#add-member").click(function(e){
+                e.preventDefault();
+                var numberOfMember = $("#producer-form").find("input[name^='data[member]']").length;
+                var label = '<label class="col-md-3 form-control-label"  for="data[member][' + numberOfMember + ']">Integrante </label> ';
+                var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[member][' + numberOfMember + ']" id="data[member][' + numberOfMember + ']" /></div>';
+                var removeButton = '<button class="btn btn-danger remove-member">Quitar</button>';
+                var html = "<div class='form-group row members'>" + label + input + removeButton + "</div>";
+                $("#producer-form").find("#add-member").before(html);
+            });
+
+            $("#add-institution").click(function(e){
+                e.preventDefault();
+                var n = $("#producer-form").find("input[name^='data[related_institution]']").length;
+                var label = '<label class="col-md-3 form-control-label"  for="data[related_institution][' + n + ']">Institución </label> ';
+                var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[related_institution][' + n + ']" id="data[related_institution][' + n + ']" /></div>';
+                var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
+                var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
+                $("#producer-form").find("#add-institution").before(html);
+            });
+            
+            if ($("#member_id").val()) {
+                var member_json = JSON.parse($("#member_id").val());
+                for (var i=0; i< member_json.length; i++) {
+                    if (i === 0) {
+                        $("input[name='data[member][0]'").val(member_json[0]);
+                    }
+                    else {
+                        var label = '<label class="col-md-3 form-control-label"  for="data[member][' + i + ']">Integrante </label> ';
+                        var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[member][' + i + ']" id="data[member][' + i + ']" value="'+ member_json[i] +'" /></div>';
+                        var removeButton = '<button class="btn btn-danger remove-member">Quitar</button>';
+                        var html = "<div class='form-group row members'>" + label + input + removeButton + "</div>";
+                        $("#producer-form").find("#add-member").before(html);
+                    }
+                }
+            }
+
+            if ($("#related_institution_id").val()) {
+                var related_institution_json = JSON.parse($("#related_institution_id").val());
+                for (var i=0; i< related_institution_json.length; i++) {
+                    if (i === 0) {
+                        $("input[name='data[related_institution][0]'").val(related_institution_json[0]);
+                    }
+                    else {
+                        var label = '<label class="col-md-3 form-control-label"  for="data[related_institution][' + i + ']">Institución </label> ';
+                        var input = '<div class="col-md-7"><input class="form-control" type="text" name="data[related_institution][' + i + ']" id="data[related_institution][' + i + ']" value="'+ related_institution_json[i] +'" /></div>';
+                        var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
+                        var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
+                        $("#producer-form").find("#add-institution").before(html);
+                    }
+                }
+            }        
+                    
+            $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
+            loadProductionType();
+            $('#appbundle_agroecologicalpractice_productive_undertaking_category').change(function(){
+                loadProductionType();
+            });
+        });
+
+        $(document).on("click", ".remove-member",function(e){
+            e.preventDefault();
+            $(this).parents(".members").remove();
+            //update labels
+            $("#producer-form").find("label[for^='data[member]']").each(function(){
+                $(this).html("Integrante");
+            });
+        });
+        $(document).on("click", ".remove-institution",function(e){
+            e.preventDefault();
+            $(this).parents(".institutions").remove();
+            //update labels
+            $("#producer-form").find("label[for^='data[related_institution]']").each(function(){
+                $(this).html("Institución");
+            });
+        });
+
+        function loadProductionType(){
+            $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
+            var production_category = $('#appbundle_agroecologicalpractice_productive_undertaking_category').find(':selected').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ path('homepage')}}production_type/"+production_category
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#appbundle_agroecologicalpractice_productive_undertaking_type').append(newOption)
+                }
+            });
+        }
+        
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
+    {% endblock %}

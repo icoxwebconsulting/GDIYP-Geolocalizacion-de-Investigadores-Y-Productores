@@ -23,7 +23,11 @@ class NewsController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:News")->findAll();
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            $entities = $em->getRepository("AppBundle:News")->findAll();
+        }else{
+            $entities = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));
+        }
         return $this->render('news/list.html.twig', array(
             'entities' => $entities
         ));
@@ -37,9 +41,12 @@ class NewsController extends Controller
      */
     public function newAcion(Request $request)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('news_list');
+        }
+        
         $entity = new News();
         $form = $this->createForm(new NewsType(), $entity);
-
 
         if($form->handleRequest($request)->isValid())
         {
@@ -49,7 +56,7 @@ class NewsController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'News has been successfully added!'
+                $this->get('translator')->trans('News has been successfully added!')
             );
             return $this->redirectToRoute('news_list');
         }
@@ -67,6 +74,10 @@ class NewsController extends Controller
      */
     public function putAction(Request $request, News $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('news_list');
+        }
+        
         $request->setMethod('PATCH');
 
         $form = $this->createForm(new NewsType(), $entity, ["method" => $request->getMethod()]);
@@ -77,7 +88,7 @@ class NewsController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'News has been succesfully updated!'
+                $this->get('translator')->trans('News has been successfully updated!')
             );
             return $this->redirectToRoute('news_list');
         }
@@ -95,12 +106,16 @@ class NewsController extends Controller
      */
     public function deleteAction(News $entity)
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('news_list');
+        }
+        
         $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();
         $this->addFlash(
             'success',
-            'News has been succesfully deleted!'
+            $this->get('translator')->trans('News has been succesfully deleted!')
         );
         return $this->redirectToRoute('news_list');
     }

@@ -83,7 +83,7 @@ class Media
 
     /**
      * @var $news
-     * @ORM\ManyToOne(targetEntity="News")
+     * @ORM\ManyToOne(targetEntity="News", inversedBy="medias", cascade={"persist"})
      * @ORM\JoinColumn(name="news", referencedColumnName="id")
      */
     protected $news;
@@ -122,12 +122,12 @@ class Media
     }
 
     /**
-     * Set type
+     * Set Type
      *
-     * @param \AppBundle\Entity\Type $type
+     * @param \AppBundle\Entity\MediaType $type
      * @return Media
      */
-    public function setType(\AppBundle\Entity\Type $type = null)
+    public function setType(\AppBundle\Entity\MediaType $type = null)
     {
         $this->type = $type;
 
@@ -142,29 +142,6 @@ class Media
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set media_type
-     *
-     * @param \AppBundle\Entity\MediaType $mediaType
-     * @return Media
-     */
-    public function setMediaType(\AppBundle\Entity\MediaType $mediaType = null)
-    {
-        $this->media_type = $mediaType;
-
-        return $this;
-    }
-
-    /**
-     * Get media_type
-     *
-     * @return \AppBundle\Entity\MediaType 
-     */
-    public function getMediaType()
-    {
-        return $this->media_type;
     }
 
     /**

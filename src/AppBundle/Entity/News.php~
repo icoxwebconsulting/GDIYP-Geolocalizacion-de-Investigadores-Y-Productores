@@ -35,7 +35,7 @@ class News
 
     /**
      * @var string
-     * @ORM\Column(name="subtitle", type="string", length=255)
+     * @ORM\Column(name="subtitle", type="string", length=255, nullable=true)
      */
     private $subtitle;
 
@@ -54,15 +54,20 @@ class News
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="create_by", referencedColumnName="id")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
-    protected $createdBy;
+    protected $created_by;
 
     /**
      * @var $reported
      * @ORM\Column(name="reported", type="boolean")
      */
     protected $reported = 0;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="news", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $medias;
 
     /**
      * Get id
@@ -151,7 +156,7 @@ class News
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
-        $this->createdBy = $createdBy;
+        $this->created_by = $createdBy;
 
         return $this;
     }
@@ -163,7 +168,7 @@ class News
      */
     public function getCreatedBy()
     {
-        return $this->createdBy;
+        return $this->created_by;
     }
 
     /**
@@ -210,5 +215,46 @@ class News
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add media
+     *
+     * @param \AppBundle\Entity\Media $media
+     *
+     * @return News
+     */
+    public function addMedia(\AppBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \AppBundle\Entity\Media $media
+     */
+    public function removeMedia(\AppBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
     }
 }

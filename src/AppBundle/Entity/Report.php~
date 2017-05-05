@@ -36,14 +36,14 @@ class Report
     /**
      * @var string
      *
-     * @ORM\Column(name="feedback", type="text")
+     * @ORM\Column(name="feedback", type="text", nullable=true)
      */
     private $feedback;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_open", type="boolean")
+     * @ORM\Column(name="is_open", type="boolean", nullable=true)
      */
     private $isOpen;
 
@@ -75,6 +75,13 @@ class Report
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $created_by;
+
+    /**
+     * @var $approved_by
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="approved_by", referencedColumnName="id")
+     */
+    protected $approved_by;
 
     /**
      * @var $status
@@ -276,5 +283,29 @@ class Report
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set approvedBy
+     *
+     * @param \AppBundle\Entity\User $approvedBy
+     *
+     * @return Report
+     */
+    public function setApprovedBy(\AppBundle\Entity\User $approvedBy = null)
+    {
+        $this->approved_by = $approvedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get approvedBy
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getApprovedBy()
+    {
+        return $this->approved_by;
     }
 }
