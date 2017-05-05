@@ -990,6 +990,10 @@
                 <source>Practice Type</source>
                 <target>Tipo de Práctica</target>
             </trans-unit>
+             <trans-unit id="249">
+                <source>Practice Information</source>
+                <target>Información de la práctica</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

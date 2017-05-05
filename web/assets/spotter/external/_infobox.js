@@ -15,57 +15,37 @@ function drawInfobox(url, infoboxContent, json, i){
     if(json[i].user.imageName)     { var photo = '../uploads/user/profile/' + json[i].user.imageName; }
         else                        { photo = '/assets/spotter/img/items/1.jpg' }
 
+    var name = '';
+    if (json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
+        name = json[i].user.firstName +  ' ' + json[i].user.lastName;
+    }
+    else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
+        name = json[i].practiceName;
+    }
+
     var ibContent = '';
-    if(json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
-        ibContent =
-        '<div class="infobox ' + color + '">' +
-            '<div class="inner">' +
-                '<div class="image">' +
-                    '<div class="overlay">' +
-                        '<div class="wrapper">' +
-                            // '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Quick View</a>' +
-                            // '<hr>' +
-                            '<a href="' + url +  '" class="detail">Ir al detalle</a>' +
-                        '</div>' +
+    ibContent =
+    '<div class="infobox ' + color + '">' +
+        '<div class="inner">' +
+            '<div class="image">' +
+                '<div class="overlay">' +
+                    '<div class="wrapper">' +
+                        // '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Quick View</a>' +
+                        // '<hr>' +
+                        '<a href="' + url +  '" class="detail">Ir al detalle</a>' +
                     '</div>' +
-                    '<a href="' + url +  '" class="description">' +
-                        '<div class="meta">' +
-                            '<h2>' + json[i].user.firstName +  ' ' + json[i].user.lastName +  '</h2>' +
-                            '<figure>' + json[i].address.address.substr(0,30) +  '</figure>' +
-                            '<i class="fa fa-angle-right"></i>' +
-                        '</div>' +
-                    '</a>' +
-                    '<img src="' + photo +  '">' +
                 '</div>' +
-            '</div>' +
-        '</div>';
-    }
-    
-    if(json[i].user.roles.includes("ROLE_PRODUCER")) {
-        ibContent =
-        '<div class="infobox ' + color + '">' +
-            '<div class="inner">' +
-                '<div class="image">' +
-                    '<div class="overlay">' +
-                        '<div class="wrapper">' +
-                            // '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Quick View</a>' +
-                            // '<hr>' +
-                            //'<a href="' + url +  '" class="detail">Ir al detalle</a>' +
-                        '</div>' +
+                '<a href="' + url +  '" class="description">' +
+                    '<div class="meta">' +                    
+                        '<h2>' + name +  '</h2>' +
+                        '<figure>' + json[i].address.address.substr(0,30) +  '</figure>' +
+                        '<i class="fa fa-angle-right"></i>' +
                     '</div>' +
-                    //'<a href="' + url +  '" class="description">' +
-                    '<a href="#" class="description">' +
-                        '<div class="meta">' +
-                            '<h2>' + json[i].user.firstName +  ' ' + json[i].user.lastName +  '</h2>' +
-                            '<figure>' + json[i].address.address.substr(0,30) +  '</figure>' +
-                            //'<i class="fa fa-angle-right"></i>' +
-                        '</div>' +
-                    '</a>' +
-                    '<img src="' + photo +  '">' +
-                '</div>' +
+                '</a>' +
+                '<img src="' + photo +  '">' +
             '</div>' +
-        '</div>';
-    }
+        '</div>' +
+    '</div>';
     
     return ibContent;
 }

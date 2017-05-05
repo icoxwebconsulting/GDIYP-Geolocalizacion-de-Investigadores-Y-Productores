@@ -112,8 +112,19 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             // Infobox HTML element ----------------------------------------------------------------------------------------
 
             // var category = json[i].category;
-            var url = Routing.generate('homepage_user_show', {
-                'id': json[i].user.id
+            var router = ''; 
+            var ident = '';
+            if (json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
+                router = 'homepage_user_show';
+                ident = json[i].user.id;
+            }
+            else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
+                router = 'homepage_practice_show';
+                ident = json[i].id;
+            }
+            
+            var url = Routing.generate(router, {
+                'id': ident
             });
             infoboxContent.innerHTML = drawInfobox(url, infoboxContent, json, i);
 
@@ -602,9 +613,22 @@ function simpleMap(_latitude, _longitude, draggableMarker){
 
 function pushItemsToArray(json, a, category, visibleItemsArray){
     var itemPrice;
-    var url = Routing.generate('homepage_user_show', {
-        'id': json[a].user.id
+    var router = ''; 
+    var ident = '';
+    
+    if (json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
+        router = 'homepage_user_show';
+        ident = json[i].user.id;
+    }
+    else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
+        router = 'homepage_practice_show';
+        ident = json[i].id;
+    }
+
+    var url = Routing.generate(router, {
+        'id': ident
     });
+    
     if(json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
         visibleItemsArray.push(
             '<li>' +
@@ -649,7 +673,7 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
                         '</div>' +
                     '</a>' +
                     '<div class="wrapper">' +
-                        '<a><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
+                        '<a><h4>' + json[a].practiceName +'</h4></a>' +
                         '<figure>' + json[a].address.address + '</figure>' +
                         // drawPrice(json[a].price) +
                         // drawPrice(json[a].price) +

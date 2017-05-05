@@ -8,7 +8,7 @@
 
 {% block breadcrumb_content %}
     {% embed ':homepage/_partial:breadcrumb.html.twig'%}
-        {% block breadcrumb %}{{ 'User' | trans }}{% endblock %}
+        {% block breadcrumb %}{{ 'Agroecological Practice' | trans }}{% endblock %}
     {% endembed %}
 {% endblock %}
 
@@ -22,14 +22,14 @@
                     <header class="page-title">
                         <div class="info">
                             <div class="type">
-                                <div class="role investigator"></div> {{ 'Investigator' | trans }}
+                                <div class="role producer"></div> {{ 'Producer' | trans }}
                             </div>
                         </div>
                     </header>
                     <div class="row">
-                        {% include 'homepage/user/left_sidebar.html.twig' %}
-                        {% include 'homepage/user/content.html.twig' %}
-                        {% include 'homepage/user/right_sidebar.html.twig' %}
+                        {% include 'homepage/practice/left_sidebar.html.twig' %}
+                        {% include 'homepage/practice/content.html.twig' %}
+                        {#% include 'homepage/practice/right_sidebar.html.twig' %#}
                     </div>
                 </section>
             </div>
@@ -72,7 +72,7 @@
     <script>
         $.ajax({
             type: "GET",
-            url: "{{ path('homepage_user_profile_show', {'id':userProfile.user.id}) }}"
+            url: "{{ path('homepage_practice_profile_show', {'id':practice.id}) }}"
         }).done(function(result){
             var json = JSON.parse(result);
             itemDetailMap(json.address);

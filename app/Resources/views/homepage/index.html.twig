@@ -74,12 +74,11 @@
                             console.log('json', json[i]);
                             json.splice(i--,1);
                         }
-                    }
-                    if (type == "producer"){
+                    } else if (type == "producer"){
                         if (json[i].user.roles.includes("ROLE_INVESTIGATOR")){
                             console.log('indice', i);
                             console.log('json', json[i]);
-                            json.splice(i,1);
+                            json.splice(i--,1);
                         }
                     }
                 }

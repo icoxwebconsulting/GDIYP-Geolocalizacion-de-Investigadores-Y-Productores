@@ -1,5 +1,5 @@
 <form id="item-detail-form" role="form" method="post" action="{{ path('contact_form') }}">
-    <input type="hidden" name="receptor" value="{{ userProfile.user.email }}">
+    <input type="hidden" name="receptor" value="{% if userProfile is defined %}{{ userProfile.user.email }}{% endif %} {% if practice is defined %}{{ practice.contactMean.email }}{% endif %}">
     <div class="form-group">
         <label for="item-detail-name">{{ 'Name' | trans }}</label>
         {{ form_widget(form.name, {'attr': { 'class': 'form-control framed', 'id':'item-detail-name', 'required':'required'}}) }}
