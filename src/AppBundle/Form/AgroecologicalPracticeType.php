@@ -38,10 +38,6 @@ class AgroecologicalPracticeType extends AbstractType
             ->add(
                 'description',
                 TextareaType::class
-            )
-            ->add(
-                'graphicInformation',
-                TextareaType::class
             );
     }
     public function configureOptions(OptionsResolver $resolver)

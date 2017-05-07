@@ -60,13 +60,6 @@ class AgroecologicalPractice
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_information", type="text")
-     */
-    private $graphicInformation;
-
-    /**
      * @var $reported
      * @ORM\Column(name="reported", type="boolean")
      */
@@ -206,30 +199,6 @@ class AgroecologicalPractice
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set graphicInformation
-     *
-     * @param string $graphicInformation
-     *
-     * @return AgroecologicalPractice
-     */
-    public function setGraphicInformation($graphicInformation)
-    {
-        $this->graphicInformation = $graphicInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get graphicInformation
-     *
-     * @return string
-     */
-    public function getGraphicInformation()
-    {
-        return $this->graphicInformation;
     }
 
     /**
