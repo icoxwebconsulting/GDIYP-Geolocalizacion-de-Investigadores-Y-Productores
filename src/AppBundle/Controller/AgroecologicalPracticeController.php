@@ -86,7 +86,26 @@ class AgroecologicalPracticeController extends Controller
             $practice->setAddress($googleMap);
             $practice->setRelatedInstitutions($serialized_institutions);
             $practice->setUser($this->getUser());            
-
+            
+            //Contact Means
+            $contactMean = new ContactMean();            
+            if(array_filter($_POST['appbundle_agroecologicalpractice']['contact_mean'])) {                
+                $contactMean->setFirstName($_POST['appbundle_agroecologicalpractice']['contact_mean']['firstName']);
+                $contactMean->setLastName($_POST['appbundle_agroecologicalpractice']['contact_mean']['lastName']);
+                $contactMean->setPhone($_POST['appbundle_agroecologicalpractice']['contact_mean']['phone']);
+                $contactMean->setCellPhone($_POST['appbundle_agroecologicalpractice']['contact_mean']['cell_phone']);
+                $contactMean->setEmail($_POST['appbundle_agroecologicalpractice']['contact_mean']['email']);
+                $contactMean->setFacebook($_POST['appbundle_agroecologicalpractice']['contact_mean']['facebook']);
+                $contactMean->setWebsite($_POST['appbundle_agroecologicalpractice']['contact_mean']['website']);
+                $contactMean->setComment($_POST['appbundle_agroecologicalpractice']['contact_mean']['comment']);
+                
+                $practice->setContactMean($contactMean);
+                $em->persist($contactMean);
+            }
+            else {
+                $practice->setContactMean(NULL);
+            }
+                        
             //Questionnaires
             switch ($_POST['data']['type_practice']) {
                 case "productive_undertaking":
@@ -244,6 +263,25 @@ class AgroecologicalPracticeController extends Controller
             $practice->setRelatedInstitutions($serialized_institutions);
             $practice->setUser($this->getUser());            
 
+            //Contact Means
+            $contactMean = new ContactMean();            
+            if(array_filter($_POST['appbundle_agroecologicalpractice']['contact_mean'])) {                
+                $contactMean->setFirstName($_POST['appbundle_agroecologicalpractice']['contact_mean']['firstName']);
+                $contactMean->setLastName($_POST['appbundle_agroecologicalpractice']['contact_mean']['lastName']);
+                $contactMean->setPhone($_POST['appbundle_agroecologicalpractice']['contact_mean']['phone']);
+                $contactMean->setCellPhone($_POST['appbundle_agroecologicalpractice']['contact_mean']['cell_phone']);
+                $contactMean->setEmail($_POST['appbundle_agroecologicalpractice']['contact_mean']['email']);
+                $contactMean->setFacebook($_POST['appbundle_agroecologicalpractice']['contact_mean']['facebook']);
+                $contactMean->setWebsite($_POST['appbundle_agroecologicalpractice']['contact_mean']['website']);
+                $contactMean->setComment($_POST['appbundle_agroecologicalpractice']['contact_mean']['comment']);
+                
+                $practice->setContactMean($contactMean);
+                $em->persist($contactMean);
+            }
+            else {
+                $practice->setContactMean(NULL);
+            }
+            
             //Questionnaires
             switch ($_POST['data']['type_practice']) {
                 case "productive_undertaking":

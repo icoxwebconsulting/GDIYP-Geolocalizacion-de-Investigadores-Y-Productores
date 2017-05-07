@@ -18,35 +18,51 @@ class ContactMeanType extends AbstractType
         $builder
             ->add(
                 'firstName',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'lastName',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'phone',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'cell_phone',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'email',
-                EmailType::class
+                EmailType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'facebook',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'website',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             )
             ->add(
                 'comment',
-                TextType::class
+                TextType::class, array(
+                    'required' => false
+                )
             );
     }
 

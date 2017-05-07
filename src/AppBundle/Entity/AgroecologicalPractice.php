@@ -79,8 +79,8 @@ class AgroecologicalPractice
     protected $address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ContactMean", inversedBy="productor_profile", cascade={"all"})
-     * @ORM\JoinColumn(name="contact_mean", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ContactMean", inversedBy="productor_profile")
+     * @ORM\JoinColumn(name="contact_mean", referencedColumnName="id", nullable=true)
      */
     protected $contact_mean;
 
