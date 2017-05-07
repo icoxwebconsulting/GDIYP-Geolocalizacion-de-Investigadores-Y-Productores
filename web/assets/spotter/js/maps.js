@@ -524,7 +524,7 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
 // Item Detail Map - Google
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function itemDetailMap(json){
+function itemDetailMap(json, user){
     var mapCenter = new google.maps.LatLng(json.latitude,json.longitude);
     var mapOptions = {
         zoom: 4,
@@ -541,15 +541,23 @@ function itemDetailMap(json){
     if( json.type_icon ) var icon = '<img src="' + json.type_icon +  '">';
     else icon = '';
 
+    var color = '';
+    
     // Google map marker content -----------------------------------------------------------------------------------
+    if( user.roles.includes("ROLE_INVESTIGATOR")){
+        color = 'red';
+    }else if( user.roles.includes("ROLE_PRODUCER")){
+        color = 'blue';
+    }
 
     var markerContent = document.createElement('DIV');
     markerContent.innerHTML =
-        '<div class="map-marker">' +
+        '<div class="map-marker ' + color + '">' +
             '<div class="icon">' +
             // icon +
             '</div>' +
         '</div>';
+
 
     // Create marker on the map ------------------------------------------------------------------------------------
     var marker = new RichMarker({

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\HomePage;
 
 use AppBundle\Entity\News;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,4 +30,21 @@ class NewsController extends Controller
             'userProfile' => $userProfile
         ));
     }
+    
+    /**
+     * @param $new
+     * @Route("/practice/{id}", name="homepage_practice_new_show")
+     * @return array
+     */
+    public function showPracticeNewAction(News $new)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository("AppBundle:News")->find($new);
+        $user = $em->getRepository("AppBundle:User")->findOneBy(array('id'=>$new->getCreatedBy()));
+        return $this->render(':homepage/news:practiceshow.html.twig', array(
+            'entity' => $entity,
+            'user' => $user
+        ));
+    }
+    
 }

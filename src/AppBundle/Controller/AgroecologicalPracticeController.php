@@ -226,13 +226,15 @@ class AgroecologicalPracticeController extends Controller
             //$oldnews = $em->getRepository("AppBundle:AgroecologicalPracticeNews")->findBy(array('agroecological_practice' => $practice->getId()));
             //$em->remove($oldnews);
 
-            foreach($_POST['data']['related_news'] as $obj)
-            {
-                $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
-                $news = $em->getRepository("AppBundle:News")->findOneBy(array('id' => $obj));
-                $agroecologicalPracticeNews->setNews($news);
-                $agroecologicalPracticeNews->setAgroecologicalPractice($practice);
-                $em->persist($agroecologicalPracticeNews);
+            if (isset($_POST['data']['related_news'])) {
+                foreach($_POST['data']['related_news'] as $obj)
+                {
+                    $agroecologicalPracticeNews = new AgroecologicalPracticeNews();
+                    $news = $em->getRepository("AppBundle:News")->findOneBy(array('id' => $obj));
+                    $agroecologicalPracticeNews->setNews($news);
+                    $agroecologicalPracticeNews->setAgroecologicalPractice($practice);
+                    $em->persist($agroecologicalPracticeNews);
+                }
             }
 
             $em->persist($googleMap);
@@ -376,41 +378,6 @@ class AgroecologicalPracticeController extends Controller
             $this->get('translator')->trans('Agroecological Practice has been succesfully deleted!')
         );
         return $this->redirectToRoute('agroecological_practice_list');
-    }    
-    
-    /**
-     * @param AgroecologicalPractice $practice
-     * @Route("/{id}", options={"expose"=true}, name="homepage_practice_show")
-     * @return response
-     */
-    public function showAction(AgroecologicalPractice $practice)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $practice_news = $em->getRepository("AppBundle:AgroecologicalPracticeNews")->findBy(array('agroecological_practice' => $practice->getId()));
-
-        $form = $this->createForm('AppBundle\Form\ContactType',null,array(
-            'method' => 'POST'
-        ));
-        
-        return $this->render(':homepage/practice:show.html.twig', array(
-            'practice' => $practice,
-            'practiceNews' => $practice_news,
-            'form' => $form->createView()
-        ));
-    }    
-    
-    /**
-     * @param AgroecologicalPractice $practice
-     * @Route("/{id}", options={"expose"=true}, name="homepage_practice_profile_show")
-     * @return response
-     */
-    public function showProfileAction(AgroecologicalPractice $practice)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findOneBy(array('id'=>$practice));
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
-
-        return new Response($serializedEntity);
     }    
     
 }

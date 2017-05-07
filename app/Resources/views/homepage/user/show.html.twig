@@ -75,7 +75,7 @@
             url: "{{ path('homepage_user_profile_show', {'id':userProfile.user.id}) }}"
         }).done(function(result){
             var json = JSON.parse(result);
-            itemDetailMap(json.address);
+            itemDetailMap(json.address, json.user);
         }).fail(function( jqxhr, textStatus, error ) {
             console.log(error);
         });

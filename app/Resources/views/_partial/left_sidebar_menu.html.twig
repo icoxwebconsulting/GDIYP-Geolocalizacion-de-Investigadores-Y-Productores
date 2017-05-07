@@ -43,7 +43,7 @@
         </ul>
     </li>
     {% endif %}
-    {% if is_granted('ROLE_PRODUCER') %}
+    {% if (app.user.roles[0] == 'ROLE_PRODUCER') %}
     <li class="nav-item nav-dropdown">
         <a href="#" class="nav-link nav-dropdown-toggle">{{ 'Agroecological Practice' | trans }}</a>
         <ul class="nav-dropdown-items">

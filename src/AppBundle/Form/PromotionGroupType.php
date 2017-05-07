@@ -18,14 +18,14 @@ class PromotionGroupType extends AbstractType
         $builder
             ->add('type', 'choice', array(
                 'choices' => array(
-                        'guild_syndicate' => 'Guild / Syndicate',
-                        'political_social_organization' => 'Political Social Organization',
-                        'study_groups' => 'Study Groups',
-                        'professional_intervention_group' => 'Professional Intervention Group',
-                        'nongovernmental_organization' => 'Nongovernmental Organization',
-                        'corporate_group' => 'Corporate Group',
-                        'marketers_productors_group' => 'Marketers / Productors Group',
-                        'other' => 'Other',
+                        'Guild Syndicate' => 'Guild Syndicate',
+                        'Political Social Organization' => 'Political Social Organization',
+                        'Study Groups' => 'Study Groups',
+                        'Professional Intervention Group' => 'Professional Intervention Group',
+                        'Nongovernmental Organization' => 'Nongovernmental Organization',
+                        'Corporate Group' => 'Corporate Group',
+                        'Marketers Productors Group' => 'Marketers Productors Group',
+                        'Other' => 'Other',
                         
                     ),
                 'multiple' => true,

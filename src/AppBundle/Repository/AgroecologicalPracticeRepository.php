@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * AgroecologicalPracticeRepository
@@ -10,4 +11,16 @@ namespace AppBundle\Repository;
  */
 class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllNewsByPractice($practice)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('n')
+            ->from('AppBundle:News', 'n')            
+            ->join('AppBundle:AgroecologicalPracticeNews','pn','WITH','n.id = pn.news')
+            ->andWhere('pn.agroecological_practice = :practice')
+            ->setParameter(':practice', $practice);
+
+        return $qb->getQuery()->getResult();
+    }        
 }

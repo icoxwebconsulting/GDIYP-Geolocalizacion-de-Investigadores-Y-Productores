@@ -943,7 +943,7 @@
                 <target>Articulaciones</target>
             </trans-unit>
              <trans-unit id="237">
-                <source>Guild / Syndicate</source>
+                <source>Guild Syndicate</source>
                 <target>Gremio / Sindicato</target>
             </trans-unit>                 
              <trans-unit id="238">
@@ -967,7 +967,7 @@
                 <target>Grupo Corporativo</target>
             </trans-unit>                 
              <trans-unit id="243">
-                <source>Marketers / Productors Group</source>
+                <source>Marketers Productors Group</source>
                 <target>Grupo de Productores / Comercializadores</target>
             </trans-unit>          
              <trans-unit id="244">
@@ -993,6 +993,10 @@
              <trans-unit id="249">
                 <source>Practice Information</source>
                 <target>Información de la práctica</target>
+            </trans-unit>
+             <trans-unit id="250">
+                <source>Practice</source>
+                <target>Práctica</target>
             </trans-unit>
         </body>
     </file>

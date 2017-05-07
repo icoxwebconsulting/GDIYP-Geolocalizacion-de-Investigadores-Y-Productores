@@ -18,8 +18,8 @@ class MarketingSpacesType extends AbstractType
         $builder
             ->add('marketWhereSold', 'choice', array(
                 'choices' => array(
-                        'wholesale_market' => 'Wholesale Market',
-                        'retail_market' => 'Retail Market',
+                        'Wholesale Market' => 'Wholesale Market',
+                        'Retail Market' => 'Retail Market',
                         ),
                 'multiple' => true,
                 'expanded' => true,
@@ -28,11 +28,11 @@ class MarketingSpacesType extends AbstractType
             )
             ->add('type', 'choice', array(
                 'choices' => array(
-                        'productor_fairs' => 'Productor Fairs',
-                        'delivery' => 'Delivery',
-                        'home_delivery' => 'Home Delivery',
-                        'online_sale' => 'Online Sale',
-                        'other' => 'Other',
+                        'Productor Fairs' => 'Productor Fairs',
+                        'Delivery' => 'Delivery',
+                        'Home Delivery' => 'Home Delivery',
+                        'Online Sale' => 'Online Sale',
+                        'Other' => 'Other',
                         ),
                 'multiple' => true,
                 'expanded' => true,
@@ -41,13 +41,13 @@ class MarketingSpacesType extends AbstractType
             )
             ->add('periodicity', 'choice', array(
                 'choices' => array(
-                        'daily' => 'Daily',
-                        'weekly' => 'Weekly',
-                        'fortnightly' => 'Fortnightly',
-                        'monthly' => 'Monthly',
-                        'sixmonthly' => 'Six-Monthly',
-                        'yearly' => 'Yearly',
-                        'other' => 'Other',
+                        'Daily' => 'Daily',
+                        'Weekly' => 'Weekly',
+                        'Fortnightly' => 'Fortnightly',
+                        'Monthly' => 'Monthly',
+                        'Sixmonthly' => 'Six-Monthly',
+                        'Yearly' => 'Yearly',
+                        'Other' => 'Other',
                         ),
                 'multiple' => true,
                 'expanded' => true,

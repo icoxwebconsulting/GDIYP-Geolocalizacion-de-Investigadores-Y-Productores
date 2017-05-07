@@ -63,18 +63,18 @@ class ProductiveUndertakingType extends AbstractType
             )
             ->add('whereTheySell', 'choice', array(
                 'choices' => array(
-                        'by_order' => 'Door to door by order',
-                        'fairs' => 'Fairs',
-                        'markets' => 'Markets',
+                        'Door to door by order' => 'Door to door by order',
+                        'Fairs' => 'Fairs',
+                        'Markets' => 'Markets',
                         ),
                 'required' => false
                 )
             )
             ->add('productiveSurface', 'choice', array(
                 'choices' => array(
-                        'drapery_runners' => 'Drapery Runners',
-                        'curtains' => 'Curtains',
-                        'bordures' => 'Bordures',
+                        'Drapery Runners' => 'Drapery Runners',
+                        'Curtains' => 'Curtains',
+                        'Bordures' => 'Bordures',
                         ),
                 'required' => false
                 )

@@ -18,10 +18,10 @@ class InstitutionalProjectsType extends AbstractType
         $builder
             ->add('type', 'choice', array(
                 'choices' => array(
-                        'public_policy' => 'Public Policy',
-                        'state_financing' => 'State Financing',
-                        'private_financing' => 'Private Financing',
-                        'other' => 'Other',
+                        'Public Policy' => 'Public Policy',
+                        'State Financing' => 'State Financing',
+                        'Private Financing' => 'Private Financing',
+                        'Other' => 'Other',
                         ),
                 'multiple' => true,
                 'expanded' => true,

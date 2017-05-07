@@ -22,14 +22,14 @@
                     <header class="page-title">
                         <div class="info">
                             <div class="type">
-                                <div class="role producer"></div> {{ 'Producer' | trans }}
+                                <div class="role producer"></div> {{ 'Practice' | trans }}
                             </div>
                         </div>
                     </header>
                     <div class="row">
                         {% include 'homepage/practice/left_sidebar.html.twig' %}
                         {% include 'homepage/practice/content.html.twig' %}
-                        {#% include 'homepage/practice/right_sidebar.html.twig' %#}
+                        {% include 'homepage/practice/right_sidebar.html.twig' %}
                     </div>
                 </section>
             </div>
@@ -69,13 +69,13 @@
     <script type="text/javascript" src="{{ asset('assets/spotter/js/markerclusterer.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/spotter/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/spotter/js/maps.js')}}"></script>
-    <script>
-        $.ajax({
+    <script>        
+       $.ajax({
             type: "GET",
             url: "{{ path('homepage_practice_profile_show', {'id':practice.id}) }}"
         }).done(function(result){
             var json = JSON.parse(result);
-            itemDetailMap(json.address);
+            itemDetailMap(json.address, json.user);
         }).fail(function( jqxhr, textStatus, error ) {
             console.log(error);
         });
@@ -83,6 +83,22 @@
         $(window).load(function(){
             var rtl = false; // Use RTL
             initializeOwl(rtl);
+        });
+        
+        $(window).load(function(){
+            if ($("#member_id").val()) {
+                var member_json = JSON.parse($("#member_id").val());                
+                for (var i=0; i< member_json.length; i++) {
+                    $("#members").append("<li>"+member_json[i]+"</li>");
+                }
+            }
+            
+            if ($("#related_institution_id").val()) {
+                var institution_json = JSON.parse($("#related_institution_id").val());                
+                for (var i=0; i< institution_json.length; i++) {
+                    $("#institutions").append("<li>"+institution_json[i]+"</li>");
+                }
+            }            
         });
     </script>
 {% endblock %}

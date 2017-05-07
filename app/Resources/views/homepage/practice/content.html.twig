@@ -23,28 +23,24 @@
                         {% endif %}
                     </div>
                     <div class="list-item">
+                        <input type="hidden" id="member_id" value="{% if (practice.practiceMembers) %}{{ practice.practiceMembers }}{% endif %}">                        
                         {% if practice.practiceMembers %}
                             <div class="left">
                                 <h4>{{ 'Practice Members' | trans }}</h4>
                                 <figure>
-                                    <ul class="">
-                                        {% for member in practice.practiceMembers %}
-                                            <li> {{ member }} </li>
-                                        {% endfor %}                                        
+                                    <ul id="members" class="">
                                     </ul>                                    
                                 </figure>
                             </div>
                         {% endif %}
                     </div>
                     <div class="list-item">
+                        <input type="hidden" id="related_institution_id" value="{% if (practice.relatedInstitutions) %}{{ practice.relatedInstitutions }}{% endif %}">
                         {% if practice.relatedInstitutions %}
                             <div class="left">
                                 <h4>{{ 'Related Institution' | trans }}</h4>
                                 <figure>
-                                    <ul class="">
-                                        {% for institution in practice.relatedInstitutions %}
-                                            <li> {{ institution }} </li>
-                                        {% endfor %}                                        
+                                    <ul id="institutions" class="">
                                     </ul>                                    
                                 </figure>
                             </div>
@@ -57,7 +53,7 @@
                 <div class="slide">
                     <header>
                         <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>
-                            {{ 'Practice Type' | trans }}: 
+                            {{ 'Type' | trans }}: 
                             {% if practice.productiveUndertaking %}
                                 {{ 'Productive Undertaking' | trans }}
                             {% elseif practice.marketingSpaces %}
@@ -72,7 +68,6 @@
                         </h3>
                     </header>
                     <div class="list-item">
-                        <div class="left">
                          {% if practice.productiveUndertaking %}
                              <div class="list-item">
                                 {% if practice.productiveUndertaking.category %}
@@ -306,85 +301,84 @@
                                 </div>
                                 {% endif %}
                             </div>
-                         {% endif %}
-                         
-                        </div>
+                         {% endif %}                         
                     </div>
                 </div>
                 <br><br>
                 
                 <!-- /.slide -->
                 <div class="slide">
-                    <header>
-                        <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Contact Means' | trans }}</h3>
-                    </header>
-                    <div class="list-item">
-                        {% if practice.contactMean.firstName %}
-                        <div class="left">
-                            <h4>{{ 'First Name' | trans }}</h4>
-                            <figure>{{ practice.contactMean.firstName | raw }}</figure>
+                        {% if practice.contactMean %}
+                        <header>
+                            <h3 style="text-transform: uppercase;"><i class="fa fa-calendar"></i>{{ 'Contact Means' | trans }}</h3>
+                        </header>
+                        <div class="list-item">
+                            {% if practice.contactMean.firstName %}
+                            <div class="left">
+                                <h4>{{ 'First Name' | trans }}</h4>
+                                <figure>{{ practice.contactMean.firstName | raw }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.lastName %}
-                        <div class="left">
-                            <h4>{{ 'Last Name' | trans }}</h4>
-                            <figure>{{ practice.contactMean.lastName }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.lastName %}
+                            <div class="left">
+                                <h4>{{ 'Last Name' | trans }}</h4>
+                                <figure>{{ practice.contactMean.lastName }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.phone %}
-                        <div class="left">
-                            <h4>{{ 'Phone' | trans }}</h4>
-                            <figure>{{ practice.contactMean.phone }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.phone %}
+                            <div class="left">
+                                <h4>{{ 'Phone' | trans }}</h4>
+                                <figure>{{ practice.contactMean.phone }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.cellPhone %}
-                        <div class="left">
-                            <h4>{{ 'Cell Phone' | trans }}</h4>
-                            <figure>{{ practice.contactMean.cellPhone }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.cellPhone %}
+                            <div class="left">
+                                <h4>{{ 'Cell Phone' | trans }}</h4>
+                                <figure>{{ practice.contactMean.cellPhone }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.email %}
-                        <div class="left">
-                            <h4>{{ 'Email' | trans }}</h4>
-                            <figure>{{ practice.contactMean.email }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.email %}
+                            <div class="left">
+                                <h4>{{ 'Email' | trans }}</h4>
+                                <figure>{{ practice.contactMean.email }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.facebook %}
-                        <div class="left">
-                            <h4>{{ 'Facebook' | trans }}</h4>
-                            <figure>{{ practice.contactMean.facebook }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.facebook %}
+                            <div class="left">
+                                <h4>{{ 'Facebook' | trans }}</h4>
+                                <figure>{{ practice.contactMean.facebook }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.website %}
-                        <div class="left">
-                            <h4>{{ 'Website' | trans }}</h4>
-                            <figure>{{ practice.contactMean.website }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.website %}
+                            <div class="left">
+                                <h4>{{ 'Website' | trans }}</h4>
+                                <figure>{{ practice.contactMean.website }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    <div class="list-item">
-                        {% if practice.contactMean.comment %}
-                        <div class="left">
-                            <h4>{{ 'Comments' | trans }}</h4>
-                            <figure>{{ practice.contactMean.comment }}</figure>
+                        <div class="list-item">
+                            {% if practice.contactMean.comment %}
+                            <div class="left">
+                                <h4>{{ 'Comments' | trans }}</h4>
+                                <figure>{{ practice.contactMean.comment }}</figure>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
+                    {% endif %}                        
                 </div>
                 <br><br>
-
             </div>
             <!-- /.list-slider -->
         </article>

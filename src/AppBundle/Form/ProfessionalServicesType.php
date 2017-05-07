@@ -18,11 +18,11 @@ class ProfessionalServicesType extends AbstractType
         $builder
             ->add('type', 'choice', array(
                 'choices' => array(
-                        'advisory' => 'Advisory',
-                        'training' => 'Training',
-                        'purchase_and_marketing' => 'Purchase and Marketing',
-                        'supplies_and_machinery_sale' => 'Supplies and Machinery Sales',
-                        'other' => 'Other',
+                        'Advisory' => 'Advisory',
+                        'Training' => 'Training',
+                        'Purchase and Marketing' => 'Purchase and Marketing',
+                        'Supplies and Machinery Sale' => 'Supplies and Machinery Sales',
+                        'Other' => 'Other',
                         ),
                 'multiple' => true,
                 'expanded' => true,

@@ -1,0 +1,48 @@
+{% extends ':homepage:base.html.twig' %}
+
+{% block bodyClass %}page-subpage page-blog-detail navigation-off-canvas{% endblock %}
+
+{% block content %}
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <header>
+                    <h1 class="page-title">{{ entity.title }}</h1>
+                    <h2 class="page-subtitle">{{ entity.subtitle }}</h2>
+                </header>
+
+                <article class="blog-post">
+                    {{ entity.description | raw }}
+                </article><!-- /.blog-post-listing -->
+                {% if(entity.reported == 0) %}
+                    <a class="btn framed btn-color-default" data-target="#report-modal" data-toggle="modal" data-whatever="{{ path('homepage_news_report', {id: entity.id}) }}">report</a></li>
+                {% endif %}
+                <section id="about-author">
+                    <header class="no-border"><h3>About the Author</h3></header>
+                    <div class="post-author">
+                        <img style="display: inline-block;" src="{{ asset(vich_uploader_asset(user, 'image')) }}">
+                        <div class="wrapper" style="display: inline-block;">
+                            <header><a href="{{ path('homepage_practice_profile_show', {'id': user.id}) }}">{{ user.firstName }} {{ user.lastName }}</a></header>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block footer %}
+    {% embed ':homepage/_partial:footer-bottom.html.twig'%}{% endembed %}
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        #page-footer .inner {
+            padding-top: 0px;
+        }
+        #page-footer .inner .footer-bottom {
+            margin-top: 0px;
+        }
+    </style>
+{% endblock %}
