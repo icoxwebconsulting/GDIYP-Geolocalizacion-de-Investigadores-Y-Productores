@@ -38,6 +38,17 @@ class AgroecologicalPracticeType extends AbstractType
             ->add(
                 'description',
                 TextareaType::class
+            )
+            ->add(
+                'country',
+                'entity',
+                array(
+                    'class' => 'AppBundle:Country',
+                    'choice_label' => 'name',
+                    'attr' => array(
+                        "class" => "form-control"
+                    )
+                )
             );
     }
     public function configureOptions(OptionsResolver $resolver)

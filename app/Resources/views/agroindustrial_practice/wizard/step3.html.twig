@@ -1,0 +1,76 @@
+<div class="row setup-content" id="step-3">
+    <div class="col-md-10 col-sm-offset-1 col-centered">
+        <br>
+        <div class="row">        
+            <div class="col-md-12">
+                <h3 class="fs-title">{{ 'Contact Means' | trans }}</h3>
+                <div class="form-group">
+                    <label for="firstName" class="col-md-4 form-control-label">{{ 'First Name' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.firstName, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.firstName) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="lastName" class="col-md-4 form-control-label">{{ 'Last Name' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.lastName, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.lastName) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="phone" class="col-md-4 form-control-label">{{ 'Phone' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.phone, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.phone) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="cell_phone" class="col-md-4 form-control-label">{{ 'Cell Phone' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.cell_phone, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.cell_phone) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="email" class="col-md-4 form-control-label">{{ 'Email' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.email, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.email) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="facebook" class="col-md-4 form-control-label">Facebook</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.facebook, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.facebook) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="website" class="col-md-4 form-control-label">{{ 'Website' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.website, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.website) }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="comment" class="col-md-4 form-control-label">{{ 'Comments' | trans }}</label>
+                    <div class="col-md-8">
+                        {{ form_widget(form.contact_mean.comment, { 'attr': { 'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.contact_mean.comment) }}
+                </div>
+                <br>
+            </div>                    
+        </div>
+        <br>
+        <button class="btn btn-primary nextBtn pull-right" type="button" >{{ 'Next' | trans }}</button>
+    </div>
+</div>

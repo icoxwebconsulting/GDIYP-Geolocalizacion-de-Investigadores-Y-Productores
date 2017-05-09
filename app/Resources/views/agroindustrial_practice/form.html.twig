@@ -9,176 +9,9 @@
 {% endblock %}
 
 {% block content %}
-    {{ form_start(form, {'attr':{ 'class': 'form-horizontal', 'id': 'producer-form'}}) }}
-        <div class="col-md-6">
-            <div class="card">
-                
-                <div class="card-header">
-                    <strong>{{ 'Agroecological Practice' | trans }}</strong>
-                </div>
-                
-                <div class="card-block">
-                    <div class="form-group row" style="margin-top: 0">
-                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Type Practice' | trans }}</label>
-                        <div class="col-md-9">
-                            <select class="form-control" name="data[type_practice]" id="type_practice">
-                                <option value="">{{ 'Select' | trans }}</option>
-                                <option value="productive_undertaking">{{ 'Productive Undertaking' | trans }}</option>
-                                <option value="marketing_spaces">{{ 'Marketing Spaces' | trans }}</option>
-                                <option value="professional_services">{{ 'Professional Services' | trans }}</option>
-                                <option value="institutional_project">{{ 'Institutional Projects' | trans }}</option>
-                                <option value="promotion_group">{{ 'Promotion Group' | trans }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Practice Name' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.practiceName, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.practiceName) }}
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="first-name">{{ 'Organization Name' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.organizationName, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.organizationName) }}
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="data[member][0]">{{ 'Practice Members' | trans }}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" name="data[member][0]" id="data[member][0]" />
-                        </div>
-                    </div>
-                    <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}</button>
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" />
-                        </div>
-                    </div>
-                    <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
-                                        
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
-                        <div class="col-md-9">
-                            {% for new in news %}
-                            <ul>
-                                <li>
-                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
-                                    <label for="">{{ new.title }}</label>
-                                </li>
-                            </ul>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <div class="form-group row" style="margin-top: 30px">
-                        <label class="col-md-3 form-control-label" for="descripion">{{ 'Description' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.description, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.description) }}
-                    </div>
-
-                    <div class="form-group" style="margin-top: 30px">
-                        <div class="col-md-12">
-                            <label class="col-md-3 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
-                            <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
-                        </div>
-                        <div class="col-md-9">
-                            <input id="search-address" type="text" name="address" class="form-control controls" placeholder="{{ 'Search address' | trans }}" required>
-                        </div>
-                        <input id="lat" type="hidden" name="latitude"><br>
-                        <input id="lng" type="hidden" name="longitude">
-                    </div>
-                    <div class="form-group row" style="margin-bottom: 0rem;">
-                        <div class="col-md-12">
-                            <div id="map-canvas"></div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                    </div>
-                    
-                    <h4>{{ 'Contact Means' | trans }}</h4>
-                    
-                    <div class="form-group row">
-                        <label for="firstName" class="col-md-3 form-control-label">{{ 'First Name' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.firstName, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.firstName) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="lastName" class="col-md-3 form-control-label">{{ 'Last Name' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.lastName, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.lastName) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="phone" class="col-md-3 form-control-label">{{ 'Phone' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.phone, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.phone) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="cell_phone" class="col-md-3 form-control-label">{{ 'Cell Phone' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.cell_phone, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.cell_phone) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-md-3 form-control-label">{{ 'Email' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.email, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.email) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="facebook" class="col-md-3 form-control-label">Facebook</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.facebook, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.facebook) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="website" class="col-md-3 form-control-label">{{ 'Website' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.website, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.website) }}
-                    </div>
-                    <div class="form-group row">
-                        <label for="comment" class="col-md-3 form-control-label">{{ 'Comments' | trans }}</label>
-                        <div class="col-md-9">
-                            {{ form_widget(form.contact_mean.comment, { 'attr': { 'class': 'form-control'}}) }}
-                        </div>
-                        {{ form_errors(form.contact_mean.comment) }}
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>
-                </div>
-                <input type="hidden" id="productive_undertaking_id" value="{% if (entity.getProductiveUndertaking()) %}{{ entity.getProductiveUndertaking().id }}{% endif %}">
-                <input type="hidden" id="marketing_spaces_id" value="{% if (entity.getMarketingSpaces()) %}{{ entity.getMarketingSpaces().id }}{% endif %}">
-                <input type="hidden" id="professional_services_id" value="{% if (entity.getProfessionalServices()) %}{{ entity.getProfessionalServices().id }}{% endif %}">
-                <input type="hidden" id="institutional_project_id" value="{% if (entity.getInstitutionalProject()) %}{{ entity.getInstitutionalProject().id }}{% endif %}">
-                <input type="hidden" id="promotion_group_id" value="{% if (entity.getPromotionGroup()) %}{{ entity.getPromotionGroup().id }}{% endif %}">
-                <input type="hidden" id="related_institution_id" value="{% if (entity.relatedInstitutions) %}{{ entity.relatedInstitutions }}{% endif %}">
-                <input type="hidden" id="member_id" value="{% if (entity.practiceMembers) %}{{ entity.practiceMembers }}{% endif %}">
-            </div>
-        </div>                
-        {% include ':agroindustrial_practice/type:productive_undertaking.html.twig' %}
-        {% include ':agroindustrial_practice/type:marketing_spaces.html.twig' %}
-        {% include ':agroindustrial_practice/type:professional_services.html.twig' %}
-        {% include ':agroindustrial_practice/type:institutional_projects.html.twig' %}
-        {% include ':agroindustrial_practice/type:promotion_group.html.twig' %}
-    {{ form_end(form) }}
+    <div class="col-md-12">
+        {% include ':agroindustrial_practice:form_content.html.twig' %}
+    </div>
 {% endblock %}
 
 {% block extra_css %}
@@ -219,6 +52,14 @@
             margin-top: 30px;
         }
     </style>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/wizard.css') }}">
+    
 {% endblock %}
 
 {% block extra_js %}
@@ -235,9 +76,6 @@
     <!-- Initialize the editor. -->
     <script>
         $(function() {
-            $('#appbundle_agroecologicalpractice_graphicInformation').froalaEditor({
-                height: 300
-            });
             $('#type_practice').change(function(){
                 $('.type').hide();
                 //$('[id*="'+$(this).val()+'"]').prop('required',true);                
@@ -352,20 +190,20 @@
             $("#add-member").click(function(e){
                 e.preventDefault();
                 var numberOfMember = $("#producer-form").find("input[name^='data[member]']").length;
-                var label = '<label class="col-md-3 form-control-label"  for="data[member][' + numberOfMember + ']">Integrante </label> ';
-                var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[member][' + numberOfMember + ']" id="data[member][' + numberOfMember + ']" /></div>';
+                var label = '<label class="col-md-4 form-control-label"  for="data[member][' + numberOfMember + ']">Integrante </label> ';
+                var input = '<div class="col-md-6"><input  class="form-control" type="text" name="data[member][' + numberOfMember + ']" id="data[member][' + numberOfMember + ']" /></div>';
                 var removeButton = '<button class="btn btn-danger remove-member">Quitar</button>';
-                var html = "<div class='form-group row members'>" + label + input + removeButton + "</div>";
+                var html = "<div class='form-group members'>" + label + input + removeButton + "</div>";
                 $("#producer-form").find("#add-member").before(html);
             });
 
             $("#add-institution").click(function(e){
                 e.preventDefault();
                 var n = $("#producer-form").find("input[name^='data[related_institution]']").length;
-                var label = '<label class="col-md-3 form-control-label"  for="data[related_institution][' + n + ']">Institución </label> ';
-                var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[related_institution][' + n + ']" id="data[related_institution][' + n + ']" /></div>';
+                var label = '<label class="col-md-4 form-control-label"  for="data[related_institution][' + n + ']">Institución </label> ';
+                var input = '<div class="col-md-6"><input  class="form-control" type="text" name="data[related_institution][' + n + ']" id="data[related_institution][' + n + ']" /></div>';
                 var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
-                var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
+                var html = "<div class='form-group institutions'>" + label + input + removeButton + "</div>";
                 $("#producer-form").find("#add-institution").before(html);
             });
             
@@ -376,10 +214,10 @@
                         $("input[name='data[member][0]'").val(member_json[0]);
                     }
                     else {
-                        var label = '<label class="col-md-3 form-control-label"  for="data[member][' + i + ']">Integrante </label> ';
-                        var input = '<div class="col-md-7"><input  class="form-control" type="text" name="data[member][' + i + ']" id="data[member][' + i + ']" value="'+ member_json[i] +'" /></div>';
+                        var label = '<label class="col-md-4 form-control-label"  for="data[member][' + i + ']">Integrante </label> ';
+                        var input = '<div class="col-md-6"><input  class="form-control" type="text" name="data[member][' + i + ']" id="data[member][' + i + ']" value="'+ member_json[i] +'" /></div>';
                         var removeButton = '<button class="btn btn-danger remove-member">Quitar</button>';
-                        var html = "<div class='form-group row members'>" + label + input + removeButton + "</div>";
+                        var html = "<div class='form-group members'>" + label + input + removeButton + "</div>";
                         $("#producer-form").find("#add-member").before(html);
                     }
                 }
@@ -392,10 +230,10 @@
                         $("input[name='data[related_institution][0]'").val(related_institution_json[0]);
                     }
                     else {
-                        var label = '<label class="col-md-3 form-control-label"  for="data[related_institution][' + i + ']">Institución </label> ';
-                        var input = '<div class="col-md-7"><input class="form-control" type="text" name="data[related_institution][' + i + ']" id="data[related_institution][' + i + ']" value="'+ related_institution_json[i] +'" /></div>';
+                        var label = '<label class="col-md-4 form-control-label"  for="data[related_institution][' + i + ']">Institución </label> ';
+                        var input = '<div class="col-md-6"><input class="form-control" type="text" name="data[related_institution][' + i + ']" id="data[related_institution][' + i + ']" value="'+ related_institution_json[i] +'" /></div>';
                         var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
-                        var html = "<div class='form-group row institutions'>" + label + input + removeButton + "</div>";
+                        var html = "<div class='form-group institutions'>" + label + input + removeButton + "</div>";
                         $("#producer-form").find("#add-institution").before(html);
                     }
                 }
@@ -405,6 +243,16 @@
             loadProductionType();
             $('#appbundle_agroecologicalpractice_productive_undertaking_category').change(function(){
                 loadProductionType();
+            });
+            
+            $('#appbundle_agroecologicalpractice_region').children().remove();  
+            $('#appbundle_agroecologicalpractice_city').children().remove();
+            
+            $('#appbundle_agroecologicalpractice_country').change(function(){
+                loadRegion();
+            });
+            $('#appbundle_agroecologicalpractice_region').change(function(){
+                loadCity();
             });
         });
 
@@ -440,6 +288,41 @@
                     $('#appbundle_agroecologicalpractice_productive_undertaking_type').append(newOption)
                 }
             });
+        }
+            
+        function loadRegion(){
+            $('#appbundle_agroecologicalpractice_region').children().remove();
+            $('#appbundle_agroecologicalpractice_city').children().remove();
+            var country = $('#appbundle_agroecologicalpractice_country').find(':selected').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ path('homepage')}}region/"+country
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#appbundle_agroecologicalpractice_region').append(newOption)
+                }
+            });
+        }
+            
+        function loadCity(){
+            $('#appbundle_agroecologicalpractice_city').children().remove();
+            var region = $('#appbundle_agroecologicalpractice_region').find(':selected').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ path('homepage')}}city/"+region
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#appbundle_agroecologicalpractice_city').append(newOption)
+                }
+            });            
         }
         
     </script>

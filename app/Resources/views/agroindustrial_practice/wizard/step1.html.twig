@@ -1,0 +1,91 @@
+<div class="row setup-content" id="step-1">
+    <div class="col-md-10 col-sm-offset-1 col-centered">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="fs-title">{{ 'Practice Information' | trans }}</h3>
+                <div class="form-group">                       
+                    <div class="form-group">
+                        <label class="col-md-4 form-control-label">{{ 'Type Practice' | trans }}</label>
+                        <div class="col-md-8">
+                            <select class="form-control" name="data[type_practice]" id="type_practice" required="required">
+                                <option value="">{{ 'Select' | trans }}</option>
+                                <option value="productive_undertaking">{{ 'Productive Undertaking' | trans }}</option>
+                                <option value="marketing_spaces">{{ 'Marketing Spaces' | trans }}</option>
+                                <option value="professional_services">{{ 'Professional Services' | trans }}</option>
+                                <option value="institutional_project">{{ 'Institutional Projects' | trans }}</option>
+                                <option value="promotion_group">{{ 'Promotion Group' | trans }}</option>
+                            </select>
+                        </div>                                
+                    </div>
+
+                    <br>                        
+                    <div class="form-group">
+                        <label class="col-md-4 form-control-label">{{ 'Practice Name' | trans }}</label>
+                        <div class="col-md-8">
+                            {{ form_widget(form.practiceName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.practiceName) }}
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-4 form-control-label">{{ 'Organization Name' | trans }}</label>
+                        <div class="col-md-8">
+                            {{ form_widget(form.organizationName, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                        {{ form_errors(form.organizationName) }}
+                    </div>
+                    
+                    <br>                    
+                    <div class="form-group">        
+                        <label class="col-md-4 form-control-label" for="country">{{ 'Country' | trans }}</label>
+                        <div class="col-md-8">
+                            {{ form_widget(form.country, { 'attr': { 'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-4 form-control-label" for="region">{{ 'Region' | trans }}</label>
+                        <div class="col-md-8">
+                            <select class="form-control" name="appbundle_agroecologicalpractice_region" id="appbundle_agroecologicalpractice_region" required>
+                                <option value="">{{ 'Select' | trans }} {{ 'Region' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                            
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-4 form-control-label" for="city" id="label_city">{{ 'City' | trans }}</label>
+                        <div class="col-md-8">
+                            <select class="form-control" name="appbundle_agroecologicalpractice_city" id="appbundle_agroecologicalpractice_city">
+                                <option value="">{{ 'Select' | trans }} {{ 'City' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="col-md-3 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
+                            <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
+                        </div>
+                        <div class="col-md-9">
+                            <input id="search-address" type="text" name="address" value="{{ entity.address ? entity.address.address : ''}}" class="form-control controls" placeholder="{{ 'Search address' | trans }}" required>
+                        </div>
+                        <input id="lat" type="hidden" name="latitude" value="{{ entity.address ? entity.address.latitude : 0 }}"><br>
+                        <input id="lng" type="hidden" name="longitude" value="{{ entity.address ? entity.address.longitude : 0 }}">
+                    </div>
+                    <div class="form-group row" style="margin-bottom: 0rem;">
+                        <div class="col-md-12">
+                            <div id="map-canvas"></div>
+                        </div>
+                    </div>                    
+                </div>                
+            </div>                
+        </div>
+        <br>
+        <button class="btn btn-primary nextBtn pull-right" type="button" >{{ 'Next' | trans }}</button>
+    </div>
+</div>

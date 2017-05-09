@@ -1,0 +1,21 @@
+<div class="row setup-content" id="step-4">
+    <div class="col-md-10 col-sm-offset-1 col-centered">
+        <br>
+        <div class="row">        
+            <div class="col-md-12">
+                <h3 class="fs-title">{{ 'Practice Type' | trans }}</h3>
+                <div class="col-md-12">
+
+                    {% include ':agroindustrial_practice/type:productive_undertaking.html.twig' %}
+                    {% include ':agroindustrial_practice/type:marketing_spaces.html.twig' %}
+                    {% include ':agroindustrial_practice/type:professional_services.html.twig' %}
+                    {% include ':agroindustrial_practice/type:institutional_projects.html.twig' %}
+                    {% include ':agroindustrial_practice/type:promotion_group.html.twig' %}
+
+                </div>
+            </div>
+        </div>
+        <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
+        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>                    
+    </div>
+</div>

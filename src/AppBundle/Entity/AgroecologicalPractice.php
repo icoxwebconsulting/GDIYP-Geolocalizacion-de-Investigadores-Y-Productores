@@ -118,6 +118,23 @@ class AgroecologicalPractice
      */
     protected $user;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="country", referencedColumnName="id", nullable=true)
+     */
+    protected $country = null;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Region", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="region", referencedColumnName="id", nullable=true)
+     */
+    protected $region = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="agroecological_practice", cascade={"all"})
+     * @ORM\JoinColumn(name="city", referencedColumnName="id", nullable=true)
+     */
+    protected $city = null;
     
     /**
      * Get id
@@ -463,5 +480,77 @@ class AgroecologicalPractice
     public function getUser()
     {
         return $this->user;
+    }    
+    
+     /**
+     * Set country
+     *
+     * @param \AppBundle\Entity\Country $country
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setCountry (\AppBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \AppBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+    
+    /**
+     * Set region
+     *
+     * @param \AppBundle\Entity\Region $region
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setRegion(\AppBundle\Entity\ProductionType $region = null)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return \AppBundle\Entity\Region
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \AppBundle\Entity\City $city
+     *
+     * @return AgroecologicalPractice
+     */
+    public function setCity(\AppBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \AppBundle\Entity\City
+     */
+    public function getCity()
+    {
+        return $this->city;
     }    
 }
