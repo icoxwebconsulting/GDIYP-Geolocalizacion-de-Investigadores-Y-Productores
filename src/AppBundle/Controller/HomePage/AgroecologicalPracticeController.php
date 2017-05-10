@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\HomePage;
 
+use AppBundle\Entity\City;
 use AppBundle\Entity\News;
 use AppBundle\Entity\AgroecologicalPractice;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,4 +47,18 @@ class AgroecologicalPracticeController extends Controller
         $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
         return new Response($serializedEntity);
     }
+
+    /**
+     * @param City $city
+     * @Route("/city/{id}", options={"expose"=true}, name="homepage_practice_profile_city_show")
+     * @return response
+     */
+    public function practiceCityAction(City $city)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllPracticesByCity($city);
+        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
+    }    
 }

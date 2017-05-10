@@ -624,13 +624,13 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     var router = ''; 
     var ident = '';
     
-    if (json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
+    if (json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
         router = 'homepage_user_show';
-        ident = json[i].user.id;
+        ident = json[a].user.id;
     }
-    else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
+    else if (json[a].user.roles.includes("ROLE_PRODUCER")) {
         router = 'homepage_practice_show';
-        ident = json[i].id;
+        ident = json[a].id;
     }
 
     var url = Routing.generate(router, {

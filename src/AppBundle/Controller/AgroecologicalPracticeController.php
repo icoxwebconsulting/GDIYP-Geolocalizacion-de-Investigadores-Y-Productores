@@ -69,6 +69,11 @@ class AgroecologicalPracticeController extends Controller
             $googleMap->setLongitude($_POST['longitude']);
             $googleMap->setAddress($_POST['address']);
 
+            $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);
+            $city = $em->getRepository("AppBundle:City")->find($_POST['appbundle_agroecologicalpractice_city']);
+            $practice->setRegion($region);
+            $practice->setCity($city);                    
+            
             if (isset($_POST['data']['related_news'])) {
                 foreach($_POST['data']['related_news'] as $obj)
                 {
@@ -241,7 +246,12 @@ class AgroecologicalPracticeController extends Controller
             $googleMap->setLatitude($_POST['latitude']);
             $googleMap->setLongitude($_POST['longitude']);
             $googleMap->setAddress($_POST['address']);
-            
+
+            $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);
+            $city = $em->getRepository("AppBundle:City")->find($_POST['appbundle_agroecologicalpractice_city']);
+            $practice->setRegion($region);
+            $practice->setCity($city);                    
+
             //$oldnews = $em->getRepository("AppBundle:AgroecologicalPracticeNews")->findBy(array('agroecological_practice' => $practice->getId()));
             //$em->remove($oldnews);
 

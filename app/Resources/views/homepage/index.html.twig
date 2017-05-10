@@ -167,9 +167,14 @@
         $('#search-form').bind('submit', function(e) {
             e.preventDefault();
             var city = $('#city').find(':selected').val();
+            type = $("#type-user").val();
+            
             if (city != 0){
-                var url =  "{{ path('homepage') }}userProfile/city/"+city;
-                type = $("#type-user").val();
+                if (type == 'investigator')
+                    var url =  "{{ path('homepage') }}userProfile/city/"+city;
+                else if (type == 'producer')
+                    var url =  "{{ path('homepage') }}agroecologicalPractice/city/"+city;
+                                
                 console.log('clickl form',type)
                 loadMap(url,type);
             }
@@ -181,7 +186,12 @@
             var url;
             var city = $('#city').find(':selected').val();
             if (city != 0){
-                url =  "{{ path('homepage') }}userProfile/city/"+city;
+                if (type=='investigator')
+                    url =  "{{ path('homepage') }}userProfile/city/"+city;
+                else if (type=='producer')
+                    url =  "{{ path('homepage') }}agroecologicalPractice/city/"+city;
+                
+                $("#usertype").val = type;
                 console.log('city ',city)
                 loadMap(url,type);
             }else{

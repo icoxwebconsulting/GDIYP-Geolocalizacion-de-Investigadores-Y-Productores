@@ -22,5 +22,17 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter(':practice', $practice);
 
         return $qb->getQuery()->getResult();
-    }        
+    }
+    
+    public function findAllPracticesByCity($city)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('p')
+            ->from('AppBundle:AgroecologicalPractice', 'p')
+            ->andWhere('p.city = :city')
+            ->setParameter(':city', $city);
+
+        return $qb->getQuery()->getResult();
+    }    
 }

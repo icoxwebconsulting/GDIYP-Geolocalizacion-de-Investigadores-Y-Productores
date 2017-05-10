@@ -513,7 +513,7 @@ class AgroecologicalPractice
      *
      * @return AgroecologicalPractice
      */
-    public function setRegion(\AppBundle\Entity\ProductionType $region = null)
+    public function setRegion(\AppBundle\Entity\Region $region = null)
     {
         $this->region = $region;
 
