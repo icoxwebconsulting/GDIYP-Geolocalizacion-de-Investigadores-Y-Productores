@@ -18,10 +18,10 @@
                         <div class="form-group" style="margin-top:30px;margin-bottom:0px;">
                             <label style="display:none" class="col-md-4 form-control-label" for="institution" id="institution_label">{{ 'Institution' | trans }}</label>
                             <div class="col-md-8">
-                                <select required style="display:none" class="form-control" name="institution" id="institution">
+                                <select style="display:none" class="form-control" name="institution" id="institution" required="required">
                                     <option value="">{{ 'Select Institution' | trans }}</option>
                                 </select>
-                                <input class="form-control" style="display:none" id="other_institution" type="text" name="institution_name" placeholder="{{ 'Institution name' | trans }}">
+                                <input type="text" class="form-control" style="display:none" id="other_institution"  name="other_institution" placeholder="{{ 'Institution name' | trans }}" required="required">
                             </div>
                         </div>
 
