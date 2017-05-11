@@ -130,11 +130,21 @@ class UserController extends Controller
             if(!empty($_POST['related_institution'])){ $case_study->setRelatedInstitution($_POST['related_institution']); }
             if(!empty($_POST['links'])){ $case_study->setLinks($_POST['links']); }
             if(!empty($_POST['contact_info'])){ $case_study->setContactInfo($_POST['contact_info']); }
+            
 
             $profile->setUser($user);
             $profile->setJobTitle($_POST['job_title']);
             $profile->setSummary($_POST['summary']);
-            $profile->setInstitution($institution);
+            if (isset($institution)) {
+                $profile->setInstitution($institution);
+                $em->persist($institution);
+            }
+            else { 
+                if (!empty($_POST['other_institution'])) {
+                    $profile->setOtherInstitution($_POST['other_institution']);
+                }
+            }
+            
             $profile->setAddress($googleMap);
             $profile->setKnowledge($knowledge);
             $profile->setStudyTopic($studyTopic);
@@ -145,8 +155,7 @@ class UserController extends Controller
             {
                 $user->setImageName($image);
             }
-            $em->persist($user);
-            $em->persist($institution);
+            $em->persist($user);            
             $em->persist($googleMap);
             $em->persist($case_study);
             if(!empty($_POST['city_name'])){

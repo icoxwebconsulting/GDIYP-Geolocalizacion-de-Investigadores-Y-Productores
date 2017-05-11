@@ -77,6 +77,11 @@ class UserProfile
     protected $case_study;
 
     /**
+     * @ORM\Column(name="other_institution", type="string", length=255, nullable=true)
+     */
+    protected $other_institution;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -322,4 +327,28 @@ class UserProfile
     {
         return $this->case_study;
     }
+
+    /**
+     * Set other_institution
+     *
+     * @param string $otherInstitution
+     * @return UserProfile
+     */
+    public function setOtherInstitution($otherInstitution)
+    {
+        $this->otherInstitution = $otherInstitution;
+
+        return $this;
+    }
+
+    /**
+     * Get other_institution
+     *
+     * @return string 
+     */
+    public function getOtherInstitution()
+    {
+        return $this->other_institution;
+    }
 }
+
