@@ -21,7 +21,7 @@ class ProfessionalServicesType extends AbstractType
                         'Advisory' => 'Advisory',
                         'Training' => 'Training',
                         'Purchase and Marketing' => 'Purchase and Marketing',
-                        'Supplies and Machinery Sale' => 'Supplies and Machinery Sales',
+                        'Supplies and Machinery Sales' => 'Supplies and Machinery Sales',
                         'Other' => 'Other',
                         ),
                 'multiple' => true,

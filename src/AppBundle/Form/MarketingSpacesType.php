@@ -45,7 +45,7 @@ class MarketingSpacesType extends AbstractType
                         'Weekly' => 'Weekly',
                         'Fortnightly' => 'Fortnightly',
                         'Monthly' => 'Monthly',
-                        'Sixmonthly' => 'Six-Monthly',
+                        'Sixmonthly' => 'Sixmonthly',
                         'Yearly' => 'Yearly',
                         'Other' => 'Other',
                         ),

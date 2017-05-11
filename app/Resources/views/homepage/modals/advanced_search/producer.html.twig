@@ -9,25 +9,278 @@
                         <div class="line"></div>
                     </div>
                 </div>
-                <h4 class="modal-title">{{ 'Producer' | trans }}</h4>
-
+                <h4 class="modal-title">{{ 'Agroecological Practice' | trans }}</h4>
             </div>
-            <div class="modal-body">
-                <form>
+            <div class="container"></div>
+           <form id="practiceform" name="practiceform" method="post">
+                <div class="modal-body">
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label for="practice_type" class="control-label">{{ 'Practice Type' | trans }}:</label>
+                        <select name="practice_type" id="practice_type">
+                            <option value="0">{{ 'Select' | trans }}</option>
+                            <option value="productive_undertaking">{{ 'Productive Undertaking' | trans }}</option>
+                            <option value="marketing_spaces">{{ 'Marketing Spaces' | trans }}</option>
+                            <option value="professional_services">{{ 'Professional Services' | trans }}</option>
+                            <option value="institutional_project">{{ 'Institutional Projects' | trans }}</option>
+                            <option value="promotion_group">{{ 'Promotion Group' | trans }}</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        
+                    <div class="form-group type" id="productive_undertaking" style="display:none">
+                        <div class="form-group">
+                            <label for="productionCategory" class="control-label">{{ 'Production Category' | trans }}:</label>
+                            <select name="productionCategory" id="productionCategory">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productionType" class="control-label">{{ 'Production Type' | trans }}:</label>
+                            <select name="productionType" id="productionType">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productionDestination" class="control-label">{{ 'Product Destination' | trans }}:</label>
+                            <select name="productionDestination" id="productionDestination">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="whereTheySell" class="control-label">{{ 'Where they sell?' | trans }}</label>
+                            <select name="whereTheySell" id="whereTheySell">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Door to door by order">{{ 'Door to door by order' | trans }}</option>
+                                <option value="Fairs">{{ 'Fairs' | trans }}</option>
+                                <option value="Markets">{{ 'Markets' | trans }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productiveSurface" class="control-label">{{ 'Productive Surface' | trans }}:</label>
+                            <select name="productiveSurface" id="productiveSurface">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Drapery Runners">{{ 'Drapery Runners' | trans }}</option>
+                                <option value="Curtains">{{ 'Curtains' | trans }}</option>
+                                <option value="Bordures">{{ 'Bordures' | trans }}</option>
+                            </select>
+                        </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">	<a href="#" data-dismiss="modal" class="btn">Close</a>
-                <a href="#" class="btn btn-primary">Save changes</a>
-
-            </div>
+                        
+                    <div class="form-group type" id="marketing_spaces" style="display:none">
+                        <div class="form-group">
+                            <label for="marketWhereSold" class="control-label">{{ 'Market where Sold' | trans }}:</label>
+                            <select name="marketWhereSold" id="marketWhereSold">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Wholesale Market">{{ 'Wholesale Market' | trans }}</option>
+                                <option value="Retail Market">{{ 'Retail Market' | trans }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="control-label">{{ 'Type' | trans }}:</label>
+                            <select name="type" id="type">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Productor Fairs">{{ 'Productor Fairs' | trans }}</option>
+                                <option value="Delivery">{{ 'Delivery' | trans }}</option>
+                                <option value="Home Delivery">{{ 'Home Delivery' | trans }}</option>
+                                <option value="Online Sale">{{ 'Online Sale' | trans }}</option>
+                                <option value="Other">{{ 'Other' | trans }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodicity" class="control-label">{{ 'Periodicity' | trans }}:</label>
+                            <select name="periodicity" id="periodicity">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Daily">{{ 'Daily' | trans }}</option>
+                                <option value="Weekly">{{ 'Weekly' | trans }}</option>
+                                <option value="Fortnightly">{{ 'Fortnightly' | trans }}</option>
+                                <option value="Monthly">{{ 'Monthly' | trans }}</option>
+                                <option value="Sixmonthly">{{ 'Sixmonthly' | trans }}</option>
+                                <option value="Yearly">{{ 'Yearly' | trans }}</option>
+                                <option value="Other">{{ 'Other' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                            
+                    <div class="form-group type" id="professional_services" style="display:none">
+                        <div class="form-group">
+                            <label for="serviceType" class="control-label">{{ 'Type' | trans }}:</label>
+                            <select name="serviceType" id="serviceType">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Advisory">{{ 'Advisory' | trans }}</option>
+                                <option value="Training">{{ 'Training' | trans }}</option>
+                                <option value="Purchase and Marketing">{{ 'Purchase and Marketing' | trans }}</option>
+                                <option value="Supplies and Machinery Sales">{{ 'Supplies and Machinery Sales' | trans }}</option>
+                                <option value="Other">{{ 'Other' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                            
+                    <div class="form-group type" id="institutional_project" style="display:none">
+                        <div class="form-group">
+                            <label for="projectType" class="control-label">{{ 'Type' | trans }}:</label>
+                            <select name="projectType" id="projectType">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Public Policy">{{ 'Public Policy' | trans }}</option>
+                                <option value="State Financing">{{ 'State Financing' | trans }}</option>
+                                <option value="Private Financing">{{ 'Private Financing' | trans }}</option>
+                                <option value="Other">{{ 'Other' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                            
+                    <div class="form-group type" id="promotion_group" style="display:none" >
+                        <div class="form-group">
+                            <label for="promotionType" class="control-label">{{ 'Type' | trans }}:</label>
+                            <select name="promotionType" id="promotionType">
+                                <option value="0">{{ 'Select' | trans }}</option>
+                                <option value="Guild Syndicate">{{ 'Guild Syndicate' | trans }}</option>
+                                <option value="Political Social Organization">{{ 'Political Social Organization' | trans }}</option>
+                                <option value="Study Groups">{{ 'Study Groups' | trans }}</option>
+                                <option value="Professional Intervention Group">{{ 'Professional Intervention Group' | trans }}</option>
+                                <option value="Nongovernmental Organization">{{ 'Nongovernmental Organization' | trans }}</option>
+                                <option value="Corporate Group">{{ 'Corporate Group' | trans }}</option>
+                                <option value="Marketers Productors Group">{{ 'Marketers Productors Group' | trans }}</option>
+                                <option value="Other">{{ 'Other' | trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">	<a href="#" data-dismiss="modal" class="btn">{{ 'Close' | trans }}</a>
+                    <button type="submit" class="btn btn-default">{{ 'Apply filter' | trans }}</button>
+                </div>
+           </form>
         </div>
     </div>
 </div>
+
+{% block extra_css %}
+    <style>
+        div#practiceform {
+            top: 20px;
+        }
+        #practiceform > div {
+            margin: 10px auto;
+        }
+        .modal-body {
+            max-height: calc(100vh - 212px);
+            overflow-y: auto;
+        }
+        #practiceform > div > div select{
+            width: 60%;
+        }
+    </style>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        $('#practice_type').change(function(){
+            $('.type').hide();
+            $('#' + $(this).val()).show();
+        });
+        
+        $('#productionCategory').change(function(){
+            loadProductionType();
+        });
+
+        function loadProductionCategory(){
+            $.ajax({
+                type: "GET",
+                url: "{{ path('production_category_list') }}"
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#productionCategory').append(newOption);
+                }
+            });
+        }
+        function loadProductionType(){
+            $("#productionType").children().remove();
+            var productionCategory = $('#productionCategory').find(':selected').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ path('homepage')}}production_type/"+productionCategory
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#productionType').append(newOption);
+                }
+            });
+        }
+        function loadProductDestination(){
+            $.ajax({
+                type: "GET",
+                url: "{{ path('production_destination_list') }}"
+            }).done(function( result ) {
+                var data = eval(result);
+                for(var i = 0; i < data.length; i++){
+                    var newOption = $('<option/>');
+                    newOption.text(data[i].name);
+                    newOption.attr('value', data[i].id);
+                    $('#productionDestination').append(newOption);
+                }
+            });
+        }
+
+        loadProductionCategory();
+        loadProductDestination();
+
+        $('#practiceform').bind('submit', function(e) {
+            e.preventDefault();
+            var city = $('#city').find(':selected').val();
+            var practice_type = $('#practice_type').find(':selected').val();
+            
+            if (city != 0){
+                var url = '';
+                if (practice_type=="productive_undertaking") {
+                    var productionCategory = $('#productionCategory').find(':selected').val();
+                    var productionType = $('#productionType').find(':selected').val();
+                    var productionDestination = $('#productionDestination').find(':selected').val();
+                    var whereTheySell = $('#whereTheySell').find(':selected').val();
+                    var productiveSurface = $('#productiveSurface').find(':selected').val();
+                    
+                    if (productionCategory != 0 || productionType != 0 || productionDestination != 0 || whereTheySell != 0 || productiveSurface != 0){
+                        url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/"+productionCategory+"/"+productionType+"/"+productionDestination+"/"+whereTheySell+"/"+productiveSurface+"/0/0/0/0/0/0";
+                    }                    
+                }
+                else if (practice_type=="marketing_spaces") {
+                    var marketWhereSold = $('#marketWhereSold').find(':selected').val();
+                    var type = $('#type').find(':selected').val();
+                    var periodicity = $('#periodicity').find(':selected').val();
+
+                    if (marketWhereSold != 0 || type != 0 || periodicity != 0){
+                        url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/"+marketWhereSold+"/"+type+"/"+periodicity+"/0/0/0";
+                    }                    
+
+                }
+                else if (practice_type=="professional_services") {
+                    var serviceType = $('#serviceType').find(':selected').val();
+
+                    if (serviceType != 0){
+                        url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/"+serviceType+"/0/0";
+                    }                    
+                }
+                else if (practice_type=="institutional_project") {
+                    var projectType = $('#projectType').find(':selected').val();
+
+                    if (projectType != 0){
+                        url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/"+projectType+"/0";
+                    }                    
+                }
+                else if (practice_type=="promotion_group") {
+                    var promotionType = $('#promotionType').find(':selected').val();
+
+                    if (promotionType != 0){
+                        url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/0/"+promotionType;
+                    }                    
+                }
+
+                loadMap(url, "producer");
+                $('.modal').modal('hide');
+            }
+        });
+    </script>
+{% endblock %}</div>

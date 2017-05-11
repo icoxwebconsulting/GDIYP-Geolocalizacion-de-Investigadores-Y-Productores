@@ -174,6 +174,8 @@
                     var url =  "{{ path('homepage') }}userProfile/city/"+city;
                 else if (type == 'producer')
                     var url =  "{{ path('homepage') }}agroecologicalPractice/city/"+city;
+                else if (type == 'all')
+                    var url =  "{{ path('homepage') }}userProfile/all/city/"+city;
                                 
                 console.log('clickl form',type)
                 loadMap(url,type);

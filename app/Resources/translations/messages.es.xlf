@@ -891,7 +891,7 @@
                 <target>Mensual</target>
             </trans-unit>            
              <trans-unit id="224">
-                <source>Six-Monthly</source>
+                <source>Sixmonthly</source>
                 <target>Semestral</target>
             </trans-unit>        
              <trans-unit id="225">

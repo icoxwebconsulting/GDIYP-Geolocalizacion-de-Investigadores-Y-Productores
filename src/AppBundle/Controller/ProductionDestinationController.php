@@ -9,19 +9,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- *@Route("/production_type")
+ *@Route("/production_destination")
  */
-class ProductionTypeController extends Controller
+class ProductionDestinationController extends Controller
 {
     /**
-     * @param $id
-     * @Route("/{id}", name="production_type_list")
+     * @Route("/", name="production_destination_list")
      * @return response
      */
-    public function indexAction($id)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:ProductionType")->findBy(array('category'=>$id));
+        $entities = $em->getRepository("AppBundle:ProductionDestinationType")->findAll();
         $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
 
         return new Response($serializedEntity);

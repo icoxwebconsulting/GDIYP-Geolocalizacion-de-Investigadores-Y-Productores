@@ -61,4 +61,30 @@ class AgroecologicalPracticeController extends Controller
 
         return new Response($serializedEntity);
     }    
+
+    /**
+     * @param $city
+     * @param $practice_type
+     * @param $productionCategory
+     * @param $productionType
+     * @param $productionDestination
+     * @param $whereTheySell
+     * @param $productiveSurface
+     * @param $marketWhereSold
+     * @param $type
+     * @param $periodicity
+     * @param $serviceType
+     * @param $projectType
+     * @param $promotionType
+     * @Route("/filter/{city}/{practice_type}/{productionCategory}/{productionType}/{productionDestination}/{whereTheySell}/{productiveSurface}/{marketWhereSold}/{type}/{periodicity}/{serviceType}/{projectType}/{promotionType}", name="practice_advance_filter")
+     * @return response
+     */
+    public function advanceFilterAction($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findByFilter($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType);
+        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
+    }    
 }
