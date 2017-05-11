@@ -45,6 +45,7 @@ class AgroecologicalPracticeType extends AbstractType
                 array(
                     'class' => 'AppBundle:Country',
                     'choice_label' => 'name',
+                    'empty_value' => 'Select',
                     'attr' => array(
                         "class" => "form-control"
                     )

@@ -43,16 +43,17 @@
                         <div class="col-md-8">
                             {{ form_widget(form.country, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
+                        {{ form_errors(form.country) }}
                     </div>
                     
                     <br>
                     <div class="form-group">
                         <label class="col-md-4 form-control-label" for="region">{{ 'Region' | trans }}</label>
                         <div class="col-md-8">
-                            <select class="form-control" name="appbundle_agroecologicalpractice_region" id="appbundle_agroecologicalpractice_region" required>
+                            <select class="form-control" name="appbundle_agroecologicalpractice_region" id="appbundle_agroecologicalpractice_region">
                                 <option value="">{{ 'Select' | trans }} {{ 'Region' | trans }}</option>
                             </select>
-                        </div>
+                        </div>                        
                     </div>
                             
                     <br>
@@ -67,10 +68,8 @@
                     
                     <br>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="col-md-3 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
-                            <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
-                        </div>
+                        <label class="col-md-4 form-control-label" for="search-address">{{ 'Address' | trans }}</label>
+                        <span class="help-block">{{ 'Please type your address and move the marker' | trans }}</span>
                         <div class="col-md-9">
                             <input id="search-address" type="text" name="address" value="{{ entity.address ? entity.address.address : ''}}" class="form-control controls" placeholder="{{ 'Search address' | trans }}" required>
                         </div>

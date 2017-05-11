@@ -254,6 +254,10 @@
             $('#appbundle_agroecologicalpractice_region').change(function(){
                 loadCity();
             });
+            
+            if ($("#country_id").val()!='') {
+                loadRegion();               
+            }
         });
 
         $(document).on("click", ".remove-member",function(e){
@@ -297,13 +301,21 @@
             $.ajax({
                 type: "GET",
                 url: "{{ path('homepage')}}region/"+country
-            }).done(function( result ) {
+            }).done(function( result ) {                
                 var data = eval(result);
+                var regionselected = $('#region_id').val();
+                
                 for(var i = 0; i < data.length; i++){
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (data[i].id == regionselected){
+                        newOption.attr('selected','selected');
+                    }
                     $('#appbundle_agroecologicalpractice_region').append(newOption)
+                }
+                if (regionselected) {
+                    loadCity();
                 }
             });
         }
@@ -316,14 +328,21 @@
                 url: "{{ path('homepage')}}city/"+region
             }).done(function( result ) {
                 var data = eval(result);
+                var cityselected = $('#city_id').val();
+                
                 for(var i = 0; i < data.length; i++){
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (data[i].id == cityselected){
+                        newOption.attr('selected','selected');
+                    }                    
                     $('#appbundle_agroecologicalpractice_city').append(newOption)
                 }
             });            
         }
+        
+        
         
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
