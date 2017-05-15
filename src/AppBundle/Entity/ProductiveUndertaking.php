@@ -36,9 +36,9 @@ class ProductiveUndertaking
     private $productiveSurface = null;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="peopleInvolved", type="integer", nullable=true)
+     * @ORM\Column(name="peopleInvolved", type="string", length=255, nullable=true)
      */
     private $peopleInvolved = null;
 
@@ -128,7 +128,7 @@ class ProductiveUndertaking
     /**
      * Set peopleInvolved
      *
-     * @param integer $peopleInvolved
+     * @param string $peopleInvolved
      *
      * @return ProductiveUndertaking
      */
@@ -142,7 +142,7 @@ class ProductiveUndertaking
     /**
      * Get peopleInvolved
      *
-     * @return int
+     * @return string
      */
     public function getPeopleInvolved()
     {

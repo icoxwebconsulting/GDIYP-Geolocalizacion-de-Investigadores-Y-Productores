@@ -6,6 +6,7 @@ use AppBundle\Entity\AgroecologicalPractice;
 use AppBundle\Entity\AgroecologicalPracticeNews;
 use AppBundle\Entity\ContactMean;
 use AppBundle\Entity\GoogleMap;
+use AppBundle\Entity\City;
 use AppBundle\Entity\ProductiveUndertaking;
 use AppBundle\Entity\MarketingSpaces;
 use AppBundle\Entity\ProfessionalServices;
@@ -54,7 +55,7 @@ class AgroecologicalPracticeController extends Controller
         $form = $this->createForm(new AgroecologicalPracticeType(), $practice);
 
         $news = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));
-
+        
         if($form->handleRequest($request)->isValid())
         {
             /* echo "<pre>",print_r($_POST, true),"</pre>";
@@ -68,11 +69,19 @@ class AgroecologicalPracticeController extends Controller
             $googleMap->setLatitude($_POST['latitude']);
             $googleMap->setLongitude($_POST['longitude']);
             $googleMap->setAddress($_POST['address']);
-
-            $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);
-            $city = $em->getRepository("AppBundle:City")->find($_POST['appbundle_agroecologicalpractice_city']);
+            
+            $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);            
             $practice->setRegion($region);
-            $practice->setCity($city);                    
+
+            if(!empty($_POST['appbundle_agroecologicalpractice_city_name'])){
+                $city = new City();
+                $city->setName($_POST['appbundle_agroecologicalpractice_city_name']);
+                $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);
+                $city->setRegion($region);
+            }else{
+                $city = $em->getRepository("AppBundle:City")->find($_POST['appbundle_agroecologicalpractice_city']);
+            }
+            $practice->setCity($city);
             
             if (isset($_POST['data']['related_news'])) {
                 foreach($_POST['data']['related_news'] as $obj)
@@ -230,7 +239,8 @@ class AgroecologicalPracticeController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $form = $this->createForm(new AgroecologicalPracticeType(), $practice, ["method" => $request->getMethod()]);
-        $news = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));        
+        $news = $em->getRepository("AppBundle:News")->findBy(array('created_by' => $this->getUser()));
+        $practiceNews = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllNewsByPractice($practice);
         
         if ($form->handleRequest($request)->isValid())
         {
@@ -247,13 +257,20 @@ class AgroecologicalPracticeController extends Controller
             $googleMap->setLongitude($_POST['longitude']);
             $googleMap->setAddress($_POST['address']);
 
-            $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);
-            $city = $em->getRepository("AppBundle:City")->find($_POST['appbundle_agroecologicalpractice_city']);
+            $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);            
             $practice->setRegion($region);
-            $practice->setCity($city);                    
 
-            //$oldnews = $em->getRepository("AppBundle:AgroecologicalPracticeNews")->findBy(array('agroecological_practice' => $practice->getId()));
-            //$em->remove($oldnews);
+            if(!empty($_POST['appbundle_agroecologicalpractice_city_name'])){
+                $city = new City();
+                $city->setName($_POST['appbundle_agroecologicalpractice_city_name']);
+                $region = $em->getRepository("AppBundle:Region")->find($_POST['appbundle_agroecologicalpractice_region']);
+                $city->setRegion($region);
+            }else{                
+                $city = $em->getRepository("AppBundle:City")->find($_POST['appbundle_agroecologicalpractice_city']);
+            }            
+            $practice->setCity($city);
+            
+            $deleteNews = $em->getRepository("AppBundle:AgroecologicalPractice")->deleteAllNewsByPractice($practice);
 
             if (isset($_POST['data']['related_news'])) {
                 foreach($_POST['data']['related_news'] as $obj)
@@ -401,7 +418,8 @@ class AgroecologicalPracticeController extends Controller
         return $this->render('agroindustrial_practice/form.html.twig', array(
             'form' => $form->createView(),
             'entity' => $practice,
-            'news' => $news
+            'news' => $news,
+            'practicenews' => $practiceNews
         ));
     }
 

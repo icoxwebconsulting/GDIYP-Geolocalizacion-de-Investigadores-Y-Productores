@@ -29,15 +29,24 @@ class AgroecologicalPracticeType extends AbstractType
         $builder
             ->add(
                 'practiceName',
-                TextType::class
+                TextType::class,
+                array(
+                    'required' => true
+                    )
             )
             ->add(
                 'organizationName',
-                TextType::class
+                TextType::class,
+                array(
+                    'required' => true
+                    )
             )
             ->add(
                 'description',
-                TextareaType::class
+                TextareaType::class, 
+               array(
+                    'required' => true
+                    )
             )
             ->add(
                 'country',

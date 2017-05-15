@@ -990,14 +990,18 @@
                 <source>Practice Type</source>
                 <target>Tipo de Práctica</target>
             </trans-unit>
-             <trans-unit id="249">
+            <trans-unit id="249">
                 <source>Practice Information</source>
                 <target>Información de la práctica</target>
             </trans-unit>
-             <trans-unit id="250">
+            <trans-unit id="250">
                 <source>Practice</source>
                 <target>Práctica</target>
             </trans-unit>
+            <trans-unit id="251">
+                <source>User account is disabled.</source>
+                <target>La cuenta de este usuario está desactivada</target>
+            </trans-unit>            
         </body>
     </file>
 </xliff>

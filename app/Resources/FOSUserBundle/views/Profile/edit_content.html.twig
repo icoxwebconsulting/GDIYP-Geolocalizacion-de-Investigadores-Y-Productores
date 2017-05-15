@@ -280,7 +280,7 @@
             });
 
             $("#add_institution").click(function(){
-                $("#other_institution").toggle();
+                $("#institution_name").toggle();
                 $("#institution").toggle();
                 $(this).text($(this).text() == 'Agregar otra institución' ? 'Mostrar la lista de instituciones' : 'Agregar otra institución');
             })
@@ -478,9 +478,10 @@
                 var data = eval(result);
                 if (!data.length){
                     $('#institution').hide();
-                    $('#other_institution').show();
+                    $('#institution_name').show();
                     $('#add_institution').hide();
-
+                    $("#institution").removeAttr('required');
+                    $("#institution_name").attr('required','required');
                 }else{
                     for(var i = 0; i < data.length; i++){
                         var newOption = $('<option/>');
@@ -488,9 +489,11 @@
                         newOption.attr('value', data[i].id);
                         $('#institution').append(newOption)
                     }
-                    $('#other_institution').hide();
+                    $('#institution_name').hide();
                     $('#institution').show();
                     $('#add_institution').show();
+                    $("#institution_name").removeAttr('required');
+                    $("#institution").attr('required','required');                    
                 }
             });
         }

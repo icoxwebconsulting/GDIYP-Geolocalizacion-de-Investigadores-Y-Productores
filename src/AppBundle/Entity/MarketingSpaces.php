@@ -43,9 +43,9 @@ class MarketingSpaces
     private $periodicity = null;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="peopleInvolved", type="integer", nullable=true)
+     * @ORM\Column(name="peopleInvolved", type="string", length=255, nullable=true)
      */
     private $peopleInvolved = null;
 
@@ -142,7 +142,7 @@ class MarketingSpaces
     /**
      * Set peopleInvolved
      *
-     * @param integer $peopleInvolved
+     * @param string $peopleInvolved
      *
      * @return MarketingSpaces
      */
@@ -156,7 +156,7 @@ class MarketingSpaces
     /**
      * Get peopleInvolved
      *
-     * @return int
+     * @return string
      */
     public function getPeopleInvolved()
     {

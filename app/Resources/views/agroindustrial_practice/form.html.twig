@@ -184,10 +184,9 @@
             $('.type').hide();
             if ($("#type_practice").val()) {
                 $('#' + $("#type_practice").val()).show();
-                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
             }
-                    
-            $("#add-member").click(function(e){
+
+        $("#add-member").click(function(e){
                 e.preventDefault();
                 var numberOfMember = $("#producer-form").find("input[name^='data[member]']").length;
                 var label = '<label class="col-md-4 form-control-label"  for="data[member][' + numberOfMember + ']">Integrante </label> ';
@@ -245,8 +244,8 @@
                 loadProductionType();
             });
             
-            $('#appbundle_agroecologicalpractice_region').children().remove();  
-            $('#appbundle_agroecologicalpractice_city').children().remove();
+            $('#appbundle_agroecologicalpractice_region').children().not(':first').remove();  
+            $('#appbundle_agroecologicalpractice_city').children().not(':first').remove();
             
             $('#appbundle_agroecologicalpractice_country').change(function(){
                 loadRegion();
@@ -295,8 +294,8 @@
         }
             
         function loadRegion(){
-            $('#appbundle_agroecologicalpractice_region').children().remove();
-            $('#appbundle_agroecologicalpractice_city').children().remove();
+            $('#appbundle_agroecologicalpractice_region').children().not(':first').remove();
+            $('#appbundle_agroecologicalpractice_city').children().not(':first').remove();
             var country = $('#appbundle_agroecologicalpractice_country').find(':selected').val();
             $.ajax({
                 type: "GET",
@@ -321,23 +320,34 @@
         }
             
         function loadCity(){
-            $('#appbundle_agroecologicalpractice_city').children().remove();
+            $('#appbundle_agroecologicalpractice_city').children().not(':first').remove();
             var region = $('#appbundle_agroecologicalpractice_region').find(':selected').val();
             $.ajax({
                 type: "GET",
                 url: "{{ path('homepage')}}city/"+region
             }).done(function( result ) {
                 var data = eval(result);
-                var cityselected = $('#city_id').val();
-                
-                for(var i = 0; i < data.length; i++){
-                    var newOption = $('<option/>');
-                    newOption.text(data[i].name);
-                    newOption.attr('value', data[i].id);
-                    if (data[i].id == cityselected){
-                        newOption.attr('selected','selected');
-                    }                    
-                    $('#appbundle_agroecologicalpractice_city').append(newOption)
+                if (!data.length){
+                    $("#appbundle_agroecologicalpractice_city").hide();
+                    $("#appbundle_agroecologicalpractice_city_name").show();
+                    $("#appbundle_agroecologicalpractice_city").removeAttr('required');
+                    $("#appbundle_agroecologicalpractice_city_name").attr('required','required');
+                }else{                
+                    var cityselected = $('#city_id').val();
+
+                    for(var i = 0; i < data.length; i++){
+                        var newOption = $('<option/>');
+                        newOption.text(data[i].name);
+                        newOption.attr('value', data[i].id);
+                        if (data[i].id == cityselected){
+                            newOption.attr('selected','selected');
+                        }                    
+                        $('#appbundle_agroecologicalpractice_city').append(newOption)
+                    }
+                    $("#appbundle_agroecologicalpractice_city_name").hide();
+                    $("#appbundle_agroecologicalpractice_city").show();
+                    $("#appbundle_agroecologicalpractice_city_name").removeAttr('required');
+                    $("#appbundle_agroecologicalpractice_city").attr('required','required');
                 }
             });            
         }

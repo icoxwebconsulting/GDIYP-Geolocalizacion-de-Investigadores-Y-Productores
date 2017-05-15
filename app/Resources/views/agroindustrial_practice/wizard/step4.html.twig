@@ -31,7 +31,8 @@
                             {% for new in news %}
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}">
+                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}"
+                                    {% if practicenews is defined %} {% for pn in practicenews %} {% if pn.id == new.id %} checked="checked" {% endif %}  {% endfor %} {% endif %} >                                    
                                     <label for="">{{ new.title }}</label>
                                 </li>
                             </ul>

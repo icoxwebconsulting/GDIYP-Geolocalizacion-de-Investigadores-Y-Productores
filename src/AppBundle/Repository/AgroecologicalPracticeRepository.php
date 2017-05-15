@@ -23,6 +23,17 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function deleteAllNewsByPractice($practice)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->delete('AppBundle:AgroecologicalPracticeNews','pn')
+            ->andWhere('pn.agroecological_practice = :practice')
+            ->setParameter(':practice', $practice);
+
+        return $qb->getQuery()->execute();
+    }
     
     public function findAllPracticesByCity($city)
     {

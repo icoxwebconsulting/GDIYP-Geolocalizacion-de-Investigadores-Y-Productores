@@ -90,12 +90,13 @@ class UserController extends Controller
             if(!empty($_POST['institution'])){
                 $institution = $em->getRepository("AppBundle:Institution")->find($_POST['institution']);
             }
-
-            if(!empty($_POST['institution_name'])){
-                $institution = New Institution();
-                $institution->setName($_POST['institution_name']);
-                $type = $em->getRepository("AppBundle:InstitutionType")->find($_POST['institution_type']);
-                $institution->setType($type);
+            else {
+                if(!empty($_POST['institution_name'])){
+                    $institution = New Institution();
+                    $institution->setName($_POST['institution_name']);
+                    $type = $em->getRepository("AppBundle:InstitutionType")->find($_POST['institution_type']);
+                    $institution->setType($type);
+                }
             }
             
             if(!empty($_POST['city_name'])){
