@@ -3,13 +3,15 @@
         <div class="col-md-12">
             <h3 class="fs-title">{{ 'Extra Information' | trans }}</h3>
             <div class="col-md-12">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-control-label" for="case-study-name">{{ 'Case Study' | trans }}</label>
-                        <textarea id="case-study-name" name="case_study" id="" cols="30" rows="2" class="form-control">{{ profile.caseStudy ? profile.caseStudy.name }}</textarea>
+                        <textarea id="case-study-name" name="case_study" id="" cols="30" rows="4" class="form-control">{{ profile.caseStudy ? profile.caseStudy.name }}</textarea>
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-control-label" for="case-study-description">{{ 'Case Study Description' | trans }}</label>
                         <textarea id="case-study-description" name="case_study_description" cols="30" rows="2" class="form-control" >{{ profile.caseStudy ? profile.caseStudy.description }}</textarea>
@@ -17,7 +19,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-control-label" for="keywords">{{ 'Keywords' | trans }}</label>
                         <textarea id="keywords" name="keywords" class="form-control" cols="30" rows="2" >{{ profile.caseStudy ? profile.caseStudy.keywords}}</textarea>

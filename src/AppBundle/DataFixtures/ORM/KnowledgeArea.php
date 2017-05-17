@@ -12,7 +12,7 @@ class KnowledgeArea extends AbstractFixture implements  OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $knowledgeArea = array(
-            'CIENCIAS EXACTAS Y NATURALES',
+            'TE1 - CIENCIAS EXACTAS Y NATURALES',
             'TE2 - CIENCIAS DE LA INGENIERÍA Y ARQUITECTURA',
             'TE3 - CIENCIAS MÉDICAS',
             'TE4 - CIENCIAS AGROPECUARIAS Y VETERINARIAS',

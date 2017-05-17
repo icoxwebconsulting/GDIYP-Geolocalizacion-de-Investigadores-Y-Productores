@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="14">
                 <source>Producer</source>
-                <target>Productor</target>
+                <target>Experiencias en Transición, Intensificación ecológica y Agroecología</target>
             </trans-unit>
             <trans-unit id="15">
                 <source>Investigator</source>
@@ -152,11 +152,11 @@
             </trans-unit>
             <trans-unit id="39">
                 <source>Case Study</source>
-                <target>Caso de estudio</target>
+                <target>Título de investigación</target>
             </trans-unit>
             <trans-unit id="40">
                 <source>Case Study Description</source>
-                <target>Descripción del caso de estudio</target>
+                <target>Descripción del título de investigación</target>
             </trans-unit>
             <trans-unit id="41">
                 <source>Keywords</source>

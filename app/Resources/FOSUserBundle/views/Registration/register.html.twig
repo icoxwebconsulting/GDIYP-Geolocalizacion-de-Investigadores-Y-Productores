@@ -51,9 +51,13 @@
 
                                     <div class="form-group row">
                                         <label class="col-md-4 form-control-label">{{ 'User type' | trans }}</label>
-                                        <div class="col-md-8">
-                                            {{ form_widget(form.roles) }}
-                                        </div>
+                                        {% for child in form.roles %}
+                                            {% set name = child.vars.label %}
+                                            <div class="col-md-8">
+                                                {{ form_widget(child) }}      
+                                                {{ name | trans }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                     <div class="form-group row" style="display: none;">
                                         <label class="col-md-4 form-control-label">{{ 'Image Profile' | trans }}</label>
