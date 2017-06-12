@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="14">
                 <source>Producer</source>
-                <target>Experiencias en Transición, Intensificación ecológica y Agroecología</target>
+                <target>Prácticas</target>
             </trans-unit>
             <trans-unit id="15">
                 <source>Investigator</source>
@@ -232,7 +232,7 @@
             </trans-unit>
             <trans-unit id="59">
                 <source>News Reported</source>
-                <target>Noticias Reportados</target>
+                <target>Noticias Reportadas</target>
             </trans-unit>
             <trans-unit id="60">
                 <source>Users</source>
@@ -704,7 +704,7 @@
             </trans-unit>
             <trans-unit id="177">
                 <source>Theme of Study</source>
-                <target>Tema de Estudio</target>
+                <target>Tema de Investigación</target>
             </trans-unit>
             <trans-unit id="178">
                 <source>Agroecological Practice</source>
@@ -1001,7 +1001,19 @@
             <trans-unit id="251">
                 <source>User account is disabled.</source>
                 <target>La cuenta de este usuario está desactivada</target>
-            </trans-unit>            
+            </trans-unit>
+            <trans-unit id="252">
+                <source>Search</source>
+                <target>Buscar</target>
+            </trans-unit>
+            <trans-unit id="253">
+                <source>Practices</source>
+                <target>Prácticas</target>
+            </trans-unit>
+            <trans-unit id="254">
+                <source>Clean fields</source>
+                <target>Limpiar Campos</target>
+            </trans-unit>        
         </body>
     </file>
 </xliff>

@@ -1,4 +1,16 @@
 <ul class="nav">
+    {% if is_granted('ROLE_ADMIN') %}
+    <li class="nav-item">
+        <a class="nav-link">{% if app.user.imageName %}
+            <img src="{{ asset(vich_uploader_asset(app.user, 'image')) }}" class="img-avatar" alt="{{ 'Red Periurban' }}" style="width: 30px;height: 30px;margin-right: 1px;">
+        {% else %}
+            <i class="fa fa-user"></i>
+        {% endif %}
+        {{ 'Red Periurban' }}</a>
+        <div class="text-xs-center">{{ 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}</div>
+        
+    </li>
+    {% else %}
     <li class="nav-item">
         <a class="nav-link">{% if app.user.imageName %}
             <img src="{{ asset(vich_uploader_asset(app.user, 'image')) }}" class="img-avatar" alt="{{ app.user.firstName }}" style="width: 30px;height: 30px;margin-right: 1px;">
@@ -7,6 +19,7 @@
         {% endif %}
         {{ app.user.firstName }} {{ app.user.lastName }}</a>
     </li>
+    {% endif %}
     {#{% if is_granted('ROLE_ADMIN') %}#}
         {#<li class="nav-item">#}
             {#<a class="nav-link" href="{{ path('dashboard') }}"><i class="icon-speedometer"></i> Dashboard</a>#}
@@ -35,11 +48,11 @@
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-user"></i> {{ 'Users' | trans }}</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
-                <a class="nav-link" href="icons-font-awesome.html"><i class="fa fa-users"></i> {{ 'Users List' | trans }}</a>
+                <a class="nav-link" href="{{ path('user') }}"><i class="fa fa-users"></i> {{ 'Users List' | trans }}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="fa fa-user-plus"></i> {{ 'Add User' | trans }}</a>
-            </li>
+            <!--li class="nav-item">
+                <a class="nav-link" href="icons-simple-line-icons.html"><i class="fa fa-user-plus"></i> {# 'Add User' | trans #}</a>
+            </li-->
         </ul>
     </li>
     {% endif %}

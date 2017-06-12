@@ -53,8 +53,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="modal-footer">	<a href="#" data-dismiss="modal" class="btn">{{ 'Close' | trans }}</a>
-                    <button type="submit" class="btn btn-default">{{ 'Apply filter' | trans }}</button>
+                <div class="modal-footer">
+                    <button type="reset" class="btn">{{ 'Clean fields' | trans }}</button>
+                    <a href="#" data-dismiss="modal" class="btn">{{ 'Close' | trans }}</a>
+                    <button type="submit" class="btn btn-default">{{ 'Search' | trans }}</button>
                 </div>
             </form>
         </div>
@@ -104,7 +106,7 @@
             });
         }
         function loadInstitution(){
-            $("#institution").children().remove()
+            $("#institution").children().not(':eq(0), :selected').remove()
             var institutionType = $('#institution_type').find(':selected').val();
             $.ajax({
                 type: "GET",
@@ -135,7 +137,7 @@
             });
         }
         function loadKnowledge(){
-            $("#knowledge").children().remove()
+            $("#knowledge").children().not(':eq(0), :selected').remove()
             var knowledge_area = $('#knowledge_area').find(':selected').val();
             $.ajax({
                 type: "GET",
@@ -165,7 +167,7 @@
             });
         }
         function loadStudyTopic(){
-            $('#study_topic').children().remove()
+            $('#study_topic').children().not(':eq(0), :selected').remove()
             var topic_category = $('#topic_category').find(':selected').val();
             $.ajax({
                 type: "GET",

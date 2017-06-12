@@ -63,4 +63,24 @@ class DashboardController extends Controller
             'news' => $news,
         ));
     }
+    
+    /**
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/user", name="user")
+     * @return array
+     */
+    public function userAction()
+    {
+        $securityContext = $this->container->get('security.context');
+        $router = $this->container->get('router');
+        if (!$securityContext->isGranted('ROLE_ADMIN')) {
+            return new RedirectResponse($router->generate('dashboard_user'), 307);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository("AppBundle:User")->findAllUsers();
+
+        return $this->render('admin/user.html.twig', array(
+            'users' => $users
+        ));
+    }
 }

@@ -16,11 +16,32 @@ function drawInfobox(url, infoboxContent, json, i){
         else                        { photo = '/assets/spotter/img/items/1.jpg' }
 
     var name = '';
+    var institution = '';
+    var knowledge = '';
+    var description = '';
+    var practiceType = '';
     if (json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
         name = json[i].user.firstName +  ' ' + json[i].user.lastName;
+        institution = json[i].institution.name;
+        knowledge = json[i].knowledge.knowledgeArea.name;   
     }
     else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
-        name = json[i].practiceName;
+        description = json[i].description;        
+        if (json[i].productiveUndertaking!=null) {
+            practiceType = 'Tipo: Emprendimiento Productivo';
+        }
+        if (json[i].marketingSpaces!=null) {
+            practiceType = 'Tipo: Espacios de Comercialización';
+        }
+        if (json[i].professionalServices!=null) {
+            practiceType = 'Tipo: Servicios Profesionales';
+        }        
+        if (json[i].institutionalProject!=null) {
+            practiceType = 'Tipo: Proyectos Institucionales';
+        }
+        if (json[i].promotionGroup!=null) {
+            practiceType = 'Tipo: Grupos de Promoción';
+        }
     }
 
     var ibContent = '';
@@ -39,6 +60,10 @@ function drawInfobox(url, infoboxContent, json, i){
                     '<div class="meta">' +                    
                         '<h2>' + name +  '</h2>' +
                         '<figure>' + json[i].address.address.substr(0,30) +  '</figure>' +
+                        '<figure>' + institution +  '</figure>' +
+                        '<figure>' + knowledge +  '</figure>' +
+                        '<figure>' + practiceType +  '</figure>' +
+                        '<figure>' + description +  '</figure>' +
                         '<i class="fa fa-angle-right"></i>' +
                     '</div>' +
                 '</a>' +
