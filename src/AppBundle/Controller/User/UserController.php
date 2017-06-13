@@ -59,6 +59,9 @@ class UserController extends Controller
                     'id' => $profile->getAddress(),
                 )
             );
+            if ($googleMap == null) {
+                $googleMap = new GoogleMap();
+            }
 
             $case_study = $em->getRepository("AppBundle:CaseStudy")->findOneBy(
                 array(
