@@ -1,5 +1,5 @@
 <?php
-    $parameters = file_get_contents("..\..\config\parameters.yml");
+    $parameters = file_get_contents("../../config/parameters.yml");
     
     $host = get_string($parameters,"database_host: ","\n");
     $port = get_string($parameters,"database_port: ","\n");

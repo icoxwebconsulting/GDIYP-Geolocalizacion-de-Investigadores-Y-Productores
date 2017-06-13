@@ -26,6 +26,7 @@ function drawInfobox(url, infoboxContent, json, i){
         knowledge = json[i].knowledge.knowledgeArea.name;   
     }
     else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
+        name = json[i].practiceName;
         description = json[i].description;        
         if (json[i].productiveUndertaking!=null) {
             practiceType = 'Tipo: Emprendimiento Productivo';

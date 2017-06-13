@@ -6,9 +6,7 @@
         {% else %}
             <i class="fa fa-user"></i>
         {% endif %}
-        {{ 'Red Periurban' }}</a>
-        <div class="text-xs-center">{{ 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}</div>
-        
+        {{ 'Red Periurban' }}</a>        
     </li>
     {% else %}
     <li class="nav-item">
@@ -58,7 +56,7 @@
     {% endif %}
     {% if (app.user.roles[0] == 'ROLE_PRODUCER') %}
     <li class="nav-item nav-dropdown">
-        <a href="#" class="nav-link nav-dropdown-toggle">{{ 'Agroecological Practice' | trans }}</a>
+        <a href="#" class="nav-link nav-dropdown-toggle">{{ 'Practices' | trans }}</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
                 <a href="{{ path('agroecological_practice_list') }}" class="nav-link">{{ 'Practice List' | trans }}</a>

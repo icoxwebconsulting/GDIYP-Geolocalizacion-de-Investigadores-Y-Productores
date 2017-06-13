@@ -193,12 +193,10 @@
             var knowledge = $('#knowledge').find(':selected').val();
             var study_topic = $('#study_topic').find(':selected').val();
 
-            if (city != 0){
-                if (institution != 0 || knowledge != 0 || study_topic != 0){
-                    var url =  "{{ path('homepage') }}userProfile/filter/"+city+"/"+institution+"/"+knowledge+"/"+study_topic;
-                    loadMap(url, "investigator");
-                    $('.modal').modal('hide');
-                }
+            if (institution != 0 || knowledge != 0 || study_topic != 0){
+                var url =  "{{ path('homepage') }}userProfile/filter/"+city+"/"+institution+"/"+knowledge+"/"+study_topic;
+                loadMap(url, "investigator");
+                $('.modal').modal('hide');
             }
         });
     </script>
