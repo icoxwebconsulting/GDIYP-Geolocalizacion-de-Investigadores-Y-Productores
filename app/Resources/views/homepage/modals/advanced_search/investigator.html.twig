@@ -82,6 +82,14 @@
 {% endblock %}
 {% block extra_js %}
     <script>
+        var redefinesearch = "{{ app.session.get('redefinesearch') }}";
+        var searchinstitutiontype = "{{ app.session.get('institution_type') }}";
+        var searchinstitution = "{{ app.session.get('institution') }}";
+        var searchknowledgearea = "{{ app.session.get('knowledge_area') }}";
+        var searchknowledge = "{{ app.session.get('knowledge') }}";
+        var searchtopiccategory = "{{ app.session.get('topic_category') }}";
+        var searchstudy = "{{ app.session.get('study') }}";
+
         $('#institution_type').change(function(){
             loadInstitution();
         });
@@ -101,7 +109,13 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchinstitutiontype == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#institution_type').append(newOption)
+                }
+                var institution_type = $('#institution_type').find(':selected').val();
+                if (institution_type != 0){
+                    loadInstitution();
                 }
             });
         }
@@ -118,6 +132,8 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchinstitution == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#institution').append(newOption)
                 }
             });
@@ -132,8 +148,14 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchknowledgearea == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#knowledge_area').append(newOption);
                 }
+                var knowledge_area = $('#knowledge_area').find(':selected').val();
+                if (knowledge_area != 0){
+                    loadKnowledge();
+                }                
             });
         }
         function loadKnowledge(){
@@ -148,6 +170,8 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchknowledge == data[i].id)
+                        newOption.attr('selected', true);
                     $('#knowledge').append(newOption)
                 }
             });
@@ -162,8 +186,14 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchtopiccategory == data[i].id)
+                        newOption.attr('selected', true);
                     $('#topic_category').append(newOption);
                 }
+                var topic_category = $('#topic_category').find(':selected').val();
+                if (topic_category != 0){
+                    loadStudyTopic();
+                }                                
             });
         }
         function loadStudyTopic(){
@@ -178,6 +208,8 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchstudy == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#study_topic').append(newOption)
                 }
             });
@@ -188,13 +220,18 @@
 
         $('#investigator-form').bind('submit', function(e) {
             e.preventDefault();
+            var country = $('#country').find(':selected').val();
+            var region = $('#region').find(':selected').val();
             var city = $('#city').find(':selected').val();
+            var institution_type = $('#institution_type').find(':selected').val();
             var institution = $('#institution').find(':selected').val();
+            var knowledge_area = $('#knowledge_area').find(':selected').val();
             var knowledge = $('#knowledge').find(':selected').val();
+            var topic_category = $('#topic_category').find(':selected').val();
             var study_topic = $('#study_topic').find(':selected').val();
 
             if (institution != 0 || knowledge != 0 || study_topic != 0){
-                var url =  "{{ path('homepage') }}userProfile/filter/"+city+"/"+institution+"/"+knowledge+"/"+study_topic;
+                var url =  "{{ path('homepage') }}userProfile/filter/"+country+"/"+region+"/"+city+"/"+institution_type+"/"+institution+"/"+knowledge_area+"/"+knowledge+"/"+topic_category+"/"+study_topic;
                 loadMap(url, "investigator");
                 $('.modal').modal('hide');
             }

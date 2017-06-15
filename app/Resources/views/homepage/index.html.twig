@@ -3,7 +3,7 @@
 {% block title %}homepage{% endblock %}
 
 {% block bodyClass %}map-fullscreen page-homepage navigation-off-canvas{% endblock %}
-{% block content %}
+{% block content %}        
     <!-- Map Canvas-->
     <div class="map-canvas list-width-30 results-collapsed">
         <div class="map">
@@ -19,7 +19,7 @@
             </div>
             <div id="map" class="has-parallax"></div>
         </div>
-
+        
         <!--Items List-->
         {% include ':homepage/map:item_list.html.twig' %}
     </div>
@@ -105,6 +105,19 @@
         autoComplete();
     </script>
     <script>
+        var redefinesearch = "{{ app.session.get('redefinesearch') }}";
+        var searchcountry = "{{ app.session.get('country') }}";
+        var searchregion = "{{ app.session.get('region') }}";
+        var searchcity = "{{ app.session.get('city') }}";
+        var searchtypeuser = "{{ app.session.get('usertype') }}";
+        
+        if (redefinesearch == '1') {
+            if (searchtypeuser!="") {
+                $("#type-user").val(searchtypeuser);
+                $("#advanced-search").removeClass('disabled');
+            }            
+        }
+        
         $('#country').change(function(){
             loadRegion();
         });
@@ -122,6 +135,8 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchcountry == data[i].id)
+                        newOption.attr('selected', true);
                     $('#country').append(newOption);
                 }
                 var country = $('#country').find(':selected').val();
@@ -144,6 +159,8 @@
                         var newOption = $('<option/>');
                         newOption.text(data[i].name);
                         newOption.attr('value', data[i].id);
+                        if (redefinesearch == '1' && searchregion == data[i].id)
+                            newOption.attr('selected', true);
                         $('#region').append(newOption);
                     }
                     loadCity();
@@ -164,6 +181,8 @@
                         var newOption = $('<option/>');
                         newOption.text(data[i].name);
                         newOption.attr('value', data[i].id);
+                        if (redefinesearch == '1' && searchcity == data[i].id)
+                            newOption.attr('selected', true);                        
                         $('#city').append(newOption);
                     }
                 });

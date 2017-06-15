@@ -173,10 +173,42 @@
 {% endblock %}
 {% block extra_js %}
     <script>
+        var redefinesearch = "{{ app.session.get('redefinesearch') }}";
+        var searchpracticetype = "{{ app.session.get('practice_type') }}";
+        var searchproductioncategory = "{{ app.session.get('productionCategory') }}";
+        var searchproductiontype = "{{ app.session.get('productionType') }}";
+        var searchproductiondestination = "{{ app.session.get('productionDestination') }}";
+        var searchwheretheysell = "{{ app.session.get('whereTheySell') }}";
+        var searchproductivesurface = "{{ app.session.get('productiveSurface') }}";
+        var searchmarketwhereSold = "{{ app.session.get('marketWhereSold') }}";
+        var searchtype = "{{ app.session.get('type') }}";
+        var searchperiodicity = "{{ app.session.get('periodicity') }}";
+        var searchservicetype = "{{ app.session.get('serviceType') }}";
+        var searchprojecttype = "{{ app.session.get('projectType') }}";
+        var searchpromotiontype = "{{ app.session.get('promotionType') }}";
+    
+        $(document).ready(function () {
+            $("#practice_type").val(searchpracticetype);
+            $("#whereTheySell").val(searchwheretheysell);
+            $("#productiveSurface").val(searchproductivesurface);
+            $("#marketWhereSold").val(searchmarketwhereSold);
+            $("#type").val(searchtype);
+            $("#periodicity").val(searchperiodicity);
+            $("#serviceType").val(searchservicetype);
+            $("#projectType").val(searchprojecttype);
+            $("#promotionType").val(searchpromotiontype);
+        });
+        
+        
         $('#practice_type').change(function(){
             $('.type').hide();
             $('#' + $(this).val()).show();
         });
+        
+        if (redefinesearch == '1') {
+            $('.type').hide();
+            $('#' + searchpracticetype).show();
+        }
         
         $('#productionCategory').change(function(){
             loadProductionType();
@@ -192,8 +224,14 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchproductioncategory == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#productionCategory').append(newOption);
                 }
+                var productionCategory = $('#productionCategory').find(':selected').val();
+                if (productionCategory != 0){
+                    loadProductionType();
+                }                
             });
         }
         function loadProductionType(){
@@ -208,6 +246,8 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchproductiontype == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#productionType').append(newOption);
                 }
             });
@@ -222,6 +262,8 @@
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (redefinesearch == '1' && searchproductiondestination == data[i].id)
+                        newOption.attr('selected', true);                    
                     $('#productionDestination').append(newOption);
                 }
             });
@@ -232,7 +274,9 @@
 
         $('#practiceform').bind('submit', function(e) {
             e.preventDefault();
-            var city = $('#city').find(':selected').val();
+            var country = $('#country').find(':selected').val();
+            var region = $('#region').find(':selected').val();
+            var city = $('#city').find(':selected').val();            
             var practice_type = $('#practice_type').find(':selected').val();
             
             var url = '';
@@ -244,7 +288,7 @@
                 var productiveSurface = $('#productiveSurface').find(':selected').val();
                 
                 if (productionCategory != 0 || productionType != 0 || productionDestination != 0 || whereTheySell != 0 || productiveSurface != 0){
-                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/"+productionCategory+"/"+productionType+"/"+productionDestination+"/"+whereTheySell+"/"+productiveSurface+"/0/0/0/0/0/0";
+                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/"+productionCategory+"/"+productionType+"/"+productionDestination+"/"+whereTheySell+"/"+productiveSurface+"/0/0/0/0/0/0";
                 }                    
             }
             else if (practice_type=="marketing_spaces") {
@@ -253,7 +297,7 @@
                 var periodicity = $('#periodicity').find(':selected').val();
 
                 if (marketWhereSold != 0 || type != 0 || periodicity != 0){
-                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/"+marketWhereSold+"/"+type+"/"+periodicity+"/0/0/0";
+                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/"+marketWhereSold+"/"+type+"/"+periodicity+"/0/0/0";
                 }                    
 
             }
@@ -261,26 +305,26 @@
                 var serviceType = $('#serviceType').find(':selected').val();
 
                 if (serviceType != 0){
-                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/"+serviceType+"/0/0";
+                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/"+serviceType+"/0/0";
                 }                    
             }
             else if (practice_type=="institutional_project") {
                 var projectType = $('#projectType').find(':selected').val();
 
                 if (projectType != 0){
-                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/"+projectType+"/0";
+                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/"+projectType+"/0";
                 }                    
             }
             else if (practice_type=="promotion_group") {
                 var promotionType = $('#promotionType').find(':selected').val();
 
                 if (promotionType != 0){
-                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/0/"+promotionType;
+                    url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/0/"+promotionType;
                 }                    
             }
 
             loadMap(url, "producer");
             $('.modal').modal('hide');
-        });
+        });        
     </script>
 {% endblock %}</div>

@@ -63,6 +63,8 @@ class AgroecologicalPracticeController extends Controller
     }    
 
     /**
+     * @param $country
+     * @param $region
      * @param $city
      * @param $practice_type
      * @param $productionCategory
@@ -76,11 +78,30 @@ class AgroecologicalPracticeController extends Controller
      * @param $serviceType
      * @param $projectType
      * @param $promotionType
-     * @Route("/filter/{city}/{practice_type}/{productionCategory}/{productionType}/{productionDestination}/{whereTheySell}/{productiveSurface}/{marketWhereSold}/{type}/{periodicity}/{serviceType}/{projectType}/{promotionType}", name="practice_advance_filter")
+     * @Route("/filter/{country}/{region}/{city}/{practice_type}/{productionCategory}/{productionType}/{productionDestination}/{whereTheySell}/{productiveSurface}/{marketWhereSold}/{type}/{periodicity}/{serviceType}/{projectType}/{promotionType}", name="practice_advance_filter")
      * @return response
      */
-    public function advanceFilterAction($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType)
+    public function advanceFilterAction($country, $region, $city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType)
     {
+        //$session = $this->container->get('session');
+        $session = $this->get('session');
+        $session->set('usertype','producer');
+        $session->set('country', $country);
+        $session->set('region', $region);
+        $session->set('city', $city);
+        $session->set('practice_type', $practice_type);
+        $session->set('productionCategory', $productionCategory);
+        $session->set('productionType', $productionType);
+        $session->set('productionDestination', $productionDestination);
+        $session->set('whereTheySell', $whereTheySell);
+        $session->set('productiveSurface', $productiveSurface);
+        $session->set('marketWhereSold', $marketWhereSold);
+        $session->set('type', $type);
+        $session->set('periodicity', $periodicity);
+        $session->set('serviceType', $serviceType);
+        $session->set('projectType', $projectType);
+        $session->set('promotionType', $promotionType);
+        
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findByFilter($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType);
         $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');

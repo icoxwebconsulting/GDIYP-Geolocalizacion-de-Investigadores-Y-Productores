@@ -23,4 +23,16 @@ class SearchController extends Controller
         var_dump($institution);
 //        return new Response($serializedEntity);
     }
+
+    /**
+     * @param $request
+     * @Route("/searchback", name="searchback")
+     */
+    public function searchBackAction()
+    {
+        $this->get('session')->set('redefinesearch', '1'); 
+        return $this->redirectToRoute('homepage');
+    }
+    
+    
 }

@@ -19,12 +19,12 @@ class HomepageController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        /*$em = $this->getDoctrine()->getManager();
         $users = $em->getRepository("AppBundle:User")->findAllUsers();
 
         return $this->render('homepage/index.html.twig', array(
             'users' => $users,
-        ));
-    }
-    
+        ));*/        
+        return $this->render('homepage/index.html.twig');
+    }    
 }
