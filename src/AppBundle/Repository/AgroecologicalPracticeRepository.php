@@ -34,6 +34,17 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->execute();
     }
+
+    public function findAllPractices()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('p')
+            ->from('AppBundle:AgroecologicalPractice', 'p')
+            ->andWhere('p.address IS NOT NULL');
+
+        return $qb->getQuery()->getResult();
+    }
     
     public function findAllPracticesByCity($city)
     {
@@ -59,6 +70,8 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
             $query->setParameter(':city', $city);
         }
 
+        $query->andWhere('p.address IS NOT NULL');
+        
         if ($practice_type=="productive_undertaking") {            
             $query->andWhere('p.productive_undertaking IS NOT NULL');
             $query->join('AppBundle:ProductiveUndertaking','pu','WITH','p.productive_undertaking = pu.id');            
@@ -127,7 +140,7 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
                 $query->andWhere('pg.type LIKE :promotionType');
                 $query->setParameter(':promotionType', '%'.$promotionType.'%');                
             }
-        }
+        }                
         
         return $query->getQuery()->getResult();
     }

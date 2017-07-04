@@ -6,6 +6,17 @@ use Doctrine\ORM\EntityRepository;
 
 class UserProfileRepository extends EntityRepository
 {
+    public function findAllUserProfiles()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('up')
+            ->from('AppBundle:UserProfile', 'up')
+            ->andWhere('up.address IS NOT NULL');
+
+        return $qb->getQuery()->getResult();
+    }
+    
     public function findAllUsersByCity($city)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
@@ -41,7 +52,9 @@ class UserProfileRepository extends EntityRepository
             $query->andWhere('up.study_topic = :study');
             $query->setParameter(':study', $study);
         }
-
+        
+        $query->andWhere('up.address IS NOT NULL');
+        
         return $query->getQuery()->getResult();
     }
 }
