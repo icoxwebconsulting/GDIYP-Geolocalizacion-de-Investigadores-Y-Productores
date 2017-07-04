@@ -12,7 +12,7 @@ use AppBundle\Entity\ProductiveUndertaking;
 /**
  * AgroecologicalPractice
  *
- * @ORM\Table(name="agroecological_practice")
+ * @ORM\Table(name="agroecological_practice", indexes={@ORM\Index(name="search_idx", columns={"address"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgroecologicalPracticeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  * 

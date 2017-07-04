@@ -23,6 +23,7 @@ class UserProfileRepository extends EntityRepository
 
         $qb->select('up')
             ->from('AppBundle:UserProfile', 'up')
+            ->andWhere('up.address IS NOT NULL')
             ->andWhere('up.residence_place = :city')
             ->setParameter(':city', $city);
 

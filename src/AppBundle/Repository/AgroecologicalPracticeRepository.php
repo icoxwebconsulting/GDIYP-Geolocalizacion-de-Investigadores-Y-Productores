@@ -52,6 +52,7 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
 
         $qb->select('p')
             ->from('AppBundle:AgroecologicalPractice', 'p')
+            ->andWhere('p.address IS NOT NULL')
             ->andWhere('p.city = :city')
             ->setParameter(':city', $city);
 

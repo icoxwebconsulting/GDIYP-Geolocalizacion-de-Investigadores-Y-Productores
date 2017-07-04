@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserProfileRepository")
- * @ORM\Table(name="user_profile")
+ * @ORM\Table(name="user_profile", indexes={@ORM\Index(name="search_idx", columns={"address"})})
  */
 class UserProfile
 {
