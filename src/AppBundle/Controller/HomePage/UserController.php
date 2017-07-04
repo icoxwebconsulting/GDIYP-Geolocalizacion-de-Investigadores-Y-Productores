@@ -94,7 +94,7 @@ class UserController extends Controller
             
             return new Response($serializedEntity);
         }
-        else if ($session->get('redefinesearch')=='0') {
+        else {
             $entities = $em->getRepository("AppBundle:UserProfile")->findAll();
             $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
 
