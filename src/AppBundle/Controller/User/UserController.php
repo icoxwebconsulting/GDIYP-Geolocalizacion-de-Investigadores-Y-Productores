@@ -83,7 +83,6 @@ class UserController extends Controller
         {
             $knowledge = $em->getRepository("AppBundle:Knowledge")->find($_POST['knowledge']);
             $studyTopic = $em->getRepository("AppBundle:StudyTopic")->find($_POST['study_topic']);
-            $researchPlace = $em->getRepository("AppBundle:City")->find($_POST['research_place']);
 
             $image = $form->get('image')->getData();
             $googleMap->setAddress($_POST['address']);
@@ -119,6 +118,7 @@ class UserController extends Controller
                 $city2->setRegion($region);
                 $profile->setResearchPlace($city2); 
             }else{
+                $researchPlace = $em->getRepository("AppBundle:City")->find($_POST['research_place']);
                 $profile->setResearchPlace($researchPlace);
             }
 
