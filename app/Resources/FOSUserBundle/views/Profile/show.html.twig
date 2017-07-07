@@ -40,7 +40,7 @@
                 {% if is_granted('ROLE_INVESTIGATOR') %}
                     <a class="btn btn-primary" href="{{ path('user_edit',{id: user.id}) }}">{{ 'Edit Profile' | trans }}</a>
                 {% elseif is_granted('ROLE_PRODUCER') %}
-                    <a class="btn btn-primary" href="{{ path('user_producer_edit',{id: user.id}) }}">{{ 'Edit Profile' | trans }}</a>
+                    <a class="btn btn-success" href="{{ path('user_producer_edit',{id: user.id}) }}">{{ 'Edit Profile' | trans }}</a>
                 {% endif %}
                 <a class="btn btn-warning" href="{{ path('fos_user_change_password',{id: user.id}) }}">{{ 'Edit Password' | trans }}</a>
             </div>

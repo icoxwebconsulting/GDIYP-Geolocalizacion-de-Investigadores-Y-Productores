@@ -314,10 +314,10 @@ blockquote {
   margin: 0 0 1rem; }
 
 a {
-  color: #20a8d8;
+  color: #4FCE8A;
   text-decoration: none; }
   a:focus, a:hover {
-    color: #167495;
+    color: #169547;
     text-decoration: underline; }
   a:focus {
     outline: 5px auto -webkit-focus-ring-color;
@@ -3543,8 +3543,8 @@ header.navbar .navbar-nav .nav-link {
     z-index: 2;
     color: #fff;
     cursor: default;
-    background-color: #20a8d8;
-    border-color: #20a8d8; }
+    background-color: #21D37D;
+    border-color: #21D37D; }
   .page-item.disabled .page-link, .pagination-datatables li.disabled .page-link, .pagination li.disabled .page-link, .page-item.disabled .pagination-datatables li a, .pagination-datatables li .page-item.disabled a, .pagination-datatables li.disabled a, .page-item.disabled .pagination li a, .pagination li .page-item.disabled a, .pagination li.disabled a, .page-item.disabled .page-link:focus, .pagination-datatables li.disabled .page-link:focus, .pagination li.disabled .page-link:focus, .page-item.disabled .pagination-datatables li a:focus, .pagination-datatables li .page-item.disabled a:focus, .pagination-datatables li.disabled a:focus, .page-item.disabled .pagination li a:focus, .pagination li .page-item.disabled a:focus, .pagination li.disabled a:focus, .page-item.disabled .page-link:hover, .pagination-datatables li.disabled .page-link:hover, .pagination li.disabled .page-link:hover, .page-item.disabled .pagination-datatables li a:hover, .pagination-datatables li .page-item.disabled a:hover, .pagination-datatables li.disabled a:hover, .page-item.disabled .pagination li a:hover, .pagination li .page-item.disabled a:hover, .pagination li.disabled a:hover {
     color: #b0bec5;
     pointer-events: none;
@@ -3557,12 +3557,12 @@ header.navbar .navbar-nav .nav-link {
   float: left;
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
-  color: #20a8d8;
+  color: #21D37D;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #ddd; }
   .page-link:focus, .pagination-datatables li a:focus, .pagination li a:focus, .page-link:hover, .pagination-datatables li a:hover, .pagination li a:hover {
-    color: #167495;
+    color: #169547;
     background-color: #cfd8dc;
     border-color: #ddd; }
 
