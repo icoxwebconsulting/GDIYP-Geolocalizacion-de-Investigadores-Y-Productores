@@ -27,4 +27,22 @@ class HomepageController extends Controller
         ));*/        
         return $this->render('homepage/index.html.twig');
     }    
+    
+    /**     
+     * @Route("/periurban_info", name="homepage_periurban_info")
+     * @return response
+     */
+    public function periurbanInfoAction()
+    {
+        return $this->render('homepage/periurbaninfo.html.twig');
+    }      
+    
+    /**     
+     * @Route("/practices_info", name="homepage_practices_info")
+     * @return response
+     */
+    public function practicesInfoAction()
+    {
+        return $this->render('homepage/practicesinfo.html.twig');
+    }    
 }

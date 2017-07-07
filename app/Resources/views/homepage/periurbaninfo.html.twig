@@ -1,0 +1,59 @@
+{% extends ':homepage:base.html.twig' %}
+
+{% block bodyClass %}page-subpage page-blog-detail navigation-off-canvas{% endblock %}
+
+{% block content %}        
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <h2 class="text-center">Registro de Red PERIURBAN</h2>
+                                    <strong>¿Qué es?</strong>
+                                    <br><br>
+                                    El Registro de la Red PERIURBAN es una plataforma online para investigadores/as que trabajan en temáticas de las áreas periurbanas de las ciudades, donde compiten diversos actores, entre ellos la pequeña agricultura familiar, por la tierra, el agua y otros recursos, la urbanización, la industria, la minería y la agricultura urbana y periurbana. También se incluyen las interfases urbano-natural. El Registro busca integrar a todos los profesionales sin importar su rama de conocimiento, mientras estudien algún aspecto de las dinámicas cambiantes de los periurbanos y los conflictos por los avances de las fronteras urbana y agropecuaria.
+                                    <br><br>
+                                    Cuando te registras comienzas a ser visible en el mapa y el público puede ponerse en contacto o conocer más en profundidad la información que subas.
+                                    <br><br>
+                                    <strong>¿Cuál es el objetivo?</strong>
+                                    <br><br>
+                                    El objetivo del registro de la Red PERIURBAN es lograr visibilizar el amplio espectro de personas e instituciones, tesis, proyectos e investigaciones, que existen en el territorio pero actúan en forma dispersa y poco articulada. Por ello, proponemos la vinculación inter-disciplinar e inter-institucional con miras a generar un espacio de intercambio amplio en el área y tema de estudio. Se propone, en primera instancia, esta herramienta web para que se constituya como una plataforma temática geo-referenciada de investigadores/as y una serie de canales que propician el intercambio horizontal y descentralizado. 
+                                    <br><br>
+                                    <strong>¿Cómo funciona?</strong>
+                                    <br><br>
+                                    Para formar parte del Registro de la Red PERIURBAN el investigador tiene que registrarse con sus datos básicos, esperar la recepción de un e-mail de confirmación y luego iniciar sesión. Ya en su página de usuario podrá cargar el registro con sus datos profesionales y de sus líneas de investigación. Adicionalmente existe un área donde podrá enviar actualizaciones, publicaciones y actividades recientes para colectivizar a la red. Al hacerlo queda automáticamente mapeado en el portal y sus datos de contacto quedan accesibles a todo el público, por ello es importante comprender que se hace público lo que suba a esta web.
+                                    <br><br>
+                                    <strong>¿Quiénes somos?</strong>
+                                    <br><br>
+                                    La Red PERIURBAN es una idea que surge del O-AUPA (Observatorio de Agricultura Urbana, Periurbana y Agroecología) que funciona en la Agencia del INTA Córdoba. El observatorio es, en sí mismo, una red colaborativa de investigadores y extensionistas de INTA, diversas facultades de la Universidad Nacional de Córdoba, otras administraciones públicas de Córdoba y la Nación, CONICET, productores y asociaciones. El O-AUPA forma parte también del Programa Nacional de RRNN, gestión ambiental y Ecoregiones y funciona en red con diversas provincias del país donde se trabajan temas de ordenamiento territorial, ambiente y periurbanos.
+                                    <br><br>
+                                    La filosofía y la motivación que nos impulsa sostiene que la colaboración y la co-construcción de conocimientos son las estrategias más eficientes, democráticas y horizontales para avanzar en entender los problemas y encontrar soluciones sustentables para los mayores desafíos sociales, ambientales, económicos, políticos, alimentarios y tecnológicos que enfrentan las ciudades en el siglo XXI.
+                                    <br><br>
+                                    Esta Web no tiene propietarios y se pretende sea una herramienta auto gestionada por la comunidad que se incorpore a la red.
+                                    <br><br>
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block footer %}
+    {% embed ':homepage/_partial:footer-bottom.html.twig'%}{% endembed %}
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        #page-footer .inner {
+            padding-top: 0px;
+        }
+        #page-footer .inner .footer-bottom {
+            margin-top: 0px;
+        }
+    </style>
+{% endblock %}
+

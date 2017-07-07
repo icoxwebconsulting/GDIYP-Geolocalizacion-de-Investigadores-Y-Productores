@@ -11,6 +11,53 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
+            {% if is_granted('ROLE_INVESTIGATOR') %} 
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        BIENVENIDO/A!
+                                        <br><br>
+                                        Te encuentras en tu escritorio de usuario/a de miembro de la <strong>Red PERIURBAN</strong>. Desde aquí podrás cargar y actualizar tus datos de registro, compartir información a nivel público y comunicarte con el resto de los usuarios que se han inscripto en la red.
+                                        <br><br>
+                                        El primer paso para compartir tu información es hacer click la opción de “Editar perfil” de la barra lateral. A continuación se te abrirá el cuestionario del registro, el cual se divide en 4 (cuatro) pasos sencillos; (1) Información de la institución de pertenencia; (2) Información personal; (3) Tema de investigación, y (4) un espacio optativo de información extra.
+                                        <br><br>
+                                        ESTAMOS A LA ESPERA DE CONOCER TU APORTE Y AGRADECEMOS QUE COMPARTAS EL LINK ENTRE TUS CONTACTOS                                        
+                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                </div>
+            {% elseif is_granted('ROLE_PRODUCER') %}
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        BIENVENIDO/A! 
+                                        <br><br>
+                                        Te encuentras en tu escritorio de usuario de miembro de la <strong>RED DE PRÁCTICAS DE TRANSICIÓN, INTENSIFICACIÓN ECOLÓGICA Y AGROECOLOGÍA</strong>. Desde aquí podrás cargar y actualizar tus datos personales y de registro sobre prácticas en curso, compartir información con el resto de la red y comunicarte con el resto de los usuarios.
+                                        <br><br>
+                                        El primer paso para compartir tu información es hacer click la opción de “Editar perfil” de la barra lateral. 
+                                        <br><br>
+                                        Haciendo click en la opción “Prácticas agroecológicas” encotratá dos opciones. La opción “agregar práctica” donde podrá dar inicio a la carga del formulario y la opción “lista de prácticas” podrá ver enlistadas la totalidad de las prácticas cargadas con su usuario. 
+                                        <br><br>
+                                        Ingresando “agregar práctica” el primer paso el sobre información general de la práctica, donde tendrás que identificar el tipo de práctica que se trata, teniendo como opciones; (1) emprendimientos productivos, (2) espacios de comercialización, (3) servicios profesionales, (4) proyectos institucionales y (5) grupos de promoción. El paso 2 es un cuestionario específico para cada tipo de práctica. El paso 3 recoge medios de contacto para la publicación web en el mapa, y el 4 habilita la carga de información extra que considere relevante.
+                                        <br><br>
+                                        ESTAMOS A LA ESPERA DE CONOCER SU APORTE Y AGRADECEMOS QUE COMPARTAS EL LINK ENTRE TUS CONTACTOS                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                </div>
+                
+            {% endif %}            
+            
+            
             <div class="card">
                 <div class="card-header">
                     {{ 'List of last created' | trans }}

@@ -2,6 +2,10 @@
     <div class="wrapper">
         <ul class="main-navigation navigation-top-header"></ul>
         <ul class="user-area">
+                <li><a href="{{ path('homepage') }}">Home</li>
+                <li><a href="{{ path('homepage_periurban_info') }}">Red Periurban</li>
+                <li><a href="{{ path('homepage_practices_info') }}">{{ 'Agroecological Practice' | trans }}</a></li> 
+                <li>|</li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li>{{ app.user.firstName }} {{ app.user.lastName }}</li>
                 <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
