@@ -17,7 +17,9 @@
             <div class="search-bar horizontal">
                 {% include ':homepage/map:search_form.html.twig' %}
             </div>
-            <div id="map" class="has-parallax"></div>
+            <div id="map" class="has-parallax">
+                <img class="imgloading" src="{{ asset('bundles/app/img/loading.gif') }}" alt="Cargando..." />
+            </div>
         </div>
         
         <!--Items List-->
@@ -42,6 +44,15 @@
         #search-form > div > div:nth-child(5){
             width: 23.2% !important;
         }
+        
+        .imgloading { 
+            position: absolute; 
+            left: 50%; 
+            top: 50%; 
+            width: 50px; 
+            height: 50px;
+        }
+        
     </style>
 {% endblock %}
 {% block extra_js %}
@@ -205,6 +216,7 @@
         loadCountry();
 
         $('#search-form').bind('submit', function(e) {
+            $("#map").html("<img class='imgloading' src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />");        
             e.preventDefault();
             var city = $('#city').find(':selected').val();
             type = $("#type-user").val();
@@ -217,13 +229,12 @@
                 else if (type == 'all')
                     var url =  "{{ path('homepage') }}userProfile/all/city/"+city;
                                 
-                console.log('clickl form',type)
                 loadMap(url,type);
             }
         });
 
         function filterByUser(type){
-            console.log('apply filter by user', type);
+            $("#map").html("<img class='imgloading' src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />");
             document.getElementById("type-user").value = type;
             var url;
             var city = $('#city').find(':selected').val();
@@ -234,7 +245,6 @@
                     url =  "{{ path('homepage') }}agroecologicalPractice/city/"+city;
                 
                 $("#usertype").val = type;
-                console.log('city ',city)
                 loadMap(url,type);
             }else{
                 url =  "{{ path('user_list') }}";
@@ -243,9 +253,8 @@
             $("#advanced-search").removeClass('disabled');
         }
 
-        $('#advanced-search').click(function () {
+        $('#advanced-search').click(function () {            
             type = $("#type-user").val();
-            console.log('click con type', type)
             if (type == "investigator"){
                 $('#investigator').modal({
                     show: true
