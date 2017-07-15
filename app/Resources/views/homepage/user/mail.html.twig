@@ -10,7 +10,7 @@
                 {% set user = 1 %}
                 T&iacute;tulo: {{ usernew.title }}
                 <br>
-                <a href="{{ path('homepage_new_show', {'id':usernew.id}) }}" class="item-horizontal small" target="_blank">Ver m&aacute;s detalles...</a>
+                <a href="{{ url('homepage_new_show', {'id':usernew.id}) }}" class="item-horizontal small" target="_blank">Ver m&aacute;s detalles...</a>
                 <br>
                 <br>
             {% endfor %}
@@ -25,7 +25,7 @@
                 {% set practice = 1 %}
                 T&iacute;tulo: {{ practicenew.title }}
                 <br>
-                <a href="{{ path('homepage_practice_new_show', {'id':practicenew.id}) }}" class="item-horizontal small" target="_blank">Ver m&aacute;s detalles...</a>
+                <a href="{{ url('homepage_practice_new_show', {'id':practicenew.id}) }}" class="item-horizontal small" target="_blank">Ver m&aacute;s detalles...</a>
                 <br>
                 <br>
             {% endfor %} 
