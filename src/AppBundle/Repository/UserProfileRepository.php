@@ -58,4 +58,17 @@ class UserProfileRepository extends EntityRepository
         
         return $query->getQuery()->getResult();
     }
+
+    public function findAllLatestUserNews()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('n')
+            ->from('AppBundle:News', 'n')            
+            ->join('AppBundle:UserProfile','up','WITH','up.user = n.created_by')
+            ->andWhere('n.created < CURRENT_DATE()') 
+            ->andWhere('n.created >= DATE_SUB(CURRENT_DATE(), 7, \'day\')');
+
+        return $qb->getQuery()->getResult();
+    }    
 }

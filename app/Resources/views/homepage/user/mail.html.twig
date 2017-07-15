@@ -1,0 +1,40 @@
+<div class="col-md-3">
+    <aside id="sidebar">
+        <section>
+            <header><h2>Red Periurban
+            <br>Noticias publicadas durante la semana del {{ 'now'|date_modify("-7 day")|date('d/m/Y') }} al {{ 'yesterday'|date('d/m/Y') }}</h2></header>
+            {% set user = 0 %}
+            {% set practice = 0 %}
+            <h3>Noticias relacionadas a Investigadores</h3>
+            {% for usernew in userNews %}
+                {% set user = 1 %}
+                T&iacute;tulo: {{ usernew.title }}
+                <br>
+                <a href="{{ path('homepage_new_show', {'id':usernew.id}) }}" class="item-horizontal small" target="_blank">Ver m&aacute;s detalles...</a>
+                <br>
+                <br>
+            {% endfor %}
+            {% if user == 0 %}
+                No se encontraron noticias para este per&iacute;odo.
+                <br>
+                <br>                
+            {% endif %}
+            <br>
+            <h3>Noticias relacionadas a Pr&aacute;cticas</h3>
+            {% for practicenew in practiceNews %}
+                {% set practice = 1 %}
+                T&iacute;tulo: {{ practicenew.title }}
+                <br>
+                <a href="{{ path('homepage_practice_new_show', {'id':practicenew.id}) }}" class="item-horizontal small" target="_blank">Ver m&aacute;s detalles...</a>
+                <br>
+                <br>
+            {% endfor %} 
+            {% if practice == 0 %}
+                No se encontraron noticias para este per&iacute;odo.
+                <br>
+                <br>                
+            {% endif %}            
+        </section>
+    </aside>
+    <!-- /#sidebar-->
+</div>

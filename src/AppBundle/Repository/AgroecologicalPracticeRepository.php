@@ -23,7 +23,20 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    
+    public function findAllLatestPracticeNews()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
 
+        $qb->select('n')
+            ->from('AppBundle:News', 'n')            
+            ->join('AppBundle:AgroecologicalPracticeNews','pn','WITH','n.id = pn.news')
+            ->andWhere('n.created < CURRENT_DATE()') 
+            ->andWhere('n.created >= DATE_SUB(CURRENT_DATE(), 7, \'day\')');
+
+        return $qb->getQuery()->getResult();
+    }
+    
     public function deleteAllNewsByPractice($practice)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
