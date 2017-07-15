@@ -94,13 +94,13 @@ fos_user:
         confirmation:
             enabled: true
             from_email:
-                address:        no-reply@example.com
-                sender_name:    INTA - Registration
+                address:        no-responder@redperiurban.com
+                sender_name:    Red Periurban - Registro
     resetting:
         email:
             from_email:
-                address:        resetting@example.com
-                sender_name:    INTA - Resetting account
+                address:        no-responder@redperiurban.com
+                sender_name:    Red Periurban - Reseteo de Cuenta
 
 # Vich Configuration
 vich_uploader:
