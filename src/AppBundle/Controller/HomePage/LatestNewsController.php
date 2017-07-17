@@ -31,17 +31,25 @@ class LatestNewsController extends Controller
         
         $subject = 'Red Periurban - Noticias publicadas durante la semana del '.date("d/m/Y",strtotime('-7 days')).' al '.date("d/m/Y",strtotime('-1 days'));
         foreach ($users as $user) {
-            $userEmail = $user->getEmail();
-            $message = \Swift_Message::newInstance()
-                    ->setSubject($subject)
-                    ->setFrom('no-responder@redperiurban.com')
-                    ->setTo($userEmail)
-                    ->setBody($this->render(':homepage/user:mail.html.twig', array(
-                            'userNews' => $user_news,
-                            'practiceNews' => $practice_news
-                    )),'text/html');
+            try {
+                $userEmail = $user->getEmail();
+                $userEmail = str_replace(" ","",$userEmail);
 
-            $this->get('mailer')->send($message);
+                $message = \Swift_Message::newInstance()
+                        ->setSubject($subject)
+                        ->setFrom('no-responder@redperiurban.com')
+                        ->setTo($userEmail)
+                        ->setBody($this->render(':homepage/user:mail.html.twig', array(
+                                'userNews' => $user_news,
+                                'practiceNews' => $practice_news
+                        )),'text/html');
+
+                $this->get('mailer')->send($message);
+            }
+            catch(Swift_TransportException $e) {
+                $mailer->getTransport()->stop();
+                sleep(10);
+            }            
         }
         return $this->render(':homepage/user:mail.html.twig', array(
             'userNews' => $user_news,
