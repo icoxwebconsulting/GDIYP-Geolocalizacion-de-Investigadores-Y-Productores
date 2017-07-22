@@ -15,42 +15,37 @@ use Symfony\Component\HttpFoundation\Request;
 class LatestNewsController extends Controller
 {
     /**
-     * @Route("/email", options={"expose"=true}, name="homepage_last_show")
+     * @param $email
+     * @Route("/email/{email}", options={"expose"=true}, name="homepage_last_send")
      * @return response
      */
-    public function indexAction()
+    public function indexAction($email)
     {
         $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
         $this->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
-        
+
         $em = $this->getDoctrine()->getManager();
-        
+
         $user_news = $em->getRepository("AppBundle:UserProfile")->findAllLatestUserNews();
         $practice_news = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllLatestPracticeNews();
-        $users = $em->getRepository("AppBundle:User")->findAll();
-        
+
         $subject = 'Red Periurban - Noticias publicadas durante la semana del '.date("d/m/Y",strtotime('-7 days')).' al '.date("d/m/Y",strtotime('-1 days'));
-        foreach ($users as $user) {
-            try {
-                $userEmail = $user->getEmail();
-                $userEmail = str_replace(" ","",$userEmail);
-
-                $message = \Swift_Message::newInstance()
-                        ->setSubject($subject)
-                        ->setFrom('no-responder@redperiurban.com')
-                        ->setTo($userEmail)
-                        ->setBody($this->render(':homepage/user:mail.html.twig', array(
-                                'userNews' => $user_news,
-                                'practiceNews' => $practice_news
-                        )),'text/html');
-
-                $this->get('mailer')->send($message);
-            }
-            catch(Swift_TransportException $e) {
-                $mailer->getTransport()->stop();
-                sleep(10);
-            }            
+       
+        try {
+            $message = \Swift_Message::newInstance();
+            $message->setSubject($subject);
+            $message->setFrom('no-responder@redperiurban.com');
+            $message->setTo($email);
+            $message->setBody($this->render(':homepage/user:mail.html.twig', array(
+                'userNews' => $user_news,
+                'practiceNews' => $practice_news
+                )),'text/html');
+            $this->get('mailer')->send($message);
         }
+        catch(Exception $e) {
+            echo ("Error al enviar mensaje: ".$e->getMessage());
+        }
+
         return $this->render(':homepage/user:mail.html.twig', array(
             'userNews' => $user_news,
             'practiceNews' => $practice_news
