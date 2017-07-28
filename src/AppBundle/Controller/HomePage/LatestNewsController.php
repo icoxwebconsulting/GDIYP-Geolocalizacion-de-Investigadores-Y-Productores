@@ -16,7 +16,7 @@ class LatestNewsController extends Controller
 {
     /**
      * @param $email
-     * @Route("/email/{email}", options={"expose"=true}, name="homepage_last_send")
+     * @Route("/news/{email}", options={"expose"=true}, name="homepage_last_send")
      * @return response
      */
     public function indexAction($email)
