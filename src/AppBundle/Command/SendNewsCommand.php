@@ -1,28 +1,24 @@
 <?php
 
-namespace AppBundle\Controller\HomePage;
+namespace AppBundle\Command;
 
-use AppBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @Route("/send")
- * 
- */
-class SendNewsController extends Controller
+class SendNewsCommand extends ContainerAwareCommand
 {
-    /**
-     * @Route("/news", options={"expose"=true}, name="homepage_send_news")
-     * @return response
-     * 
-     */
-    public function indexAction()
+    protected function configure()
     {
-        $em0 = $this->getDoctrine()->getManager();
+        $this->setName('news:send')
+            ->setDescription('Sends the news to all users');
+    }
+    
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $em0 = $this->getContainer()->getDoctrine()->getManager();
 
         $usersList = $em0->getRepository("AppBundle:User")->findAll();
         $userCounter=1;
@@ -56,7 +52,6 @@ class SendNewsController extends Controller
             }
             $currentUser++;
         }
-
-        return new Response();
+        $output->writeln('Hola mundo');
     }
 }

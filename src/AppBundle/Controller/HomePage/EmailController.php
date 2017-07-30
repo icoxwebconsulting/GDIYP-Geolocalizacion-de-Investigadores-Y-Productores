@@ -26,10 +26,10 @@ class EmailController extends Controller
         $users = $em1->getRepository("AppBundle:User")->findAll();
         //$userCount=0;
         foreach ($users as $user) {
-            if ($user->getID()>$user_from && $user->getID()<=$user_to) {
+            if ($user->getID()>=$user_from && $user->getID()<=$user_to) {
                 $userEmail = $user->getEmail();
                 $userEmail = str_replace(" ","",$userEmail);
-                //$userEmail='aristigueta00@gmail.com'.$userCount;
+                //$userEmail='aristigueta'.$user->getID().'@gmail.com'.$user->getID();
                 //$userCount++;
                 $response = $this->forward('AppBundle:Homepage/LatestNews:index', array(
                     'email'  => $userEmail,
