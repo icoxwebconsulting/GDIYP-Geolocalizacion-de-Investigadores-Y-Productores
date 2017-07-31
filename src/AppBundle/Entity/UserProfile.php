@@ -35,7 +35,7 @@ class UserProfile
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Institution", inversedBy="user_profile", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Institution", cascade={"all"})
      * @ORM\JoinColumn(name="institution", referencedColumnName="id")
      */
     protected $institution;

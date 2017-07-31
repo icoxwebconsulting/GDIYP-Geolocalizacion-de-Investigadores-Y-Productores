@@ -259,6 +259,7 @@
             $('#institution_type').change(function(){
                 loadInstitution();
                 $('#institution_label').show();
+                $("#add_institution").text('Agregar otra institución');
             });
             $('#knowledge_area').change(function(){
                 loadKnowledge();
@@ -480,6 +481,10 @@
                         newOption.text(data[i].name);
                         newOption.attr('value', data[i].id);
                         $('#institution').append(newOption)
+                        var selected = {{ profile.institution ? profile.institution.id : 0 }};
+                        if (selected == data[i].id){
+                            newOption.attr('selected', 'true');
+                        }                        
                     }
                     $('#institution_name').hide();
                     $('#institution').show();
