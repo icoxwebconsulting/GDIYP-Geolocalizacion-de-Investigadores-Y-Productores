@@ -5550,7 +5550,7 @@ input[type="text"]:focus, input[type="text"]:active, input[type="date"]:focus, i
   -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  background-color: #C9FBDC;
+  background-color: #fff;
   display: table;
   width: 100%;
   z-index: 999;

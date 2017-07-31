@@ -1014,6 +1014,14 @@
                 <source>Clean fields</source>
                 <target>Limpiar Campos</target>
             </trans-unit>        
+            <trans-unit id="255">
+                <source>Investigator/Technician</source>
+                <target>Investigador/Técnico</target>
+            </trans-unit>        
+            <trans-unit id="256">
+                <source>Producer/Experience</source>
+                <target>Práctica/Experiencia</target>
+            </trans-unit>        
         </body>
     </file>
 </xliff>
