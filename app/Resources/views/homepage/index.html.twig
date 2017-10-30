@@ -1,14 +1,12 @@
-{% extends ':homepage:base.html.twig' %}
-
-{% block title %}homepage{% endblock %}
-
+{% extends 'base.html.twig' %}
+{% block title %}Inicio{% endblock %}
 {% block bodyClass %}map-fullscreen page-homepage navigation-off-canvas{% endblock %}
 {% block content %}        
     <!-- Map Canvas-->
-    <div class="map-canvas list-width-30 results-collapsed">
+    <div class="map-canvas list-width-30">
         <div class="map">
             <div class="toggle-navigation">
-                <div class="icon">
+                <div class="icon" id="iconLeftBar">
                     <div class="line"></div>
                     <div class="line"></div>
                     <div class="line"></div>
@@ -21,6 +19,12 @@
                 <img class="imgloading" src="{{ asset('bundles/app/img/loading.gif') }}" alt="Cargando..." />
             </div>
         </div>
+
+        <input type="hidden" id="redefinesearch" value="{{ app.session.get('redefinesearch') }}">
+        <input type="hidden" id="searchcountry" value="{{ app.session.get('country') }}">
+        <input type="hidden" id="searchregion" value="{{ app.session.get('region') }}">
+        <input type="hidden" id="searchcity" value="{{ app.session.get('city') }}">
+        <input type="hidden" id="searchtypeuser" value="{{ app.session.get('usertype') }}">
         
         <!--Items List-->
         {% include ':homepage/map:item_list.html.twig' %}
@@ -29,31 +33,7 @@
 
 {% block extra_css %}
     {{ parent() }}
-    <style>
-        select.form-control {
-            display: block;
-            height: 40px;
-            background-color: #fff;
-            background-image: none;
-            border: 0px solid #fff;
-            border-radius: 0px;
-        }
-        #page-footer .inner {
-            padding-top: 0px;
-        }
-        #search-form > div > div:nth-child(5){
-            width: 23.2% !important;
-        }
-        
-        .imgloading { 
-            position: absolute; 
-            left: 50%; 
-            top: 50%; 
-            width: 50px; 
-            height: 50px;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" type="text/css">
 {% endblock %}
 {% block extra_js %}
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places"></script>
@@ -62,209 +42,9 @@
         <script type="text/javascript" src="{{ asset('assets/spotter/js/markerclusterer.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/custom.js')}}"></script>
         <script type="text/javascript" src="{{ asset('assets/spotter/js/maps.js')}}"></script>
-    <script>
-        var type = "all";
-        var url =  "{{ path('user_list') }}";
-        function loadMap(url, type){
-            var _latitude = 25.541216;
-            var _longitude = -0.095678;
-
-            $.ajax({
-                type: "GET",
-                url: url,
-                data: { 
-                  usertype: type
-                }
-            }).done(function(result){
-                //console.log('type',type);
-                var json = JSON.parse(result);
-                var place = $('#city').find(':selected').val();
-                /*
-                for (var i = 0; i < json.length; i++) {
-                    //console.log('json', json[i])
-                    
-                    if (type == "investigator"){
-                        if (json[i].user.roles.includes("ROLE_PRODUCER") || json[i].address==null){
-                            //console.log('indice', i);
-                            //console.log('json', json[i]);
-                            json.splice(i--,1);
-                        }
-                    } else if (type == "producer"){
-                        if (json[i].user.roles.includes("ROLE_INVESTIGATOR") || json[i].address==null){
-                            //console.log('indice', i);
-                            //console.log('json', json[i]);
-                            json.splice(i--,1);
-                        }
-                    } else if (type == "all"){
-                        if (json[i].address==null){
-                            //console.log('indice', i);
-                            //console.log('json', json[i]);
-                            json.splice(i--,1);
-                        }
-                    }
-                }
-                */
-                /*for (var i = 0; i < json.length; i++) {
-                    //console.log('json', json[i])
-                    
-                        if (json[i].address==null){
-                            //console.log('indice', i);
-                            //console.log('json', json[i]);
-                            json.splice(i--,1);
-                        }
-                }*/
-               
-                //console.log('after if json', json)
-                createHomepageGoogleMap(_latitude,_longitude,json);
-            }).fail(function( jqxhr, textStatus, error ) {
-                console.log(error);
-            });
-        }
-        // Set if language is RTL and load Owl Carousel
-        $(window).load(function(){
-            var rtl = false; // Use RTL
-            initializeOwl(rtl);
-        });
-
-        loadMap(url, type);
-        autoComplete();
-    </script>
-    <script>
-        var redefinesearch = "{{ app.session.get('redefinesearch') }}";
-        var searchcountry = "{{ app.session.get('country') }}";
-        var searchregion = "{{ app.session.get('region') }}";
-        var searchcity = "{{ app.session.get('city') }}";
-        var searchtypeuser = "{{ app.session.get('usertype') }}";
-        
-        if (redefinesearch == '1') {
-            if (searchtypeuser!="") {
-                $("#type-user").val(searchtypeuser);
-                $("#advanced-search").removeClass('disabled');
-            }            
-        }
-        
-        $('#country').change(function(){
-            loadRegion();
-        });
-        $('#region').change(function(){
-            loadCity();
-        });
-        function loadCountry(){
-            $.ajax({
-                type: "GET",
-                url: "{{ path('country_list') }}"
-            }).done(function( result ) {
-                var data = eval(result);
-//                console.log('country',data)
-                for(var i = 0; i < data.length; i++){
-                    var newOption = $('<option/>');
-                    newOption.text(data[i].name);
-                    newOption.attr('value', data[i].id);
-                    if (redefinesearch == '1' && searchcountry == data[i].id)
-                        newOption.attr('selected', true);
-                    $('#country').append(newOption);
-                }
-                var country = $('#country').find(':selected').val();
-                if (country != 0){
-                    loadRegion();
-                }
-            });
-        }
-
-        function loadRegion(){
-            $("#region").children().remove();
-            var country = $('#country').find(':selected').val();
-            if(country != 0){
-                $.ajax({
-                    type: "GET",
-                    url: "{{ path('homepage')}}region/"+country
-                }).done(function( result ) {
-                    var data = eval(result);
-                    for(var i = 0; i < data.length; i++){
-                        var newOption = $('<option/>');
-                        newOption.text(data[i].name);
-                        newOption.attr('value', data[i].id);
-                        if (redefinesearch == '1' && searchregion == data[i].id)
-                            newOption.attr('selected', true);
-                        $('#region').append(newOption);
-                    }
-                    loadCity();
-                });
-            }
-        }
-
-        function loadCity(){
-            $("#city").children().remove();
-            var region = $('#region').find(':selected').val();
-            if(region != 0){
-                $.ajax({
-                    type: "GET",
-                    url: "{{ path('homepage')}}city/"+region
-                }).done(function( result ) {
-                    var data = eval(result);
-                    for(var i = 0; i < data.length; i++){
-                        var newOption = $('<option/>');
-                        newOption.text(data[i].name);
-                        newOption.attr('value', data[i].id);
-                        if (redefinesearch == '1' && searchcity == data[i].id)
-                            newOption.attr('selected', true);                        
-                        $('#city').append(newOption);
-                    }
-                });
-            }
-        }
-        loadCountry();
-
-        $('#search-form').bind('submit', function(e) {
-            $("#map").html("<img class='imgloading' src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />");        
-            e.preventDefault();
-            var city = $('#city').find(':selected').val();
-            type = $("#type-user").val();
-            
-            if (city != 0){
-                if (type == 'investigator')
-                    var url =  "{{ path('homepage') }}userProfile/city/"+city;
-                else if (type == 'producer')
-                    var url =  "{{ path('homepage') }}agroecologicalPractice/city/"+city;
-                else if (type == 'all')
-                    var url =  "{{ path('homepage') }}userProfile/all/city/"+city;
-                                
-                loadMap(url,type);
-            }
-        });
-
-        function filterByUser(type){
-            $("#map").html("<img class='imgloading' src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />");
-            document.getElementById("type-user").value = type;
-            var url;
-            var city = $('#city').find(':selected').val();
-            if (city != 0){
-                if (type=='investigator')
-                    url =  "{{ path('homepage') }}userProfile/city/"+city;
-                else if (type=='producer')
-                    url =  "{{ path('homepage') }}agroecologicalPractice/city/"+city;
-                
-                $("#usertype").val = type;
-                loadMap(url,type);
-            }else{
-                url =  "{{ path('user_list') }}";
-                loadMap(url,type);
-            }
-            $("#advanced-search").removeClass('disabled');
-        }
-
-        $('#advanced-search').click(function () {            
-            type = $("#type-user").val();
-            if (type == "investigator"){
-                $('#investigator').modal({
-                    show: true
-                })
-            }else if (type == "producer"){
-                $('#producer').modal({
-                    show: true
-                })
-            }
-        });
-
-    </script>
+        <script type="text/javascript" src="{{ asset('assets/js/home.js')}}"></script>
+        <script>
+            loadMap("{{ path('user_list') }}", 'all');
+            autoComplete();
+        </script>
 {% endblock %}
