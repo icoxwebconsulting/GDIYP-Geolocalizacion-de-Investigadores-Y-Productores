@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
@@ -71,10 +72,17 @@ class User extends BaseUser
      */
     private $imageName;
 
+    /**
+     * @ORM\OneToMany(targetEntity="News", mappedBy="created_by")
+     * @ORM\OrderBy({"created" = "DESC"})
+     * @var $news[]
+     **/
+    protected $news = null;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->news = new ArrayCollection();
     }
 
     /**

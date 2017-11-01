@@ -4,6 +4,7 @@
 {% block content %}        
     <!-- Map Canvas-->
     <div class="map-canvas list-width-30">
+        <img class='imgloading' style="display:none;" id="mapLoader" src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />
         <div class="map">
             <div class="toggle-navigation">
                 <div class="icon" id="iconLeftBar">

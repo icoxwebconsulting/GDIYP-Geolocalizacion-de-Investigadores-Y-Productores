@@ -8,6 +8,8 @@ function loadMap(url, type){
     var _latitude = 25.541216;
     var _longitude = -0.095678;
 
+    createHomepageGoogleMap(_latitude,_longitude,[]);
+
     $.ajax({
         type: "GET",
         url: url,
@@ -15,10 +17,10 @@ function loadMap(url, type){
             usertype: type
         }
     }).done(function(result){
-        //console.log('type',type);
-        var json = JSON.parse(result);
         //console.log('after if json', json)
-        createHomepageGoogleMap(_latitude,_longitude,json);
+        createHomepageGoogleMap(_latitude,_longitude,result);
+        $("#mapLoader").hide();
+        console.info('hide map loader');
         $( ".iconLeftBar" ).trigger( "click" );
 
     }).fail(function( jqxhr, textStatus, error ) {
@@ -50,7 +52,7 @@ $('#region').change(function(){
 function loadCountry(){
     $.ajax({
         type: "GET",
-        url: "{{ path('country_list') }}"
+        url: Routing.generate('country_list', { id: region })
     }).done(function( result ) {
         var data = eval(result);
         for(var i = 0; i < data.length; i++){
@@ -114,7 +116,7 @@ function loadCity(){
 loadCountry();
 
 $('#search-form').bind('submit', function(e) {
-    $("#map").html("<img class='imgloading' src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />");
+    $("#mapLoader").show();
     e.preventDefault();
     var city = $('#city').find(':selected').val();
     type = $("#type-user").val();
@@ -132,20 +134,20 @@ $('#search-form').bind('submit', function(e) {
 });
 
 function filterByUser(type){
-    $("#map").html("<img class='imgloading' src='{{ asset('bundles/app/img/loading.gif') }}' alt='Cargando...' />");
+    $("#mapLoader").show();
     document.getElementById("type-user").value = type;
     var url;
     var city = $('#city').find(':selected').val();
     if (city != 0){
         if (type=='investigator')
-            var url = Routing.generate('homepage_user_profile_city_show', { id: city });
+            url = Routing.generate('homepage_user_profile_city_show', { id: city });
         else if (type=='producer')
-            var url = Routing.generate('homepage_practice_profile_city_show', { id: city });
+            url = Routing.generate('homepage_practice_profile_city_show', { id: city });
 
         $("#usertype").val = type;
         loadMap(url,type);
     }else{
-        url =  "{{ path('user_list') }}";
+        url =  Routing.generate('user_list', { id: region });
         loadMap(url,type);
     }
     $("#advanced-search").removeClass('disabled');

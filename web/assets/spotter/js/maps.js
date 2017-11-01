@@ -52,6 +52,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
         for (var i = 0; i < json.length; i++) {
 
+
             // Google map marker content -----------------------------------------------------------------------------------
             if( json[i].user.roles.includes("ROLE_INVESTIGATOR")){
                 // console.log('role investigator', json[i].user.roles);
@@ -149,7 +150,6 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                         newMarkers[i].infobox.setOptions({ boxClass:'fade-in-marker'});
                         newMarkers[i].content.className = 'marker-active marker-loaded';
                         markerClicked = 1;
-                        console.log('newmarkers',newMarkers);
                     }
                 }
             })(marker, i));
@@ -164,6 +164,8 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                 }
             })(marker, i));
         }
+
+
 
         // Close infobox after click on map --------------------------------------------------------------------------------
 
@@ -258,10 +260,10 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             var $singleItem = $('.results .item');
             $singleItem.hover(
                 function(){
-                    newMarkers[ $(this).attr('id') - 1 ].content.className = 'marker-active marker-loaded';
+                //    newMarkers[ $(this).attr('id') - 1 ].content.className = 'marker-active marker-loaded';
                 },
                 function() {
-                    newMarkers[ $(this).attr('id') - 1 ].content.className = 'marker-loaded';
+                 //   newMarkers[ $(this).attr('id') - 1 ].content.className = 'marker-loaded';
                 }
             );
         });
@@ -636,68 +638,71 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     var url = Routing.generate(router, {
         'id': ident
     });
+
+    if(typeof json[a].user.news[0] !== 'undefined'){
+        if(json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
+            visibleItemsArray.push(
+                '<li>' +
+                '<div class="item">' +
+                '<a href="' + url +'" class="image">' +
+                '<div class="inner">' +
+                '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
+                '<div class="item-specific">' +
+                // drawItemSpecific(category, json, a) +
+                '</div>' +
+                // '<img src="' + json[a].gallery[0] + '" alt="">' +
+                '</div>' +
+                '</a>' +
+                '<div class="wrapper">' +
+                '<a href="' + url + '"><h4>' + json[a].user.first_name + ' '+ json[a].user.last_name +'</h4></a>' +
+                '<figure>' + json[a].user.news[0].title + '</figure>' +
+                // drawPrice(json[a].price) +
+                // drawPrice(json[a].price) +
+                '<div class="price"><a href="' + url + '">ver</a></div>' +
+                // '<div class="info">' +
+                //     '<div class="type">' +
+                //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                //         '<span>' + json[a].type + '</span>' +
+                //     '</div>' +
+                //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                // '</div>' +
+                '</div>' +
+                '</div>' +
+                '</li>'
+            );
+        }else{
+            visibleItemsArray.push(
+                '<li>' +
+                '<div class="item">' +
+                '<a class="image">' +
+                '<div class="inner">' +
+                '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
+                '<div class="item-specific">' +
+                // drawItemSpecific(category, json, a) +
+                '</div>' +
+                // '<img src="' + json[a].gallery[0] + '" alt="">' +
+                '</div>' +
+                '</a>' +
+                '<div class="wrapper">' +
+                '<a><h4>' + json[a].practiceName +'</h4></a>' +
+                '<figure>' + json[a].user.news[0].title + '</figure>' +
+                // drawPrice(json[a].price) +
+                // drawPrice(json[a].price) +
+                '<div class="price"><a>ver</a></div>' +
+                // '<div class="info">' +
+                //     '<div class="type">' +
+                //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                //         '<span>' + json[a].type + '</span>' +
+                //     '</div>' +
+                //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                // '</div>' +
+                '</div>' +
+                '</div>' +
+                '</li>'
+            );
+        }
+    }
     
-    if(json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
-        visibleItemsArray.push(
-            '<li>' +
-                '<div class="item">' +
-                    '<a href="' + url +'" class="image">' +
-                        '<div class="inner">' +
-                        '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
-                            '<div class="item-specific">' +
-                                // drawItemSpecific(category, json, a) +
-                            '</div>' +
-                            // '<img src="' + json[a].gallery[0] + '" alt="">' +
-                        '</div>' +
-                    '</a>' +
-                    '<div class="wrapper">' +
-                        '<a href="' + url + '"><h4>' + json[a].user.firstName + ' '+ json[a].user.lastName +'</h4></a>' +
-                        '<figure>' + json[a].address.address + '</figure>' +
-                        // drawPrice(json[a].price) +
-                        // drawPrice(json[a].price) +
-                        '<div class="price"><a href="' + url + '">ver</a></div>' +
-                        // '<div class="info">' +
-                        //     '<div class="type">' +
-                        //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
-                        //         '<span>' + json[a].type + '</span>' +
-                        //     '</div>' +
-                        //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                        // '</div>' +
-                    '</div>' +
-                '</div>' +
-            '</li>'
-        );
-    }else{
-        visibleItemsArray.push(
-            '<li>' +
-                '<div class="item">' +
-                    '<a class="image">' +
-                        '<div class="inner">' +
-                        '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
-                            '<div class="item-specific">' +
-                                // drawItemSpecific(category, json, a) +
-                            '</div>' +
-                            // '<img src="' + json[a].gallery[0] + '" alt="">' +
-                        '</div>' +
-                    '</a>' +
-                    '<div class="wrapper">' +
-                        '<a><h4>' + json[a].practiceName +'</h4></a>' +
-                        '<figure>' + json[a].address.address + '</figure>' +
-                        // drawPrice(json[a].price) +
-                        // drawPrice(json[a].price) +
-                        '<div class="price"><a>ver</a></div>' +
-                        // '<div class="info">' +
-                        //     '<div class="type">' +
-                        //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
-                        //         '<span>' + json[a].type + '</span>' +
-                        //     '</div>' +
-                        //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                        // '</div>' +
-                    '</div>' +
-                '</div>' +
-            '</li>'
-        );
-    }    
 
     function drawPrice(price){
         if( price ){
@@ -708,6 +713,11 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
             return '';
         }
     }
+
+    if(visibleItemsArray.length > 0)
+        $("#alertNews").hide();
+    else
+        $("#alertNews").show();
 }
 
 // Center map to marker position if function is called (disabled) ------------------------------------------------------

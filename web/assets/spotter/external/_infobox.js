@@ -21,12 +21,12 @@ function drawInfobox(url, infoboxContent, json, i){
     var description = '';
     var practiceType = '';
     if (json[i].user.roles.includes("ROLE_INVESTIGATOR")) {
-        name = json[i].user.firstName +  ' ' + json[i].user.lastName;
+        name = json[i].user.first_name +  ' ' + json[i].user.last_name;
         institution = json[i].institution.name;
-        knowledge = json[i].knowledge.knowledgeArea.name;   
+        knowledge = json[i].knowledge.knowledge_area.name;
     }
     else if (json[i].user.roles.includes("ROLE_PRODUCER")) {
-        name = json[i].practiceName;
+     /*   name = json[i].practiceName;
         description = json[i].description;        
         if (json[i].productiveUndertaking!=null) {
             practiceType = 'Tipo: Emprendimiento Productivo';
@@ -42,7 +42,7 @@ function drawInfobox(url, infoboxContent, json, i){
         }
         if (json[i].promotionGroup!=null) {
             practiceType = 'Tipo: Grupos de Promoción';
-        }
+        } */
     }
 
     var ibContent = '';

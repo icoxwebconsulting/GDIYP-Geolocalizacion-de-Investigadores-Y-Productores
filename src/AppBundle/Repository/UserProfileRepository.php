@@ -10,11 +10,17 @@ class UserProfileRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('up')
+        $qb->select('up', 'u','n', 'a', 'i','k', 'ka')
             ->from('AppBundle:UserProfile', 'up')
+            ->innerJoin('up.user', 'u')
+            ->leftJoin('u.news', 'n')
+            ->innerJoin('up.address', 'a')
+            ->innerJoin('up.institution', 'i')
+            ->innerJoin('up.knowledge', 'k')
+            ->innerJoin('k.knowledge_area', 'ka')
             ->andWhere('up.address IS NOT NULL');
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
     
     public function findAllUsersByCity($city)
@@ -56,7 +62,7 @@ class UserProfileRepository extends EntityRepository
         
         $query->andWhere('up.address IS NOT NULL');
         
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
 
     public function findAllLatestUserNews()

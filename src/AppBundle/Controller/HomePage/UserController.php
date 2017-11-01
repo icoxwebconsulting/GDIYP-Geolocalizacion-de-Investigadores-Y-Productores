@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/user")
@@ -23,11 +24,10 @@ class UserController extends Controller
     {        
         $em = $this->getDoctrine()->getManager();        
         $session = $this->get('session');
-        $serializedEntity = "";
-        $usertype = $request->query->get('usertype');
-        
-        if ($usertype=='producer') {
-            if ($session->get('redefinesearch')=='1') {                
+        $userType = $request->query->get('usertype');
+
+        if ($userType=='producer') {
+            if ($session->get('redefinesearch')=='1') {
                 $city = $session->get('city');
                 $practice_type = $session->get('practice_type');
                 $productionCategory = $session->get('productionCategory');
@@ -58,9 +58,8 @@ class UserController extends Controller
                 $promotionType='0';
             }
             $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findByFilter($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType);
-            $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
         }
-        else if ($usertype=='investigator') {
+        else if ($userType=='investigator') {
             if ($session->get('redefinesearch')=='1') {
                 $city = $session->get('city');
                 $institution = $session->get('institution');
@@ -69,22 +68,15 @@ class UserController extends Controller
             }
             else {
                 $city = '0';
-                $institution_type='0';
                 $institution='0';
-                $knowledge_area='0';
                 $knowledge='0';
-                $topic_category='0';
-                $study='0';                
+                $study='0';
             }
             $entities = $em->getRepository("AppBundle:UserProfile")->findByFilter($city, $institution, $knowledge, $study);
-            $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
         }
         else {
             $entities = $em->getRepository("AppBundle:UserProfile")->findAllUserProfiles();
-            $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
-
-            $entitiesp = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllPractices();
-            $serializedEntityP = $this->container->get('fos_js_routing.serializer')->serialize($entitiesp, 'json');
+           // $entitiesPractice = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllPractices();
 
             $session->set('usertype', '');
             $session->set('country', '0');
@@ -92,7 +84,7 @@ class UserController extends Controller
             $session->set('city', '0');
             $session->set('redefinesearch', '0');
 
-            return new Response(json_encode(array_merge(json_decode($serializedEntity, true),json_decode($serializedEntityP, true))));                
+           // $entities = array_merge($entities,$entitiesPractice);
         }
 
         $session->set('usertype', '');
@@ -119,7 +111,8 @@ class UserController extends Controller
         $session->set('promotionType', '0');            
         $session->set('redefinesearch', '0');
 
-        return new Response($serializedEntity); 
+        return JsonResponse::create( $entities , 200);
+
     }
 
     /**

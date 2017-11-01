@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
@@ -71,10 +72,17 @@ class User extends BaseUser
      */
     private $imageName;
 
+    /**
+     * @ORM\OneToMany(targetEntity="News", mappedBy="created_by")
+     * @ORM\OrderBy({"created" = "DESC"})
+     * @var $news[]
+     **/
+    protected $news = null;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->news = new ArrayCollection();
     }
 
     /**
@@ -209,5 +217,39 @@ class User extends BaseUser
     public function getCompleteData()
     {
         return $this->complete_data;
+    }
+
+    /**
+     * Add news
+     *
+     * @param \AppBundle\Entity\News $news
+     *
+     * @return User
+     */
+    public function addNews(\AppBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param \AppBundle\Entity\News $news
+     */
+    public function removeNews(\AppBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
+    }
+
+    /**
+     * Get news
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNews()
+    {
+        return $this->news;
     }
 }

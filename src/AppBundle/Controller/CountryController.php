@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CountryController extends Controller
 {
     /**
-     * @Route("/", name="country_list")
+     * @Route("/", name="country_list", options={"expose"=true})
      */
     public function indexAction()
     {

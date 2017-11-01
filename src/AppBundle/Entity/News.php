@@ -53,7 +53,7 @@ class News
     protected $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="news")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $created_by;
