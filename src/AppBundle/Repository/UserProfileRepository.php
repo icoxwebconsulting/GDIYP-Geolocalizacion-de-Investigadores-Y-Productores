@@ -40,8 +40,15 @@ class UserProfileRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $query = $qb->select('up')
-            ->from('AppBundle:UserProfile', 'up');
+        $query = $qb->select('up', 'u','n', 'a', 'i','k', 'ka')
+            ->from('AppBundle:UserProfile', 'up')
+            ->innerJoin('up.user', 'u')
+            ->leftJoin('u.news', 'n')
+            ->innerJoin('up.address', 'a')
+            ->innerJoin('up.institution', 'i')
+            ->innerJoin('up.knowledge', 'k')
+            ->innerJoin('k.knowledge_area', 'ka');
+
             
         if ($city != 0){
             $query->andWhere('up.residence_place = :city');

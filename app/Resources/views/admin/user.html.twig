@@ -25,11 +25,12 @@
                             <th>{{ 'Name' | trans }}</th>
                             <th>{{ 'Email' | trans }}</th>
                             <th>{{ 'User type' | trans }}</th>
+                            <th>{{ '' | trans }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for user in users %}
-                        <tr>
+                        <tr id="userRow-{{ user.id }}">
                             <td class="text-xs-left">
                                 <div>
                                     {{ user.username }}                                    
@@ -54,6 +55,11 @@
                                     {% endif %}
                                 </div>
                             </td>
+                            <td>
+                                <button class="btn btn-sm btn-default" onclick="remove({{ user.id }})">
+                                    <i class="fa fa-close"></i> Eliminar
+                                </button>
+                            </td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -63,4 +69,41 @@
         </div>
         <!--/.col-->
     </div>
+{% endblock %}
+
+{% block extra_js %}
+
+    <script>
+
+        function remove(id) {
+            bootbox.confirm({
+                title: "¿Estas seguro que desea eliminar este usuario?",
+                message: "Al eliminar este usuario seran tambien eliminadas sus actividades realizadas en el sitio.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancelar'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirmar'
+                    }
+                },
+                callback: function (result) {
+                    console.log('This was logged in the callback: ' + result);
+
+                    if (result) {
+                        var url = Routing.generate('user_delete', {user: id});
+                        $.post(url, function () {
+                        }).done(function () {
+                            $.notify("Se ha eliminado el usuario satisfactoriamente", "success");
+                            $("#userRow-"+id).hide();
+                        }).fail(function() {
+                            $.notify("No se ha podido eliminar el usuario.", 'warn');
+                        });
+                    }
+                }
+            });
+        }
+
+    </script>
+
 {% endblock %}

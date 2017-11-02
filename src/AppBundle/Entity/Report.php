@@ -64,14 +64,14 @@ class Report
     /**
      * @var $user
      * Investigator or Producer
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;
 
     /**
      * @var $created_by
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $created_by;

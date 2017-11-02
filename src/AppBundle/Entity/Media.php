@@ -76,7 +76,7 @@ class Media
 
     /**
      * @var $created_by
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="medias", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $created_by;
