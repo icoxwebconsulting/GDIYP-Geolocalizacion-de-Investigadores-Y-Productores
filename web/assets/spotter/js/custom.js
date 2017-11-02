@@ -52,9 +52,9 @@ $(document).ready(function($) {
 //  Bootstrap Select ---------------------------------------------------------------------------------------------------
 
     var select = $('select');
-    if (select.length > 0 ){
-        select.selectpicker();
-    }
+    // if (select.length > 0 ){
+    //     select.selectpicker();
+    // }
     var bootstrapSelect = $('.bootstrap-select');
     var dropDownMenu = $('.dropdown-menu');
     bootstrapSelect.on('shown.bs.dropdown', function () {

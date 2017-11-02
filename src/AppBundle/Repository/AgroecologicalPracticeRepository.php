@@ -56,7 +56,7 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
             ->from('AppBundle:AgroecologicalPractice', 'p')
             ->andWhere('p.address IS NOT NULL');
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
     
     public function findAllPracticesByCity($city)
@@ -156,7 +156,7 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
             }
         }                
         
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
     
 }

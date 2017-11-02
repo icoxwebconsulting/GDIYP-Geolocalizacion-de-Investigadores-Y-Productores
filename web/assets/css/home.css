@@ -1,0 +1,23 @@
+select.form-control {
+    display: block;
+    height: 40px;
+    background-color: #fff;
+    background-image: none;
+    border: 0px solid #fff;
+    border-radius: 0px;
+}
+#page-footer .inner {
+    padding-top: 0px;
+}
+#search-form > div > div:nth-child(5){
+    width: 23.2% !important;
+}
+
+.imgloading {
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    z-index:9999;
+}
