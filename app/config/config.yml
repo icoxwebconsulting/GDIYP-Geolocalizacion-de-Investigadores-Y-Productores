@@ -78,7 +78,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-#FOSUser Configuration
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
@@ -143,27 +142,27 @@ liip_imagine:
                 thumbnail: { size: [150, 150], mode: outbound }
 
 #Bazing faker config
-bazinga_faker:
-    orm: doctrine
-    entities:
-        AppBundle\Entity\User:
-            number: 100
-            custom_formatters:
-                lastLogin:   { method: null }
-                expiresAt:   { method: null }
-                confirmationToken:   { method: null }
-                passwordRequestedAt:   { method: null }
-                credentialsExpiredAt:   { method: null }
-                deletedAt:   { method: null }
-                imageName:   { method: image }
-                firstName:   { method: firstName }
-                lastName:   { method: lastName }
-        AppBundle\Entity\GoogleMap:
-                  number: 100
-                  custom_formatters:
-                      latitude:   { method: latitude }
-                      longitude:    { method: longitude }
-        AppBundle\Entity\CaseStudy:
-            number: 100
-        AppBundle\Entity\UserProfile:
-            number: 100
+#bazinga_faker:
+#    orm: doctrine
+#    entities:
+#        AppBundle\Entity\User:
+#            number: 100
+#            custom_formatters:
+#                lastLogin:   { method: null }
+#                expiresAt:   { method: null }
+#                confirmationToken:   { method: null }
+#                passwordRequestedAt:   { method: null }
+#                credentialsExpiredAt:   { method: null }
+#                deletedAt:   { method: null }
+#                imageName:   { method: image }
+#                firstName:   { method: firstName }
+#                lastName:   { method: lastName }
+#        AppBundle\Entity\GoogleMap:
+#                  number: 100
+#                  custom_formatters:
+#                      latitude:   { method: latitude }
+#                      longitude:    { method: longitude }
+#        AppBundle\Entity\CaseStudy:
+#            number: 100
+#        AppBundle\Entity\UserProfile:
+#            number: 100
