@@ -73,16 +73,32 @@ class User extends BaseUser
     private $imageName;
 
     /**
-     * @ORM\OneToMany(targetEntity="News", mappedBy="created_by")
+     * @ORM\OneToMany(targetEntity="News", mappedBy="created_by", cascade={"persist", "remove"})
      * @ORM\OrderBy({"created" = "DESC"})
      * @var $news[]
      **/
     protected $news = null;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="created_by", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"created" = "DESC"})
+     * @var $medias[]
+     **/
+    protected $medias = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AgroecologicalPractice", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"created" = "DESC"})
+     * @var $practices[]
+     **/
+    protected $practices = null;
+
     public function __construct()
     {
         parent::__construct();
         $this->news = new ArrayCollection();
+        $this->medias = new ArrayCollection();
+        $this->practices = new ArrayCollection();
     }
 
     /**
@@ -251,5 +267,73 @@ class User extends BaseUser
     public function getNews()
     {
         return $this->news;
+    }
+
+    /**
+     * Add media
+     *
+     * @param \AppBundle\Entity\Media $media
+     *
+     * @return User
+     */
+    public function addMedia(\AppBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \AppBundle\Entity\Media $media
+     */
+    public function removeMedia(\AppBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * Add practice
+     *
+     * @param \AppBundle\Entity\AgroecologicalPractice $practice
+     *
+     * @return User
+     */
+    public function addPractice(\AppBundle\Entity\AgroecologicalPractice $practice)
+    {
+        $this->practices[] = $practice;
+
+        return $this;
+    }
+
+    /**
+     * Remove practice
+     *
+     * @param \AppBundle\Entity\AgroecologicalPractice $practice
+     */
+    public function removePractice(\AppBundle\Entity\AgroecologicalPractice $practice)
+    {
+        $this->practices->removeElement($practice);
+    }
+
+    /**
+     * Get practices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPractices()
+    {
+        return $this->practices;
     }
 }

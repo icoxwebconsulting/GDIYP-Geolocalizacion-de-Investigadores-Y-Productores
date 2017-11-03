@@ -29,7 +29,7 @@ class UserProfile
     protected $summary;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;

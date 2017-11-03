@@ -53,7 +53,7 @@ class News
     protected $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="news")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="news", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $created_by;

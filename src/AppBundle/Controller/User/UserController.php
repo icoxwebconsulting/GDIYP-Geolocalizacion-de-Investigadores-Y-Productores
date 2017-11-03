@@ -18,6 +18,8 @@ use AppBundle\Form\UserProfileType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\UserProfile;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/profile")
@@ -234,6 +236,28 @@ class UserController extends Controller
             'form' => $form->createView(),
             'entity' => $user,
         ));
+    }
+
+
+    /**
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/user/delete/{user}", name="user_delete", options={ "expose" = true })
+     * @ParamConverter("user", class="AppBundle:User")
+     */
+    public function deleteAction(User $user)
+    {
+
+        try{
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+
+            return JsonResponse::create( array('status' => true) , 200)->setSharedMaxAge(300);
+        }catch(\Exception $e){
+            return JsonResponse::create(  array('status' => false) , 409)->setSharedMaxAge(300);
+        }
+
+
     }
 
     /**
