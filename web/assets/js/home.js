@@ -95,6 +95,7 @@ function loadRegion(){
 function loadCity(){
     $("#city").children().remove();
     var region = $('#region').find(':selected').val();
+    console.info('load city 1');
     if(region != 0){
         $.ajax({
             type: "GET",
