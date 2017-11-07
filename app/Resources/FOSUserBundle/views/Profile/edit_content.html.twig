@@ -334,11 +334,12 @@
         }
 
         function loadCity(){
+
             $("#city").children().remove();
             var region = $('#region').find(':selected').val();
             $.ajax({
                 type: "GET",
-                url: "{{ path('homepage')}}city/"+region
+                url: Routing.generate('city_list', { id: region })
             }).done(function( result ) {
                 var data = eval(result);
                 if (!data.length){
@@ -411,11 +412,12 @@
         }
 
         function loadCity2(){
+
             $("#city2").children().remove();
             var region = $('#region2').find(':selected').val();
             $.ajax({
                 type: "GET",
-                url: "{{ path('homepage')}}city/"+region
+                url: Routing.generate('city_list', { id: region })
             }).done(function( result ) {
                 var data = eval(result);
                   if (!data.length){

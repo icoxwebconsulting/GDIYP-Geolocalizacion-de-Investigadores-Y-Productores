@@ -22,6 +22,8 @@ class CityController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:City")->findBy(array('region'=>$id));
-        return JsonResponse::create( $entities , 200)->setSharedMaxAge(300);
+        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
     }
 }

@@ -23,6 +23,8 @@ class RegionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:Region")->findBy(array('country'=>$id));
-        return JsonResponse::create( $entities , 200)->setSharedMaxAge(300);
+        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
     }
 }
