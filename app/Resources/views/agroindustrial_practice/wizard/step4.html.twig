@@ -4,42 +4,50 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="fs-title">{{ 'Extra Information' | trans }}</h3>
-                <div class="form-group">                
+                <div class="form-group">
                     <div class="form-group">
-                        <label class="col-md-4 form-control-label" for="data[member][0]">{{ 'Practice Members' | trans }}</label>
+                        <label class="col-md-4 form-control-label"
+                               for="data[member][0]">{{ 'Practice Members' | trans }}</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="text" name="data[member][0]" id="data[member][0]" required="required" />
+                            <input class="form-control" type="text" name="data[member][0]" id="data[member][0]"
+                                   required="required"/>
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}</button>
+                    <button class="btn btn-default" id="add-member"><i class="fa fa-plus"></i> {{ 'Member' | trans }}
+                    </button>
 
                     <br>
                     <div class="form-group">
-                        <label class="col-md-4 form-control-label" for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
+                        <label class="col-md-4 form-control-label"
+                               for="data[related_institution][0]">{{ 'Related Institution' | trans }}</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="text" name="data[related_institution][0]" id="data[related_institution][0]" required="required" />
+                            <input class="form-control" type="text" name="data[related_institution][0]"
+                                   id="data[related_institution][0]" required="required"/>
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-default" id="add-institution"><i class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
+                    <button class="btn btn-default" id="add-institution"><i
+                                class="fa fa-plus"></i> {{ 'Institution' | trans }}</button>
 
-                    <br>                        
+                    <br>
                     <div class="form-group row">
-                        <label class="col-md-4 form-control-label" for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
+                        <label class="col-md-4 form-control-label"
+                               for="data[related_institution][0]">{{ 'Related News' | trans }}</label>
                         <div class="col-md-8">
                             {% for new in news %}
-                            <ul>
-                                <li>
-                                    <input type="checkbox" id="checkbox2" name="data[related_news][{{ loop.index}}]" value="{{ new.id }}"
-                                    {% if practicenews is defined %} {% for pn in practicenews %} {% if pn.id == new.id %} checked="checked" {% endif %}  {% endfor %} {% endif %} >                                    
-                                    <label for="">{{ new.title }}</label>
-                                </li>
-                            </ul>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="checkbox2"
+                                               name="data[related_news][{{ loop.index }}]" value="{{ new.id }}"
+                                                {% if practicenews is defined %} {% for pn in practicenews %} {% if pn.id == new.id %} checked="checked" {% endif %}  {% endfor %} {% endif %} >
+                                        <label for="">{{ new.title }}</label>
+                                    </li>
+                                </ul>
                             {% endfor %}
                         </div>
                     </div>
-                        
+
                     <br>
                     <div class="form-group row" style="margin-top: 30px">
                         <label class="col-md-4 form-control-label" for="descripion">{{ 'Description' | trans }}</label>
@@ -47,13 +55,16 @@
                             {{ form_widget(form.description, { 'attr': { 'class': 'form-control'}}) }}
                         </div>
                         {{ form_errors(form.description) }}
-                    </div>                        
-                <br><br>
-            </div>            
-        </div>
-        <br>
-        <a href="{{ path('agroecological_practice_list') }}" class="btn btn-sm btn-success"><i class="fa fa-mail-reply"></i> {{ 'Back' | trans }}</a>
-        <button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}</button>                            
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <br>
+            <a href="{{ path('agroecological_practice_list') }}" class="btn btn-warning"><i
+                        class="fa fa-mail-reply"></i> {{ 'Cancelar' | trans }}</a> &nbsp; &nbsp;
+            <button class="btn btn-default prevBtn" type="button">{{ 'Anterior' | trans }}</button>
+            <button type="submit" class="btn btn-success pull-right"><i class="fa fa-dot-circle-o"></i> {{ 'Send' | trans }}
+            </button>
         </div>
     </div>
 </div>
