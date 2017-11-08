@@ -51,10 +51,10 @@ class DashboardController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $medias = $em->getRepository('AppBundle:Media')->findBy(array('created_by' => $user->getId()),
+        $medias = $em->getRepository('AppBundle:Media')->findBy(array(),
             array('modified' => 'DESC'),
             10);
-        $news = $em->getRepository('AppBundle:News')->findBy(array('created_by' => $user->getId()),
+        $news = $em->getRepository('AppBundle:News')->findBy(array(),
             array('modified' => 'DESC'),
             10);
 
