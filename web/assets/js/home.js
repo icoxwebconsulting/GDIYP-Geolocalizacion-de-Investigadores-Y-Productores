@@ -134,25 +134,6 @@ $('#search-form').bind('submit', function(e) {
     }
 });
 
-function filterByUser(type){
-    $("#mapLoader").show();
-    document.getElementById("type-user").value = type;
-    var url;
-    var city = $('#city').find(':selected').val();
-    if (city != 0){
-        if (type=='investigator')
-            url = Routing.generate('homepage_user_profile_city_show', { id: city });
-        else if (type=='producer')
-            url = Routing.generate('homepage_practice_profile_city_show', { id: city });
-
-        $("#usertype").val = type;
-        loadMap(url,type);
-    }else{
-        url =  Routing.generate('user_list', { id: region });
-        loadMap(url,type);
-    }
-    $("#advanced-search").removeClass('disabled');
-}
 
 $('#advanced-search').click(function () {
     type = $("#type-user").val();

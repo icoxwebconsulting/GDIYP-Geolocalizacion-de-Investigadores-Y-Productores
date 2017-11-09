@@ -180,7 +180,7 @@ $(document).ready(function($) {
 
     $('body').addClass('page-fade-in');
 
-    $('a').on('click', function (e) {
+  /*  $('a').on('click', function (e) {
         var attr = $(this).attr('href');
         //alert( $(this).attr('href') );
         if ( attr.indexOf('#') != 0 ) {
@@ -195,7 +195,7 @@ $(document).ready(function($) {
         else if ( $(this).attr('href') == '#' ) {
             e.preventDefault();
         }
-    });
+    }); */
 
 //  Dropzone -----------------------------------------------------------------------------------------------------------
 
