@@ -639,69 +639,73 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
         'id': ident
     });
 
-    if(typeof json[a].user.news[0] !== 'undefined'){
-        if(json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
-            visibleItemsArray.push(
-                '<li>' +
-                '<div class="item">' +
-                '<a href="' + url +'" class="image">' +
-                '<div class="inner">' +
-                '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
-                '<div class="item-specific">' +
-                // drawItemSpecific(category, json, a) +
-                '</div>' +
-                // '<img src="' + json[a].gallery[0] + '" alt="">' +
-                '</div>' +
-                '</a>' +
-                '<div class="wrapper">' +
-                '<a href="' + url + '"><h4>' + json[a].user.first_name + ' '+ json[a].user.last_name +'</h4></a>' +
-                '<figure>' + json[a].user.news[0].title + '</figure>' +
-                // drawPrice(json[a].price) +
-                // drawPrice(json[a].price) +
-                '<div class="price"><a href="' + url + '">ver</a></div>' +
-                // '<div class="info">' +
-                //     '<div class="type">' +
-                //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
-                //         '<span>' + json[a].type + '</span>' +
-                //     '</div>' +
-                //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                // '</div>' +
-                '</div>' +
-                '</div>' +
-                '</li>'
-            );
-        }else{
-            visibleItemsArray.push(
-                '<li>' +
-                '<div class="item">' +
-                '<a class="image">' +
-                '<div class="inner">' +
-                '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
-                '<div class="item-specific">' +
-                // drawItemSpecific(category, json, a) +
-                '</div>' +
-                // '<img src="' + json[a].gallery[0] + '" alt="">' +
-                '</div>' +
-                '</a>' +
-                '<div class="wrapper">' +
-                '<a><h4>' + json[a].practiceName +'</h4></a>' +
-                '<figure>' + json[a].user.news[0].title + '</figure>' +
-                // drawPrice(json[a].price) +
-                // drawPrice(json[a].price) +
-                '<div class="price"><a>ver</a></div>' +
-                // '<div class="info">' +
-                //     '<div class="type">' +
-                //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
-                //         '<span>' + json[a].type + '</span>' +
-                //     '</div>' +
-                //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                // '</div>' +
-                '</div>' +
-                '</div>' +
-                '</li>'
-            );
+    if(typeof json[a].user.news !== 'undefined') {
+
+        if(typeof json[a].user.news[0] !== 'undefined'){
+            if(json[a].user.roles.includes("ROLE_INVESTIGATOR")) {
+                visibleItemsArray.push(
+                    '<li>' +
+                    '<div class="item">' +
+                    '<a href="' + url +'" class="image">' +
+                    '<div class="inner">' +
+                    '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
+                    '<div class="item-specific">' +
+                    // drawItemSpecific(category, json, a) +
+                    '</div>' +
+                    // '<img src="' + json[a].gallery[0] + '" alt="">' +
+                    '</div>' +
+                    '</a>' +
+                    '<div class="wrapper">' +
+                    '<a href="' + url + '"><h4>' + json[a].user.first_name + ' '+ json[a].user.last_name +'</h4></a>' +
+                    '<figure>' + json[a].user.news[0].title + '</figure>' +
+                    // drawPrice(json[a].price) +
+                    // drawPrice(json[a].price) +
+                    '<div class="price"><a href="' + url + '">ver</a></div>' +
+                    // '<div class="info">' +
+                    //     '<div class="type">' +
+                    //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                    //         '<span>' + json[a].type + '</span>' +
+                    //     '</div>' +
+                    //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                    // '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>'
+                );
+            }else{
+                visibleItemsArray.push(
+                    '<li>' +
+                    '<div class="item">' +
+                    '<a class="image">' +
+                    '<div class="inner">' +
+                    '<img src="../uploads/user/profile/'+json[a].user.imageName+'" alt="">'+
+                    '<div class="item-specific">' +
+                    // drawItemSpecific(category, json, a) +
+                    '</div>' +
+                    // '<img src="' + json[a].gallery[0] + '" alt="">' +
+                    '</div>' +
+                    '</a>' +
+                    '<div class="wrapper">' +
+                    '<a><h4>' + json[a].practiceName +'</h4></a>' +
+                    '<figure>' + json[a].user.news[0].title + '</figure>' +
+                    // drawPrice(json[a].price) +
+                    // drawPrice(json[a].price) +
+                    '<div class="price"><a>ver</a></div>' +
+                    // '<div class="info">' +
+                    //     '<div class="type">' +
+                    //         '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                    //         '<span>' + json[a].type + '</span>' +
+                    //     '</div>' +
+                    //     '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
+                    // '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>'
+                );
+            }
         }
     }
+
     
 
     function drawPrice(price){

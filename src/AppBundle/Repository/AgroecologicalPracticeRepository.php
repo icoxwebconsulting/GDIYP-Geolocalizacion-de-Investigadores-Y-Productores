@@ -76,8 +76,14 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $query = $qb->select('p')
-            ->from('AppBundle:AgroecologicalPractice', 'p');
+        $query = $qb->select('p','u','a','n')
+            ->from('AppBundle:AgroecologicalPractice', 'p')
+            ->innerJoin('p.user', 'u')
+            ->innerJoin('p.address', 'a')
+            ->leftJoin('p.news', 'pn')
+            ->leftJoin('pn.news', 'n');
+
+
 
         if ($city != 0){
             $query->andWhere('p.city = :city');

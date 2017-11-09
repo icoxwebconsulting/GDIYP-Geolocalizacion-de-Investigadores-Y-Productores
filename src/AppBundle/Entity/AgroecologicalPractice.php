@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\ProductiveUndertaking;
 
 /**
@@ -135,7 +135,20 @@ class AgroecologicalPractice
      * @ORM\JoinColumn(name="city", referencedColumnName="id", nullable=true)
      */
     protected $city = null;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="AgroecologicalPracticeNews", mappedBy="agroecological_practice", cascade={"persist", "remove"})
+     * @var $news[]
+     **/
+    protected $news = null;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->news = new ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -552,5 +565,40 @@ class AgroecologicalPractice
     public function getCity()
     {
         return $this->city;
-    }    
+    }
+
+
+    /**
+     * Add news
+     *
+     * @param \AppBundle\Entity\News $news
+     *
+     * @return User
+     */
+    public function addNews(\AppBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param \AppBundle\Entity\News $news
+     */
+    public function removeNews(\AppBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
+    }
+
+    /**
+     * Get news
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNews()
+    {
+        return $this->news;
+    }
 }

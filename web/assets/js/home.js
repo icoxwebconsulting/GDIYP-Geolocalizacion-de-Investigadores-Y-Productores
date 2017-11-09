@@ -17,11 +17,14 @@ function loadMap(url, type){
             usertype: type
         }
     }).done(function(result){
-        //console.log('after if json', json)
+
+        if(result.length < 1)
+            $("#alertNews").show();
+
         createHomepageGoogleMap(_latitude,_longitude,result);
         $("#mapLoader").hide();
-        console.info('hide map loader');
         $( ".iconLeftBar" ).trigger( "click" );
+
 
     }).fail(function( jqxhr, textStatus, error ) {
         console.log(error);
@@ -95,7 +98,6 @@ function loadRegion(){
 function loadCity(){
     $("#city").children().remove();
     var region = $('#region').find(':selected').val();
-    console.info('load city 1');
     if(region != 0){
         $.ajax({
             type: "GET",
@@ -134,16 +136,3 @@ $('#search-form').bind('submit', function(e) {
     }
 });
 
-
-$('#advanced-search').click(function () {
-    type = $("#type-user").val();
-    if (type == "investigator"){
-        $('#investigator').modal({
-            show: true
-        })
-    }else if (type == "producer"){
-        $('#producer').modal({
-            show: true
-        })
-    }
-});
