@@ -146,11 +146,11 @@ class AgroecologicalPracticeController extends Controller
                     break;
                 case "marketing_spaces":
                     $marketingSpaces = new MarketingSpaces();
-                    $marketingSpaces->setMarketWhereSold($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['marketWhereSold']);
-                    $marketingSpaces->setType($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['type']);
-                    $marketingSpaces->setPeriodicity($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['periodicity']);
-                    $marketingSpaces->setPeopleInvolved($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['peopleInvolved']);
-                    $marketingSpaces->setComment($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['comment']);
+                    $marketingSpaces->setMarketWhereSold(isset($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['marketWhereSold']));
+                    $marketingSpaces->setType(isset($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['type']));
+                    $marketingSpaces->setPeriodicity(isset($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['periodicity']));
+                    $marketingSpaces->setPeopleInvolved(isset($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['peopleInvolved']));
+                    $marketingSpaces->setComment(isset($_POST['appbundle_agroecologicalpractice']['marketing_spaces']['comment']));
                     
                     $practice->setProductiveUndertaking(NULL);
                     $practice->setProfessionalServices(NULL);

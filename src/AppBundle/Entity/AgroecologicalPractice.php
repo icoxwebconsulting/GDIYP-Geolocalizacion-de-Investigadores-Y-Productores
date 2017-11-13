@@ -145,7 +145,6 @@ class AgroecologicalPractice
 
     public function __construct()
     {
-        parent::__construct();
         $this->news = new ArrayCollection();
     }
 

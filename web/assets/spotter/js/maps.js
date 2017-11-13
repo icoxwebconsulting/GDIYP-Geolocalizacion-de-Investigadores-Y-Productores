@@ -204,10 +204,10 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
         ];
 
-        var markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
+       /* var markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
         markerCluster.onClick = function(clickedClusterIcon, sameLatitude, sameLongitude) {
             return multiChoice(sameLatitude, sameLongitude, json);
-        };
+        }; */
 
         // Dynamic loading markers and data from JSON ----------------------------------------------------------------------
 
@@ -492,7 +492,7 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
             };
 
             if( latitudeArray.allValuesSame() && longitudeArray.allValuesSame() ){
-                multiChoice(latitudeArray[0], longitudeArray[0], json);
+               // multiChoice(latitudeArray[0], longitudeArray[0], json);
             }
             else {
                 a.layer.zoomToBounds();
