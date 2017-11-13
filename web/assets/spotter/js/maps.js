@@ -204,10 +204,10 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
         ];
 
-       /* var markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
+        var markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
         markerCluster.onClick = function(clickedClusterIcon, sameLatitude, sameLongitude) {
             return multiChoice(sameLatitude, sameLongitude, json);
-        }; */
+        };
 
         // Dynamic loading markers and data from JSON ----------------------------------------------------------------------
 
@@ -492,7 +492,7 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
             };
 
             if( latitudeArray.allValuesSame() && longitudeArray.allValuesSame() ){
-               // multiChoice(latitudeArray[0], longitudeArray[0], json);
+               multiChoice(latitudeArray[0], longitudeArray[0], json);
             }
             else {
                 a.layer.zoomToBounds();
@@ -753,17 +753,17 @@ function multiChoice(sameLatitude, sameLongitude, json) {
                 pushItemsToArray(json, a, json[a].category, multipleItems);
             }
         });
-        $('body').append('<div class="modal-window multichoice fade_in"></div>');
-        $('.modal-window').load( '/assets/spotter/external/_modal-multichoice.html', function() {
-            $('.modal-window .modal-wrapper .items').html( multipleItems );
-            rating('.modal-window');
-        });
-        $('.modal-window .modal-background, .modal-close').live('click',  function(e){
-            $('.modal-window').addClass('fade_out');
-            setTimeout(function() {
-                $('.modal-window').remove();
-            }, 300);
-        });
+        // $('body').append('<div class="modal-window multichoice fade_in"></div>');
+        // $('.modal-window').load( '/assets/spotter/external/_modal-multichoice.html', function() {
+        //     $('.modal-window .modal-wrapper .items').html( multipleItems );
+        //     rating('.modal-window');
+        // });
+        // $('.modal-window .modal-background, .modal-close').live('click',  function(e){
+        //     $('.modal-window').addClass('fade_out');
+        //     setTimeout(function() {
+        //         $('.modal-window').remove();
+        //     }, 300);
+        // });
     //}
 }
 
