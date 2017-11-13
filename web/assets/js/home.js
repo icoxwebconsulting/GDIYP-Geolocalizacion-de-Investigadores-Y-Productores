@@ -17,11 +17,14 @@ function loadMap(url, type){
             usertype: type
         }
     }).done(function(result){
-        //console.log('after if json', json)
+
+        if(result.length < 1)
+            $("#alertNews").show();
+
         createHomepageGoogleMap(_latitude,_longitude,result);
         $("#mapLoader").hide();
-        console.info('hide map loader');
         $( ".iconLeftBar" ).trigger( "click" );
+
 
     }).fail(function( jqxhr, textStatus, error ) {
         console.log(error);
@@ -95,7 +98,6 @@ function loadRegion(){
 function loadCity(){
     $("#city").children().remove();
     var region = $('#region').find(':selected').val();
-    console.info('load city 1');
     if(region != 0){
         $.ajax({
             type: "GET",
@@ -134,35 +136,3 @@ $('#search-form').bind('submit', function(e) {
     }
 });
 
-function filterByUser(type){
-    $("#mapLoader").show();
-    document.getElementById("type-user").value = type;
-    var url;
-    var city = $('#city').find(':selected').val();
-    if (city != 0){
-        if (type=='investigator')
-            url = Routing.generate('homepage_user_profile_city_show', { id: city });
-        else if (type=='producer')
-            url = Routing.generate('homepage_practice_profile_city_show', { id: city });
-
-        $("#usertype").val = type;
-        loadMap(url,type);
-    }else{
-        url =  Routing.generate('user_list', { id: region });
-        loadMap(url,type);
-    }
-    $("#advanced-search").removeClass('disabled');
-}
-
-$('#advanced-search').click(function () {
-    type = $("#type-user").val();
-    if (type == "investigator"){
-        $('#investigator').modal({
-            show: true
-        })
-    }else if (type == "producer"){
-        $('#producer').modal({
-            show: true
-        })
-    }
-});

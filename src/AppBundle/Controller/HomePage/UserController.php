@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     /**
      * @return Response
-     * @Route("/", name="user_list")
+     * @Route("/", name="user_list", options={ "expose" = true })
      * @return response
      */
     public function indexAction(Request $request)

@@ -22,7 +22,7 @@ class AgroecologicalPracticeNews
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AgroecologicalPractice", inversedBy="agroecological_practice_news", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="AgroecologicalPractice", inversedBy="news", cascade={"all"})
      * @ORM\JoinColumn(name="agroecological_practice", referencedColumnName="id")
      */
     protected $agroecological_practice;
