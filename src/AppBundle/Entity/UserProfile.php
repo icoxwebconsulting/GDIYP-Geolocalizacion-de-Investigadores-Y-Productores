@@ -79,7 +79,7 @@ class UserProfile
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,7 +102,7 @@ class UserProfile
     /**
      * Get job_title
      *
-     * @return string 
+     * @return string
      */
     public function getJobTitle()
     {
@@ -125,7 +125,7 @@ class UserProfile
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -148,7 +148,7 @@ class UserProfile
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

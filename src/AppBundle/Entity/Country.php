@@ -25,7 +25,7 @@ class Country
      * @ORM\Column(name="sortName", type="string", length=10)
      */
     private $sortName;
-    
+
     /**
      * @var string
      *

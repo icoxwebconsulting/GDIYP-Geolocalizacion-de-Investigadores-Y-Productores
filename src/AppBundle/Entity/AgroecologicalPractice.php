@@ -15,7 +15,7 @@ use AppBundle\Entity\ProductiveUndertaking;
  * @ORM\Table(name="agroecological_practice", indexes={@ORM\Index(name="search_idx", columns={"address"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgroecologicalPracticeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
- * 
+ *
  *
  */
 class AgroecologicalPractice
@@ -64,7 +64,7 @@ class AgroecologicalPractice
      * @ORM\Column(name="reported", type="boolean")
      */
     protected $reported = 0;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="GoogleMap", inversedBy="productor_profile", cascade={"all"})
      * @ORM\JoinColumn(name="address", referencedColumnName="id")
@@ -117,13 +117,13 @@ class AgroecologicalPractice
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="agroecological_practice", cascade={"all"})
      * @ORM\JoinColumn(name="country", referencedColumnName="id", nullable=true)
      */
     protected $country = null;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Region", inversedBy="agroecological_practice", cascade={"all"})
      * @ORM\JoinColumn(name="region", referencedColumnName="id", nullable=true)
@@ -138,7 +138,7 @@ class AgroecologicalPractice
 
     /**
      * @ORM\OneToMany(targetEntity="AgroecologicalPracticeNews", mappedBy="agroecological_practice", cascade={"persist", "remove"})
-     * @var $news[]
+     * @var $news []
      **/
     protected $news = null;
 
@@ -157,7 +157,7 @@ class AgroecologicalPractice
     {
         return $this->id;
     }
-    
+
     /**
      * Set organizationName
      *
@@ -349,7 +349,7 @@ class AgroecologicalPractice
     {
         return $this->relatedInstitutions;
     }
-    
+
     /**
      * Set productiveUndertaking
      *
@@ -492,16 +492,16 @@ class AgroecologicalPractice
     public function getUser()
     {
         return $this->user;
-    }    
-    
-     /**
+    }
+
+    /**
      * Set country
      *
      * @param \AppBundle\Entity\Country $country
      *
      * @return AgroecologicalPractice
      */
-    public function setCountry (\AppBundle\Entity\Country $country = null)
+    public function setCountry(\AppBundle\Entity\Country $country = null)
     {
         $this->country = $country;
 
@@ -517,7 +517,7 @@ class AgroecologicalPractice
     {
         return $this->country;
     }
-    
+
     /**
      * Set region
      *

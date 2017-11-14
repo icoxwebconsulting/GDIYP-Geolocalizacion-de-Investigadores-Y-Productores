@@ -54,7 +54,7 @@ class ProductiveUndertaking
      * @ORM\JoinColumn(name="category", referencedColumnName="id", nullable=true)
      */
     protected $category = null;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="ProductionType", inversedBy="productive_undertaking", cascade={"all"})
      * @ORM\JoinColumn(name="type", referencedColumnName="id", nullable=true)
@@ -173,14 +173,14 @@ class ProductiveUndertaking
         return $this->comment;
     }
 
-     /**
+    /**
      * Set category
      *
      * @param \AppBundle\Entity\ProductionCategory $category
      *
      * @return ProductiveUndertaking
      */
-    public function setCategory (\AppBundle\Entity\ProductionCategory $category = null)
+    public function setCategory(\AppBundle\Entity\ProductionCategory $category = null)
     {
         $this->category = $category;
 
@@ -196,7 +196,7 @@ class ProductiveUndertaking
     {
         return $this->category;
     }
-    
+
     /**
      * Set type
      *
@@ -244,5 +244,5 @@ class ProductiveUndertaking
     {
         return $this->productionDestination;
     }
-    
+
 }

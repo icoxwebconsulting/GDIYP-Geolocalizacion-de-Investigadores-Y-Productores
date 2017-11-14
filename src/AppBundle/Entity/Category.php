@@ -41,11 +41,11 @@ class Category
      * @ORM\JoinColumn(name="status", referencedColumnName="id")
      */
     protected $status;
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -68,7 +68,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,7 +91,7 @@ class Category
     /**
      * Get status
      *
-     * @return \AppBundle\Entity\Status 
+     * @return \AppBundle\Entity\Status
      */
     public function getStatus()
     {
@@ -114,7 +114,7 @@ class Category
     /**
      * Get parent
      *
-     * @return \AppBundle\Entity\Category 
+     * @return \AppBundle\Entity\Category
      */
     public function getParent()
     {

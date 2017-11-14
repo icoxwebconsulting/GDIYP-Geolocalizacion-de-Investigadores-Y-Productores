@@ -34,7 +34,7 @@ class ReportType
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +57,7 @@ class ReportType
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

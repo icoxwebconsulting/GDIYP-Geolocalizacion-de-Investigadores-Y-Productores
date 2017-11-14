@@ -93,7 +93,7 @@ class Report
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -116,7 +116,7 @@ class Report
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -139,7 +139,7 @@ class Report
     /**
      * Get feedback
      *
-     * @return string 
+     * @return string
      */
     public function getFeedback()
     {
@@ -162,7 +162,7 @@ class Report
     /**
      * Get isOpen
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsOpen()
     {
@@ -185,7 +185,7 @@ class Report
     /**
      * Get type
      *
-     * @return \AppBundle\Entity\ReportType 
+     * @return \AppBundle\Entity\ReportType
      */
     public function getType()
     {
@@ -208,7 +208,7 @@ class Report
     /**
      * Get news
      *
-     * @return \AppBundle\Entity\News 
+     * @return \AppBundle\Entity\News
      */
     public function getNews()
     {
@@ -231,7 +231,7 @@ class Report
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -254,7 +254,7 @@ class Report
     /**
      * Get created_by
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getCreatedBy()
     {

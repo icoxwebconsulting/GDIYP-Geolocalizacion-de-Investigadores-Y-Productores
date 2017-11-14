@@ -33,7 +33,7 @@ class Institution
      * @ORM\JoinColumn(name="type", referencedColumnName="id")
      */
     protected $type;
-    
+
     /**
      * Get id
      *

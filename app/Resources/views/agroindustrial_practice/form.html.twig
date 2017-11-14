@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
     <!-- Include Editor style. -->
-    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css"/>
     <style>
         #map-canvas {
             height: 400px;
             width: 100%;
         }
+
         .controls {
             margin-top: 10px;
             border: 1px solid transparent;
@@ -35,6 +36,7 @@
             outline: none;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
+
         #search-address {
             background-color: #fff;
             font-family: Roboto;
@@ -45,27 +47,31 @@
             text-overflow: ellipsis;
             width: 300px;
         }
+
         #search-address:focus {
             border-color: #4d90fe;
         }
+
         .form-group {
             margin-top: 30px;
         }
     </style>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
     <!-- Include Editor style. -->
-    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/froala_editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/froala_editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('assets/css/wizard.css') }}">
-    
+
 {% endblock %}
 
 {% block extra_js %}
     <!-- Include external JS libs. -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
 
     <!-- Include JS files. -->
     <script type="text/javascript" src="{{ asset('assets/froala_editor/js/froala_editor.pkgd.min.js') }}"></script>
@@ -75,118 +81,201 @@
 
     <!-- Initialize the editor. -->
     <script>
-        $(function() {
-            $('#type_practice').change(function(){
-                $('.type').hide();
-                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
-                $('#' + $(this).val()).show();
-            });
-        });
-    </script>
 
-    <script>
+        var map;
+        var markers = [];
+
+        function loadMarker() {
+            var geocoder = new google.maps.Geocoder();
+
+            var address = $("#appbundle_agroecologicalpractice_country option:selected").text();
+
+            if ($("#appbundle_agroecologicalpractice_region option:selected").text().length > 0 && $("#appbundle_agroecologicalpractice_region option:selected").text() != "Seleccionar")
+                address += ', ' + $("#appbundle_agroecologicalpractice_region option:selected").text();
+
+            if ($("#appbundle_agroecologicalpractice_city option:selected").text().length > 0 && $("#appbundle_agroecologicalpractice_city option:selected").text() != "Seleccionar")
+                address += ', ' + $("#appbundle_agroecologicalpractice_city option:selected").text();
+
+            $("#search-address").val(address);
+
+            geocoder.geocode({'address': address}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    markers.forEach(function (marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+                    $("#lat").val(results[0].geometry.location.lat());
+                    $("#lng").val(results[0].geometry.location.lng());
+                    var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: address,
+                        draggable: true
+                    });
+                    markers.push(marker);
+                    map.setCenter(marker.getPosition());
+
+                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                        $("#lat").val(this.getPosition().lat());
+                        $("#lng").val(this.getPosition().lng());
+                    });
+
+                } else {
+                    console.info("Something got wrong " + status);
+                }
+            });
+        }
+
+        $("#appbundle_agroecologicalpractice_country").change(function () {
+            loadMarker();
+        });
+
+        $("#appbundle_agroecologicalpractice_region").change(function () {
+            loadMarker();
+        });
+
+        $("#appbundle_agroecologicalpractice_city").change(function () {
+            loadMarker();
+        });
+
+
         function initialize() {
-            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            map = new google.maps.Map(document.getElementById('map-canvas'), {
                 center: {lat: 0, lng: 0},
                 zoom: 4,
 
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            // Create the search box and link it to the UI element.
-            var input = document.getElementById('search-address');
-            var myLatLng = new google.maps.LatLng( 0, 0);
-            marker = new google.maps.Marker( {position: myLatLng, map: map, draggable: true } );
-            google.maps.event.addListener(marker, 'dragend', function (event) {
-                document.getElementById("lat").value = this.getPosition().lat();
-                document.getElementById("lng").value = this.getPosition().lng();
-                console.log("lat->",this.getPosition().lat());
-                console.log("long->",this.getPosition().lng());
-            });
-            marker.setMap( map );
+            {% if entity.address.id is defined %}
 
-            var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener('bounds_changed', function() {
-                searchBox.setBounds(map.getBounds());
-            });
-
-            var markers = [];
-            // [START region_getplaces]
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function() {
-                var places = searchBox.getPlaces();
-                console.log(places[0].geometry);
-                document.getElementById("lat").value = places[0].geometry.viewport.f.b;
-                document.getElementById("lng").value = places[0].geometry.viewport.b.b;
-                console.log("auto complete lat->",places[0].geometry.viewport.f.b);
-                console.log("auto complete long->",places[0].geometry.viewport.b.b);
-                if (places.length == 0) {
-                    return;
-                }
-
-                // Clear out the old markers.
-                markers.forEach(function(marker) {
+                markers.forEach(function (marker) {
                     marker.setMap(null);
                 });
                 markers = [];
 
-                // For each place, get the icon, name and location.
-                var bounds = new google.maps.LatLngBounds();
-                places.forEach(function(place) {
-                    var icon = {
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25)
-                    };
-
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        title: place.name,
-                        position: place.geometry.location,
-                        draggable: true,
-                    });
-                    // Create a marker for each place.
-                    markers.push(marker);
-
-                    google.maps.event.addListener(marker, 'dragend', function (event) {
-                        document.getElementById("lat").value = this.getPosition().lat();
-                        document.getElementById("lng").value = this.getPosition().lng();
-                        console.log("lat->",this.getPosition().lat());
-                        console.log("long->",this.getPosition().lng());
-                    });
-
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
-                    }
+                var myLatLng = {lat: {{ entity.address.latitude }}, lng: {{ entity.address.longitude }}};
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: $("#search-address").val(),
+                    draggable: true
                 });
-                map.fitBounds(bounds);
-            });
+                markers.push(marker);
+                map.setCenter(marker.getPosition());
+
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    $("#lat").val(this.getPosition().lat());
+                    $("#lng").val(this.getPosition().lng());
+                });
+            {% else %}
+
+                loadMarker();
+            {% endif %}
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('search-address');
+//            var myLatLng = new google.maps.LatLng( 0, 0);
+//            marker = new google.maps.Marker( {position: myLatLng, map: map, draggable: true } );
+//            google.maps.event.addListener(marker, 'dragend', function (event) {
+//                document.getElementById("lat").value = this.getPosition().lat();
+//                document.getElementById("lng").value = this.getPosition().lng();
+//                console.log("lat->",this.getPosition().lat());
+//                console.log("long->",this.getPosition().lng());
+//            });
+//            marker.setMap( map );
+
+//            var searchBox = new google.maps.places.SearchBox(input);
+//            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+//
+//            // Bias the SearchBox results towards current map's viewport.
+//            map.addListener('bounds_changed', function() {
+//                searchBox.setBounds(map.getBounds());
+//            });
+
+
+            // [START region_getplaces]
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+//            searchBox.addListener('places_changed', function() {
+//                var places = searchBox.getPlaces();
+//                console.log(places[0].geometry);
+//                document.getElementById("lat").value = places[0].geometry.viewport.f.b;
+//                document.getElementById("lng").value = places[0].geometry.viewport.b.b;
+//                console.log("auto complete lat->",places[0].geometry.viewport.f.b);
+//                console.log("auto complete long->",places[0].geometry.viewport.b.b);
+//                if (places.length == 0) {
+//                    return;
+//                }
+//
+//                // Clear out the old markers.
+//                markers.forEach(function(marker) {
+//                    marker.setMap(null);
+//                });
+//                markers = [];
+//
+//                // For each place, get the icon, name and location.
+//                var bounds = new google.maps.LatLngBounds();
+//                places.forEach(function(place) {
+//                    var icon = {
+//                        url: place.icon,
+//                        size: new google.maps.Size(71, 71),
+//                        origin: new google.maps.Point(0, 0),
+//                        anchor: new google.maps.Point(17, 34),
+//                        scaledSize: new google.maps.Size(25, 25)
+//                    };
+//
+//                    var marker = new google.maps.Marker({
+//                        map: map,
+//                        title: place.name,
+//                        position: place.geometry.location,
+//                        draggable: true,
+//                    });
+//                    // Create a marker for each place.
+//                    markers.push(marker);
+//
+//                    google.maps.event.addListener(marker, 'dragend', function (event) {
+//                        document.getElementById("lat").value = this.getPosition().lat();
+//                        document.getElementById("lng").value = this.getPosition().lng();
+//                        console.log("lat->",this.getPosition().lat());
+//                        console.log("long->",this.getPosition().lng());
+//                    });
+//
+//                    if (place.geometry.viewport) {
+//                        // Only geocodes have viewport.
+//                        bounds.union(place.geometry.viewport);
+//                    } else {
+//                        bounds.extend(place.geometry.location);
+//                    }
+//                });
+//                map.fitBounds(bounds);
+//            });
             // [END region_getplaces]
         }
-    </script>
-    <script>
-        $(document).ready(function(){
-            if ($("#productive_undertaking_id").val()) $("#type_practice option[value='productive_undertaking']").attr('selected','selected');
-            if ($("#marketing_spaces_id").val()) $("#type_practice option[value='marketing_spaces']").attr('selected','selected');
-            if ($("#professional_services_id").val()) $("#type_practice option[value='professional_services']").attr('selected','selected');
-            if ($("#institutional_project_id").val()) $("#type_practice option[value='institutional_project']").attr('selected','selected');
-            if ($("#promotion_group_id").val()) $("#type_practice option[value='promotion_group']").attr('selected','selected');
-            
+        $(function () {
+            $('#type_practice').change(function () {
+                $('.type').hide();
+                //$('[id*="'+$(this).val()+'"]').prop('required',true);                
+                $('#' + $(this).val()).show();
+            });
+        });
+
+        $(document).ready(function () {
+            initialize();
+
+            if ($("#productive_undertaking_id").val()) $("#type_practice option[value='productive_undertaking']").attr('selected', 'selected');
+            if ($("#marketing_spaces_id").val()) $("#type_practice option[value='marketing_spaces']").attr('selected', 'selected');
+            if ($("#professional_services_id").val()) $("#type_practice option[value='professional_services']").attr('selected', 'selected');
+            if ($("#institutional_project_id").val()) $("#type_practice option[value='institutional_project']").attr('selected', 'selected');
+            if ($("#promotion_group_id").val()) $("#type_practice option[value='promotion_group']").attr('selected', 'selected');
+
             $('.type').hide();
             if ($("#type_practice").val()) {
                 $('#' + $("#type_practice").val()).show();
             }
 
-        $("#add-member").click(function(e){
+            $("#add-member").click(function (e) {
                 e.preventDefault();
                 var numberOfMember = $("#producer-form").find("input[name^='data[member]']").length;
                 var label = '<label class="col-md-4 form-control-label"  for="data[member][' + numberOfMember + ']">Integrante </label> ';
@@ -196,7 +285,7 @@
                 $("#producer-form").find("#add-member").before(html);
             });
 
-            $("#add-institution").click(function(e){
+            $("#add-institution").click(function (e) {
                 e.preventDefault();
                 var n = $("#producer-form").find("input[name^='data[related_institution]']").length;
                 var label = '<label class="col-md-4 form-control-label"  for="data[related_institution][' + n + ']">Institución </label> ';
@@ -205,16 +294,16 @@
                 var html = "<div class='form-group institutions'>" + label + input + removeButton + "</div>";
                 $("#producer-form").find("#add-institution").before(html);
             });
-            
+
             if ($("#member_id").val()) {
                 var member_json = JSON.parse($("#member_id").val());
-                for (var i=0; i< member_json.length; i++) {
+                for (var i = 0; i < member_json.length; i++) {
                     if (i === 0) {
                         $("input[name='data[member][0]'").val(member_json[0]);
                     }
                     else {
                         var label = '<label class="col-md-4 form-control-label"  for="data[member][' + i + ']">Integrante </label> ';
-                        var input = '<div class="col-md-6"><input  class="form-control" type="text" name="data[member][' + i + ']" id="data[member][' + i + ']" value="'+ member_json[i] +'" /></div>';
+                        var input = '<div class="col-md-6"><input  class="form-control" type="text" name="data[member][' + i + ']" id="data[member][' + i + ']" value="' + member_json[i] + '" /></div>';
                         var removeButton = '<button class="btn btn-danger remove-member">Quitar</button>';
                         var html = "<div class='form-group members'>" + label + input + removeButton + "</div>";
                         $("#producer-form").find("#add-member").before(html);
@@ -224,136 +313,153 @@
 
             if ($("#related_institution_id").val()) {
                 var related_institution_json = JSON.parse($("#related_institution_id").val());
-                for (var i=0; i< related_institution_json.length; i++) {
+                for (var i = 0; i < related_institution_json.length; i++) {
                     if (i === 0) {
                         $("input[name='data[related_institution][0]'").val(related_institution_json[0]);
                     }
                     else {
                         var label = '<label class="col-md-4 form-control-label"  for="data[related_institution][' + i + ']">Institución </label> ';
-                        var input = '<div class="col-md-6"><input class="form-control" type="text" name="data[related_institution][' + i + ']" id="data[related_institution][' + i + ']" value="'+ related_institution_json[i] +'" /></div>';
+                        var input = '<div class="col-md-6"><input class="form-control" type="text" name="data[related_institution][' + i + ']" id="data[related_institution][' + i + ']" value="' + related_institution_json[i] + '" /></div>';
                         var removeButton = '<button class="btn btn-danger remove-institution">Quitar</button>';
                         var html = "<div class='form-group institutions'>" + label + input + removeButton + "</div>";
                         $("#producer-form").find("#add-institution").before(html);
                     }
                 }
-            }        
-                    
+            }
+
             $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
-            loadProductionType();
-            $('#appbundle_agroecologicalpractice_productive_undertaking_category').change(function(){
+                loadProductionType();
+            $('#appbundle_agroecologicalpractice_productive_undertaking_category').change(function () {
                 loadProductionType();
             });
-            
-            $('#appbundle_agroecologicalpractice_region').children().not(':first').remove();  
+
+            $('#appbundle_agroecologicalpractice_region').children().not(':first').remove();
             $('#appbundle_agroecologicalpractice_city').children().not(':first').remove();
-            
-            $('#appbundle_agroecologicalpractice_country').change(function(){
+
+            $('#appbundle_agroecologicalpractice_country').change(function () {
                 loadRegion();
             });
-            $('#appbundle_agroecologicalpractice_region').change(function(){
+            $('#appbundle_agroecologicalpractice_region').change(function () {
                 loadCity();
             });
-            
-            if ($("#country_id").val()!='') {
-                loadRegion();               
+
+            if ($("#country_id").val() != '') {
+                loadRegion();
             }
         });
 
-        $(document).on("click", ".remove-member",function(e){
+        $(document).on("click", ".remove-member", function (e) {
             e.preventDefault();
             $(this).parents(".members").remove();
             //update labels
-            $("#producer-form").find("label[for^='data[member]']").each(function(){
+            $("#producer-form").find("label[for^='data[member]']").each(function () {
                 $(this).html("Integrante");
             });
         });
-        $(document).on("click", ".remove-institution",function(e){
+        $(document).on("click", ".remove-institution", function (e) {
             e.preventDefault();
             $(this).parents(".institutions").remove();
             //update labels
-            $("#producer-form").find("label[for^='data[related_institution]']").each(function(){
+            $("#producer-form").find("label[for^='data[related_institution]']").each(function () {
                 $(this).html("Institución");
             });
         });
 
-        function loadProductionType(){
+        var typeSelected = "{{ practiceTypeId }}";
+
+        function loadProductionType() {
             $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
             var production_category = $('#appbundle_agroecologicalpractice_productive_undertaking_category').find(':selected').val();
             $.ajax({
                 type: "GET",
-                url: "{{ path('homepage')}}production_type/"+production_category
-            }).done(function( result ) {
+                url: "{{ path('homepage') }}production_type/" + production_category
+            }).done(function (result) {
                 var data = eval(result);
-                for(var i = 0; i < data.length; i++){
+                for (var i = 0; i < data.length; i++) {
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
+                    if (data[i].id == typeSelected) {
+                        newOption.attr('selected', 'selected');
+                    }
                     $('#appbundle_agroecologicalpractice_productive_undertaking_type').append(newOption)
                 }
             });
         }
-            
-        function loadRegion(){
+
+        var loadMarkerRegion = false;
+        var loadMarkerCity = false;
+
+        function loadRegion() {
             $('#appbundle_agroecologicalpractice_region').children().not(':first').remove();
             $('#appbundle_agroecologicalpractice_city').children().not(':first').remove();
             var country = $('#appbundle_agroecologicalpractice_country').find(':selected').val();
             $.ajax({
                 type: "GET",
-                url: "{{ path('homepage')}}region/"+country
-            }).done(function( result ) {                
+                url: "{{ path('homepage') }}region/" + country
+            }).done(function (result) {
                 var data = eval(result);
                 var regionselected = $('#region_id').val();
-                
-                for(var i = 0; i < data.length; i++){
+
+                for (var i = 0; i < data.length; i++) {
                     var newOption = $('<option/>');
                     newOption.text(data[i].name);
                     newOption.attr('value', data[i].id);
-                    if (data[i].id == regionselected){
-                        newOption.attr('selected','selected');
+                    if (data[i].id == regionselected) {
+                        newOption.attr('selected', 'selected');
                     }
                     $('#appbundle_agroecologicalpractice_region').append(newOption)
                 }
                 if (regionselected) {
                     loadCity();
                 }
+                if(loadMarkerRegion)
+                    loadMarker();
+                else
+                    loadMarkerRegion = true;
             });
         }
-            
-        function loadCity(){
+
+        function loadCity() {
             $('#appbundle_agroecologicalpractice_city').children().not(':first').remove();
             var region = $('#appbundle_agroecologicalpractice_region').find(':selected').val();
             $.ajax({
                 type: "GET",
-                url: "{{ path('homepage')}}city/"+region
-            }).done(function( result ) {
+                url: "{{ path('homepage') }}city/" + region
+            }).done(function (result) {
                 var data = eval(result);
-                if (!data.length){
+                if (!data.length) {
                     $("#appbundle_agroecologicalpractice_city").hide();
                     $("#appbundle_agroecologicalpractice_city_name").show();
                     $("#appbundle_agroecologicalpractice_city").removeAttr('required');
-                    $("#appbundle_agroecologicalpractice_city_name").attr('required','required');
-                }else{                
+                    $("#appbundle_agroecologicalpractice_city_name").attr('required', 'required');
+                } else {
                     var cityselected = $('#city_id').val();
 
-                    for(var i = 0; i < data.length; i++){
+                    for (var i = 0; i < data.length; i++) {
                         var newOption = $('<option/>');
                         newOption.text(data[i].name);
                         newOption.attr('value', data[i].id);
-                        if (data[i].id == cityselected){
-                            newOption.attr('selected','selected');
-                        }                    
+                        if (data[i].id == cityselected) {
+                            newOption.attr('selected', 'selected');
+                        }
                         $('#appbundle_agroecologicalpractice_city').append(newOption)
                     }
                     $("#appbundle_agroecologicalpractice_city_name").hide();
                     $("#appbundle_agroecologicalpractice_city").show();
                     $("#appbundle_agroecologicalpractice_city_name").removeAttr('required');
-                    $("#appbundle_agroecologicalpractice_city").attr('required','required');
+                    $("#appbundle_agroecologicalpractice_city").attr('required', 'required');
+
+                    if(loadMarkerCity)
+                        loadMarker();
+                    else
+                        loadMarkerCity = true;
                 }
-            });            
+            });
         }
-        
-        
-        
+
+
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
-    {% endblock %}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places"></script>
+{% endblock %}

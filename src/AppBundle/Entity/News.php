@@ -72,7 +72,7 @@ class News
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -95,7 +95,7 @@ class News
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -118,7 +118,7 @@ class News
     /**
      * Get subtitle
      *
-     * @return string 
+     * @return string
      */
     public function getSubtitle()
     {
@@ -141,7 +141,7 @@ class News
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -164,7 +164,7 @@ class News
     /**
      * Get createdBy
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getCreatedBy()
     {
@@ -187,7 +187,7 @@ class News
     /**
      * Get reported
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getReported()
     {
@@ -210,12 +210,13 @@ class News
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category 
+     * @return \AppBundle\Entity\Category
      */
     public function getCategory()
     {
         return $this->category;
     }
+
     /**
      * Constructor
      */
