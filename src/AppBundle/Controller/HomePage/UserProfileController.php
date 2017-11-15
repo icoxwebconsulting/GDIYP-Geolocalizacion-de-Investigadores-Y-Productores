@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/userProfile")
@@ -52,12 +53,10 @@ class UserProfileController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $entities = $em->getRepository("AppBundle:UserProfile")->findAllUsersByCity($city);
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
 
-        $entitiesp = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllPracticesByCity($city);
-        $serializedEntityP = $this->container->get('fos_js_routing.serializer')->serialize($entitiesp, 'json');
+        $entitiesPractice = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllPracticesByCity($city);
 
-        return new Response(json_encode(array_merge(json_decode($serializedEntity, true),json_decode($serializedEntityP, true))));
+        return JsonResponse::create( $entities , 200);
     }
     
 

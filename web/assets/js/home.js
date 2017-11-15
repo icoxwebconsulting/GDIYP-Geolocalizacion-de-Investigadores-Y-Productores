@@ -18,13 +18,14 @@ function loadMap(url, type) {
         }
     }).done(function (result) {
 
-        if (result.length < 1)
+        if (result.length < 3){
             $("#alertNews").show();
-
-        createHomepageGoogleMap(_latitude, _longitude, result);
-        $("#mapLoader").hide();
-        $(".iconLeftBar").trigger("click");
-
+            $("#mapLoader").hide();
+        }else{
+            createHomepageGoogleMap(_latitude, _longitude, result);
+            $("#mapLoader").hide();
+            $(".iconLeftBar").trigger("click");
+        }
 
     }).fail(function (jqxhr, textStatus, error) {
         console.log(error);
@@ -53,9 +54,12 @@ $('#region').change(function () {
 });
 
 function loadCountry() {
+    var url = Routing.generate('country_list');
+    console.info('load country in', url);
+
     $.ajax({
         type: "GET",
-        url: Routing.generate('country_list', {id: region})
+        url: url
     }).done(function (result) {
         var data = eval(result);
         for (var i = 0; i < data.length; i++) {
@@ -116,7 +120,10 @@ function loadCity() {
     }
 }
 
-loadCountry();
+
+$(document).ready(function($) {
+    loadCountry();
+});
 
 $('#search-form').bind('submit', function (e) {
     $("#mapLoader").show();
