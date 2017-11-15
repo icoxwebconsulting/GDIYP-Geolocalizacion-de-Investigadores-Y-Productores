@@ -67,7 +67,7 @@ class Media
      * @var string
      */
     private $fileName;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="MediaType")
      * @ORM\JoinColumn(name="type", referencedColumnName="id")
@@ -91,7 +91,7 @@ class Media
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -114,7 +114,7 @@ class Media
     /**
      * Get status
      *
-     * @return \AppBundle\Entity\Status 
+     * @return \AppBundle\Entity\Status
      */
     public function getStatus()
     {
@@ -137,7 +137,7 @@ class Media
     /**
      * Get type
      *
-     * @return \AppBundle\Entity\Type 
+     * @return \AppBundle\Entity\Type
      */
     public function getType()
     {

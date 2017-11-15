@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
@@ -21,10 +22,10 @@ class User extends BaseUser
     use TimestampableTrait;
 
     /**
-    * @ORM\Id
-    * @ORM\Column(type="integer")
-    * @ORM\GeneratedValue(strategy="AUTO")
-    */
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     protected $id;
 
     /**
@@ -75,21 +76,21 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="News", mappedBy="created_by", cascade={"persist", "remove"})
      * @ORM\OrderBy({"created" = "DESC"})
-     * @var $news[]
+     * @var $news []
      **/
     protected $news = null;
 
     /**
      * @ORM\OneToMany(targetEntity="Media", mappedBy="created_by", cascade={"persist", "remove"})
      * @ORM\OrderBy({"created" = "DESC"})
-     * @var $medias[]
+     * @var $medias []
      **/
     protected $medias = null;
 
     /**
      * @ORM\OneToMany(targetEntity="AgroecologicalPractice", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\OrderBy({"created" = "DESC"})
-     * @var $practices[]
+     * @var $practices []
      **/
     protected $practices = null;
 
@@ -117,7 +118,7 @@ class User extends BaseUser
     /**
      * Get first_name
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -140,7 +141,7 @@ class User extends BaseUser
     /**
      * Get last_name
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -163,7 +164,7 @@ class User extends BaseUser
     /**
      * Get reported
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getReported()
     {
@@ -171,9 +172,9 @@ class User extends BaseUser
     }
 
     /**
-    * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
-    * @return Media
-    */
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @return Media
+     */
     public function setImage(File $file = null)
     {
         $this->image = $file;

@@ -4,11 +4,11 @@ var searchregion = $("#searchregion").val();
 var searchcity = $("#searchcity").val();
 var searchtypeuser = $("#searchtypeuser").val();
 
-function loadMap(url, type){
+function loadMap(url, type) {
     var _latitude = 25.541216;
     var _longitude = -0.095678;
 
-    createHomepageGoogleMap(_latitude,_longitude,[]);
+    createHomepageGoogleMap(_latitude, _longitude, []);
 
     $.ajax({
         type: "GET",
@@ -16,49 +16,49 @@ function loadMap(url, type){
         data: {
             usertype: type
         }
-    }).done(function(result){
+    }).done(function (result) {
 
-        if(result.length < 1)
+        if (result.length < 1)
             $("#alertNews").show();
 
-        createHomepageGoogleMap(_latitude,_longitude,result);
+        createHomepageGoogleMap(_latitude, _longitude, result);
         $("#mapLoader").hide();
-        $( ".iconLeftBar" ).trigger( "click" );
+        $(".iconLeftBar").trigger("click");
 
 
-    }).fail(function( jqxhr, textStatus, error ) {
+    }).fail(function (jqxhr, textStatus, error) {
         console.log(error);
     });
 }
+
 // Set if language is RTL and load Owl Carousel
-$(window).load(function(){
+$(window).load(function () {
     var rtl = false; // Use RTL
     initializeOwl(rtl);
 });
 
 
-
 if (redefinesearch == '1') {
-    if (searchtypeuser!="") {
+    if (searchtypeuser != "") {
         $("#type-user").val(searchtypeuser);
         $("#advanced-search").removeClass('disabled');
     }
 }
 
-$('#country').change(function(){
+$('#country').change(function () {
     loadRegion();
 });
-$('#region').change(function(){
+$('#region').change(function () {
     loadCity();
 });
 
-function loadCountry(){
+function loadCountry() {
     $.ajax({
         type: "GET",
-        url: Routing.generate('country_list', { id: region })
-    }).done(function( result ) {
+        url: Routing.generate('country_list', {id: region})
+    }).done(function (result) {
         var data = eval(result);
-        for(var i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++) {
             var newOption = $('<option/>');
             newOption.text(data[i].name);
             newOption.attr('value', data[i].id);
@@ -67,22 +67,22 @@ function loadCountry(){
             $('#country').append(newOption);
         }
         var country = $('#country').find(':selected').val();
-        if (country != 0){
+        if (country != 0) {
             loadRegion();
         }
     });
 }
 
-function loadRegion(){
+function loadRegion() {
     $("#region").children().remove();
     var country = $('#country').find(':selected').val();
-    if(country != 0){
+    if (country != 0) {
         $.ajax({
             type: "GET",
-            url: Routing.generate('region_list', { id: country })
-    }).done(function( result ) {
+            url: Routing.generate('region_list', {id: country})
+        }).done(function (result) {
             var data = eval(result);
-            for(var i = 0; i < data.length; i++){
+            for (var i = 0; i < data.length; i++) {
                 var newOption = $('<option/>');
                 newOption.text(data[i].name);
                 newOption.attr('value', data[i].id);
@@ -95,16 +95,16 @@ function loadRegion(){
     }
 }
 
-function loadCity(){
+function loadCity() {
     $("#city").children().remove();
     var region = $('#region').find(':selected').val();
-    if(region != 0){
+    if (region != 0) {
         $.ajax({
             type: "GET",
-            url: Routing.generate('city_list', { id: region })
-        }).done(function( result ) {
+            url: Routing.generate('city_list', {id: region})
+        }).done(function (result) {
             var data = eval(result);
-            for(var i = 0; i < data.length; i++){
+            for (var i = 0; i < data.length; i++) {
                 var newOption = $('<option/>');
                 newOption.text(data[i].name);
                 newOption.attr('value', data[i].id);
@@ -118,21 +118,21 @@ function loadCity(){
 
 loadCountry();
 
-$('#search-form').bind('submit', function(e) {
+$('#search-form').bind('submit', function (e) {
     $("#mapLoader").show();
     e.preventDefault();
     var city = $('#city').find(':selected').val();
     type = $("#type-user").val();
 
-    if (city != 0){
+    if (city != 0) {
         if (type == 'investigator')
-            var url = Routing.generate('homepage_user_profile_city_show', { id: city });
-    else if (type == 'producer')
-            var url = Routing.generate('homepage_practice_profile_city_show', { id: city });
+            var url = Routing.generate('homepage_user_profile_city_show', {id: city});
+        else if (type == 'producer')
+            var url = Routing.generate('homepage_practice_profile_city_show', {id: city});
         else if (type == 'all')
-            var url = Routing.generate('homepage_all_profile_city_show', { id: city });
+            var url = Routing.generate('homepage_all_profile_city_show', {id: city});
 
-        loadMap(url,type);
+        loadMap(url, type);
     }
 });
 
