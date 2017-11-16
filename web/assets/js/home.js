@@ -17,8 +17,8 @@ function loadMap(url, type) {
             usertype: type
         }
     }).done(function (result) {
-
-        if (result.length < 3){
+        
+        if (result.length < 1 || jQuery.type(result) == 'string' ){
             $("#alertNews").show();
             $("#mapLoader").hide();
         }else{

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1aa6247-8094-4e63-ae2d-5758182cebb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserProfileController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserProfileController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/assets/js/home.js" afterPath="$PROJECT_DIR$/web/assets/js/home.js" />
     </list>
     <ignored path="GDIYP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,21 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserProfileController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserProfileController.php">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/assets/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="87" column="77" lean-forward="false" selection-start-line="87" selection-start-column="77" selection-end-line="87" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserProfileRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/UserProfileRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-124">
-              <caret line="44" column="32" lean-forward="false" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="32" />
+            <state relative-caret-position="342">
+              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -153,7 +143,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/homepage/index.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/spotter/js/maps.js" />
-        <option value="$PROJECT_DIR$/web/assets/js/home.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/UserProfileRepository.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/homepage/modals/advanced_search/producer.html.twig" />
@@ -161,6 +150,7 @@
         <option value="$PROJECT_DIR$/app/Resources/views/agroindustrial_practice/wizard/step1.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/agroindustrial_practice/form.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserProfileController.php" />
+        <option value="$PROJECT_DIR$/web/assets/js/home.js" />
       </list>
     </option>
   </component>
@@ -210,35 +200,25 @@
             <path>
               <item name="GDIYP" type="b2602c69:ProjectViewProjectNode" />
               <item name="GDIYP" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="GDIYP" type="b2602c69:ProjectViewProjectNode" />
               <item name="GDIYP" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="GDIYP" type="b2602c69:ProjectViewProjectNode" />
               <item name="GDIYP" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="GDIYP" type="b2602c69:ProjectViewProjectNode" />
               <item name="GDIYP" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="HomePage" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="GDIYP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GDIYP" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -439,12 +419,12 @@
       <workItem from="1510662710765" duration="12910000" />
       <workItem from="1510697038582" duration="145000" />
       <workItem from="1510748909566" duration="4471000" />
-      <workItem from="1510849467456" duration="180000" />
+      <workItem from="1510849467456" duration="2538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="729275000" />
+    <option name="totallyTimeSpent" value="731633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="76" width="1532" height="939" extended-state="0" />
@@ -500,13 +480,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2114">
@@ -760,33 +733,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/spotter/js/maps.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="105" column="47" lean-forward="false" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AgroecologicalPracticeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
           <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AgroecologicalPracticeRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -810,13 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="514">
           <caret line="72" column="14" lean-forward="false" selection-start-line="72" selection-start-column="14" selection-end-line="72" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/js/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -860,8 +803,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserProfileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
+        <state relative-caret-position="1458">
           <caret line="87" column="77" lean-forward="false" selection-start-line="87" selection-start-column="77" selection-end-line="87" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/HomePage/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="59" column="92" lean-forward="false" selection-start-line="59" selection-start-column="80" selection-end-line="59" selection-end-column="92" />
+          <folding>
+            <element signature="e#49#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AgroecologicalPracticeRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="74" column="32" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/spotter/js/maps.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2021">
+          <caret line="402" column="82" lean-forward="false" selection-start-line="402" selection-start-column="82" selection-end-line="402" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding />
         </state>
       </provider>
