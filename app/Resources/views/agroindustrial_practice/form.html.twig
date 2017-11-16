@@ -85,60 +85,6 @@
         var map;
         var markers = [];
 
-        function loadMarker() {
-            var geocoder = new google.maps.Geocoder();
-
-            var address = $("#appbundle_agroecologicalpractice_country option:selected").text();
-
-            if ($("#appbundle_agroecologicalpractice_region option:selected").text().length > 0 && $("#appbundle_agroecologicalpractice_region option:selected").text() != "Seleccionar")
-                address += ', ' + $("#appbundle_agroecologicalpractice_region option:selected").text();
-
-            if ($("#appbundle_agroecologicalpractice_city option:selected").text().length > 0 && $("#appbundle_agroecologicalpractice_city option:selected").text() != "Seleccionar")
-                address += ', ' + $("#appbundle_agroecologicalpractice_city option:selected").text();
-
-            $("#search-address").val(address);
-
-            geocoder.geocode({'address': address}, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    markers.forEach(function (marker) {
-                        marker.setMap(null);
-                    });
-                    markers = [];
-                    $("#lat").val(results[0].geometry.location.lat());
-                    $("#lng").val(results[0].geometry.location.lng());
-                    var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
-                    var marker = new google.maps.Marker({
-                        position: myLatLng,
-                        map: map,
-                        title: address,
-                        draggable: true
-                    });
-                    markers.push(marker);
-                    map.setCenter(marker.getPosition());
-
-                    google.maps.event.addListener(marker, 'dragend', function (event) {
-                        $("#lat").val(this.getPosition().lat());
-                        $("#lng").val(this.getPosition().lng());
-                    });
-
-                } else {
-                    console.info("Something got wrong " + status);
-                }
-            });
-        }
-
-        $("#appbundle_agroecologicalpractice_country").change(function () {
-            loadMarker();
-        });
-
-        $("#appbundle_agroecologicalpractice_region").change(function () {
-            loadMarker();
-        });
-
-        $("#appbundle_agroecologicalpractice_city").change(function () {
-            loadMarker();
-        });
-
 
         function initialize() {
             map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -148,111 +94,87 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            {% if entity.address.id is defined %}
 
-                markers.forEach(function (marker) {
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('search-address');
+
+            var lat = {{ entity.address ? entity.address.latitude : 0 }};
+            var lng = {{ entity.address ? entity.address.longitude : 0 }};
+
+            var myLatLng = new google.maps.LatLng( lat, lng);
+            marker = new google.maps.Marker( {position: myLatLng, map: map, draggable: true } );
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("lat").value = this.getPosition().lat();
+                document.getElementById("lng").value = this.getPosition().lng();
+            });
+            marker.setMap( map );
+            map.setCenter(marker.getPosition());
+
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+
+
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+                console.log(places[0].geometry);
+                document.getElementById("lat").value = places[0].geometry.viewport.f.b;
+                document.getElementById("lng").value = places[0].geometry.viewport.b.b;
+                console.log("auto complete lat->",places[0].geometry.viewport.f.b);
+                console.log("auto complete long->",places[0].geometry.viewport.b.b);
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function(marker) {
                     marker.setMap(null);
                 });
                 markers = [];
 
-                var myLatLng = {lat: {{ entity.address.latitude }}, lng: {{ entity.address.longitude }}};
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map,
-                    title: $("#search-address").val(),
-                    draggable: true
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location,
+                        draggable: true,
+                    });
+                    // Create a marker for each place.
+                    markers.push(marker);
+
+                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                        document.getElementById("lat").value = this.getPosition().lat();
+                        document.getElementById("lng").value = this.getPosition().lng();
+                        console.log("lat->",this.getPosition().lat());
+                        console.log("long->",this.getPosition().lng());
+                    });
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
                 });
-                markers.push(marker);
-                map.setCenter(marker.getPosition());
-
-                google.maps.event.addListener(marker, 'dragend', function (event) {
-                    $("#lat").val(this.getPosition().lat());
-                    $("#lng").val(this.getPosition().lng());
-                });
-            {% else %}
-
-                loadMarker();
-            {% endif %}
-
-            // Create the search box and link it to the UI element.
-            var input = document.getElementById('search-address');
-//            var myLatLng = new google.maps.LatLng( 0, 0);
-//            marker = new google.maps.Marker( {position: myLatLng, map: map, draggable: true } );
-//            google.maps.event.addListener(marker, 'dragend', function (event) {
-//                document.getElementById("lat").value = this.getPosition().lat();
-//                document.getElementById("lng").value = this.getPosition().lng();
-//                console.log("lat->",this.getPosition().lat());
-//                console.log("long->",this.getPosition().lng());
-//            });
-//            marker.setMap( map );
-
-//            var searchBox = new google.maps.places.SearchBox(input);
-//            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-//
-//            // Bias the SearchBox results towards current map's viewport.
-//            map.addListener('bounds_changed', function() {
-//                searchBox.setBounds(map.getBounds());
-//            });
-
-
-            // [START region_getplaces]
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-//            searchBox.addListener('places_changed', function() {
-//                var places = searchBox.getPlaces();
-//                console.log(places[0].geometry);
-//                document.getElementById("lat").value = places[0].geometry.viewport.f.b;
-//                document.getElementById("lng").value = places[0].geometry.viewport.b.b;
-//                console.log("auto complete lat->",places[0].geometry.viewport.f.b);
-//                console.log("auto complete long->",places[0].geometry.viewport.b.b);
-//                if (places.length == 0) {
-//                    return;
-//                }
-//
-//                // Clear out the old markers.
-//                markers.forEach(function(marker) {
-//                    marker.setMap(null);
-//                });
-//                markers = [];
-//
-//                // For each place, get the icon, name and location.
-//                var bounds = new google.maps.LatLngBounds();
-//                places.forEach(function(place) {
-//                    var icon = {
-//                        url: place.icon,
-//                        size: new google.maps.Size(71, 71),
-//                        origin: new google.maps.Point(0, 0),
-//                        anchor: new google.maps.Point(17, 34),
-//                        scaledSize: new google.maps.Size(25, 25)
-//                    };
-//
-//                    var marker = new google.maps.Marker({
-//                        map: map,
-//                        title: place.name,
-//                        position: place.geometry.location,
-//                        draggable: true,
-//                    });
-//                    // Create a marker for each place.
-//                    markers.push(marker);
-//
-//                    google.maps.event.addListener(marker, 'dragend', function (event) {
-//                        document.getElementById("lat").value = this.getPosition().lat();
-//                        document.getElementById("lng").value = this.getPosition().lng();
-//                        console.log("lat->",this.getPosition().lat());
-//                        console.log("long->",this.getPosition().lng());
-//                    });
-//
-//                    if (place.geometry.viewport) {
-//                        // Only geocodes have viewport.
-//                        bounds.union(place.geometry.viewport);
-//                    } else {
-//                        bounds.extend(place.geometry.location);
-//                    }
-//                });
-//                map.fitBounds(bounds);
-//            });
-            // [END region_getplaces]
+                map.fitBounds(bounds);
+            });
         }
+
         $(function () {
             $('#type_practice').change(function () {
                 $('.type').hide();
@@ -365,7 +287,7 @@
             });
         });
 
-        var typeSelected = "{{ practiceTypeId }}";
+        var typeSelected = "{{ practiceTypeId is defined ?  practiceTypeId : 0}}";
 
         function loadProductionType() {
             $('#appbundle_agroecologicalpractice_productive_undertaking_type').children().remove();
@@ -387,8 +309,6 @@
             });
         }
 
-        var loadMarkerRegion = false;
-        var loadMarkerCity = false;
 
         function loadRegion() {
             $('#appbundle_agroecologicalpractice_region').children().not(':first').remove();
@@ -413,10 +333,7 @@
                 if (regionselected) {
                     loadCity();
                 }
-                if(loadMarkerRegion)
-                    loadMarker();
-                else
-                    loadMarkerRegion = true;
+
             });
         }
 
@@ -450,10 +367,6 @@
                     $("#appbundle_agroecologicalpractice_city_name").removeAttr('required');
                     $("#appbundle_agroecologicalpractice_city").attr('required', 'required');
 
-                    if(loadMarkerCity)
-                        loadMarker();
-                    else
-                        loadMarkerCity = true;
                 }
             });
         }
@@ -461,5 +374,5 @@
 
     </script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places"></script>
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt1dtSkxqSIbtWoF-DfeUTZb906mihfh4&libraries=places&callback=initialize"></script>
 {% endblock %}

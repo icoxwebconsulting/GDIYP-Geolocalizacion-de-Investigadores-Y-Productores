@@ -33,7 +33,6 @@
 {% endblock %}
 
 {% block extra_css %}
-    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" type="text/css">
 {% endblock %}
 {% block extra_js %}
@@ -47,7 +46,6 @@
         <script>
             loadMap("{{ path('user_list') }}", 'all');
             autoComplete();
-
 
             function filterByUser(type){
                 $("#mapLoader").show();
