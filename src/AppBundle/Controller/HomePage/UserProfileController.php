@@ -24,9 +24,8 @@ class UserProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:UserProfile")->findOneBy(array('user'=>$user));
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
 
-        return new Response($serializedEntity);
+        return JsonResponse::create( $entities , 200);
     }
 
     /**
@@ -38,9 +37,8 @@ class UserProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:UserProfile")->findAllUsersByCity($city);
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
 
-        return new Response($serializedEntity);
+        return JsonResponse::create( $entities , 200);
     }
     
     /**

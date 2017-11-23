@@ -8,6 +8,7 @@ use AppBundle\Entity\AgroecologicalPractice;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/agroecologicalPractice")
@@ -44,8 +45,7 @@ class AgroecologicalPracticeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findOneBy(array('id'=>$practice));
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
-        return new Response($serializedEntity);
+        return JsonResponse::create( $entities , 200);
     }
 
     /**
@@ -57,9 +57,7 @@ class AgroecologicalPracticeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findAllPracticesByCity($city);
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
-
-        return new Response($serializedEntity);
+        return JsonResponse::create( $entities , 200);
     }    
 
     /**
@@ -104,8 +102,6 @@ class AgroecologicalPracticeController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository("AppBundle:AgroecologicalPractice")->findByFilter($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType);
-        $serializedEntity = $this->container->get('fos_js_routing.serializer')->serialize($entities, 'json');
-
-        return new Response($serializedEntity);
+        return JsonResponse::create( $entities , 200);
     }    
 }

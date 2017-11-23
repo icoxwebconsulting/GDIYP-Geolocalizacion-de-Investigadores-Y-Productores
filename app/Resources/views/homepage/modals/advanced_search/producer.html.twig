@@ -143,6 +143,8 @@
                             </select>
                         </div>
                     </div>
+                    <p class="form-text text-muted" id="chooseError" style="color: #8b211e; margin-left: 5px;display: none;">Debe seleccionar una opci&oacute;n</p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn">{{ 'Clean fields' | trans }}</button>
@@ -272,9 +274,11 @@
         loadProductionCategory();
         loadProductDestination();
 
-        $('#practiceform').bind('submit', function(e) {            
+        $('#practiceform').bind('submit', function(e) {
             e.preventDefault();
             $("#mapLoader").show();
+            $("#chooseError").hide();
+
             var country = $('#country').find(':selected').val();
             var region = $('#region').find(':selected').val();
             var city = $('#city').find(':selected').val();            
@@ -290,7 +294,10 @@
                 
                 if (productionCategory != 0 || productionType != 0 || productionDestination != 0 || whereTheySell != 0 || productiveSurface != 0){
                     url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/"+productionCategory+"/"+productionType+"/"+productionDestination+"/"+whereTheySell+"/"+productiveSurface+"/0/0/0/0/0/0";
-                }                    
+                }else{
+                    $("#chooseError").show();
+                    return false;
+                }
             }
             else if (practice_type=="marketing_spaces") {
                 var marketWhereSold = $('#marketWhereSold').find(':selected').val();
@@ -299,7 +306,10 @@
 
                 if (marketWhereSold != 0 || type != 0 || periodicity != 0){
                     url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/"+marketWhereSold+"/"+type+"/"+periodicity+"/0/0/0";
-                }                    
+                }else{
+                    $("#chooseError").show();
+                    return false;
+                }
 
             }
             else if (practice_type=="professional_services") {
@@ -307,21 +317,34 @@
 
                 if (serviceType != 0){
                     url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/"+serviceType+"/0/0";
-                }                    
+                }else{
+                    $("#chooseError").show();
+                    return false;
+                }
             }
             else if (practice_type=="institutional_project") {
                 var projectType = $('#projectType').find(':selected').val();
 
                 if (projectType != 0){
                     url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/"+projectType+"/0";
-                }                    
+                }else{
+                    $("#chooseError").show();
+                    return false;
+                }
             }
             else if (practice_type=="promotion_group") {
                 var promotionType = $('#promotionType').find(':selected').val();
 
                 if (promotionType != 0){
                     url =  "{{ path('homepage') }}agroecologicalPractice/filter/"+country+"/"+region+"/"+city+"/"+practice_type+"/0/0/0/0/0/0/0/0/0/0/"+promotionType;
-                }                    
+                }else{
+                    $("#chooseError").show();
+                    return false;
+                }
+
+            }else{
+                $("#chooseError").show();
+                return false;
             }
 
             loadMap(url, "producer");
