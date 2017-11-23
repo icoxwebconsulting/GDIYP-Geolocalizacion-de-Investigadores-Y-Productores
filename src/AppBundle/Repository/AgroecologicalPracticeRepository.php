@@ -52,8 +52,12 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('p')
+        $qb->select('p','u','a','n')
             ->from('AppBundle:AgroecologicalPractice', 'p')
+            ->innerJoin('p.user', 'u')
+            ->innerJoin('p.address', 'a')
+            ->leftJoin('p.news', 'pn')
+            ->leftJoin('pn.news', 'n')
             ->andWhere('p.address IS NOT NULL');
 
         return $qb->getQuery()->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
@@ -63,13 +67,17 @@ class AgroecologicalPracticeRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('p')
+        $qb->select('p','u','a','n')
             ->from('AppBundle:AgroecologicalPractice', 'p')
+            ->innerJoin('p.user', 'u')
+            ->innerJoin('p.address', 'a')
+            ->leftJoin('p.news', 'pn')
+            ->leftJoin('pn.news', 'n')
             ->andWhere('p.address IS NOT NULL')
             ->andWhere('p.city = :city')
             ->setParameter(':city', $city);
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
 
     public function findByFilter($city, $practice_type, $productionCategory, $productionType, $productionDestination, $whereTheySell, $productiveSurface, $marketWhereSold, $type, $periodicity, $serviceType, $projectType, $promotionType)
