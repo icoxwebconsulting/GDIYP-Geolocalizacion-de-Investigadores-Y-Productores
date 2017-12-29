@@ -36,7 +36,7 @@ class SendNewsCommand extends ContainerAwareCommand
             $userCounter++;
             if ($userCounter==10 || $currentUser==count($usersList)) {
                 $userTo = $user->getID();
-                $url = "http://redperiurban.com/email/news/".$userFrom."/".$userTo;
+                $url = "http://redperiurban.com/app_dev.php/email/news/".$userFrom."/".$userTo;
                 echo $url;
                 $curl = curl_init();
                 curl_setopt($curl, CURLOPT_URL, $url);
