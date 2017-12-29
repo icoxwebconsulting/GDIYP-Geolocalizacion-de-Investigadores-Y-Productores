@@ -2,7 +2,6 @@
 
 namespace AppBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +27,7 @@ class SendNewsCommand extends ContainerAwareCommand
         $userTo=0;
 
         $fs = new FileSystem();
-        $fs->remove($this->container->getParameter('kernel.cache_dir'));
+        $fs->remove($this->getContainer()->getParameter('kernel.cache_dir'));
 
         foreach ($usersList as $user) {
             if ($userCounter==1) {
@@ -49,7 +48,7 @@ class SendNewsCommand extends ContainerAwareCommand
                 $userCounter=1; 
     
                 $fs = new FileSystem();
-                $fs->remove($this->container->getParameter('kernel.cache_dir'));
+                $fs->remove($this->getContainer()->getParameter('kernel.cache_dir'));
             }
             $currentUser++;
         }
