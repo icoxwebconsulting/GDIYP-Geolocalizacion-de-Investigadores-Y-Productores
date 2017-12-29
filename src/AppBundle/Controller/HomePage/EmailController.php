@@ -31,7 +31,7 @@ class EmailController extends Controller
                 $userEmail = str_replace(" ","",$userEmail);
                 //$userEmail='aristigueta'.$user->getID().'@gmail.com'.$user->getID();
                 //$userCount++;
-                $response = $this->forward('AppBundle:Homepage/LatestNews:index', array(
+                $response = $this->forward('AppBundle:HomePage/LatestNews:index', array(
                     'email'  => $userEmail,
                 ));
             }
