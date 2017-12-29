@@ -18,7 +18,7 @@ class SendNewsCommand extends ContainerAwareCommand
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em0 = $this->getContainer()->getDoctrine()->getManager();
+        $em0 = $this->getContainer()->get('doctrine')->getManager();
 
         $usersList = $em0->getRepository("AppBundle:User")->findAll();
         $userCounter=1;
