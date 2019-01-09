@@ -23,4 +23,17 @@ class ReportRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    
+    public function findAllUserReported()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('r')
+            ->from('AppBundle:Report', 'r')
+            ->leftJoin('r.user', 'user')
+            ->where('user.deletedAt IS NULL')    
+            ->andWhere('r.type = 1');
+
+        return $qb->getQuery()->getResult();
+    }
 }
