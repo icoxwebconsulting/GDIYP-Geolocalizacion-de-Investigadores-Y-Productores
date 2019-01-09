@@ -30,8 +30,7 @@ class ReportRepository extends EntityRepository
 
         $qb->select('r')
             ->from('AppBundle:Report', 'r')
-            ->leftJoin('r.user', 'user')
-            ->where('user.deletedAt IS NULL')    
+            ->leftJoin('r.user', 'user')    
             ->andWhere('r.type = 1');
 
         return $qb->getQuery()->getResult();
