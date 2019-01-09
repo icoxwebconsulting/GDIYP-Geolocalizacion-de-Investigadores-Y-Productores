@@ -25,7 +25,7 @@ class ReportController extends Controller
     public function reportUserAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository("AppBundle:Report")->findAllUserReported();
+        $entities = $em->getRepository("AppBundle:Report")->findBy(array('type'=>1));
         $title = $this->get('translator')->trans('Users');
         return $this->render('report/list.html.twig', array(
             'entities' => $entities,
